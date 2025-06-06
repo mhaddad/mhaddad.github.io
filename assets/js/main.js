@@ -110,12 +110,14 @@
 
 	};
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+       // Play initial animations as soon as the DOM is ready so that
+       // the header becomes visible without waiting for heavy assets
+       // (like embedded videos) to finish loading.
+               $(function() {
+                       window.setTimeout(function() {
+                               $body.removeClass('is-preload');
+                       }, 100);
+               });
 
 	// Scrolly.
 		$('.scrolly').scrolly();
