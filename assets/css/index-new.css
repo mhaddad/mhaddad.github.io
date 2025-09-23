@@ -145,7 +145,7 @@ h3 {
 .hero-media img {
         width: 100%;
         max-width: 320px;
-        border-radius: 50%;
+        border-radius: 0;
         display: block;
         margin: 0 auto;
         box-shadow: 0 2rem 4rem rgba(10, 13, 32, 0.45);
@@ -395,7 +395,7 @@ h3 {
 .brand img {
         width: 54px;
         height: 54px;
-        border-radius: 50%;
+        border-radius: 0;
         object-fit: cover;
         box-shadow: 0 1rem 2rem rgba(5, 7, 18, 0.4);
 }
