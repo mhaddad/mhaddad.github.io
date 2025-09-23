@@ -53,6 +53,39 @@ a:focus {
         color: var(--color-text-light);
 }
 
+/* Iconography (from HTML5 UP Stellar) */
+.icon {
+        text-decoration: none;
+        border-bottom: none;
+        position: relative;
+}
+
+.icon > .label {
+        display: none;
+}
+
+.icon:before {
+        display: inline-block;
+        font-family: 'Font Awesome 5 Free';
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: inherit;
+        text-rendering: auto;
+        text-transform: none !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+}
+
+.icon.solid:before {
+        font-weight: 900;
+}
+
+.icon.brands:before {
+        font-family: 'Font Awesome 5 Brands';
+        font-weight: 400;
+}
+
 p {
         margin: 0 0 1.5rem;
 }
