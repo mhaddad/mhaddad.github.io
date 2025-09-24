@@ -31,11 +31,40 @@ html {
 body {
         margin: 0;
         font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
-        background: radial-gradient(circle at 15% 15%, rgba(100, 161, 157, 0.12), transparent 45%),
-                linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
+        background-color: #1c1d26;
         color: var(--color-text-light);
         line-height: 1.7;
         min-height: 100vh;
+        position: relative;
+}
+
+body::before,
+body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+}
+
+body::before {
+        z-index: -2;
+        background-color: #1c1d26;
+        background-image: radial-gradient(65rem circle at 22% 18%, rgba(110, 146, 240, 0.35), transparent 60%),
+                radial-gradient(60rem circle at 78% 82%, rgba(239, 120, 142, 0.32), transparent 55%),
+                linear-gradient(160deg, rgba(42, 48, 78, 0.98), rgba(15, 18, 35, 0.98)),
+                url('../../images/bg.jpg');
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+        background-size: 140% 140%, 140% 140%, cover, cover;
+        background-position: center, center, center, center;
+        background-attachment: fixed, fixed, fixed, fixed;
+}
+
+body::after {
+        z-index: -1;
+        background-image: url('../../images/overlay.png');
+        background-repeat: repeat;
+        background-size: 256px 256px;
+        opacity: 0.45;
 }
 
 body.is-preload * {
