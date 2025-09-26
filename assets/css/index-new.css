@@ -141,9 +141,10 @@ h3 {
 
 .tagline {
         font-weight: 400;
+        font-style: italic;
         letter-spacing: 0.05em;
         text-transform: none;
-        margin-bottom: 2rem;
+        margin-bottom: 0.5em;
         color: rgba(247, 249, 255, 0.78);
 }
 
@@ -211,7 +212,7 @@ h3 {
 .hero-media img {
         width: 100%;
         max-width: 320px;
-        border-radius: 0;
+        border-radius: 1rem;
         display: block;
         margin: 0 auto;
         box-shadow: 0 2rem 4rem rgba(10, 13, 32, 0.45);
@@ -310,8 +311,8 @@ h3 {
 }
 
 .highlight img {
-        width: min(320px, 100%);
-        margin: 0 auto 2rem;
+        width: min(800px, 100%);
+        margin: 0 auto 1rem;
         display: block;
         border-radius: 1.1rem;
         box-shadow: 0 2.5rem 4rem rgba(9, 12, 28, 0.45);
