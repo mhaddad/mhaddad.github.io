@@ -11,7 +11,7 @@
         --color-text: #2a2e47;
         --color-text-light: #f7f9ff;
         --color-muted: #9ca0c7;
-        --color-accent: #64a19d;
+        --color-accent: rgb(239, 120, 142, 1);
         --color-accent-dark: #4f7f7a;
         --header-height: 5rem;
         --shadow-strong: 0 2rem 3.5rem rgba(10, 13, 32, 0.35);
@@ -79,7 +79,7 @@ a {
 
 a:hover,
 a:focus {
-        color: var(--color-text-light);
+        text-decoration: underline;
 }
 
 /* Iconography (from HTML5 UP Stellar) */
@@ -183,7 +183,7 @@ h3 {
 }
 
 .section.alt a {
-        color: #9bf1ff;
+        color: #ffffff;
 }
 
 .section.alt a:hover,
