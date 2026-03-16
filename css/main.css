@@ -999,8 +999,7 @@ strong {
   border-radius: var(--radius-md);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
   margin: 0 auto;
-  min-height: 360px;
-  object-fit: cover;
+  width: 100%;
 }
 
 .book-hero-info h1 {
