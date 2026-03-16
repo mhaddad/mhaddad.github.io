@@ -270,7 +270,7 @@ strong {
    ============================================================ */
 .hero {
   padding-top: var(--nav-height);
-  min-height: calc(100vh - var(--nav-height));
+  min-height: 632px;
   display: flex;
   align-items: stretch;
 }
@@ -282,7 +282,7 @@ strong {
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: calc(100vh - var(--nav-height));
+  min-height: 560px;
 }
 
 .hero-content {
@@ -321,7 +321,7 @@ strong {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  min-height: 540px;
+  min-height: 560px;
 }
 
 /* ============================================================
@@ -453,7 +453,7 @@ strong {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem 3rem;
+  gap: 1rem 2rem;
   padding: 1rem 0;
 }
 
