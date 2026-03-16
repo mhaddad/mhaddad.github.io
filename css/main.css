@@ -1493,7 +1493,8 @@ strong {
   }
 
   .book-cover img {
-    max-width: 220px;
+    width: 75%;
+    max-width: 320px;
     min-height: unset;
     object-fit: unset;
     margin: 0 auto;
@@ -1507,7 +1508,10 @@ strong {
   }
 
   .book-hero-cover img {
-    max-width: 200px;
+    width: 75%;
+    max-width: 320px;
+    min-height: unset;
+    object-fit: unset;
     margin: 0 auto;
   }
 
