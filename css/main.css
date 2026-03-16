@@ -453,7 +453,7 @@ strong {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1rem 2rem;
+  gap: 1rem 1rem;
   padding: 1rem 0;
 }
 
@@ -469,7 +469,7 @@ strong {
 }
 
 .company-logos-strip img {
-  height: 100px;
+  height: 125px;
   width: auto;
   object-fit: contain;
 }
