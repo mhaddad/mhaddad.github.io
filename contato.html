@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contato — Matheus Haddad</title>
+  <meta name="description" content="Entre em contato com Matheus Haddad para palestras, consultoria, mentoria ou qualquer outro assunto.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mhaddad.github.io/contato.html">
+  <meta property="og:title"       content="Contato — Matheus Haddad">
+  <meta property="og:description" content="Escolha a melhor forma de falar comigo conforme o seu interesse.">
+  <meta property="og:image"       content="images/matheus-haddad-2025.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">Matheus Haddad</a>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="palestras.html">Palestras</a></li>
+          <li><a href="mentoria.html">Mentoria</a></li>
+          <li><a href="livros.html">Livros</a></li>
+          <li><a href="empresas.html">Empresas</a></li>
+          <li><a href="contato.html" class="btn-nav">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══ PAGE HERO ════════════════════════════════════════════ -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-label">Contato</span>
+        <h1>Entre em <em>Contato</em></h1>
+        <p>Escolha a melhor forma de falar comigo conforme o seu interesse.</p>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT CARDS ═════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-cards-grid">
+
+          <div class="contact-card">
+            <div class="contact-card-icon"><i class="fas fa-microphone-alt"></i></div>
+            <h3>Palestras e Eventos</h3>
+            <p>Para contratar ou saber mais sobre palestras, workshops e aparições em eventos, acesse a página de Palestras.</p>
+            <a href="palestras.html" class="card-link">Ver Palestras &rarr;</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon"><i class="fas fa-user-graduate"></i></div>
+            <h3>Mentoria Individual</h3>
+            <p>Para iniciar uma mentoria ou tirar dúvidas sobre o processo, acesse a página de Mentoria.</p>
+            <a href="mentoria.html" class="card-link">Conhecer Mentoria &rarr;</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <h3>Outras Conversas</h3>
+            <p>Para qualquer outro assunto, use o formulário abaixo ou entre em contato pelo LinkedIn.</p>
+            <a href="https://www.linkedin.com/in/matheushaddad/" target="_blank" rel="noopener" class="card-link">Acessar LinkedIn &rarr;</a>
+          </div>
+
+        </div>
+
+        <!-- ══ FORMULÁRIO ══════════════════════════════════════════ -->
+        <div class="section-header" style="margin-top: 2rem;">
+          <span class="section-label">Formulário</span>
+          <h2>Envie uma mensagem</h2>
+        </div>
+        <div class="form-wrapper">
+          <form action="https://formspree.io/f/SEU_ENDPOINT" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome-contato">Nome</label>
+                <input type="text" id="nome-contato" name="nome" placeholder="Seu nome completo" required>
+              </div>
+              <div class="form-group">
+                <label for="email-contato">E-mail</label>
+                <input type="email" id="email-contato" name="email" placeholder="seu@email.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="assunto">Assunto</label>
+              <select id="assunto" name="assunto">
+                <option value="Geral">Geral</option>
+                <option value="Consultoria Empresarial">Consultoria Empresarial</option>
+                <option value="Palestra/Evento">Palestra/Evento</option>
+                <option value="Mentoria">Mentoria</option>
+                <option value="Livro/Feedback Canvas">Livro/Feedback Canvas</option>
+                <option value="Imprensa">Imprensa</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensagem-contato">Mensagem</label>
+              <textarea id="mensagem-contato" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Novo contato via site">
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ REDES SOCIAIS ══════════════════════════════════════════ -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Redes Sociais</span>
+          <h2>Acompanhe e conecte-se</h2>
+          <p>Siga para conteúdos sobre gestão ágil, liderança e transformação organizacional.</p>
+        </div>
+        <div class="social-links-grid" style="justify-content: center;">
+          <a href="https://www.linkedin.com/in/matheushaddad/" target="_blank" rel="noopener" class="social-link-item">
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://www.instagram.com/matheushaddad" target="_blank" rel="noopener" class="social-link-item">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="https://x.com/mhaddad" target="_blank" rel="noopener" class="social-link-item">
+            <i class="fab fa-x-twitter"></i>
+            <span>X (Twitter)</span>
+          </a>
+          <a href="https://www.facebook.com/matheus.haddad" target="_blank" rel="noopener" class="social-link-item">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">Matheus Haddad</a>
+          <p>Empresário estratégico para a gestão e a educação através de práticas ágeis e consciência organizacional.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="palestras.html">Palestras</a></li>
+            <li><a href="mentoria.html">Mentoria</a></li>
+            <li><a href="livros.html">Livros</a></li>
+            <li><a href="empresas.html">Empresas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/matheushaddad/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/matheushaddad" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://x.com/mhaddad" target="_blank" rel="noopener">X (Twitter)</a></li>
+            <li><a href="https://www.facebook.com/matheus.haddad" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Links Úteis</h4>
+          <ul>
+            <li><a href="https://feedbackcanvas.digital/livro" target="_blank" rel="noopener">Feedback Canvas</a></li>
+            <li><a href="contato.html">Fale Comigo</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 Matheus Haddad. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
