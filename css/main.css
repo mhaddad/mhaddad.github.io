@@ -500,9 +500,10 @@ strong {
 }
 
 .company-card-logo {
-  height: 48px;
+  height: 200px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .company-card-logo img {
