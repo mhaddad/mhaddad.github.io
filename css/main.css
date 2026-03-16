@@ -1491,6 +1491,8 @@ strong {
 
   .book-cover img {
     max-width: 220px;
+    min-height: unset;
+    object-fit: unset;
     margin: 0 auto;
   }
 
