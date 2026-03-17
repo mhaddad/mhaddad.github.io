@@ -12,6 +12,7 @@
     initFilterTabs();
     initStickyHeader();
     initContactFormPrefill();
+    initFormspree();
   });
 
   /* ── Mobile Menu ──────────────────────────────────────────── */
@@ -130,6 +131,50 @@
       if (opt.value === value || opt.text === value) {
         opt.selected = true;
       }
+    });
+  }
+
+  /* ── Formspree AJAX ───────────────────────────────────────── */
+  function initFormspree() {
+    document.querySelectorAll('form[action^="https://formspree.io"]').forEach(function (form) {
+      var successEl = form.nextElementSibling;
+      var errorEl   = form.querySelector('.form-error');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var btn = form.querySelector('[type="submit"]');
+        var originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+
+        if (errorEl) errorEl.classList.remove('visible');
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(function (res) {
+          if (res.ok) {
+            form.style.display = 'none';
+            if (successEl && successEl.classList.contains('form-success')) {
+              successEl.classList.add('visible');
+            }
+          } else {
+            return res.json().then(function (data) {
+              throw new Error(data.error || 'Erro ao enviar.');
+            });
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          if (errorEl) {
+            errorEl.classList.add('visible');
+          }
+        });
+      });
     });
   }
 
