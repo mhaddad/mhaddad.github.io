@@ -1,0 +1,64 @@
+# Página Sobre (copy aprovada em 01/10/2026, .darkside/content/2026-10-01-copy-onda-4.md).
+# Um item da trajetória pode apontar para um artigo pelo translationKey (campo article).
+lang: pt
+title: Construo empresas de tecnologia desde 2008 e ajudo outras lideranças a redesenhar como suas organizações decidem e trabalham.
+description: Matheus Haddad é empresário, cofundador de empresas de software, finanças e educação e mestre em Inteligência Artificial. Trajetória, formação e princípios.
+bio:
+  - Sou empresário e cofundador de empresas de software, finanças e educação. Comecei em 2008 com a Webgoal, uma das primeiras empresas de desenvolvimento ágil de software, que hoje é uma holding de negócios em tecnologia e educação. Depois vieram o Granatum, o Ateliê de Software, a Orgganica e a Escola Lumiar Poços de Caldas.
+  - "Minha formação é em computação: sou bacharel em Ciência da Computação e mestre em Inteligência Artificial pelo Centro Universitário FEI. Foi construindo essas empresas que passei a estudar quem decide, como o trabalho se coordena e o que faz pessoas autônomas renderem mais ou menos dentro de uma estrutura."
+  - "Todas elas partem da mesma aposta: organizações mais transparentes, autônomas e centradas nas pessoas entregam melhores resultados. É essa experiência de quem pratica que levo para a consultoria, a mentoria e as palestras, em eventos no Brasil e no exterior, e para os artigos que escrevo sobre gestão, liderança, IA e desenvolvimento de software."
+  - "Hoje meu trabalho se concentra numa pergunta que a IA tornou urgente: como redesenhar a gestão quando muda quem sabe o quê, mas a tecnologia sozinha não muda quem decide. No Ateliê de Software, coloquei em prática a orquestração de agentes de IA no processo de desenvolvimento. Em 2026 também criei o conceito de Coerência Cognitiva e o Diagnóstico de P-O Fit, que avaliam a compatibilidade entre a forma como as pessoas pensam, decidem e agem e a forma de trabalhar da organização."
+timeline:
+  - year: 2008
+    title: Cofundação da Webgoal
+    text: Holding que investe em negócios de tecnologia e educação, com uma gestão baseada em transparência, autonomia e responsabilidade.
+  - year: 2009
+    title: Cofundação do Granatum
+    text: Software de gestão financeira com fluxo de caixa em tempo real, planejamento orçamentário e relatórios para empresas de todos os portes.
+  - year: 2011
+    title: Cofundação do Ateliê de Software
+    text: Desenvolvimento de software premium para startups e grandes empresas, pioneiro no Brasil na adoção de métodos ágeis e design centrado no usuário.
+  - year: 2012
+    title: Prêmio MPE Brasil, do Sebrae
+    text: Vencedor nas categorias "Destaque de boas práticas de inovação" e "Serviços de TI" da etapa estadual de São Paulo e finalista na etapa nacional.
+  - year: 2017
+    title: Cofundação da Orgganica
+    text: Consultoria em transformação ágil e inovação organizacional, com cursos, workshops, consultorias e mentorias para empresas e líderes.
+  - year: 2018
+    title: Cofundação da Escola Lumiar Poços de Caldas
+    text: Escola de educação básica que adota a Metodologia Lumiar, baseada no desenvolvimento de competências e reconhecida pela UNESCO, pela Universidade Stanford e pela Microsoft como uma das 12 mais inovadoras do mundo.
+  - year: 2024
+    title: Modern Work Award para o Ateliê de Software
+    text: O Ateliê de Software recebe o Modern Work Award, reconhecimento internacional por práticas de trabalho moderno e transformação organizacional.
+  - year: 2025
+    title: Lançamento do livro Feedback Canvas
+    text: Metodologia e ferramenta para criar uma cultura de feedback nas organizações, já adotada por centenas de times.
+  - year: 2026
+    title: Coerência Cognitiva e Diagnóstico de P-O Fit
+    text: Um conceito e um diagnóstico para avaliar se a forma como as pessoas pensam, decidem e agem é compatível com a forma de trabalhar da organização.
+    article: coerencia-cognitiva
+  - year: 2026
+    title: Agentes de IA no Ateliê de Software
+    text: Orquestração de agentes de IA no processo de desenvolvimento de software do Ateliê de Software.
+education:
+  - degree: Bacharel em Ciência da Computação
+    school: UNIFENAS
+    period: 2000–2003
+  - degree: Especialista em Análise de Sistemas Web
+    school: FASP
+    period: 2004–2005
+  - degree: Mestre em Inteligência Artificial
+    school: Centro Universitário FEI
+    period: 2007–2010
+  - degree: MBA em Gestão Empresarial
+    school: Fundação Getúlio Vargas (FGV)
+    period: 2011–2013
+principles:
+  - title: Autonomia e responsabilidade
+    text: Quem tem o contexto decide e responde pelo que decidiu.
+  - title: Aprendizado contínuo
+    text: Uma empresa melhora na velocidade em que consegue rever o que faz, e isso vale também para quem a lidera.
+  - title: Impacto real sobre processos e pessoas
+    text: Uma mudança só conta quando aparece no jeito como as pessoas decidem e trabalham juntas.
+  - title: Transparência e feedback
+    text: Informação aberta e conversas francas e frequentes, no lugar de avaliações anuais e decisões de bastidor.

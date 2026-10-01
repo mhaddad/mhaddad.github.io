@@ -1,0 +1,87 @@
+---
+// Lista com marcador em mono à esquerda (ano ou período), como a trajetória do About.tsx.
+interface Item {
+  marker: string;
+  title: string;
+  text: string;
+  link?: { href: string; label: string };
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="timeline">
+  {
+    items.map((item) => (
+      <li>
+        <span class="marker mono">{item.marker}</span>
+        <div>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+          {item.link && (
+            <a class="arrow-link" href={item.link.href}>
+              {item.link.label} <span aria-hidden="true">→</span>
+            </a>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: var(--year-column) 1fr;
+    gap: var(--space-32);
+    padding-block: var(--space-32);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  li:first-child {
+    padding-top: 0;
+  }
+
+  li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .marker {
+    padding-top: var(--space-4);
+    color: var(--accent);
+    font-size: var(--fs-12);
+  }
+
+  h3 {
+    margin-bottom: var(--space-4);
+    font-size: var(--fs-20);
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: var(--fs-15);
+    line-height: var(--lh-body);
+  }
+
+  .arrow-link {
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 767px) {
+    li {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

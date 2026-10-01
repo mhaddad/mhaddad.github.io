@@ -1,0 +1,96 @@
+---
+// 404 bilíngue (NotFound.tsx do Figma Make). Uma página só, em PT com o bloco em
+// inglês marcado com lang="en"; fora dos buscadores e do sitemap.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { routePath } from '../i18n/routes';
+import { t } from '../i18n/ui';
+---
+
+<BaseLayout
+  lang="pt"
+  title={`${t('pt', 'notFound.title')} · ${t('en', 'notFound.title')}`}
+  description={t('pt', 'notFound.text')}
+  alternatePath={routePath('home', 'en')}
+  noindex
+>
+  <div class="container not-found">
+    <p class="code mono">404</p>
+    <h1>{t('pt', 'notFound.title')}</h1>
+    <p class="text">{t('pt', 'notFound.text')}</p>
+    <div class="actions">
+      <a class="button button--primary button--large" href={routePath('home', 'pt')}>{t('pt', 'notFound.home')}</a>
+      <a class="button button--secondary button--large" href={routePath('articles', 'pt')}>{t('pt', 'notFound.articles')}</a>
+    </div>
+
+    <div class="english" lang="en">
+      <h2>{t('en', 'notFound.title')}</h2>
+      <p class="text">{t('en', 'notFound.text')}</p>
+      <div class="actions">
+        <a class="arrow-link" href={routePath('home', 'en')}>{t('en', 'notFound.home')} <span aria-hidden="true">→</span></a>
+        <a class="arrow-link" href={routePath('articles', 'en')}>{t('en', 'notFound.articles')} <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    max-width: var(--width-reading);
+    padding-block: var(--space-128);
+    text-align: center;
+  }
+
+  .code {
+    margin-bottom: var(--space-24);
+    color: var(--accent);
+    font-size: var(--fs-12);
+  }
+
+  h1 {
+    margin-bottom: var(--space-8);
+    font-size: var(--fs-40);
+    line-height: var(--lh-heading);
+  }
+
+  .text {
+    margin-bottom: var(--space-40);
+    color: var(--text-muted);
+    font-size: var(--fs-16);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-12);
+  }
+
+  .english {
+    margin-top: var(--space-64);
+    padding-top: var(--space-48);
+    border-top: var(--border-width) solid var(--border);
+  }
+
+  .english h2 {
+    margin-bottom: var(--space-8);
+    font-size: var(--fs-26);
+  }
+
+  .english .text {
+    margin-bottom: var(--space-24);
+  }
+
+  .english .actions {
+    gap: var(--space-32);
+  }
+
+  @media (max-width: 767px) {
+    .not-found {
+      padding-block: var(--space-80);
+    }
+
+    h1 {
+      font-size: var(--fs-32);
+    }
+  }
+</style>

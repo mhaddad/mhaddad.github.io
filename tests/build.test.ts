@@ -23,7 +23,12 @@ function exists(path: string): boolean {
 beforeAll(() => {
   rmSync(OUT_DIR, { recursive: true, force: true });
   execFileSync('node_modules/.bin/astro', ['build', '--outDir', OUT_DIR], {
-    env: { ...buildEnv, ARTICLES_DIR: './tests/fixtures/articles', SERVICES_DIR: './tests/fixtures/services' },
+    env: {
+      ...buildEnv,
+      ARTICLES_DIR: './tests/fixtures/articles',
+      SERVICES_DIR: './tests/fixtures/services',
+      ABOUT_DIR: './tests/fixtures/about',
+    },
     stdio: 'pipe',
   });
 }, 120_000);
@@ -392,7 +397,7 @@ describe('página de artigo — Onda 2', () => {
 });
 
 describe('home', () => {
-  it('deve mostrar hero com retrato, faixa de prova e os artigos mais recentes quando a home é gerada', () => {
+  it('deve mostrar hero com campo animado, faixa de prova e os artigos mais recentes quando a home é gerada', () => {
     // Arrange
     const html = page('index.html');
 
@@ -403,9 +408,8 @@ describe('home', () => {
 
     // Assert
     expect(h1).toBe('Negócios, tecnologia e pessoas: como organizações crescem na era da IA.');
-    expect(html).toMatch(/<img[^>]*alt="Matheus Haddad, empresário e consultor em negócios e tecnologia"/);
+    expect(html).toMatch(/<div class="waves"[^>]*aria-hidden="true"[^>]*>\s*<canvas/);
     expect(html).toContain('500+');
-    expect(html).toContain('TugÁgil');
     expect(featured).toBeGreaterThan(-1);
     expect(older).toBeGreaterThan(featured);
     expect(html).not.toContain('Rascunho de teste');
@@ -559,3 +563,154 @@ describe('WhatsApp por página e chamada no fim do artigo — Onda 3', () => {
     expect(cta).toContain('href="/en/mentoring/"');
   });
 });
+
+describe('home — Onda 4', () => {
+  it('deve mostrar os 8 logos em máscara com o nome acessível quando a faixa de prova é gerada', () => {
+    // Arrange
+    const html = page('index.html');
+
+    // Act
+    const logos = [...html.matchAll(/<span class="logo"[^>]*role="img"[^>]*aria-label="([^"]+)"[^>]*style="--logo: url\(([^)]+)\)"/g)];
+
+    // Assert
+    expect(logos.map((m) => m[1])).toEqual([
+      'Webgoal',
+      'Granatum Financeiro',
+      'Ateliê de Software',
+      'Orgganica',
+      'Escola Lumiar Poços de Caldas',
+      'Aliança Empreendedora',
+      'A Guarda-Chuva',
+      'TugÁgil',
+    ]);
+    expect(logos.every((m) => m[2]?.startsWith('/_astro/'))).toBe(true);
+  });
+});
+
+describe('páginas institucionais — Onda 4', () => {
+  const pages = [
+    ['sobre/index.html', 'en/about/index.html'],
+    ['empresas/index.html', 'en/companies/index.html'],
+    ['livros/index.html', 'en/books/index.html'],
+  ];
+
+  it('deve gerar Sobre, Empresas e Livros nos dois idiomas com hreflang cruzado quando o build termina', () => {
+    // Arrange
+    const pairs = pages;
+
+    // Act
+    const crossLinks = pairs.map(([pt = '', en = '']) => {
+      const ptPath = `/${pt.replace('index.html', '')}`;
+      const enPath = `/${en.replace('index.html', '')}`;
+      return (
+        page(pt).includes(`hreflang="en" href="${SITE}${enPath}"`) && page(en).includes(`hreflang="pt-BR" href="${SITE}${ptPath}"`)
+      );
+    });
+
+    // Assert
+    expect(crossLinks).toEqual([true, true, true]);
+  });
+
+  it('deve mostrar retrato, trajetória com link para o artigo, formação e princípios quando a página é o Sobre', () => {
+    // Arrange
+    const html = page('en/about/index.html');
+
+    // Act
+    const headings = [...html.matchAll(/<h2 id="[a-z]+-heading"[^>]*>([^<]+)<\/h2>/g)].map((m) => m[1]);
+    const timeline = /<section[^>]*aria-labelledby="timeline-heading"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(html).toMatch(/<img[^>]*alt="Matheus Haddad, entrepreneur and consultant in business and technology"/);
+    expect(html).toContain('Test About title.');
+    expect(headings).toEqual(['Journey', 'Education', 'Principles', 'Let&#39;s talk?']);
+    expect((timeline.match(/<li/g) ?? []).length).toBe(2);
+    expect(timeline).toContain('href="/en/articles/first-article/"');
+    expect(html).toContain('href="/en/services/"');
+  });
+
+  it('deve listar as 8 empresas em 2 grupos com link externo seguro quando a página é Empresas', () => {
+    // Arrange
+    const html = page('empresas/index.html');
+
+    // Act
+    const founded = /<section[^>]*aria-labelledby="founded-heading"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+    const board = /<section[^>]*aria-labelledby="board-heading"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+    const external = [...html.matchAll(/<a class="arrow-link"[^>]*href="(https:[^"]+)"[^>]*>/g)].map((m) => m[0]);
+
+    // Assert
+    expect((founded.match(/<li class="row"/g) ?? []).length).toBe(5);
+    expect((board.match(/<li class="row"/g) ?? []).length).toBe(3);
+    expect(founded).toContain('2008 · Cofundador');
+    expect(board).toContain('Voluntário');
+    expect(external).toHaveLength(8);
+    expect(external.every((tag) => tag.includes('rel="noopener"') && tag.includes('target="_blank"'))).toBe(true);
+    expect(html).toMatch(/<img[^>]*alt="Logo: Granatum Financeiro"/);
+  });
+
+  it('deve apontar para a edição de cada idioma na Amazon quando a página é Livros', () => {
+    // Arrange
+    const pt = page('livros/index.html');
+    const en = page('en/books/index.html');
+
+    // Act
+    const amazon = (html: string) => [...new Set([...html.matchAll(/href="(https:\/\/www\.amazon[^"]+)"/g)].map((m) => m[1]))];
+
+    // Assert
+    expect(amazon(pt)).toEqual(['https://www.amazon.com.br/Feedback-Canvas-cultura-feedback-organiza%C3%A7%C3%A3o-ebook/dp/B0FBGWMFSZ/']);
+    expect(amazon(en)).toEqual(['https://www.amazon.com/dp/B0FNLM47WB/']);
+    expect(en).toContain('Create a feedback culture in your organization');
+  });
+});
+
+describe('Palestras e Mídia — Onda 4', () => {
+  it('deve mostrar os 23 itens do acervo com o filtro por tipo abaixo do bloco de serviço', () => {
+    // Arrange
+    const html = page('palestras/index.html');
+
+    // Act
+    const cards = [...html.matchAll(/<li class="card"[^>]*data-type="([a-z]+)"/g)].map((m) => m[1]);
+    const filters = [...html.matchAll(/<button class="filter mono"[^>]*data-filter="([a-z]+)"/g)].map((m) => m[1]);
+    const service = html.indexOf('id="steps-heading"');
+    const archive = html.indexOf('id="talks-heading"');
+
+    // Assert
+    expect(cards).toHaveLength(23);
+    expect(filters).toEqual(['all', 'palestra', 'webinar', 'podcast', 'entrevista']);
+    expect(archive).toBeGreaterThan(service);
+  });
+
+  it('deve carregar o YouTube só no clique, com miniaturas locais, quando o acervo é gerado', () => {
+    // Arrange
+    const html = page('en/speaking/index.html');
+
+    // Act
+    const plays = (html.match(/<button class="play"[^>]*data-youtube="[A-Za-z0-9_-]{11}"/g) ?? []).length;
+    const spotify = (html.match(/href="https:\/\/open\.spotify\.com\/episode\/[A-Za-z0-9]{22}"/g) ?? []).length;
+
+    // Assert
+    expect(plays).toBe(20);
+    expect(spotify).toBe(3);
+    expect(html).not.toContain('<iframe');
+    expect(html).not.toMatch(/<img[^>]*src="https?:/);
+    expect(html).toContain('In Portuguese');
+  });
+});
+
+describe('404 — Onda 4', () => {
+  it('deve gerar a 404 bilíngue fora dos buscadores e do sitemap quando o build termina', () => {
+    // Arrange
+    const html = page('404.html');
+    const sitemap = page('sitemap-0.xml');
+
+    // Act
+    const headings = [...html.matchAll(/<h[12][^>]*>([^<]+)<\/h[12]>/g)].map((m) => m[1]);
+
+    // Assert
+    expect(headings).toEqual(['Página não encontrada', 'Page not found']);
+    expect(html).toContain('<meta name="robots" content="noindex">');
+    expect(html).not.toMatch(/<link rel="alternate" hreflang=/);
+    expect(html).toContain('<div class="english" lang="en"');
+    expect(sitemap).not.toContain('404');
+  });
+});
+

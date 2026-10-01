@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import portrait from '../../assets/matheus-haddad.jpg';
 import Icon from '../Icon.astro';
 import WhatsAppButton from '../WhatsAppButton.astro';
 import { routePath } from '../../i18n/routes';
@@ -14,44 +12,46 @@ const { lang } = Astro.props;
 ---
 
 <section class="hero">
-  <div class="container hero-grid">
-    <div class="text">
-      <p class="label mono">{t(lang, 'hero.label')}</p>
-      <h1>{t(lang, 'hero.title')}</h1>
-      <p class="subtitle">{t(lang, 'hero.subtitle')}</p>
-      <div class="ctas">
-        <a class="button button--secondary button--large" href={routePath('services', lang)}>
-          {t(lang, 'hero.services')}
-          <Icon name="arrow-right" size="s" />
-        </a>
-        <WhatsAppButton lang={lang} placement="hero" size="large" />
-      </div>
-    </div>
-    <div class="portrait">
-      <Image
-        src={portrait}
-        alt={t(lang, 'hero.portraitAlt')}
-        widths={[380, 760]}
-        sizes="380px"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <span class="corner" aria-hidden="true"></span>
+  <div class="waves" aria-hidden="true">
+    <canvas></canvas>
+  </div>
+  <div class="container hero-content">
+    <p class="label mono">{t(lang, 'hero.label')}</p>
+    <h1>{t(lang, 'hero.title')}</h1>
+    <p class="subtitle">{t(lang, 'hero.subtitle')}</p>
+    <div class="ctas">
+      <a class="button button--secondary button--large" href={routePath('services', lang)}>
+        {t(lang, 'hero.services')}
+        <Icon name="arrow-right" size="s" />
+      </a>
+      <WhatsAppButton lang={lang} placement="hero" size="large" />
     </div>
   </div>
 </section>
 
 <style>
   .hero {
+    position: relative;
+    overflow: hidden;
     border-bottom: var(--border-width) solid var(--border);
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr var(--width-portrait);
-    gap: var(--space-64);
-    align-items: center;
-    padding-block: var(--space-80) var(--space-96);
+  .waves {
+    position: absolute;
+    inset: 0;
+  }
+
+  .waves canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* As ondas ficam mais discretas atrás do título. */
+    mask-image: linear-gradient(to right, rgb(0 0 0 / 50%), #000 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    padding-block: var(--space-128);
   }
 
   .label {
@@ -80,34 +80,9 @@ const { lang } = Astro.props;
     gap: var(--space-12);
   }
 
-  .portrait {
-    position: relative;
-  }
-
-  .portrait :global(img) {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--radius-m);
-    filter: grayscale(20%);
-  }
-
-  .corner {
-    position: absolute;
-    bottom: calc(-1 * var(--space-16));
-    left: calc(-1 * var(--space-16));
-    width: var(--space-64);
-    height: var(--space-64);
-    border-bottom: var(--border-strong) solid var(--accent);
-    border-left: var(--border-strong) solid var(--accent);
-  }
-
   @media (max-width: 1023px) {
-    .hero-grid {
-      grid-template-columns: 1fr var(--width-portrait-tablet);
-      gap: var(--space-40);
+    .hero-content {
+      padding-block: var(--space-96);
     }
 
     h1 {
@@ -116,17 +91,18 @@ const { lang } = Astro.props;
   }
 
   @media (max-width: 767px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-      padding-block: var(--space-48) var(--space-64);
+    .hero-content {
+      padding-block: var(--space-64);
     }
 
     h1 {
       font-size: var(--fs-36);
     }
-
-    .portrait {
-      display: none;
-    }
   }
 </style>
+
+<script>
+  import { startHeroField } from '../../lib/hero-field';
+
+  document.querySelectorAll<HTMLCanvasElement>('.hero .waves canvas').forEach(startHeroField);
+</script>

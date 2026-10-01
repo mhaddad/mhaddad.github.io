@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import { t, type Lang } from '../i18n/ui';
+import type { Company } from '../lib/collections';
+
+interface Props {
+  company: Company;
+  lang: Lang;
+}
+
+const { company, lang } = Astro.props;
+const { name, year, role, description, logo, url } = company.data;
+const meta = [year, role[lang]].filter(Boolean).join(' · ');
+---
+
+<li class="row">
+  <div class="text">
+    <p class="meta mono">{meta}</p>
+    <h3>{name}</h3>
+    <p class="description">{description[lang]}</p>
+    <a class="arrow-link" href={url} target="_blank" rel="noopener">
+      {t(lang, 'companies.visit')} <span aria-hidden="true">→</span>
+    </a>
+  </div>
+  <div class="plate">
+    <Image src={logo} alt={t(lang, 'companies.logoAlt', { name })} widths={[200, 400]} sizes="200px" />
+  </div>
+</li>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--width-logo-plate);
+    gap: var(--space-48);
+    align-items: start;
+    padding-block: var(--space-40);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  .meta {
+    margin-bottom: var(--space-12);
+    color: var(--text-muted);
+    font-size: var(--fs-11);
+  }
+
+  h3 {
+    margin-bottom: var(--space-12);
+    font-size: var(--fs-26);
+  }
+
+  .description {
+    max-width: var(--width-reading);
+    margin-bottom: var(--space-16);
+    color: var(--text-muted);
+    font-size: var(--fs-16);
+    line-height: var(--lh-body);
+  }
+
+  .plate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    padding: var(--space-20);
+    background: var(--logo-plate-bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-m);
+  }
+
+  .plate :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 767px) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: var(--space-20);
+    }
+
+    .plate {
+      order: -1;
+      width: var(--width-logo-plate);
+    }
+  }
+</style>

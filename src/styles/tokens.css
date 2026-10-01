@@ -78,6 +78,12 @@
   --width-portrait-tablet: 280px;
   --width-hero-title: 640px;
   --width-hero-text: 520px;
+  --width-about-portrait: 320px;
+  --width-logo-plate: 200px;
+  --logo-height: 48px;
+  /* Placa dos logos coloridos em Empresas: clara nos dois temas, porque os logos são feitos para fundo branco. */
+  --logo-plate-bg: #ffffff;
+  --year-column: 80px;
   --col-min-footer: 200px;
   --col-min-card: 300px;
   --gutter: 24px;

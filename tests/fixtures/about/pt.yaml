@@ -1,0 +1,21 @@
+lang: pt
+title: Título de teste do Sobre.
+description: Descrição de teste do Sobre.
+bio:
+  - Primeiro parágrafo de teste.
+  - Segundo parágrafo de teste.
+timeline:
+  - year: 2008
+    title: Marco sem artigo
+    text: Texto do marco sem artigo.
+  - year: 2026
+    title: Marco com artigo
+    text: Texto do marco com artigo.
+    article: fixture-primeiro
+education:
+  - degree: Formação de teste
+    school: Escola de teste
+    period: 2000–2003
+principles:
+  - title: Princípio de teste
+    text: Texto do princípio de teste.

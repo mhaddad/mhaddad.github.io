@@ -1,5 +1,7 @@
 ---
 import { t, type Lang, type UIKey } from '../../i18n/ui';
+import { companyMasks, getAllCompanies } from '../../lib/collections';
+import { sortCompanies } from '../../lib/companies';
 
 interface Props {
   lang: Lang;
@@ -14,16 +16,11 @@ const stats: { value: string; label: UIKey }[] = [
   { value: '500+', label: 'proof.leaders' },
 ];
 
-const companies = [
-  'Webgoal',
-  'Ateliê de Software',
-  'Granatum',
-  'Lumiar',
-  'Orgganica',
-  'Aliança Empreendedora',
-  'A Guarda-Chuva',
-  'TugÁgil',
-];
+// Logos em máscara: pegam a cor do texto nos dois temas (npm run assets).
+const companies = sortCompanies(await getAllCompanies()).map((company) => ({
+  name: company.data.name,
+  mask: companyMasks.get(company.id)!.src,
+}));
 ---
 
 <section class="proof" aria-label={t(lang, 'proof.label')}>
@@ -41,7 +38,13 @@ const companies = [
     <div class="companies">
       <p class="mono title">{t(lang, 'proof.logos')}</p>
       <ul>
-        {companies.map((name) => <li>{name}</li>)}
+        {
+          companies.map(({ name, mask }) => (
+            <li>
+              <span class="logo" role="img" aria-label={name} style={`--logo: url(${mask})`} />
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
@@ -94,21 +97,25 @@ const companies = [
   }
 
   ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-16);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--space-24);
+    align-items: center;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
   li {
-    padding: var(--space-8) var(--space-16);
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--radius-s);
     color: var(--text-muted);
-    font-size: var(--fs-13);
-    font-weight: 600;
+  }
+
+  .logo {
+    display: block;
+    width: 100%;
+    height: var(--logo-height);
+    background: currentColor;
+    mask: var(--logo) center / contain no-repeat;
   }
 
   @media (max-width: 767px) {
@@ -119,6 +126,12 @@ const companies = [
 
     .stat {
       padding: var(--space-16);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    ul {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 </style>

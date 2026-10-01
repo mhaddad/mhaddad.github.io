@@ -1,0 +1,155 @@
+---
+import TalkCard from './TalkCard.astro';
+import { t, type Lang } from '../i18n/ui';
+import { getAllTalks } from '../lib/collections';
+import { sortTalks, talkCounts, talkTypes } from '../lib/talks';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const talks = sortTalks(await getAllTalks());
+const counts = talkCounts(talks);
+const filters = [
+  { key: 'all', label: t(lang, 'talks.all') },
+  ...talkTypes.filter((type) => counts[type] > 0).map((type) => ({ key: type, label: t(lang, `talks.filter.${type}`) })),
+];
+---
+
+<section class="archive" aria-labelledby="talks-heading" data-talks>
+  <div class="container">
+    <header class="intro">
+      <h2 id="talks-heading">{t(lang, 'talks.title')}</h2>
+      <p>{t(lang, 'talks.intro')}</p>
+    </header>
+
+    <div class="filters" role="group" aria-label={t(lang, 'talks.filterLabel')}>
+      {
+        filters.map((filter) => (
+          <button class="filter mono" type="button" data-filter={filter.key} aria-pressed={filter.key === 'all' ? 'true' : 'false'}>
+            {filter.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <ul class="grid">
+      {talks.map((talk) => <TalkCard talk={talk} lang={lang} />)}
+    </ul>
+  </div>
+</section>
+
+<script>
+  import { YOUTUBE_ID, youtubeEmbedUrl } from '../lib/talks';
+
+  document.querySelectorAll<HTMLElement>('[data-talks]').forEach((archive) => {
+    const filters = archive.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const cards = archive.querySelectorAll<HTMLElement>('[data-type]');
+
+    filters.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.filter;
+        filters.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+        cards.forEach((card) => {
+          card.hidden = selected !== 'all' && card.dataset.type !== selected;
+        });
+      });
+    });
+
+    // Fachada: o YouTube só é chamado depois do clique, em youtube-nocookie.com.
+    archive.querySelectorAll<HTMLButtonElement>('[data-youtube]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.youtube ?? '';
+        if (!YOUTUBE_ID.test(id)) return;
+        const iframe = document.createElement('iframe');
+        iframe.src = youtubeEmbedUrl(id);
+        iframe.title = button.dataset.title ?? '';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        button.replaceWith(iframe);
+        iframe.focus();
+      });
+    });
+  });
+</script>
+
+<style>
+  .archive {
+    padding-block: var(--space-80) var(--space-96);
+    border-top: var(--border-width) solid var(--border);
+  }
+
+  .intro {
+    padding-bottom: var(--space-40);
+    margin-bottom: var(--space-48);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  h2 {
+    margin-bottom: var(--space-12);
+    font-size: var(--fs-40);
+    line-height: var(--lh-heading);
+  }
+
+  .intro p {
+    color: var(--text-muted);
+    font-size: var(--fs-18);
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    margin-bottom: var(--space-48);
+  }
+
+  .filter {
+    min-height: var(--touch-target);
+    padding: var(--space-8) var(--space-16);
+    color: var(--text-muted);
+    font-size: var(--fs-11);
+    background: none;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    transition:
+      color var(--duration-fast),
+      border-color var(--duration-fast);
+  }
+
+  .filter:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+  }
+
+  .filter[aria-pressed='true'] {
+    color: var(--accent-contrast);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--col-min-card), 1fr));
+    gap: var(--space-24);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (max-width: 767px) {
+    .archive {
+      padding-block: var(--space-64);
+    }
+
+    h2 {
+      font-size: var(--fs-32);
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

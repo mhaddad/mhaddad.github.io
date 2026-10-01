@@ -101,4 +101,27 @@ describe('buildSeo', () => {
     expect(metaContent(seo, 'og:type')).toBe('website');
     expect(metaContent(seo, 'article:published_time')).toBeUndefined();
   });
+
+  it('deve marcar noindex e omitir os pares de idioma quando a página é de erro', () => {
+    // Arrange
+    const input = { ...base, path: '/404.html', alternatePath: '/en/', noindex: true };
+
+    // Act
+    const seo = buildSeo(input);
+
+    // Assert
+    expect(metaContent(seo, 'robots')).toBe('noindex');
+    expect(seo.alternates).toEqual([]);
+  });
+
+  it('deve omitir robots quando a página é indexável', () => {
+    // Arrange
+    const input = base;
+
+    // Act
+    const seo = buildSeo(input);
+
+    // Assert
+    expect(metaContent(seo, 'robots')).toBeUndefined();
+  });
 });

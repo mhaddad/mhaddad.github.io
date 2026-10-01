@@ -1,9 +1,30 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+import { validateAbout } from './about';
 import { validateArticles } from './articles';
+import { validateCompanies } from './companies';
 import { validateServices } from './services';
+import { validateTalks } from './talks';
 
 export type Article = CollectionEntry<'articles'>;
 export type Service = CollectionEntry<'services'>;
+export type Talk = CollectionEntry<'talks'>;
+export type Company = CollectionEntry<'companies'>;
+export type About = CollectionEntry<'about'>;
+export type Book = CollectionEntry<'books'>;
+
+// Imagens preparadas por `npm run assets`, indexadas pelo nome do arquivo.
+const thumbnailFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/talks/*.jpg', { eager: true });
+const maskFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/companies/mono/*.png', { eager: true });
+
+function byBasename(files: Record<string, { default: ImageMetadata }>): Map<string, ImageMetadata> {
+  return new Map(
+    Object.entries(files).map(([path, module]) => [path.replace(/^.*\/([^/]+)\.\w+$/, '$1'), module.default]),
+  );
+}
+
+export const talkThumbnails = byBasename(thumbnailFiles);
+export const companyMasks = byBasename(maskFiles);
 
 export async function getAllArticles(): Promise<Article[]> {
   const entries = await getCollection('articles');
@@ -15,4 +36,28 @@ export async function getAllServices(): Promise<Service[]> {
   const [services, articles] = await Promise.all([getCollection('services'), getAllArticles()]);
   validateServices(services, articles);
   return services;
+}
+
+export async function getAllTalks(): Promise<Talk[]> {
+  const talks = await getCollection('talks');
+  validateTalks(talks, new Set(talkThumbnails.keys()));
+  return talks;
+}
+
+export async function getAllCompanies(): Promise<Company[]> {
+  const companies = await getCollection('companies');
+  validateCompanies(companies, new Set(companyMasks.keys()));
+  return companies;
+}
+
+export async function getAbout(lang: Lang): Promise<About> {
+  const [entries, articles] = await Promise.all([getCollection('about'), getAllArticles()]);
+  validateAbout(entries, articles);
+  return entries.find((entry) => entry.data.lang === lang)!;
+}
+
+export async function getBooks(lang: Lang): Promise<Book[]> {
+  const books = await getCollection('books', (entry) => entry.data.lang === lang);
+  if (books.length === 0) throw new Error(`Nenhum livro em ${lang} (src/content/books/${lang}/)`);
+  return books.sort((a, b) => a.data.order - b.data.order);
 }

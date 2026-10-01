@@ -1,0 +1,21 @@
+lang: en
+title: Test About title.
+description: Test About description.
+bio:
+  - First test paragraph.
+  - Second test paragraph.
+timeline:
+  - year: 2008
+    title: Milestone without article
+    text: Milestone text without article.
+  - year: 2026
+    title: Milestone with article
+    text: Milestone text with article.
+    article: fixture-primeiro
+education:
+  - degree: Test degree
+    school: Test school
+    period: 2000–2003
+principles:
+  - title: Test principle
+    text: Test principle text.

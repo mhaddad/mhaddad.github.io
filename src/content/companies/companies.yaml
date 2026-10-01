@@ -1,0 +1,97 @@
+# Empresas e organizações de Matheus Haddad (copy aprovada em 01/10/2026,
+# .darkside/content/2026-10-01-copy-onda-4.md). O logo colorido fica em
+# src/assets/companies/<id>.png e a máscara da home em src/assets/companies/mono/<id>.png
+# (npm run assets). O ano é obrigatório nas cofundadas.
+
+- id: webgoal
+  order: 1
+  group: founded
+  year: 2008
+  name: Webgoal
+  logo: ../../assets/companies/webgoal.png
+  url: https://www.webgoal.com.br
+  role: { pt: Cofundador, en: Co-founder }
+  description:
+    pt: Uma das primeiras empresas de desenvolvimento ágil de software, hoje uma holding de negócios em tecnologia e educação.
+    en: One of the first agile software development companies, now a holding company for technology and education businesses.
+
+- id: granatum
+  order: 2
+  group: founded
+  year: 2009
+  name: Granatum Financeiro
+  logo: ../../assets/companies/granatum.png
+  url: https://www.granatum.com.br
+  role: { pt: Cofundador, en: Co-founder }
+  description:
+    pt: Software de gestão financeira para empresas brasileiras de todos os portes, com fluxo de caixa, cobrança e emissão de notas fiscais.
+    en: Financial management software for Brazilian companies of every size, with cash flow, billing and invoicing.
+
+- id: atelie
+  order: 3
+  group: founded
+  year: 2011
+  name: Ateliê de Software
+  logo: ../../assets/companies/atelie.png
+  url: https://atelie.software
+  role: { pt: Cofundador, en: Co-founder }
+  description:
+    pt: Desenvolvimento de software premium para startups e grandes empresas, com excelência técnica, métodos ágeis e design centrado no usuário.
+    en: Premium software development for startups and large companies, with technical excellence, agile methods and user-centered design.
+
+- id: orgganica
+  order: 4
+  group: founded
+  year: 2017
+  name: Orgganica
+  logo: ../../assets/companies/orgganica.png
+  url: https://www.orgganica.com
+  role: { pt: Cofundador, en: Co-founder }
+  description:
+    pt: Consultoria em evolução organizacional, para sistemas de trabalho mais saudáveis, ágeis e horizontais.
+    en: Organizational evolution consultancy, for healthier, more agile and flatter ways of working.
+
+- id: lumiar
+  order: 5
+  group: founded
+  year: 2018
+  name: Escola Lumiar Poços de Caldas
+  logo: ../../assets/companies/lumiar.png
+  url: https://www.escolalumiarpocos.com.br
+  role: { pt: Cofundador, en: Co-founder }
+  description:
+    pt: Escola de educação básica em Poços de Caldas que adota a Metodologia Lumiar, com autonomia do aluno e desenvolvimento por competências.
+    en: K-12 school in Poços de Caldas that follows the Lumiar Methodology, built on student autonomy and competency-based learning.
+
+- id: alianca
+  order: 6
+  group: board
+  name: Aliança Empreendedora
+  logo: ../../assets/companies/alianca.png
+  url: https://aliancaempreendedora.org.br/
+  role: { pt: Conselheiro, en: Board member }
+  description:
+    pt: Apoia empreendedores de baixa renda e grupos produtivos comunitários, com foco em impacto social.
+    en: Supports low-income entrepreneurs and community production groups, with a focus on social impact.
+
+- id: guardachuva
+  order: 7
+  group: board
+  name: A Guarda-Chuva
+  logo: ../../assets/companies/guardachuva.png
+  url: https://www.aguardachuva.org/
+  role: { pt: Conselheiro, en: Board member }
+  description:
+    pt: Escola de empreendedorismo social em Poços de Caldas que forma lideranças e iniciativas de impacto local.
+    en: Social entrepreneurship school in Poços de Caldas that develops leaders and local impact initiatives.
+
+- id: tugagil
+  order: 8
+  group: board
+  name: TugÁgil
+  logo: ../../assets/companies/tugagil.png
+  url: https://www.tugagil.com/
+  role: { pt: Voluntário, en: Volunteer }
+  description:
+    pt: Comunidade de prática que promove a agilidade em Portugal com formações, talks e eventos.
+    en: Community of practice that promotes agility in Portugal through training, talks and events.

@@ -1,0 +1,63 @@
+# About page (English version of the copy approved on 2026-10-01).
+lang: en
+title: I have been building technology companies since 2008, and I help other leaders redesign how their organizations decide and work.
+description: Matheus Haddad is an entrepreneur, co-founder of software, finance and education companies, and holds a master's in Artificial Intelligence.
+bio:
+  - I am an entrepreneur and co-founder of software, finance and education companies. I started in 2008 with Webgoal, one of the first agile software development companies, which is now a holding company for technology and education businesses. Granatum, Ateliê de Software, Orgganica and Escola Lumiar Poços de Caldas came next.
+  - "My background is in computing: I hold a bachelor's degree in Computer Science and a master's in Artificial Intelligence from Centro Universitário FEI. It was while building these companies that I started to study who decides, how work gets coordinated and what makes autonomous people thrive or struggle inside a structure."
+  - "They all rest on the same bet: more transparent, autonomous and people-centered organizations deliver better results. That practitioner's experience is what I bring to consulting, mentoring and talks, at events in Brazil and abroad, and to the articles I write on management, leadership, AI and software development."
+  - "Today my work focuses on a question that AI has made urgent: how to redesign management when who knows what changes, but technology alone does not change who decides. At Ateliê de Software, I put the orchestration of AI agents into practice in the development process. In 2026 I also created the concept of Cognitive Coherence and the P-O Fit Diagnostic, which assess how well the way people think, decide and act fits the way the organization works."
+timeline:
+  - year: 2008
+    title: Co-founded Webgoal
+    text: A holding company that invests in technology and education businesses, managed on the basis of transparency, autonomy and responsibility.
+  - year: 2009
+    title: Co-founded Granatum
+    text: Financial management software with real-time cash flow, budget planning and reporting for companies of every size.
+  - year: 2011
+    title: Co-founded Ateliê de Software
+    text: Premium software development for startups and large companies, a Brazilian pioneer in agile methods and user-centered design.
+  - year: 2012
+    title: MPE Brasil Award, by Sebrae
+    text: Winner of the "Innovation best practices" and "IT services" categories in the São Paulo state round, and a finalist in the national round.
+  - year: 2017
+    title: Co-founded Orgganica
+    text: A consultancy in agile transformation and organizational innovation, offering courses, workshops, consulting and mentoring to companies and leaders.
+  - year: 2018
+    title: Co-founded Escola Lumiar Poços de Caldas
+    text: A K-12 school that follows the Lumiar Methodology, based on competency development and recognized by UNESCO, Stanford University and Microsoft as one of the 12 most innovative in the world.
+  - year: 2024
+    title: Modern Work Award for Ateliê de Software
+    text: Ateliê de Software receives the Modern Work Award, an international recognition of modern work practices and organizational transformation.
+  - year: 2025
+    title: Published the book Feedback Canvas
+    text: A method and tool to build a feedback culture in organizations, already adopted by hundreds of teams.
+  - year: 2026
+    title: Cognitive Coherence and the P-O Fit Diagnostic
+    text: A concept and a diagnostic to assess whether the way people think, decide and act fits the way the organization works.
+    article: coerencia-cognitiva
+  - year: 2026
+    title: AI agents at Ateliê de Software
+    text: Orchestration of AI agents in Ateliê de Software's software development process.
+education:
+  - degree: Bachelor's in Computer Science
+    school: UNIFENAS
+    period: 2000–2003
+  - degree: Graduate specialization in Web Systems Analysis
+    school: FASP
+    period: 2004–2005
+  - degree: Master's in Artificial Intelligence
+    school: Centro Universitário FEI
+    period: 2007–2010
+  - degree: MBA in Business Management
+    school: Fundação Getúlio Vargas (FGV)
+    period: 2011–2013
+principles:
+  - title: Autonomy and responsibility
+    text: Whoever has the context decides, and answers for the decision.
+  - title: Continuous learning
+    text: A company improves as fast as it can review what it does, and the same goes for the people who lead it.
+  - title: Real impact on processes and people
+    text: A change only counts when it shows up in how people decide and work together.
+  - title: Transparency and feedback
+    text: Open information and frank, frequent conversations, instead of annual reviews and backroom decisions.

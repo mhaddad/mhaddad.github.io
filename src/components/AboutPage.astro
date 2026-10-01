@@ -1,0 +1,208 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/matheus-haddad.jpg';
+import Timeline from './Timeline.astro';
+import FinalCta from './home/FinalCta.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { articlePath, routePath } from '../i18n/routes';
+import { otherLang, t, type Lang } from '../i18n/ui';
+import { timelineArticle } from '../lib/about';
+import { articleSlug } from '../lib/articles';
+import { getAbout, getAllArticles } from '../lib/collections';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const [about, articles] = await Promise.all([getAbout(lang), getAllArticles()]);
+const { title, description, bio, timeline, education, principles } = about.data;
+const [lead, ...paragraphs] = bio;
+
+const journey = timeline.map((item) => {
+  const article = timelineArticle(item.article, articles, lang);
+  return {
+    marker: String(item.year),
+    title: item.title,
+    text: item.text,
+    link: article && { href: articlePath(lang, articleSlug(article)), label: t(lang, 'about.readArticle') },
+  };
+});
+const degrees = education.map((item) => ({ marker: item.period, title: item.degree, text: item.school }));
+---
+
+<BaseLayout lang={lang} title={t(lang, 'about.label')} description={description} alternatePath={routePath('about', otherLang(lang))}>
+  <div class="container">
+    <section class="intro">
+      <div>
+        <p class="label mono">{t(lang, 'about.label')}</p>
+        <h1>{title}</h1>
+        <p class="lead">{lead}</p>
+        {paragraphs.map((paragraph) => <p class="bio">{paragraph}</p>)}
+      </div>
+      <div class="portrait">
+        <Image
+          src={portrait}
+          alt={t(lang, 'about.portraitAlt')}
+          widths={[320, 640]}
+          sizes="320px"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading">{t(lang, 'about.timeline')}</h2>
+      <Timeline items={journey} />
+    </section>
+
+    <section class="block" aria-labelledby="education-heading">
+      <h2 id="education-heading">{t(lang, 'about.education')}</h2>
+      <Timeline items={degrees} />
+    </section>
+
+    <section class="block principles" aria-labelledby="principles-heading">
+      <h2 id="principles-heading">{t(lang, 'about.principles')}</h2>
+      <ul>
+        {
+          principles.map((principle) => (
+            <li>
+              <h3>{principle.title}</h3>
+              <p>{principle.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+  <FinalCta lang={lang} placement="about-cta" showServices />
+</BaseLayout>
+
+<style>
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--width-about-portrait);
+    gap: var(--space-80);
+    align-items: start;
+    padding-block: var(--space-64) var(--space-80);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  .label {
+    margin-bottom: var(--space-24);
+    color: var(--accent);
+  }
+
+  h1 {
+    max-width: var(--width-reading);
+    margin-bottom: var(--space-24);
+    font-size: var(--fs-44);
+    line-height: var(--lh-heading);
+  }
+
+  .lead {
+    max-width: var(--width-reading);
+    margin-bottom: var(--space-24);
+    color: var(--text-muted);
+    font-size: var(--fs-18);
+    line-height: var(--lh-snug);
+  }
+
+  .bio {
+    max-width: var(--width-reading);
+    margin-bottom: var(--space-20);
+    font-size: var(--fs-17);
+    line-height: var(--lh-body);
+  }
+
+  .bio:last-child {
+    margin-bottom: 0;
+  }
+
+  .portrait {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-16));
+  }
+
+  .portrait :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-m);
+  }
+
+  .block {
+    padding-block: var(--space-80);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  .block:last-child {
+    border-bottom: none;
+  }
+
+  h2 {
+    margin-bottom: var(--space-48);
+    font-size: var(--fs-32);
+  }
+
+  .principles ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--col-min-footer), 1fr));
+    gap: var(--space-32);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .principles li {
+    padding-top: var(--space-24);
+    border-top: var(--border-strong) solid var(--accent);
+  }
+
+  .principles h3 {
+    margin-bottom: var(--space-12);
+    font-size: var(--fs-20);
+  }
+
+  .principles p {
+    color: var(--text-muted);
+    font-size: var(--fs-15);
+    line-height: var(--lh-body);
+  }
+
+  @media (max-width: 1023px) {
+    .intro {
+      grid-template-columns: minmax(0, 1fr) var(--width-portrait-tablet);
+      gap: var(--space-40);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .intro {
+      grid-template-columns: 1fr;
+      padding-block: var(--space-40) var(--space-64);
+    }
+
+    .portrait {
+      position: static;
+      order: -1;
+      max-width: var(--width-portrait-tablet);
+    }
+
+    h1 {
+      font-size: var(--fs-32);
+    }
+
+    .block {
+      padding-block: var(--space-64);
+    }
+
+    h2 {
+      margin-bottom: var(--space-32);
+      font-size: var(--fs-26);
+    }
+  }
+</style>

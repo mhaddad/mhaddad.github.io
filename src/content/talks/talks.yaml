@@ -1,0 +1,165 @@
+# Acervo de Palestras e Mídia, na ordem do site antigo (palestras.html).
+# Cada item tem youtubeId ou spotifyId, nunca os dois. As miniaturas dos vídeos
+# ficam em src/assets/talks/<youtubeId>.jpg (npm run assets).
+
+- id: vanguarda-em-foco
+  order: 1
+  type: palestra
+  event: "Vanguarda em Foco"
+  title: "Feedback Canvas: o fim da avaliação de desempenho em times de tecnologia"
+  youtubeId: MSiNEksvWO8
+  lang: pt
+- id: tugatalk
+  order: 2
+  type: webinar
+  event: "TugÁtalk"
+  title: "Como criar uma cultura de feedback na sua organização? (Portugal)"
+  youtubeId: FjbIgA3U8IU
+  lang: pt
+- id: podfalar
+  order: 3
+  type: podcast
+  event: "PodFalar"
+  title: "Feedback Canvas: um livro para líderes"
+  youtubeId: aLpG1ydJ6r0
+  lang: pt
+- id: modern-work-award
+  order: 4
+  type: entrevista
+  event: "Modern Work Award"
+  title: "Empresas brasileiras premiadas no Modern Work Award 2024"
+  youtubeId: akIlkYOxNzI
+  lang: pt
+- id: love-the-problem
+  order: 5
+  type: podcast
+  event: "Love The Problem"
+  title: "Um mergulho no mundo das metas e na complexidade da sua efetividade"
+  spotifyId: 3VBLEkeDhOxAk5BKMFz7FR
+  lang: pt
+- id: people-tech
+  order: 6
+  type: podcast
+  event: "People Tech"
+  title: "Sobre a descentralização do RH e dos Planos de Carreira"
+  spotifyId: 1NAhD5YXmp5r2ODWxEbCEB
+  lang: pt
+- id: gerir-pessoas-em-2023
+  order: 7
+  type: webinar
+  event: "Gerir Pessoas em 2023"
+  title: "Gerir Pessoas em 2023: RH Ágil (Portugal)"
+  youtubeId: 6e7TArdfrIE
+  lang: pt
+- id: agile-hr-masterclass
+  order: 8
+  type: webinar
+  event: "AGILE HR Masterclass"
+  title: "Salários: degustação do AGILE HR Masterclass"
+  youtubeId: HuarXQjHBwY
+  lang: pt
+- id: vamos-fazer-diferente
+  order: 9
+  type: podcast
+  event: "Vamos fazer diferente"
+  title: "Uma conversa sobre Autonomia com Andrea Murata e Mariana Graf"
+  spotifyId: 2m5gx9X55IPzE9keYoIIwh
+  lang: pt
+- id: alexandre-nodari-klaus
+  order: 10
+  type: entrevista
+  event: "Alexandre Nodari / Klaus"
+  title: "Pragmatismo e Agilidade no RH"
+  youtubeId: 34uBmpEUeZI
+  lang: pt
+- id: agile-trends
+  order: 11
+  type: palestra
+  event: "Agile Trends"
+  title: "O fim da avaliação de desempenho individual e dos planos de carreira"
+  youtubeId: VXZIeadueew
+  lang: pt
+- id: pull-recast
+  order: 12
+  type: podcast
+  event: "Pull reCast"
+  title: "Agile: além da salvação?"
+  youtubeId: Qavyj7Cp2sc
+  lang: pt
+- id: agile-in-the-jungle
+  order: 13
+  type: palestra
+  event: "Agile in the Jungle"
+  title: "Liderança Ágil e Emergente (outubro de 2020)"
+  youtubeId: ytwy1W6GrO0
+  lang: pt
+- id: jose-jr
+  order: 14
+  type: entrevista
+  event: "José JR"
+  title: "O que é Feedback e Feedback Canvas"
+  youtubeId: dJLKlPPhPCQ
+  lang: pt
+- id: clube-de-empresarios
+  order: 15
+  type: entrevista
+  event: "Clube de Empresários"
+  title: "Gestão Ágil e Inovação Organizacional (Marcelo Colleoni)"
+  youtubeId: tOMRZcdzk1E
+  lang: pt
+- id: atelie-de-software
+  order: 16
+  type: entrevista
+  event: "Ateliê de Software"
+  title: "Auto-organização no trabalho remoto"
+  youtubeId: GqrIfucpkVQ
+  lang: pt
+- id: tdc-recife-2020
+  order: 17
+  type: palestra
+  event: "TDC Recife 2020"
+  title: "Estruturas Organizacionais Ágeis"
+  youtubeId: GJUdBF8lelQ
+  lang: pt
+- id: recrutalks-2020
+  order: 18
+  type: palestra
+  event: "RecruTalks 2020"
+  title: "RH Ágil: o que se confirmou com a pandemia"
+  youtubeId: RH1W2LdjymA
+  lang: pt
+- id: daniel-wildt
+  order: 19
+  type: entrevista
+  event: "Daniel Wildt"
+  title: "Gestão empresarial, avaliação de desempenho e feedback"
+  youtubeId: lvIkxLPtEyI
+  lang: pt
+- id: covid-19-escolas
+  order: 20
+  type: webinar
+  event: "COVID-19 Escolas"
+  title: "Impactos da COVID-19 nas escolas e processos de ensino"
+  youtubeId: KgP5jj4jxH0
+  lang: pt
+- id: f2a2-colleoni
+  order: 21
+  type: entrevista
+  event: "F2A2 (Colleoni)"
+  title: "Como pode uma empresa ser autogerida? (gestão orgânica)"
+  youtubeId: bU1-EpzO6iw
+  lang: pt
+- id: tdc-sao-paulo-2020
+  order: 22
+  type: palestra
+  event: "TDC São Paulo 2020"
+  title: "Autonomia para transformar organizações"
+  youtubeId: JCmlioldmBc
+  lang: pt
+- id: beatriz-garcia
+  order: 23
+  type: entrevista
+  event: "Beatriz Garcia"
+  title: "Agilidade nas Organizações"
+  youtubeId: 4p6gX3wNIQQ
+  lang: pt

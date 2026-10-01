@@ -1,8 +1,11 @@
 ---
 import ServicePage from '../../components/ServicePage.astro';
+import TalksArchive from '../../components/TalksArchive.astro';
 import { getAllArticles, getAllServices } from '../../lib/collections';
 
 const [services, articles] = await Promise.all([getAllServices(), getAllArticles()]);
 ---
 
-<ServicePage lang="pt" serviceKey="palestras" services={services} articles={articles} />
+<ServicePage lang="pt" serviceKey="palestras" services={services} articles={articles}>
+  <TalksArchive slot="after" lang="pt" />
+</ServicePage>

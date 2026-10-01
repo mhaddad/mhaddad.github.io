@@ -12,6 +12,8 @@ export interface SeoInput {
   image?: string;
   publishedTime?: Date;
   modifiedTime?: Date;
+  // Páginas de erro: fora dos buscadores e sem par de idioma.
+  noindex?: boolean;
 }
 
 export interface SeoData {
@@ -54,16 +56,21 @@ export function buildSeo(input: SeoInput): SeoData {
   if (input.modifiedTime) {
     meta.push({ property: 'article:modified_time', content: input.modifiedTime.toISOString() });
   }
+  if (input.noindex) {
+    meta.push({ name: 'robots', content: 'noindex' });
+  }
 
   return {
     title,
     description: input.description,
     canonical,
-    alternates: [
-      { hreflang: htmlLang.pt, href: ptUrl },
-      { hreflang: htmlLang.en, href: enUrl },
-      { hreflang: 'x-default', href: ptUrl },
-    ],
+    alternates: input.noindex
+      ? []
+      : [
+          { hreflang: htmlLang.pt, href: ptUrl },
+          { hreflang: htmlLang.en, href: enUrl },
+          { hreflang: 'x-default', href: ptUrl },
+        ],
     meta,
   };
 }

@@ -1,19 +1,34 @@
 ---
+import Icon from '../Icon.astro';
 import WhatsAppButton from '../WhatsAppButton.astro';
+import { routePath } from '../../i18n/routes';
 import { t, type Lang } from '../../i18n/ui';
 
 interface Props {
   lang: Lang;
+  placement?: string;
+  // Link "Ver serviços" ao lado do WhatsApp (Sobre e Empresas).
+  showServices?: boolean;
 }
 
-const { lang } = Astro.props;
+const { lang, placement = 'home-cta', showServices = false } = Astro.props;
 ---
 
 <section class="final-cta" aria-labelledby="cta-heading">
   <div class="container inner">
     <h2 id="cta-heading">{t(lang, 'home.ctaTitle')}</h2>
     <p>{t(lang, 'home.ctaText')}</p>
-    <WhatsAppButton lang={lang} placement="home-cta" size="large" />
+    <div class="actions">
+      <WhatsAppButton lang={lang} placement={placement} size="large" />
+      {
+        showServices && (
+          <a class="button button--secondary button--large" href={routePath('services', lang)}>
+            {t(lang, 'about.servicesLink')}
+            <Icon name="arrow-right" size="s" />
+          </a>
+        )
+      }
+    </div>
   </div>
 </section>
 
@@ -43,6 +58,13 @@ const { lang } = Astro.props;
     color: var(--text-muted);
     font-size: var(--fs-18);
     line-height: var(--lh-snug);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-12);
   }
 
   @media (max-width: 767px) {

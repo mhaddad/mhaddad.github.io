@@ -1,0 +1,179 @@
+---
+import { Image } from 'astro:assets';
+import GeometricPattern from './GeometricPattern.astro';
+import Icon from './Icon.astro';
+import { htmlLang, t, type Lang } from '../i18n/ui';
+import { talkThumbnails, type Talk } from '../lib/collections';
+import { spotifyUrl, youtubeWatchUrl } from '../lib/talks';
+
+interface Props {
+  talk: Talk;
+  lang: Lang;
+}
+
+const { talk, lang } = Astro.props;
+const { type, event, title, youtubeId, spotifyId } = talk.data;
+const thumbnail = youtubeId ? talkThumbnails.get(youtubeId) : undefined;
+// Títulos ficam no idioma original; na versão em inglês, marcamos o idioma.
+const contentLang = talk.data.lang === lang ? undefined : htmlLang[talk.data.lang];
+const link = youtubeId
+  ? { href: youtubeWatchUrl(youtubeId), label: t(lang, 'talks.watchYouTube') }
+  : { href: spotifyUrl(spotifyId!), label: t(lang, 'talks.listenSpotify') };
+---
+
+<li class="card" data-type={type}>
+  <div class="media">
+    {
+      youtubeId && thumbnail ? (
+        <button
+          class="play"
+          type="button"
+          data-youtube={youtubeId}
+          data-title={title}
+          aria-label={t(lang, 'talks.play', { title })}
+        >
+          <Image src={thumbnail} alt="" widths={[480]} sizes="(max-width: 767px) 100vw, 400px" loading="lazy" />
+          <span class="play-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="6 4 20 12 6 20 6 4" />
+            </svg>
+          </span>
+        </button>
+      ) : (
+        <GeometricPattern category="coerencia" />
+      )
+    }
+    <span class="badge mono">{t(lang, `talks.type.${type}`)}</span>
+  </div>
+  <div class="body">
+    <p class="event mono" lang={contentLang}>{event}</p>
+    <h3 lang={contentLang}>{title}</h3>
+    {contentLang && <p class="original mono">{t(lang, 'talks.inPortuguese')}</p>}
+    <a class="arrow-link" href={link.href} target="_blank" rel="noopener">
+      {link.label}
+      <Icon name="arrow-right" size="s" />
+    </a>
+  </div>
+</li>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-m);
+  }
+
+  .card[hidden] {
+    display: none;
+  }
+
+  .media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .media :global(iframe) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .play {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .play :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .play::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--overlay);
+    transition: background var(--duration-fast);
+  }
+
+  .play:hover::after {
+    background: none;
+  }
+
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--touch-target-l);
+    height: var(--touch-target-l);
+    color: var(--accent-contrast);
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform var(--duration-fast);
+  }
+
+  .play:hover .play-icon,
+  .play:focus-visible .play-icon {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  .badge {
+    position: absolute;
+    top: var(--space-12);
+    left: var(--space-12);
+    z-index: 1;
+    padding: var(--space-4) var(--space-8);
+    color: var(--text);
+    font-size: var(--fs-10);
+    background: var(--bg);
+    border-radius: var(--radius-s);
+    pointer-events: none;
+  }
+
+  .body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: var(--space-20);
+  }
+
+  .event {
+    color: var(--text-muted);
+    font-size: var(--fs-10);
+  }
+
+  h3 {
+    margin: var(--space-8) 0 var(--space-12);
+    font-size: var(--fs-18);
+    line-height: var(--lh-snug);
+  }
+
+  .original {
+    margin-bottom: var(--space-12);
+    color: var(--text-muted);
+    font-size: var(--fs-10);
+  }
+
+  .arrow-link {
+    margin-top: auto;
+  }
+</style>

@@ -1,0 +1,23 @@
+# Feedback Canvas book (English version of the copy approved on 2026-10-01).
+lang: en
+order: 1
+title: Feedback Canvas
+subtitle: Create a feedback culture in your organization
+description: Feedback Canvas, a book by Matheus Haddad on how to build a feedback culture in teams and organizations of any size.
+cover: ../../../assets/books/feedback-canvas.png
+coverAlt: Cover of the book Feedback Canvas by Matheus Haddad, in print and digital editions
+buyUrl: https://www.amazon.com/dp/B0FNLM47WB/
+siteUrl: https://feedbackcanvas.digital/livro
+about:
+  - Feedback Canvas is a practical, visual way to give and receive feedback in teams and organizations. I created the tool out of the work in my own companies, and it has already been adopted by hundreds of teams in companies of different sizes and industries.
+  - The canvas combines clear structure, empathy and a focus on action, so that feedback conversations become more honest and constructive, and people start looking forward to them instead of dreading them.
+audience:
+  - Leaders and managers who want to build a culture of genuine feedback in their teams.
+  - HR and People professionals looking for practical tools for people development.
+  - Entrepreneurs who want to build more transparent, high-performing organizations.
+  - Agile teams that want to deepen their retrospectives and continuous improvement.
+contents:
+  - A visual, practical method that is easy to apply in any context.
+  - Real examples from companies in different industries.
+  - Ready-to-use templates for your team.
+  - Accessible language that keeps the conceptual depth.
