@@ -1,4 +1,7 @@
 ---
+import WhatsAppButton from './WhatsAppButton.astro';
+import { SITE_NAME } from '../config';
+import { footerNav } from '../i18n/navigation';
 import { routePath } from '../i18n/routes';
 import { t, type Lang } from '../i18n/ui';
 
@@ -9,18 +12,82 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<footer class="container footer">
-  <p>{t(lang, 'footer.rights', { year: new Date().getFullYear() })}</p>
-  <a href={routePath('rss', lang)}>{t(lang, 'footer.rss')}</a>
+<footer class="site-footer">
+  <div class="container">
+    <div class="columns">
+      <div>
+        <p class="brand">{SITE_NAME}</p>
+        <p class="tagline">{t(lang, 'footer.tagline')}</p>
+      </div>
+      <nav aria-label={t(lang, 'nav.footerLabel')}>
+        <ul>
+          {
+            footerNav.map((item) => (
+              <li>
+                <a href={routePath(item.route, lang)}>{t(lang, item.label)}</a>
+              </li>
+            ))
+          }
+          <li><a href={routePath('rss', lang)}>{t(lang, 'footer.rss')}</a></li>
+        </ul>
+      </nav>
+      <div>
+        <WhatsAppButton lang={lang} placement="footer" />
+      </div>
+    </div>
+    <p class="copyright mono">{t(lang, 'footer.rights', { year: new Date().getFullYear() })}</p>
+  </div>
 </footer>
 
 <style>
-  .footer {
+  .site-footer {
+    margin-top: var(--space-96);
+    padding-block: var(--space-48);
+    background: var(--surface);
+    border-top: var(--border-width) solid var(--border);
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--col-min-footer), 1fr));
+    gap: var(--space-48);
+  }
+
+  .brand {
+    margin-bottom: var(--space-8);
+    font-size: var(--fs-20);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .tagline,
+  nav a {
+    color: var(--text-muted);
+    font-size: var(--fs-14);
+  }
+
+  nav ul {
     display: flex;
-    gap: var(--space-m);
-    align-items: center;
-    padding-block: var(--space-l);
-    border-top: 1px solid var(--color-border);
-    color: var(--color-muted);
+    flex-direction: column;
+    gap: var(--space-12);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    text-decoration: none;
+    transition: color var(--duration-fast);
+  }
+
+  nav a:hover {
+    color: var(--text);
+  }
+
+  .copyright {
+    margin-top: var(--space-48);
+    padding-top: var(--space-24);
+    border-top: var(--border-width) solid var(--border);
+    color: var(--text-muted);
   }
 </style>

@@ -1,0 +1,124 @@
+---
+import { t, type Lang, type UIKey } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+// Números confirmados pelo autor em 01/10/2026.
+const stats: { value: string; label: UIKey }[] = [
+  { value: '5', label: 'proof.companies' },
+  { value: '15+', label: 'proof.years' },
+  { value: '500+', label: 'proof.leaders' },
+];
+
+const companies = [
+  'Webgoal',
+  'Ateliê de Software',
+  'Granatum',
+  'Lumiar',
+  'Orgganica',
+  'Aliança Empreendedora',
+  'A Guarda-Chuva',
+  'TugÁgil',
+];
+---
+
+<section class="proof" aria-label={t(lang, 'proof.label')}>
+  <div class="container">
+    <dl class="stats">
+      {
+        stats.map((stat) => (
+          <div class="stat">
+            <dt class="mono">{t(lang, stat.label)}</dt>
+            <dd>{stat.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <div class="companies">
+      <p class="mono title">{t(lang, 'proof.logos')}</p>
+      <ul>
+        {companies.map((name) => <li>{name}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof {
+    padding-block: var(--space-48);
+    background: var(--surface);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-32);
+    margin: 0 0 var(--space-48);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-24);
+    text-align: center;
+  }
+
+  dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-48);
+    font-weight: 600;
+    line-height: var(--lh-none);
+  }
+
+  dt {
+    color: var(--text-muted);
+  }
+
+  .companies {
+    padding-top: var(--space-32);
+    border-top: var(--border-width) solid var(--border);
+  }
+
+  .title {
+    margin-bottom: var(--space-24);
+    color: var(--text-muted);
+    font-size: var(--fs-10);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: var(--space-8) var(--space-16);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-s);
+    color: var(--text-muted);
+    font-size: var(--fs-13);
+    font-weight: 600;
+  }
+
+  @media (max-width: 767px) {
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .stat {
+      padding: var(--space-16);
+    }
+  }
+</style>

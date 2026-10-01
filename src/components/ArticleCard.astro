@@ -1,37 +1,144 @@
 ---
-import { categories } from '../i18n/categories';
-import { articlePath, categoryPath } from '../i18n/routes';
-import { formatDate } from '../i18n/ui';
+import { Image } from 'astro:assets';
+import ArticleMeta from './ArticleMeta.astro';
+import GeometricPattern from './GeometricPattern.astro';
+import { articlePath } from '../i18n/routes';
 import { articleSlug } from '../lib/articles';
 import type { Article } from '../lib/collections';
 
 interface Props {
   article: Article;
+  featured?: boolean;
+  headingLevel?: 'h2' | 'h3';
 }
 
-const { article } = Astro.props;
-const { lang, category, title, description, pubDate } = article.data;
+const { article, featured = false, headingLevel = 'h3' } = Astro.props;
+const { lang, title, description, cover, coverAlt } = article.data;
+const Heading = featured ? 'h2' : headingLevel;
 ---
 
-<article class="article-card">
-  <p class="meta">
-    <a href={categoryPath(lang, category)}>{categories[category].name[lang]}</a>
-    {' · '}
-    <time datetime={pubDate.toISOString()}>{formatDate(lang, pubDate)}</time>
-  </p>
-  <h2><a href={articlePath(lang, articleSlug(article))}>{title}</a></h2>
-  <p>{description}</p>
+<article class:list={['card', { 'card--featured': featured }]}>
+  <div class="cover">
+    {
+      cover ? (
+        <Image src={cover} alt={coverAlt ?? ''} widths={[480, 720, 960]} sizes="(max-width: 767px) 100vw, 600px" />
+      ) : (
+        <GeometricPattern category={article.data.category} />
+      )
+    }
+  </div>
+  <div class="body">
+    <ArticleMeta article={article} size={featured ? 'm' : 's'} />
+    <Heading class="title">
+      <a href={articlePath(lang, articleSlug(article))}>{title}</a>
+    </Heading>
+    <p class="excerpt">{description}</p>
+  </div>
 </article>
 
 <style>
-  .article-card {
-    padding-block: var(--space-m);
-    border-bottom: 1px solid var(--color-border);
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-m);
+    transition: border-color var(--duration-fast);
   }
 
-  .meta {
-    margin: 0;
-    color: var(--color-muted);
-    font-size: 0.875rem;
+  .card:hover,
+  .card:focus-within {
+    border-color: var(--accent);
+  }
+
+  .cover {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .cover :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding: var(--space-24);
+  }
+
+  .title {
+    color: var(--accent);
+    font-size: var(--fs-20);
+    line-height: var(--lh-snug);
+  }
+
+  .title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* O card inteiro é clicável sem envolver tudo num link. */
+  .title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .title a:focus-visible {
+    outline: none;
+  }
+
+  .card:has(.title a:focus-visible) {
+    outline: var(--border-strong) solid var(--accent);
+    outline-offset: var(--border-strong);
+  }
+
+  .excerpt {
+    flex: 1;
+    color: var(--text-muted);
+    font-size: var(--fs-15);
+    line-height: var(--lh-body);
+  }
+
+  .card--featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card--featured .cover {
+    aspect-ratio: 4 / 3;
+  }
+
+  .card--featured .body {
+    justify-content: center;
+    gap: var(--space-16);
+    padding: var(--space-40);
+  }
+
+  .card--featured .title {
+    font-size: var(--fs-26);
+    line-height: var(--lh-heading);
+  }
+
+  .card--featured .excerpt {
+    flex: none;
+    font-size: var(--fs-16);
+  }
+
+  @media (max-width: 767px) {
+    .card--featured {
+      grid-template-columns: 1fr;
+    }
+
+    .card--featured .body {
+      padding: var(--space-24);
+    }
   }
 </style>

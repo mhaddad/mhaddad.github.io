@@ -65,11 +65,11 @@ describe('buildSeo', () => {
     const seo = buildSeo(input);
 
     // Assert
-    expect(metaContent(seo, 'og:image')).toBe('https://matheushaddad.com/og-default.png');
+    expect(metaContent(seo, 'og:image')).toBe('https://matheushaddad.com/og/default.png');
     expect(metaContent(seo, 'og:image:width')).toBe('1200');
     expect(metaContent(seo, 'og:image:height')).toBe('630');
     expect(metaContent(seo, 'twitter:card')).toBe('summary_large_image');
-    expect(metaContent(seo, 'twitter:image')).toBe('https://matheushaddad.com/og-default.png');
+    expect(metaContent(seo, 'twitter:image')).toBe('https://matheushaddad.com/og/default.png');
   });
 
   it('deve incluir datas de publicação e atualização quando a página é um artigo', () => {

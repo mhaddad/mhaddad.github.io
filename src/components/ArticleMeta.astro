@@ -1,0 +1,53 @@
+---
+import { categories } from '../i18n/categories';
+import { categoryPath } from '../i18n/routes';
+import { formatShortDate, t } from '../i18n/ui';
+import { readingTime } from '../lib/articles';
+import type { Article } from '../lib/collections';
+
+interface Props {
+  article: Article;
+  linkCategory?: boolean;
+  size?: 's' | 'm';
+}
+
+const { article, linkCategory = false, size = 'm' } = Astro.props;
+const { lang, category, pubDate } = article.data;
+const name = categories[category].name[lang];
+---
+
+<p class:list={['article-meta', 'mono', `article-meta--${size}`]}>
+  {linkCategory ? <a class="category" href={categoryPath(lang, category)}>{name}</a> : <span class="category">{name}</span>}
+  <span class="separator" aria-hidden="true">·</span>
+  <time datetime={pubDate.toISOString()}>{formatShortDate(lang, pubDate)}</time>
+  <span class="separator" aria-hidden="true">·</span>
+  <span>{t(lang, 'article.readingTime', { minutes: readingTime(article.body ?? '') })}</span>
+</p>
+
+<style>
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-8) var(--space-12);
+    color: var(--text-muted);
+  }
+
+  .article-meta--s {
+    gap: var(--space-8);
+    font-size: var(--fs-10);
+  }
+
+  .category {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a.category:hover {
+    text-decoration: underline;
+  }
+
+  .separator {
+    color: var(--border);
+  }
+</style>

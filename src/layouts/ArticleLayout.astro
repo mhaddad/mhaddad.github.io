@@ -1,22 +1,32 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { categories } from '../i18n/categories';
-import { articlePath, categoryPath, routePath } from '../i18n/routes';
+import ArticleMeta from '../components/ArticleMeta.astro';
+import AuthorBlock from '../components/AuthorBlock.astro';
+import Icon from '../components/Icon.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+import ShareBar from '../components/ShareBar.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import { absoluteUrl, articlePath, routePath } from '../i18n/routes';
 import { formatDate, otherLang, t } from '../i18n/ui';
-import { articleSlug, originalPlatform, readingTime } from '../lib/articles';
+import { articleSlug, originalPlatform } from '../lib/articles';
 import type { Article } from '../lib/collections';
+import { ogImagePath } from '../lib/og';
+import { tocItems, type Heading } from '../lib/toc';
 
 interface Props {
   article: Article;
   translation?: Article;
+  headings: Heading[];
 }
 
-const { article, translation } = Astro.props;
-const { lang, title, description, category, pubDate, updatedDate, originalUrl } = article.data;
+const { article, translation, headings } = Astro.props;
+const { lang, title, description, pubDate, updatedDate, originalUrl } = article.data;
+const slug = articleSlug(article);
 const alternatePath = translation
   ? articlePath(otherLang(lang), articleSlug(translation))
   : routePath('articles', otherLang(lang));
 const platform = originalPlatform(originalUrl);
+const toc = tocItems(headings);
 ---
 
 <BaseLayout
@@ -25,46 +35,149 @@ const platform = originalPlatform(originalUrl);
   description={description}
   alternatePath={alternatePath}
   type="article"
+  image={ogImagePath(lang, slug)}
   publishedTime={pubDate}
   modifiedTime={updatedDate}
 >
-  <article class="article">
-    <header>
-      <p class="meta">
-        <a href={categoryPath(lang, category)}>{categories[category].name[lang]}</a>
-        {' · '}
-        <time datetime={pubDate.toISOString()}>{formatDate(lang, pubDate)}</time>
-        {' · '}
-        {t(lang, 'article.readingTime', { minutes: readingTime(article.body ?? '') })}
-      </p>
-      <h1>{title}</h1>
+  <ReadingProgress />
+  <div class:list={['container', 'article-grid', { 'article-grid--toc': toc.length > 0 }]}>
+    <article class="article">
+      <a class="back mono" href={routePath('articles', lang)}><Icon name="arrow-left" size="s" />{t(lang, 'article.back')}</a>
+      <header class="article-header">
+        <ArticleMeta article={article} linkCategory />
+        <h1>{title}</h1>
+        {updatedDate && <p class="updated mono">{t(lang, 'article.updated', { date: formatDate(lang, updatedDate) })}</p>}
+      </header>
+
+      {toc.length > 0 && <div class="toc-mobile"><TableOfContents lang={lang} items={toc} variant="collapsible" /></div>}
+
+      <div class="prose">
+        <slot />
+      </div>
+
       {
-        updatedDate && (
-          <p class="meta">{t(lang, 'article.updated', { date: formatDate(lang, updatedDate) })}</p>
+        platform && originalUrl && (
+          <p class="original">
+            <a href={originalUrl} target="_blank" rel="noopener">
+              {t(lang, 'article.originallyPublished', { platform, date: formatDate(lang, pubDate) })}
+            </a>
+          </p>
         )
       }
-    </header>
-    <slot />
-    {
-      platform && originalUrl && (
-        <p class="original">
-          <a href={originalUrl} target="_blank" rel="noopener">
-            {t(lang, 'article.originallyPublished', { platform, date: formatDate(lang, pubDate) })}
-          </a>
-        </p>
-      )
-    }
-  </article>
+
+      <div class="share">
+        <ShareBar lang={lang} url={absoluteUrl(Astro.url.pathname)} title={title} />
+      </div>
+
+      <AuthorBlock lang={lang} />
+    </article>
+
+    {toc.length > 0 && <aside class="toc-sidebar"><TableOfContents lang={lang} items={toc} variant="sidebar" /></aside>}
+  </div>
 </BaseLayout>
 
 <style>
-  .article {
-    max-width: var(--width-reading);
+  .article-grid {
+    display: grid;
+    grid-template-columns: minmax(0, var(--width-reading));
+    gap: var(--space-80);
+    align-items: start;
   }
 
-  .meta,
+  .article-grid--toc {
+    grid-template-columns: minmax(0, 1fr) var(--width-toc);
+  }
+
+  .article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+    max-width: var(--width-reading);
+    padding-top: var(--space-64);
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-8);
+    align-self: flex-start;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast);
+  }
+
+  .back:hover {
+    color: var(--text);
+  }
+
+  .article-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    margin-top: calc(-1 * var(--space-16));
+  }
+
+  h1 {
+    color: var(--accent);
+    font-size: var(--fs-44);
+    line-height: var(--lh-heading);
+  }
+
+  .updated {
+    color: var(--text-muted);
+  }
+
   .original {
-    color: var(--color-muted);
-    font-size: 0.875rem;
+    padding: var(--space-16) var(--space-20);
+    background: var(--surface);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-s);
+    color: var(--text-muted);
+    font-size: var(--fs-14);
+    font-weight: 500;
+  }
+
+  .original a {
+    color: inherit;
+  }
+
+  .share {
+    padding-top: var(--space-32);
+    border-top: var(--border-width) solid var(--border);
+  }
+
+  .toc-sidebar {
+    height: 100%;
+    padding-top: var(--space-64);
+  }
+
+  .toc-mobile {
+    display: none;
+  }
+
+  @media (max-width: 1023px) {
+    .article-grid,
+    .article-grid--toc {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .toc-sidebar {
+      display: none;
+    }
+
+    .toc-mobile {
+      display: block;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .article {
+      gap: var(--space-32);
+      padding-top: var(--space-40);
+    }
+
+    h1 {
+      font-size: var(--fs-32);
+    }
   }
 </style>

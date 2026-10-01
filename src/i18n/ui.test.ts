@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatDate, otherLang, t, ui } from './ui';
+import { formatDate, formatShortDate, otherLang, t, ui } from './ui';
 
 describe('dicionário de interface', () => {
   it('deve ter as mesmas chaves quando compara português e inglês', () => {
@@ -32,7 +32,7 @@ describe('dicionário de interface', () => {
     const text = t('pt', 'article.readingTime', vars);
 
     // Assert
-    expect(text).toBe('7 min de leitura');
+    expect(text).toBe('7 min');
   });
 
   it('deve manter o marcador quando a variável não é informada', () => {
@@ -43,7 +43,7 @@ describe('dicionário de interface', () => {
     const text = t('en', 'article.readingTime', vars);
 
     // Assert
-    expect(text).toBe('{minutes} min read');
+    expect(text).toBe('{minutes} min');
   });
 });
 
@@ -72,5 +72,31 @@ describe('formatDate', () => {
     // Assert
     expect(pt).toBe('25 de agosto de 2026');
     expect(en).toBe('August 25, 2026');
+  });
+});
+
+describe('formatShortDate', () => {
+  it('deve formatar como "25 AGO 2026" em português e "25 AUG 2026" em inglês quando recebe uma data', () => {
+    // Arrange
+    const date = new Date('2026-08-25');
+
+    // Act
+    const pt = formatShortDate('pt', date);
+    const en = formatShortDate('en', date);
+
+    // Assert
+    expect(pt).toBe('25 AGO 2026');
+    expect(en).toBe('25 AUG 2026');
+  });
+
+  it('deve usar dois dígitos no dia quando o dia tem um algarismo', () => {
+    // Arrange
+    const date = new Date('2018-02-01');
+
+    // Act
+    const pt = formatShortDate('pt', date);
+
+    // Assert
+    expect(pt).toBe('01 FEV 2018');
   });
 });

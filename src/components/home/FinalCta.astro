@@ -1,0 +1,57 @@
+---
+import WhatsAppButton from '../WhatsAppButton.astro';
+import { t, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section class="final-cta" aria-labelledby="cta-heading">
+  <div class="container inner">
+    <h2 id="cta-heading">{t(lang, 'home.ctaTitle')}</h2>
+    <p>{t(lang, 'home.ctaText')}</p>
+    <WhatsAppButton lang={lang} placement="home-cta" size="large" />
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    background: var(--accent-subtle);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-16);
+    max-width: var(--width-reading);
+    padding-block: var(--space-96);
+    text-align: center;
+  }
+
+  h2 {
+    font-size: var(--fs-40);
+    line-height: var(--lh-heading);
+  }
+
+  p {
+    margin-bottom: var(--space-24);
+    color: var(--text-muted);
+    font-size: var(--fs-18);
+    line-height: var(--lh-snug);
+  }
+
+  @media (max-width: 767px) {
+    .inner {
+      padding-block: var(--space-64);
+    }
+
+    h2 {
+      font-size: var(--fs-32);
+    }
+  }
+</style>

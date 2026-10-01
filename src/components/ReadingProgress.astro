@@ -1,0 +1,29 @@
+<div class="reading-progress" aria-hidden="true" data-reading-progress></div>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: var(--z-progress);
+    height: var(--progress-height);
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-reading-progress]');
+
+  function update() {
+    if (!bar) return;
+    const root = document.documentElement;
+    const total = root.scrollHeight - root.clientHeight;
+    bar.style.transform = `scaleX(${total > 0 ? Math.min(1, root.scrollTop / total) : 0})`;
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+</script>

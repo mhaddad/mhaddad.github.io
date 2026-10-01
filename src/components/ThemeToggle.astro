@@ -1,0 +1,69 @@
+---
+import Icon from './Icon.astro';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  withLabel?: boolean;
+}
+
+const { lang, withLabel = false } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={['button', 'button--outline', 'theme-toggle', { 'button--icon': !withLabel }]}
+  data-theme-toggle
+  data-label-to-light={t(lang, 'theme.toLight')}
+  data-label-to-dark={t(lang, 'theme.toDark')}
+  aria-label={t(lang, 'theme.toLight')}
+>
+  <span class="when-dark"><Icon name="sun" /></span>
+  <span class="when-light"><Icon name="moon" /></span>
+  {
+    withLabel && (
+      <>
+        <span class="when-dark">{t(lang, 'theme.light')}</span>
+        <span class="when-light">{t(lang, 'theme.dark')}</span>
+      </>
+    )
+  }
+</button>
+
+<style>
+  .theme-toggle {
+    font-weight: 400;
+  }
+
+  :global(:root[data-theme='dark']) .when-light,
+  :global(:root[data-theme='light']) .when-dark {
+    display: none;
+  }
+</style>
+
+<script>
+  import { THEME_STORAGE_KEY } from '../lib/theme';
+
+  function syncLabels(theme: string) {
+    for (const button of document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')) {
+      const label = theme === 'dark' ? button.dataset.labelToLight : button.dataset.labelToDark;
+      if (label) button.setAttribute('aria-label', label);
+    }
+  }
+
+  syncLabels(document.documentElement.dataset.theme ?? 'dark');
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')) {
+    button.addEventListener('click', () => {
+      const root = document.documentElement;
+      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      root.dataset.theme = next;
+      syncLabels(next);
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, next);
+      } catch {
+        // Armazenamento bloqueado: a escolha vale só nesta página.
+      }
+    });
+  }
+</script>

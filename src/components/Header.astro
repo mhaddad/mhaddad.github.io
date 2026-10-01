@@ -1,6 +1,10 @@
 ---
+import Icon from './Icon.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
 import { SITE_NAME } from '../config';
+import { isCurrent, mainNav } from '../i18n/navigation';
 import { routePath } from '../i18n/routes';
 import { t, type Lang } from '../i18n/ui';
 
@@ -10,30 +14,225 @@ interface Props {
 }
 
 const { lang, alternatePath } = Astro.props;
+const pathname = Astro.url.pathname;
 ---
 
-<header class="container header">
-  <a class="brand" href={routePath('home', lang)}>{SITE_NAME}</a>
-  <nav aria-label={t(lang, 'nav.label')}>
-    <a href={routePath('articles', lang)}>{t(lang, 'nav.articles')}</a>
-  </nav>
-  <LanguageSwitcher lang={lang} alternatePath={alternatePath} />
+<header class="site-header">
+  <div class="container header-bar">
+    <a class="brand" href={routePath('home', lang)} aria-label={t(lang, 'nav.home')}>{SITE_NAME}</a>
+
+    <nav class="desktop-nav" aria-label={t(lang, 'nav.label')}>
+      {
+        mainNav.map((item) => (
+          <a href={routePath(item.route, lang)} aria-current={isCurrent(pathname, item.route, lang) ? 'page' : undefined}>
+            {t(lang, item.label)}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="actions">
+      <span class="desktop-only"><LanguageSwitcher lang={lang} alternatePath={alternatePath} /></span>
+      <span class="desktop-only"><ThemeToggle lang={lang} /></span>
+      <WhatsAppButton lang={lang} placement="header" class="whatsapp-header" />
+      <button
+        type="button"
+        class="button button--outline button--icon menu-button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+        data-label-open={t(lang, 'nav.menu')}
+        data-label-close={t(lang, 'nav.close')}
+        aria-label={t(lang, 'nav.menu')}
+      >
+        <span class="icon-open"><Icon name="menu" size="l" /></span>
+        <span class="icon-close"><Icon name="close" size="l" /></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <nav class="container" aria-label={t(lang, 'nav.label')}>
+      {
+        mainNav.map((item) => (
+          <a href={routePath(item.route, lang)} aria-current={isCurrent(pathname, item.route, lang) ? 'page' : undefined}>
+            {t(lang, item.label)}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="container mobile-actions">
+      <LanguageSwitcher lang={lang} alternatePath={alternatePath} />
+      <ThemeToggle lang={lang} withLabel />
+    </div>
+  </div>
 </header>
 
 <style>
-  .header {
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: var(--bg);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  .header-bar {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-m);
     align-items: center;
-    padding-block: var(--space-m);
-    border-bottom: 1px solid var(--color-border);
+    gap: var(--space-32);
+    height: var(--header-height);
   }
 
   .brand {
-    margin-right: auto;
-    font-weight: 700;
-    color: inherit;
+    font-size: var(--fs-18);
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .desktop-nav {
+    display: flex;
+    flex: 1;
+    gap: var(--space-4);
+  }
+
+  .desktop-nav a {
+    padding: var(--space-8) var(--space-12);
+    border-radius: var(--radius-s);
+    color: var(--text-muted);
+    font-size: var(--fs-14);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--duration-fast);
+  }
+
+  .desktop-nav a:hover {
+    color: var(--text);
+  }
+
+  .desktop-nav a[aria-current='page'] {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    margin-left: auto;
+  }
+
+  .actions :global(.whatsapp-header) {
+    font-size: var(--fs-13);
+  }
+
+  .menu-button[aria-expanded='false'] .icon-close,
+  .menu-button[aria-expanded='true'] .icon-open {
+    display: none;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: var(--header-height) 0 0;
+    z-index: var(--z-menu);
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    animation: slide-in var(--duration-menu) ease;
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  .mobile-menu nav {
+    flex: 1;
+    padding-block: var(--space-24);
+  }
+
+  .mobile-menu nav a {
+    display: block;
+    padding-block: var(--space-16);
+    border-bottom: var(--border-width) solid var(--border);
+    font-family: var(--font-display);
+    font-size: var(--fs-26);
+    font-weight: 600;
     text-decoration: none;
   }
+
+  .mobile-menu nav a[aria-current='page'] {
+    color: var(--accent);
+  }
+
+  .mobile-actions {
+    display: flex;
+    gap: var(--space-12);
+    padding-block: var(--space-24);
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .menu-button {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    /* Some da tela, mas continua sendo o nome acessível do link. */
+    .actions :global(.whatsapp-label) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .actions :global(.whatsapp-header) {
+      width: var(--touch-target);
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .desktop-nav,
+    .desktop-only {
+      display: none;
+    }
+  }
 </style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-menu');
+
+  function setOpen(open: boolean) {
+    if (!toggle || !menu) return;
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    const label = open ? toggle.dataset.labelClose : toggle.dataset.labelOpen;
+    if (label) toggle.setAttribute('aria-label', label);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) menu.querySelector<HTMLElement>('a')?.focus();
+  }
+
+  toggle?.addEventListener('click', () => setOpen(Boolean(menu?.hidden)));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu && !menu.hidden) {
+      setOpen(false);
+      toggle?.focus();
+    }
+  });
+</script>

@@ -12,3 +12,7 @@ originalUrl: https://www.linkedin.com/pulse/primeiro-artigo
 ## Um subtítulo
 
 Texto do primeiro artigo.
+
+## Outro subtítulo
+
+Mais texto do primeiro artigo.

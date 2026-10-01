@@ -1,0 +1,183 @@
+/*
+ * Design system do site (Figma Make "High-Fidelity Prototype and Design System").
+ * Tema e cor de destaque vêm de atributos no <html>: data-theme (dark | light) e
+ * data-accent (green | yellow | blue | orange). O HTML sai com dark + green e o
+ * script de tema (src/lib/theme.ts) ajusta antes da primeira pintura.
+ * As famílias --font-display, --font-body e --font-mono são definidas pela API de
+ * fontes do Astro (astro.config.mjs).
+ */
+
+:root {
+  /* Espaçamento — escala de 4px */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  /* Tamanhos de fonte */
+  --fs-10: 10px;
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-17: 17px;
+  --fs-18: 18px;
+  --fs-19: 19px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-24: 24px;
+  --fs-26: 26px;
+  --fs-32: 32px;
+  --fs-36: 36px;
+  --fs-40: 40px;
+  --fs-44: 44px;
+  --fs-48: 48px;
+  --fs-56: 56px;
+
+  /* Alturas de linha */
+  --lh-none: 1;
+  --lh-display: 1.08;
+  --lh-heading: 1.18;
+  --lh-snug: 1.4;
+  --lh-body: 1.5;
+  --lh-h3: 30px;
+  --lh-article: 32px;
+  --lh-article-mobile: 28px;
+
+  /* Rótulos em mono */
+  --tracking-mono: 0.08em;
+
+  /* Raios */
+  --radius-s: 2px;
+  --radius-m: 6px;
+  --radius-round: 50%;
+
+  /* Bordas */
+  --border-width: 1px;
+  --border-strong: 2px;
+  --border-quote: 3px;
+
+  /* Larguras e alturas */
+  --width-content: 1200px;
+  --width-reading: 680px;
+  --width-toc: 280px;
+  --width-portrait: 380px;
+  --width-portrait-tablet: 280px;
+  --width-hero-title: 640px;
+  --width-hero-text: 520px;
+  --col-min-footer: 200px;
+  --col-min-card: 300px;
+  --gutter: 24px;
+  --gutter-mobile: 20px;
+  --header-height: 64px;
+  --touch-target: 44px;
+  --touch-target-l: 48px;
+  --touch-target-xl: 56px;
+  --underline-offset: 3px;
+  --icon-s: 16px;
+  --icon-m: 18px;
+  --icon-l: 22px;
+  --progress-height: 2px;
+
+  /* Movimento */
+  --duration-fast: 0.15s;
+  --duration-menu: 0.2s;
+
+  /* Camadas */
+  --z-header: 50;
+  --z-menu: 40;
+  --z-progress: 100;
+  --z-toast: 999;
+}
+
+/* Tema escuro (padrão) */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #000000;
+  --surface: #161618;
+  --text: #ffffff;
+  --text-muted: #b8b8b8;
+  --border: #343438;
+  --overlay: rgb(0 0 0 / 30%);
+  --play-bg: rgb(255 255 255 / 90%);
+}
+
+/* Tema claro */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #f5f5f4;
+  --text: #111111;
+  --text-muted: #57534e;
+  --border: #e7e5e4;
+  --overlay: rgb(0 0 0 / 30%);
+  --play-bg: rgb(255 255 255 / 90%);
+}
+
+/* Cores de destaque — uma por visita, nos dois temas */
+:root[data-theme='dark'][data-accent='green'] {
+  --accent: #00f993;
+  --accent-hover: #52ffb3;
+  --accent-subtle: #10251d;
+  --accent-contrast: #071a12;
+}
+
+:root[data-theme='dark'][data-accent='yellow'] {
+  --accent: #ffc132;
+  --accent-hover: #ffd467;
+  --accent-subtle: #2a2110;
+  --accent-contrast: #241900;
+}
+
+:root[data-theme='dark'][data-accent='blue'] {
+  --accent: #0097d7;
+  --accent-hover: #27b6ee;
+  --accent-subtle: #102431;
+  --accent-contrast: #001e2b;
+}
+
+:root[data-theme='dark'][data-accent='orange'] {
+  --accent: #f46036;
+  --accent-hover: #ff845e;
+  --accent-subtle: #2c1914;
+  --accent-contrast: #260c04;
+}
+
+:root[data-theme='light'][data-accent='green'] {
+  --accent: #007d4c;
+  --accent-hover: #006b40;
+  --accent-subtle: #e8f8ef;
+  --accent-contrast: #ffffff;
+}
+
+:root[data-theme='light'][data-accent='yellow'] {
+  --accent: #805600;
+  --accent-hover: #684600;
+  --accent-subtle: #fff6dc;
+  --accent-contrast: #ffffff;
+}
+
+:root[data-theme='light'][data-accent='blue'] {
+  --accent: #006695;
+  --accent-hover: #00527a;
+  --accent-subtle: #e9f5fa;
+  --accent-contrast: #ffffff;
+}
+
+:root[data-theme='light'][data-accent='orange'] {
+  --accent: #ad3d1d;
+  --accent-hover: #913117;
+  --accent-subtle: #fff0ea;
+  --accent-contrast: #ffffff;
+}

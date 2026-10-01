@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import '../styles/global.css';
 import Analytics from '../components/Analytics.astro';
 import Footer from '../components/Footer.astro';
@@ -7,6 +8,7 @@ import Seo from '../components/Seo.astro';
 import { routePath } from '../i18n/routes';
 import { htmlLang, t } from '../i18n/ui';
 import type { SeoInput } from '../lib/seo';
+import { DEFAULT_ACCENT, DEFAULT_THEME, themeBootScript } from '../lib/theme';
 
 type Props = Omit<SeoInput, 'path'>;
 
@@ -15,19 +17,23 @@ const { lang, alternatePath } = props;
 ---
 
 <!doctype html>
-<html lang={htmlLang[lang]}>
+<html lang={htmlLang[lang]} data-theme={DEFAULT_THEME} data-accent={DEFAULT_ACCENT}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline set:html={themeBootScript()} />
+    <Font cssVariable="--font-display" preload={[{ style: 'normal' }]} />
+    <Font cssVariable="--font-body" preload={[{ style: 'normal' }]} />
+    <Font cssVariable="--font-mono" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href={routePath('rss', lang)} />
+    <link rel="alternate" type="application/rss+xml" title={t(lang, 'footer.rss')} href={routePath('rss', lang)} />
     <Seo {...props} path={Astro.url.pathname} />
     <Analytics />
   </head>
   <body>
     <a class="skip-link" href="#conteudo">{t(lang, 'skip.toContent')}</a>
     <Header lang={lang} alternatePath={alternatePath} />
-    <main id="conteudo" class="container">
+    <main id="conteudo">
       <slot />
     </main>
     <Footer lang={lang} />

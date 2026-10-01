@@ -79,7 +79,7 @@ describe('rotas geradas', () => {
 
   it('deve copiar os arquivos preservados do site antigo quando o build termina', () => {
     // Arrange
-    const paths = ['CNAME', 'favicon.ico', 'og-default.png', 'feedback-canvas/Feedback-Canvas-V1.pdf'];
+    const paths = ['CNAME', 'favicon.ico', 'feedback-canvas/Feedback-Canvas-V1.pdf'];
 
     // Act
     const missing = paths.filter((path) => !exists(path));
@@ -96,7 +96,7 @@ describe('SEO da página de artigo', () => {
 
     // Act
     const checks = [
-      '<html lang="pt-BR">',
+      '<html lang="pt-BR" ',
       `<link rel="canonical" href="${SITE}/artigos/primeiro-artigo/">`,
       `<link rel="alternate" hreflang="pt-BR" href="${SITE}/artigos/primeiro-artigo/">`,
       `<link rel="alternate" hreflang="en" href="${SITE}/en/articles/first-article/">`,
@@ -115,7 +115,7 @@ describe('SEO da página de artigo', () => {
     const checks = [
       '<meta property="og:type" content="article">',
       `<meta property="og:url" content="${SITE}/en/articles/first-article/">`,
-      `<meta property="og:image" content="${SITE}/og-default.png">`,
+      `<meta property="og:image" content="${SITE}/og/en/articles/first-article.png">`,
       '<meta property="og:image:width" content="1200">',
       '<meta property="og:image:height" content="630">',
       '<meta name="twitter:card" content="summary_large_image">',
@@ -130,7 +130,7 @@ describe('SEO da página de artigo', () => {
     const html = page('artigos/primeiro-artigo/index.html');
 
     // Act
-    const link = /<a class="language-switcher"[^>]*>/.exec(html)?.[0] ?? '';
+    const link = /<a class="language-switcher[^"]*"[^>]*>/.exec(html)?.[0] ?? '';
 
     // Assert
     expect(link).toContain('href="/en/articles/first-article/"');
@@ -175,7 +175,7 @@ describe('lista de artigos', () => {
     const html = page('en/articles/index.html');
 
     // Act
-    const filters = /<nav class="filters"[\s\S]*?<\/nav>/.exec(html)?.[0] ?? '';
+    const filters = (/<nav class="filters"[\s\S]*?<\/nav>/.exec(html)?.[0] ?? '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 
     // Assert
     expect(filters).toContain('Management &amp; Organizational Design (1)');
@@ -230,5 +230,184 @@ describe('analytics', () => {
 
     // Assert
     expect(loaded).toBe(true);
+  });
+});
+
+describe('design system', () => {
+  it('deve sair em tema escuro com destaque verde e com o script de tema antes do CSS quando a página é gerada', () => {
+    // Arrange
+    const html = page('index.html');
+
+    // Act
+    const htmlTag = /<html[^>]*>/.exec(html)?.[0] ?? '';
+    const themeScript = html.indexOf('mh-accent');
+    const firstStylesheet = Math.min(
+      ...['<style', '<link rel="stylesheet"'].map((tag) => html.indexOf(tag)).filter((index) => index >= 0),
+    );
+
+    // Assert
+    expect(htmlTag).toContain('data-theme="dark"');
+    expect(htmlTag).toContain('data-accent="green"');
+    expect(themeScript).toBeGreaterThan(-1);
+    expect(themeScript).toBeLessThan(firstStylesheet);
+  });
+
+  it('deve servir as fontes pelo próprio site quando a página é gerada', () => {
+    // Arrange
+    const html = page('index.html');
+
+    // Act
+    const preloads = [...html.matchAll(/<link rel="preload" href="(\/_astro\/fonts\/[^"]+\.woff2)"/g)].map((m) => m[1] ?? '');
+
+    // Assert
+    expect(html).not.toContain('fonts.googleapis.com');
+    // Só título e texto, no subconjunto latin: mais que isso disputa banda no 4G.
+    expect(preloads.length).toBe(2);
+    expect(preloads.every((href) => exists(href.slice(1)))).toBe(true);
+  });
+});
+
+describe('header e footer', () => {
+  it('deve ter os 5 itens do menu nos caminhos do contrato e o item atual marcado quando a página é de artigos', () => {
+    // Arrange
+    const html = page('artigos/index.html');
+
+    // Act
+    const nav = /<nav class="desktop-nav"[\s\S]*?<\/nav>/.exec(html)?.[0] ?? '';
+    const hrefs = [...nav.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+    const current = /<a href="([^"]+)" aria-current="page"/.exec(nav)?.[1];
+
+    // Assert
+    expect(hrefs).toEqual(['/artigos/', '/servicos/', '/empresas/', '/palestras/', '/sobre/']);
+    expect(current).toBe('/artigos/');
+  });
+
+  it('deve ter o botão de WhatsApp com o número real e evento do GA quando a página é gerada', () => {
+    // Arrange
+    const html = page('en/index.html');
+
+    // Act
+    const links = [...html.matchAll(/<a [^>]*href="https:\/\/wa\.me\/5535988867870\?text=[^"]+"[^>]*>/g)].map((m) => m[0]);
+
+    // Assert
+    expect(links.length).toBeGreaterThanOrEqual(3);
+    // No celular o texto some da tela, mas precisa continuar sendo o nome acessível:
+    // display:none tiraria o texto da árvore de acessibilidade.
+    const css = [
+      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+    ].join('');
+    const labelRules = [...css.matchAll(/[^{}]*whatsapp-label[^{}]*\{([^}]*)\}/g)].map((m) => m[1] ?? '');
+    expect(html).toMatch(/whatsapp-header"[^>]*>[\s\S]*?<span class="whatsapp-label">Chat on WhatsApp<\/span>/);
+    expect(labelRules.length).toBeGreaterThan(0);
+    expect(labelRules.some((rule) => /display:\s*none/.test(rule))).toBe(false);
+    expect(links.every((link) => link.includes('data-ga-event="whatsapp_click"') && link.includes('rel="noopener"'))).toBe(true);
+  });
+
+  it('deve ter alternância de tema e menu mobile acessíveis quando a página é gerada', () => {
+    // Arrange
+    const html = page('index.html');
+
+    // Act
+    const toggle = /<button[^>]*data-theme-toggle[^>]*>/.exec(html)?.[0] ?? '';
+    const menuButton = /<button[^>]*data-menu-toggle[^>]*>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(toggle).toContain('aria-label="Mudar para o modo claro"');
+    expect(menuButton).toContain('aria-expanded="false"');
+    expect(menuButton).toContain('aria-controls="mobile-menu"');
+    expect(html).toMatch(/<div id="mobile-menu"[^>]*hidden/);
+  });
+
+  it('deve levar Livros e RSS no rodapé quando a página é gerada', () => {
+    // Arrange
+    const html = page('en/index.html');
+
+    // Act
+    const footer = /<footer[\s\S]*?<\/footer>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(footer).toContain('href="/en/books/"');
+    expect(footer).toContain('href="/en/rss.xml"');
+  });
+});
+
+describe('página de artigo — Onda 2', () => {
+  it('deve gerar a imagem de prévia 1200×630 de cada artigo quando o build termina', () => {
+    // Arrange
+    const files = ['og/default.png', 'og/artigos/primeiro-artigo.png', 'og/en/articles/first-article.png'];
+
+    // Act
+    const sizes = files.map((file) => {
+      const png = readFileSync(join(OUT_DIR, file));
+      return [png.readUInt32BE(16), png.readUInt32BE(20)];
+    });
+
+    // Assert
+    expect(sizes).toEqual(files.map(() => [1200, 630]));
+    expect(exists('og/artigos/rascunho.png')).toBe(false);
+  });
+
+  it('deve compartilhar a URL canônica no LinkedIn e no WhatsApp quando a página é de artigo', () => {
+    // Arrange
+    const html = page('artigos/primeiro-artigo/index.html');
+    const encoded = encodeURIComponent(`${SITE}/artigos/primeiro-artigo/`);
+
+    // Act
+    const shareBar = /<div class="share-bar"[\s\S]*?<\/div>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(shareBar).toContain(`https://www.linkedin.com/sharing/share-offsite/?url=${encoded}`);
+    expect(shareBar).toContain(`https://wa.me/?text=Primeiro%20artigo%20de%20teste%20${encoded}`);
+    expect(shareBar).toContain(`data-copy-link="${SITE}/artigos/primeiro-artigo/"`);
+    expect(shareBar).toContain('role="status"');
+  });
+
+  it('deve mostrar o índice só quando o artigo tem duas ou mais seções', () => {
+    // Arrange
+    const withToc = page('artigos/primeiro-artigo/index.html');
+    const withoutToc = page('artigos/segundo-artigo/index.html');
+
+    // Act
+    const links = [...withToc.matchAll(/data-toc-link="([^"]+)"/g)].map((m) => m[1]);
+
+    // Assert
+    expect([...new Set(links)]).toEqual(['um-subtítulo', 'outro-subtítulo']);
+    expect(withoutToc).not.toContain('data-toc-link');
+  });
+
+  it('deve ter progresso de leitura e bloco "Quem escreve" com foto quando a página é de artigo', () => {
+    // Arrange
+    const html = page('en/articles/first-article/index.html');
+
+    // Act
+    const author = /<aside class="author"[\s\S]*?<\/aside>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(html).toContain('data-reading-progress');
+    expect(author).toContain('About the author');
+    expect(author).toMatch(/<img[^>]*alt="Matheus Haddad"/);
+    expect(author).toContain('href="/en/about/"');
+  });
+});
+
+describe('home', () => {
+  it('deve mostrar hero com retrato, faixa de prova e os artigos mais recentes quando a home é gerada', () => {
+    // Arrange
+    const html = page('index.html');
+
+    // Act
+    const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1];
+    const featured = html.indexOf('Segundo artigo de teste');
+    const older = html.indexOf('Primeiro artigo de teste');
+
+    // Assert
+    expect(h1).toBe('Negócios, tecnologia e pessoas: como organizações crescem na era da IA.');
+    expect(html).toMatch(/<img[^>]*alt="Matheus Haddad, empresário e consultor em negócios e tecnologia"/);
+    expect(html).toContain('500+');
+    expect(html).toContain('TugÁgil');
+    expect(featured).toBeGreaterThan(-1);
+    expect(older).toBeGreaterThan(featured);
+    expect(html).not.toContain('Rascunho de teste');
   });
 });

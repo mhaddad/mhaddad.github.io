@@ -1,0 +1,110 @@
+---
+import Icon from './Icon.astro';
+import { t, type Lang } from '../i18n/ui';
+import { gaEventAttrs } from '../lib/analytics';
+import { shareUrl } from '../lib/share';
+
+interface Props {
+  lang: Lang;
+  url: string;
+  title: string;
+}
+
+const { lang, url, title } = Astro.props;
+---
+
+<div class="share-bar">
+  <span class="label mono">{t(lang, 'article.share')}</span>
+  <a
+    class="button button--outline share-link"
+    href={shareUrl('linkedin', url, title)}
+    target="_blank"
+    rel="noopener"
+    aria-label={t(lang, 'article.shareLinkedIn')}
+    {...gaEventAttrs('share', { network: 'linkedin', lang })}
+  >
+    <Icon name="linkedin" />LinkedIn
+  </a>
+  <a
+    class="button button--outline share-link"
+    href={shareUrl('whatsapp', url, title)}
+    target="_blank"
+    rel="noopener"
+    aria-label={t(lang, 'article.shareWhatsApp')}
+    {...gaEventAttrs('share', { network: 'whatsapp', lang })}
+  >
+    <Icon name="whatsapp" />WhatsApp
+  </a>
+  <button
+    type="button"
+    class="button button--outline"
+    data-copy-link={url}
+    data-copied-label={t(lang, 'article.linkCopied')}
+    {...gaEventAttrs('share', { network: 'copy', lang })}
+  >
+    <Icon name="copy" />{t(lang, 'article.copyLink')}
+  </button>
+  <p class="toast" role="status" aria-live="polite" data-copy-toast></p>
+</div>
+
+<style>
+  .share-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .label {
+    margin-right: var(--space-4);
+    color: var(--text-muted);
+  }
+
+  .share-bar .button {
+    font-size: var(--fs-13);
+    font-weight: 500;
+  }
+
+  .share-link {
+    color: var(--accent);
+  }
+
+  .toast {
+    position: fixed;
+    bottom: var(--space-24);
+    left: 50%;
+    z-index: var(--z-toast);
+    padding: var(--space-12) var(--space-20);
+    border-radius: var(--radius-s);
+    background: var(--text);
+    color: var(--bg);
+    font-size: var(--fs-14);
+    font-weight: 500;
+    transform: translateX(-50%);
+  }
+
+  .toast:empty {
+    display: none;
+  }
+</style>
+
+<script>
+  const TOAST_MS = 2000;
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-link]')) {
+    const toast = button.parentElement?.querySelector<HTMLElement>('[data-copy-toast]');
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyLink ?? location.href);
+      } catch {
+        // Sem permissão de área de transferência: o aviso aparece mesmo assim.
+      }
+      if (!toast) return;
+      toast.textContent = button.dataset.copiedLabel ?? '';
+      clearTimeout(timer);
+      timer = setTimeout(() => (toast.textContent = ''), TOAST_MS);
+    });
+  }
+</script>
