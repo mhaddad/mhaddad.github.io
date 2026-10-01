@@ -11,9 +11,10 @@ import { t, type Lang } from '../i18n/ui';
 interface Props {
   lang: Lang;
   alternatePath: string;
+  whatsappMessage: string;
 }
 
-const { lang, alternatePath } = Astro.props;
+const { lang, alternatePath, whatsappMessage } = Astro.props;
 const pathname = Astro.url.pathname;
 ---
 
@@ -24,7 +25,7 @@ const pathname = Astro.url.pathname;
     <nav class="desktop-nav" aria-label={t(lang, 'nav.label')}>
       {
         mainNav.map((item) => (
-          <a href={routePath(item.route, lang)} aria-current={isCurrent(pathname, item.route, lang) ? 'page' : undefined}>
+          <a href={routePath(item.route, lang)} aria-current={isCurrent(pathname, item, lang) ? 'page' : undefined}>
             {t(lang, item.label)}
           </a>
         ))
@@ -34,7 +35,7 @@ const pathname = Astro.url.pathname;
     <div class="actions">
       <span class="desktop-only"><LanguageSwitcher lang={lang} alternatePath={alternatePath} /></span>
       <span class="desktop-only"><ThemeToggle lang={lang} /></span>
-      <WhatsAppButton lang={lang} placement="header" class="whatsapp-header" />
+      <WhatsAppButton lang={lang} placement="header" message={whatsappMessage} class="whatsapp-header" />
       <button
         type="button"
         class="button button--outline button--icon menu-button"
@@ -55,7 +56,7 @@ const pathname = Astro.url.pathname;
     <nav class="container" aria-label={t(lang, 'nav.label')}>
       {
         mainNav.map((item) => (
-          <a href={routePath(item.route, lang)} aria-current={isCurrent(pathname, item.route, lang) ? 'page' : undefined}>
+          <a href={routePath(item.route, lang)} aria-current={isCurrent(pathname, item, lang) ? 'page' : undefined}>
             {t(lang, item.label)}
           </a>
         ))

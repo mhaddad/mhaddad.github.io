@@ -100,3 +100,16 @@ describe('formatShortDate', () => {
     expect(pt).toBe('01 FEV 2018');
   });
 });
+
+describe('estilo do dicionário', () => {
+  it('deve dispensar o travessão quando percorre os textos dos dois idiomas', () => {
+    // Arrange
+    const values = [...Object.entries(ui.pt), ...Object.entries(ui.en)];
+
+    // Act
+    const withDash = values.filter(([, value]) => value.includes('—')).map(([key]) => key);
+
+    // Assert
+    expect(withDash).toEqual([]);
+  });
+});

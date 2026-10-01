@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import ArticleCta from '../components/ArticleCta.astro';
 import ArticleMeta from '../components/ArticleMeta.astro';
 import AuthorBlock from '../components/AuthorBlock.astro';
 import Icon from '../components/Icon.astro';
@@ -70,6 +71,8 @@ const toc = tocItems(headings);
       </div>
 
       <AuthorBlock lang={lang} />
+
+      <ArticleCta article={article} />
     </article>
 
     {toc.length > 0 && <aside class="toc-sidebar"><TableOfContents lang={lang} items={toc} variant="sidebar" /></aside>}

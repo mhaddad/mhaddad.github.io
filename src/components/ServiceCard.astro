@@ -1,0 +1,85 @@
+---
+import CheckList from './CheckList.astro';
+import Icon from './Icon.astro';
+import { t } from '../i18n/ui';
+import type { Service } from '../lib/collections';
+import { servicePath } from '../lib/services';
+
+interface Props {
+  service: Service;
+  index: number;
+}
+
+const { service, index } = Astro.props;
+const { key, lang, cardTitle, summary, topics } = service.data;
+---
+
+<article class="service-card">
+  <p class="number mono">{String(index + 1).padStart(2, '0')}</p>
+  <h2><a href={servicePath(key, lang)}>{cardTitle}</a></h2>
+  <p class="summary">{summary}</p>
+  <CheckList items={topics.slice(0, 3)} compact />
+  <span class="more" aria-hidden="true">{t(lang, 'services.learnMore')}<Icon name="arrow-right" size="s" /></span>
+</article>
+
+<style>
+  .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: var(--space-40);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-m);
+    transition: border-color var(--duration-fast);
+  }
+
+  .service-card:hover,
+  .service-card:focus-within {
+    border-color: var(--accent);
+  }
+
+  .number {
+    color: var(--accent);
+    font-size: var(--fs-13);
+  }
+
+  h2 {
+    font-size: var(--fs-26);
+    line-height: var(--lh-heading);
+  }
+
+  h2 a {
+    text-decoration: none;
+  }
+
+  h2 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .summary {
+    margin-bottom: var(--space-16);
+    color: var(--text-muted);
+    line-height: var(--lh-body);
+  }
+
+  .more {
+    display: inline-flex;
+    gap: var(--space-4);
+    align-items: center;
+    margin-top: auto;
+    padding-top: var(--space-16);
+    color: var(--accent);
+    font-size: var(--fs-13);
+    font-weight: 600;
+  }
+
+  @media (max-width: 767px) {
+    .service-card {
+      padding: var(--space-24);
+    }
+  }
+</style>

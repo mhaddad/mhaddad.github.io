@@ -9,11 +9,17 @@ import { routePath } from '../i18n/routes';
 import { htmlLang, t } from '../i18n/ui';
 import type { SeoInput } from '../lib/seo';
 import { DEFAULT_ACCENT, DEFAULT_THEME, themeBootScript } from '../lib/theme';
+import { pageWhatsappMessage } from '../lib/whatsapp';
+import { SITE_NAME } from '../config';
 
-type Props = Omit<SeoInput, 'path'>;
+type Props = Omit<SeoInput, 'path'> & {
+  // Mensagem do WhatsApp do header e do footer; por padrão, cita a página de origem.
+  whatsappMessage?: string;
+};
 
-const props = Astro.props;
-const { lang, alternatePath } = props;
+const { whatsappMessage, ...props } = Astro.props;
+const { lang, alternatePath, title } = props;
+const message = whatsappMessage ?? pageWhatsappMessage(lang, title === SITE_NAME ? undefined : title);
 ---
 
 <!doctype html>
@@ -32,10 +38,10 @@ const { lang, alternatePath } = props;
   </head>
   <body>
     <a class="skip-link" href="#conteudo">{t(lang, 'skip.toContent')}</a>
-    <Header lang={lang} alternatePath={alternatePath} />
+    <Header lang={lang} alternatePath={alternatePath} whatsappMessage={message} />
     <main id="conteudo">
       <slot />
     </main>
-    <Footer lang={lang} />
+    <Footer lang={lang} whatsappMessage={message} />
   </body>
 </html>

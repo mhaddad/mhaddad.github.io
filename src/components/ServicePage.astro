@@ -1,0 +1,307 @@
+---
+import ArticleCard from './ArticleCard.astro';
+import CheckList from './CheckList.astro';
+import Icon from './Icon.astro';
+import ServiceSteps from './ServiceSteps.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { routePath } from '../i18n/routes';
+import { otherLang, t, type Lang } from '../i18n/ui';
+import type { Article, Service } from '../lib/collections';
+import { relatedArticlesFor, serviceFor, servicePath, type ServiceKey } from '../lib/services';
+
+interface Props {
+  lang: Lang;
+  serviceKey: ServiceKey;
+  services: Service[];
+  articles: Article[];
+}
+
+const { lang, serviceKey, services, articles } = Astro.props;
+const service = serviceFor(services, serviceKey, lang);
+const { label, title, description, subtitle, audience, problem, topics, steps, format, formats, ctaLabel, ctaText, whatsappMessage } =
+  service.data;
+const related = relatedArticlesFor(service, articles);
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  alternatePath={servicePath(serviceKey, otherLang(lang))}
+  whatsappMessage={whatsappMessage}
+>
+  <div class="band">
+    <div class="container band-inner">
+      <WhatsAppButton
+        lang={lang}
+        placement="service-band"
+        service={serviceKey}
+        message={whatsappMessage}
+        label={ctaLabel}
+        class="band-button"
+      />
+    </div>
+  </div>
+
+  <div class="container service-grid">
+    <div class="content">
+      <a class="back mono" href={routePath('services', lang)}><Icon name="arrow-left" size="s" />{t(lang, 'services.pageTitle')}</a>
+
+      <header class="service-header">
+        <p class="label mono">{label}</p>
+        <h1>{title}</h1>
+        <p class="subtitle">{subtitle}</p>
+        {format && <p class="format mono">{format}</p>}
+      </header>
+
+      <section aria-labelledby="audience-heading">
+        <h2 id="audience-heading" class="section-title mono">{t(lang, 'services.audience')}</h2>
+        <p class="lead">{audience}</p>
+      </section>
+
+      <section aria-labelledby="problem-heading">
+        <h2 id="problem-heading" class="section-title mono">{t(lang, 'services.problem')}</h2>
+        <blockquote class="problem"><p>{problem}</p></blockquote>
+      </section>
+
+      <section aria-labelledby="topics-heading">
+        <h2 id="topics-heading" class="section-title mono">{t(lang, 'services.topics')}</h2>
+        <CheckList items={topics} />
+      </section>
+
+      {
+        formats && (
+          <section aria-labelledby="formats-heading">
+            <h2 id="formats-heading" class="section-title mono">{t(lang, 'services.formats')}</h2>
+            <ul class="formats">
+              {formats.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <section aria-labelledby="steps-heading">
+        <h2 id="steps-heading" class="section-title mono">{t(lang, 'services.steps')}</h2>
+        <ServiceSteps steps={steps} />
+      </section>
+
+      {
+        related.length > 0 && (
+          <section aria-labelledby="related-heading">
+            <h2 id="related-heading" class="section-title mono">{t(lang, 'services.related')}</h2>
+            <div class="related">
+              {related.map((article) => (
+                <ArticleCard article={article} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <slot />
+    </div>
+
+    <aside class="sidebar" aria-labelledby="sidebar-heading">
+      <div class="cta-box">
+        <h2 id="sidebar-heading">{t(lang, 'services.ctaTitle')}</h2>
+        <p>{ctaText}</p>
+        <WhatsAppButton
+          lang={lang}
+          placement="service-sidebar"
+          service={serviceKey}
+          message={whatsappMessage}
+          label={ctaLabel}
+          size="large"
+          class="cta-button"
+        />
+      </div>
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .band {
+    padding-block: var(--space-12);
+    background: var(--accent);
+  }
+
+  .band-inner {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .band :global(.band-button) {
+    min-height: auto;
+    padding: var(--space-4) 0;
+    background: none;
+    color: var(--accent-contrast);
+  }
+
+  .band :global(.band-button:hover) {
+    background: none;
+    text-decoration: underline;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--width-aside);
+    gap: var(--space-80);
+    align-items: start;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+    padding-top: var(--space-64);
+  }
+
+  .back {
+    display: inline-flex;
+    gap: var(--space-8);
+    align-items: center;
+    align-self: flex-start;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .back:hover {
+    color: var(--text);
+  }
+
+  .service-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin-top: calc(-1 * var(--space-16));
+  }
+
+  .label {
+    color: var(--accent);
+  }
+
+  h1 {
+    font-size: var(--fs-44);
+    line-height: var(--lh-heading);
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: var(--fs-18);
+    line-height: var(--lh-snug);
+  }
+
+  .format {
+    align-self: flex-start;
+    padding: var(--space-8) var(--space-12);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-s);
+    color: var(--text);
+  }
+
+  .section-title {
+    margin-bottom: var(--space-16);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-11);
+    font-weight: 500;
+  }
+
+  .lead {
+    font-size: var(--fs-17);
+    line-height: var(--lh-snug);
+  }
+
+  .problem {
+    margin: 0;
+    padding-left: var(--space-24);
+    border-left: var(--border-quote) solid var(--accent);
+  }
+
+  .problem p {
+    font-family: var(--font-display);
+    font-size: var(--fs-20);
+    font-style: italic;
+    font-weight: 600;
+    line-height: var(--lh-h3);
+  }
+
+  .formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .formats li {
+    padding: var(--space-8) var(--space-12);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-s);
+    font-size: var(--fs-14);
+  }
+
+  .related {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--width-portrait-tablet), 1fr));
+    gap: var(--space-24);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-16));
+    padding-top: var(--space-64);
+  }
+
+  .cta-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding: var(--space-32);
+    background: var(--surface);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-m);
+  }
+
+  .cta-box h2 {
+    font-size: var(--fs-22);
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-12);
+    color: var(--text-muted);
+    font-size: var(--fs-15);
+    line-height: var(--lh-body);
+  }
+
+  .cta-box :global(.cta-button) {
+    white-space: normal;
+  }
+
+  @media (max-width: 1023px) {
+    .service-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .sidebar {
+      position: static;
+      padding-top: var(--space-48);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .content {
+      gap: var(--space-40);
+      padding-top: var(--space-40);
+    }
+
+    h1 {
+      font-size: var(--fs-32);
+    }
+  }
+</style>

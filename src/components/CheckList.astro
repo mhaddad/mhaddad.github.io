@@ -1,0 +1,79 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  items: { title: string; text?: string }[];
+  compact?: boolean;
+}
+
+const { items, compact = false } = Astro.props;
+---
+
+<ul class:list={['check-list', { 'check-list--compact': compact }]}>
+  {
+    items.map((item) => (
+      <li>
+        <span class="mark">
+          <Icon name="check" size="s" />
+        </span>
+        <span>
+          <strong>{item.title}</strong>
+          {!compact && item.text && <span class="text">{item.text}</span>}
+        </span>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .check-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    gap: var(--space-12);
+    align-items: flex-start;
+  }
+
+  .mark {
+    flex-shrink: 0;
+    padding-top: var(--space-4);
+    color: var(--accent);
+  }
+
+  strong {
+    display: block;
+    font-weight: 600;
+  }
+
+  .text {
+    display: block;
+    margin-top: var(--space-4);
+    color: var(--text-muted);
+    font-size: var(--fs-15);
+    line-height: var(--lh-body);
+  }
+
+  .check-list--compact {
+    gap: var(--space-8);
+  }
+
+  .check-list--compact li {
+    color: var(--text-muted);
+    font-size: var(--fs-14);
+  }
+
+  .check-list--compact strong {
+    font-weight: 400;
+  }
+
+  .check-list--compact .mark {
+    padding-top: var(--border-strong);
+  }
+</style>

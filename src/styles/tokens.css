@@ -72,6 +72,8 @@
   --width-content: 1200px;
   --width-reading: 680px;
   --width-toc: 280px;
+  --width-aside: 360px;
+  --step-size: 40px;
   --width-portrait: 380px;
   --width-portrait-tablet: 280px;
   --width-hero-title: 640px;

@@ -23,7 +23,7 @@ function exists(path: string): boolean {
 beforeAll(() => {
   rmSync(OUT_DIR, { recursive: true, force: true });
   execFileSync('node_modules/.bin/astro', ['build', '--outDir', OUT_DIR], {
-    env: { ...buildEnv, ARTICLES_DIR: './tests/fixtures/articles' },
+    env: { ...buildEnv, ARTICLES_DIR: './tests/fixtures/articles', SERVICES_DIR: './tests/fixtures/services' },
     stdio: 'pipe',
   });
 }, 120_000);
@@ -409,5 +409,153 @@ describe('home', () => {
     expect(featured).toBeGreaterThan(-1);
     expect(older).toBeGreaterThan(featured);
     expect(html).not.toContain('Rascunho de teste');
+  });
+});
+
+describe('páginas de serviço — Onda 3', () => {
+  const pages = [
+    ['servicos/index.html', 'en/services/index.html'],
+    ['consultoria/index.html', 'en/consulting/index.html'],
+    ['mentoria/index.html', 'en/mentoring/index.html'],
+    ['palestras/index.html', 'en/speaking/index.html'],
+  ];
+
+  it('deve gerar o hub e os 3 serviços nos dois idiomas com hreflang cruzado quando o build termina', () => {
+    // Arrange
+    const pairs = pages;
+
+    // Act
+    const crossLinks = pairs.map(([pt = '', en = '']) => {
+      const ptPath = `/${pt.replace('index.html', '')}`;
+      const enPath = `/${en.replace('index.html', '')}`;
+      return (
+        page(pt).includes(`hreflang="en" href="${SITE}${enPath}"`) && page(en).includes(`hreflang="pt-BR" href="${SITE}${ptPath}"`)
+      );
+    });
+
+    // Assert
+    expect(crossLinks).toEqual([true, true, true, true]);
+  });
+
+  it('deve listar os 3 serviços na ordem com link para cada página quando o hub é gerado', () => {
+    // Arrange
+    const html = page('servicos/index.html');
+
+    // Act
+    const links = [...html.matchAll(/<article class="service-card"[\s\S]*?<h2[^>]*><a href="([^"]+)"/g)].map((m) => m[1]);
+
+    // Assert
+    expect(links).toEqual(['/consultoria/', '/mentoria/', '/palestras/']);
+  });
+
+  it('deve mostrar as seções, os 3 passos e os artigos relacionados quando a página é de serviço', () => {
+    // Arrange
+    const html = page('consultoria/index.html');
+
+    // Act
+    const sections = [...html.matchAll(/<h2 id="[a-z]+-heading" class="section-title mono"[^>]*>([^<]+)<\/h2>/g)].map((m) => m[1]);
+    const steps = (html.match(/<li[^>]*><span class="number mono"/g) ?? []).length;
+    const related = /<section aria-labelledby="related-heading"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(sections).toEqual(['Para quem é', 'O problema', 'Temas e abordagens', 'Como funciona', 'Artigos relacionados']);
+    expect(steps).toBe(3);
+    expect(related).toContain('href="/artigos/primeiro-artigo/"');
+    expect(related).toContain('href="/artigos/segundo-artigo/"');
+  });
+
+  it('deve mostrar o formato na mentoria e a lista de formatos nas palestras quando o serviço os define', () => {
+    // Arrange
+    const mentoria = page('en/mentoring/index.html');
+    const palestras = page('palestras/index.html');
+
+    // Act
+    const format = /<p class="format mono"[^>]*>([^<]+)<\/p>/.exec(mentoria)?.[1];
+    const formats = /<ul class="formats"[\s\S]*?<\/ul>/.exec(palestras)?.[0] ?? '';
+
+    // Assert
+    expect(format).toBe('Formato de teste (en)');
+    expect(formats).toContain('Formato A (pt)');
+    expect(formats).toContain('Formato B (pt)');
+  });
+
+  it('deve levar a mensagem e o serviço no WhatsApp quando a página é de serviço', () => {
+    // Arrange
+    const html = page('consultoria/index.html');
+    const encoded = encodeURIComponent('Mensagem de consultoria em pt & teste');
+
+    // Act
+    const links = [...html.matchAll(new RegExp(`<a [^>]*href="https://wa\\.me/5535988867870\\?text=${encoded.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`, 'g'))].map((m) => m[0]);
+
+    // Assert
+    expect(links.length).toBeGreaterThanOrEqual(4);
+    expect(links.filter((link) => link.includes('&quot;service&quot;:&quot;consultoria&quot;')).length).toBe(2);
+  });
+
+  it('deve acender "Serviços" no menu quando a página é de consultoria', () => {
+    // Arrange
+    const html = page('consultoria/index.html');
+
+    // Act
+    const nav = /<nav class="desktop-nav"[\s\S]*?<\/nav>/.exec(html)?.[0] ?? '';
+    const current = /<a href="([^"]+)" aria-current="page"/.exec(nav)?.[1];
+
+    // Assert
+    expect(current).toBe('/servicos/');
+  });
+});
+
+describe('WhatsApp por página e chamada no fim do artigo — Onda 3', () => {
+  it('deve citar o título do artigo na mensagem do header quando a página é de artigo', () => {
+    // Arrange
+    const html = page('artigos/primeiro-artigo/index.html');
+    const message = 'Olá, Matheus! Vim pela página "Primeiro artigo de teste" do seu site e gostaria de conversar.';
+
+    // Act
+    const header = /<header class="site-header"[\s\S]*?<\/header>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(header).toContain(`text=${encodeURIComponent(message)}`);
+  });
+
+  it('deve usar a mensagem genérica no header quando a página é a home', () => {
+    // Arrange
+    const html = page('index.html');
+    const message = 'Olá, Matheus! Vim pelo seu site e gostaria de conversar.';
+
+    // Act
+    const header = /<header class="site-header"[\s\S]*?<\/header>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(header).toContain(`text=${encodeURIComponent(message)}`);
+  });
+
+  it('deve mostrar a chamada da categoria com o título do artigo na mensagem quando o artigo não define serviço', () => {
+    // Arrange
+    const html = page('artigos/primeiro-artigo/index.html');
+    const message = 'Olá, Matheus! Li o artigo "Primeiro artigo de teste" no seu site e gostaria de conversar sobre consultoria.';
+
+    // Act
+    const cta = /<section class="article-cta"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(cta).toContain('data-cta-service="consultoria"');
+    expect(cta).toContain('Sua empresa está redesenhando a gestão com IA?');
+    expect(cta).toContain(`text=${encodeURIComponent(message)}`);
+    expect(cta).toContain('href="/consultoria/"');
+  });
+
+  it('deve usar o serviço do artigo quando o frontmatter define service', () => {
+    // Arrange
+    const html = page('en/articles/second-article/index.html');
+
+    // Act
+    const cta = /<section class="article-cta"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(cta).toContain('data-cta-service="mentoria"');
+    expect(cta).toContain('Is your company rethinking its management model?');
+    expect(cta).toContain(encodeURIComponent('would like to talk about mentoring.'));
+    expect(cta).toContain('href="/en/mentoring/"');
   });
 });

@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import { t, type Lang } from '../i18n/ui';
 import { gaEventAttrs } from '../lib/analytics';
+import type { ServiceKey } from '../lib/services';
 import { whatsappUrl } from '../lib/whatsapp';
 
 interface Props {
@@ -10,11 +11,21 @@ interface Props {
   variant?: 'full' | 'icon';
   size?: 'default' | 'large';
   message?: string;
+  label?: string;
+  service?: ServiceKey;
   class?: string;
 }
 
-const { lang, placement, variant = 'full', size = 'default', message = t(lang, 'whatsapp.message'), class: className } = Astro.props;
-const label = t(lang, 'whatsapp.label');
+const {
+  lang,
+  placement,
+  variant = 'full',
+  size = 'default',
+  message = t(lang, 'whatsapp.message'),
+  label = t(lang, 'whatsapp.label'),
+  service,
+  class: className,
+} = Astro.props;
 ---
 
 <a
@@ -23,7 +34,7 @@ const label = t(lang, 'whatsapp.label');
   target="_blank"
   rel="noopener"
   aria-label={variant === 'icon' ? label : undefined}
-  {...gaEventAttrs('whatsapp_click', { lang, placement, page_path: Astro.url.pathname })}
+  {...gaEventAttrs('whatsapp_click', { lang, placement, service: service ?? 'none', page_path: Astro.url.pathname })}
 >
   <Icon name="whatsapp" size={size === 'large' ? 'l' : 'm'} />
   {variant === 'full' && <span class="whatsapp-label">{label}</span>}
