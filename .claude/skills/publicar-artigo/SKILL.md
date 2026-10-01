@@ -35,6 +35,9 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
   - `![[imagem.png]]` → veja **Imagens** abaixo.
   - Remova blocos `%% … %%` e tags `#tag` soltas no texto.
 - Títulos internos do artigo começam em `##` (o `#` é o título da página).
+- **Exportações do Medium** começam com uma linha `---` e repetem o título como `### Título`: remova as duas e promova os subtítulos `###` para `##`.
+- Corrija apenas formatação Markdown quebrada (ex.: `***termo***(texto)**palavra**` sem espaços). Não corrija o texto do autor; liste erros de digitação no relatório para Matheus decidir.
+- Links para outros artigos no Medium/LinkedIn ficam como estão até o artigo de destino estar publicado no site.
 
 **Sanitização (obrigatória):**
 - Remova qualquer `<script>`.
@@ -42,6 +45,9 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
 - O build falha se sobrar `<script>` ou iframe fora de `youtube-nocookie.com` (`validateArticles` em `src/lib/articles.ts`).
 
 **Imagens:** se o artigo tiver imagens, copie-as para `src/assets/articles/<translationKey>/` e use caminho relativo no Markdown (`../../../assets/articles/<translationKey>/<arquivo>`), com texto alternativo em cada idioma. Se não conseguir ler a imagem do vault, pare e peça o arquivo a Matheus.
+- Imagens remotas (CDN do Medium, `media.licdn.com`) são **baixadas** para a mesma pasta (`curl -sSL -o …`), nunca referenciadas pela URL externa. Confira o tipo com `file`.
+- URLs do LinkedIn exportadas costumam vir truncadas e responder 404. Nesse caso, peça a imagem a Matheus ou a decisão de publicar sem ela.
+- Legendas da exportação (ex.: "Imagem criada com …") viram uma linha em itálico logo abaixo da imagem.
 
 ## 3. Montar o frontmatter
 
@@ -50,7 +56,7 @@ Fonte de verdade das categorias: `src/i18n/categories.ts` (`vaultName` → chave
 | Campo no site | Origem no vault | Regra |
 |---|---|---|
 | `title` | `title` | Igual ao vault em PT; traduzido em EN |
-| `description` | `tldr` | Até **160 caracteres**. Se `tldr` faltar ou passar disso, escreva um resumo fiel ao texto, sem prometer o que o artigo não entrega |
+| `description` | `tldr` no frontmatter ou callout `> [!abstract] TL;DR` no corpo | Até **160 caracteres**. Se `tldr` faltar ou passar disso, escreva um resumo fiel ao texto, sem prometer o que o artigo não entrega |
 | `pubDate` | `date` | `AAAA-MM-DD`, data **original** (Medium/LinkedIn nos migrados) |
 | `updatedDate` | — | Só em republicação com mudança relevante: data de hoje |
 | `category` | `category` | Chave correspondente ao `vaultName`. Se não houver correspondência, pare e pergunte |
