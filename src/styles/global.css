@@ -1,0 +1,53 @@
+/* Visual provisório e neutro da Onda 1. O design system entra na Onda 2. */
+:root {
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --color-text: #111;
+  --color-muted: #555;
+  --color-background: #fff;
+  --color-border: #ddd;
+  --color-link: #1d4ed8;
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 2rem;
+  --width-content: 1200px;
+  --width-reading: 680px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+a {
+  color: var(--color-link);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: var(--width-content);
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-m);
+  top: -100px;
+}
+
+.skip-link:focus {
+  top: var(--space-m);
+}

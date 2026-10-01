@@ -1,0 +1,23 @@
+---
+import { gaEventAttrs } from '../lib/analytics';
+import { htmlLang, otherLang, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  alternatePath: string;
+}
+
+const { lang, alternatePath } = Astro.props;
+const target = otherLang(lang);
+---
+
+<a
+  class="language-switcher"
+  href={alternatePath}
+  hreflang={htmlLang[target]}
+  lang={htmlLang[target]}
+  aria-label={t(lang, 'lang.switchLabel')}
+  {...gaEventAttrs('language_switch', { from: lang, to: target, page_path: Astro.url.pathname })}
+>
+  {t(lang, 'lang.switch')}
+</a>

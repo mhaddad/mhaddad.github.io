@@ -1,0 +1,46 @@
+---
+import ArticleCard from './ArticleCard.astro';
+import { categories, type CategoryKey } from '../i18n/categories';
+import { categoryPath, routePath } from '../i18n/routes';
+import { t, type Lang } from '../i18n/ui';
+import { categoriesInUse, publishedArticles } from '../lib/articles';
+import type { Article } from '../lib/collections';
+
+interface Props {
+  lang: Lang;
+  articles: Article[];
+  heading: string;
+  current?: CategoryKey;
+}
+
+const { lang, articles, heading, current } = Astro.props;
+const filters = categoriesInUse(articles, lang);
+const list = publishedArticles(articles, lang).filter(
+  (article) => !current || article.data.category === current,
+);
+---
+
+<h1>{heading}</h1>
+<nav class="filters" aria-label={t(lang, 'articles.filterLabel')}>
+  <a href={routePath('articles', lang)} aria-current={current ? undefined : 'page'}>{t(lang, 'articles.all')}</a>
+  {
+    filters.map(({ key, count }) => (
+      <a href={categoryPath(lang, key)} aria-current={key === current ? 'page' : undefined}>
+        {categories[key].name[lang]} ({count})
+      </a>
+    ))
+  }
+</nav>
+{list.length === 0 ? <p>{t(lang, 'articles.empty')}</p> : list.map((article) => <ArticleCard article={article} />)}
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-m);
+  }
+
+  .filters [aria-current='page'] {
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { SITE_NAME } from '../config';
+import { routePath } from '../i18n/routes';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  alternatePath: string;
+}
+
+const { lang, alternatePath } = Astro.props;
+---
+
+<header class="container header">
+  <a class="brand" href={routePath('home', lang)}>{SITE_NAME}</a>
+  <nav aria-label={t(lang, 'nav.label')}>
+    <a href={routePath('articles', lang)}>{t(lang, 'nav.articles')}</a>
+  </nav>
+  <LanguageSwitcher lang={lang} alternatePath={alternatePath} />
+</header>
+
+<style>
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    align-items: center;
+    padding-block: var(--space-m);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .brand {
+    margin-right: auto;
+    font-weight: 700;
+    color: inherit;
+    text-decoration: none;
+  }
+</style>

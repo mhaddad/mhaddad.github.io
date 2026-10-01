@@ -1,0 +1,11 @@
+# Lido apenas da branch padrão: passa a valer após o merge na main (27/10).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

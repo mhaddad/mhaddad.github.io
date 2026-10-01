@@ -1,0 +1,12 @@
+---
+import { buildSeo, type SeoInput } from '../lib/seo';
+
+type Props = SeoInput;
+
+const seo = buildSeo(Astro.props);
+---
+
+<title>{seo.title}</title>
+<link rel="canonical" href={seo.canonical} />
+{seo.alternates.map((alternate) => <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />)}
+{seo.meta.map((tag) => <meta property={tag.property} name={tag.name} content={tag.content} />)}

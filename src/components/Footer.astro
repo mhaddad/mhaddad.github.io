@@ -1,0 +1,26 @@
+---
+import { routePath } from '../i18n/routes';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<footer class="container footer">
+  <p>{t(lang, 'footer.rights', { year: new Date().getFullYear() })}</p>
+  <a href={routePath('rss', lang)}>{t(lang, 'footer.rss')}</a>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    gap: var(--space-m);
+    align-items: center;
+    padding-block: var(--space-l);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+  }
+</style>

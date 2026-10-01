@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Seo from '../components/Seo.astro';
+import { routePath } from '../i18n/routes';
+import { htmlLang, t } from '../i18n/ui';
+import type { SeoInput } from '../lib/seo';
+
+type Props = Omit<SeoInput, 'path'>;
+
+const props = Astro.props;
+const { lang, alternatePath } = props;
+---
+
+<!doctype html>
+<html lang={htmlLang[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href={routePath('rss', lang)} />
+    <Seo {...props} path={Astro.url.pathname} />
+    <Analytics />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">{t(lang, 'skip.toContent')}</a>
+    <Header lang={lang} alternatePath={alternatePath} />
+    <main id="conteudo" class="container">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

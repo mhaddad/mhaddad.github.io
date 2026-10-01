@@ -1,0 +1,70 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { categories } from '../i18n/categories';
+import { articlePath, categoryPath, routePath } from '../i18n/routes';
+import { formatDate, otherLang, t } from '../i18n/ui';
+import { articleSlug, originalPlatform, readingTime } from '../lib/articles';
+import type { Article } from '../lib/collections';
+
+interface Props {
+  article: Article;
+  translation?: Article;
+}
+
+const { article, translation } = Astro.props;
+const { lang, title, description, category, pubDate, updatedDate, originalUrl } = article.data;
+const alternatePath = translation
+  ? articlePath(otherLang(lang), articleSlug(translation))
+  : routePath('articles', otherLang(lang));
+const platform = originalPlatform(originalUrl);
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  alternatePath={alternatePath}
+  type="article"
+  publishedTime={pubDate}
+  modifiedTime={updatedDate}
+>
+  <article class="article">
+    <header>
+      <p class="meta">
+        <a href={categoryPath(lang, category)}>{categories[category].name[lang]}</a>
+        {' · '}
+        <time datetime={pubDate.toISOString()}>{formatDate(lang, pubDate)}</time>
+        {' · '}
+        {t(lang, 'article.readingTime', { minutes: readingTime(article.body ?? '') })}
+      </p>
+      <h1>{title}</h1>
+      {
+        updatedDate && (
+          <p class="meta">{t(lang, 'article.updated', { date: formatDate(lang, updatedDate) })}</p>
+        )
+      }
+    </header>
+    <slot />
+    {
+      platform && originalUrl && (
+        <p class="original">
+          <a href={originalUrl} target="_blank" rel="noopener">
+            {t(lang, 'article.originallyPublished', { platform, date: formatDate(lang, pubDate) })}
+          </a>
+        </p>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    max-width: var(--width-reading);
+  }
+
+  .meta,
+  .original {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+</style>

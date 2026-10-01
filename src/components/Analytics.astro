@@ -1,0 +1,32 @@
+---
+import { GA_ID } from '../config';
+
+const enabled = import.meta.env.PROD;
+---
+
+{
+  enabled && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+      <script is:inline define:vars={{ GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function gtag() {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag('js', new Date());
+        window.gtag('config', GA_ID);
+      </script>
+    </>
+  )
+}
+
+<script>
+  import { parseGaParams } from '../lib/analytics';
+
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const element = target?.closest<HTMLElement>('[data-ga-event]');
+    if (!element?.dataset.gaEvent || typeof window.gtag !== 'function') return;
+    window.gtag('event', element.dataset.gaEvent, parseGaParams(element.dataset.gaParams));
+  });
+</script>

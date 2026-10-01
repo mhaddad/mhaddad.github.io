@@ -1,0 +1,19 @@
+---
+import ArticleList from '../../../components/ArticleList.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { routePath } from '../../../i18n/routes';
+import { t } from '../../../i18n/ui';
+import { getAllArticles } from '../../../lib/collections';
+
+const lang = 'en';
+const articles = await getAllArticles();
+---
+
+<BaseLayout
+  lang={lang}
+  title={t(lang, 'articles.title')}
+  description={t(lang, 'articles.description')}
+  alternatePath={routePath('articles', 'pt')}
+>
+  <ArticleList lang={lang} articles={articles} heading={t(lang, 'articles.title')} />
+</BaseLayout>
