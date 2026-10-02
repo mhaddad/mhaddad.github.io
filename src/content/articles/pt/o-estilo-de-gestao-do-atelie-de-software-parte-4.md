@@ -75,7 +75,7 @@ Em 2012, o Ateliê de Software, ainda sob o nome de [Webgoal](http://www.webgoal
 
 ![À esquerda, a placa do Prêmio MPE Brasil 2012 concedida à Webgoal; à direita, a equipe, de camisetas cinza, comemora com os braços erguidos em um auditório](../../../assets/articles/o-estilo-de-gestao-do-atelie-de-software-parte-4/premio-mpe-brasil-2012.jpeg)
 
-*Melhor empresa de Serviços de TI do Estados de SP e vencedora do prêmio de inovação — MPE Brasil 2012*
+*Melhor empresa de Serviços de TI do Estado de SP e vencedora do prêmio de inovação — MPE Brasil 2012*
 
 O que diferenciou o Ateliê das demais empresas concorrentes foi sua abordagem de gestão, que, embora atendesse a todos os critérios de excelência elencados pelo SEBRAE, implementava-os de forma não convencional, fugindo das práticas tradicionais e focando em autogestão, liderança emergente e colaboração contínua. Esse reconhecimento evidenciou o sucesso de uma cultura organizacional inovadora e alinhada com as necessidades do mercado contemporâneo.
 
@@ -117,7 +117,7 @@ A expectativa de controle rígido sobre prazos e entregas, por exemplo, pode ger
 
 ### O desafio de mudar paradigmas: mecanicista vs. orgânico
 
-O paradigma mecanicista, amplamente adotado por organizações tradicionais, vê a empresa como uma máquina onde cada pessoa desempenha um papel específico e pré-definido, com regras claras e um fluxo de comando que começa no topo e desce por toda a estrutura hierárquica. Nesse modelo, o controle e a previsibilidade são altamente valorizados e o sucesso é medido pela eficiência do cumprimento de processos rígidos.
+O paradigma mecanicista, amplamente adotado por organizações tradicionais, vê a empresa como uma máquina onde cada pessoa desempenha um papel específico e predefinido, com regras claras e um fluxo de comando que começa no topo e desce por toda a estrutura hierárquica. Nesse modelo, o controle e a previsibilidade são altamente valorizados e o sucesso é medido pela eficiência do cumprimento de processos rígidos.
 
 Por outro lado, o modelo orgânico, como o praticado no Ateliê, enxerga a organização como um sistema vivo, onde as interações entre as pessoas e a capacidade de adaptação constante são essenciais para o sucesso. As equipes são compostas por indivíduos com múltiplas habilidades, que se auto-organizam para resolver problemas de forma colaborativa e criativa. Nesse contexto, a liderança é emergente e fluida, e as decisões são tomadas coletivamente, com base nas necessidades do momento e no alinhamento com o propósito maior da organização.
 

@@ -25,7 +25,7 @@ Analisando esse processo intenso de ressignificação do trabalho, consigo desta
 
 Autonomia é basicamente o resultado da combinação de três fatores: entender quem nós somos (autoconhecimento), compreender os outros com quem trabalhamos (relacionamentos) e conhecer o contexto (transparência organizacional).
 
-Quando isso acontece, a responsabilidade passa a ser uma consequência da ação autônoma no trabalho (e não uma pré-condição, como estamos acostumados a ouvir) e comportamentos ditos "maduros" começam a emergir das relações profissionais.
+Quando isso acontece, a responsabilidade passa a ser uma consequência da ação autônoma no trabalho (e não uma precondição, como estamos acostumados a ouvir) e comportamentos ditos "maduros" começam a emergir das relações profissionais.
 
 ## 2. Autoconhecimento vem da experiência
 
@@ -33,7 +33,7 @@ Autoconhecimento não se aprende em livros. É preciso vivenciar situações, te
 
 Isso significa ter oportunidades de interagir com as pessoas, participar das decisões, enfrentar desafios e ter condições para assumir riscos (coisas que geralmente só estão disponíveis para os chefes).
 
-Cultivar um ambiente de trabalho com segurança psicológica é importante, assim como o apoio de outros profissionais para nos ajudar a analisar, em retrospecto, a forma como pensamos e agimos nas atividades profissionais (conhecemos isso com "cultura de feedback").
+Cultivar um ambiente de trabalho com segurança psicológica é importante, assim como o apoio de outros profissionais para nos ajudar a analisar, em retrospecto, a forma como pensamos e agimos nas atividades profissionais (conhecemos isso como "cultura de feedback").
 
 ## 3. Experiência traz consciência
 

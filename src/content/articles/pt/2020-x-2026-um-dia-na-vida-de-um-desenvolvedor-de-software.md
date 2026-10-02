@@ -145,7 +145,7 @@ A comparação entre as duas terças-feiras revela cinco deslocamentos:
 4. Do status relatado para o estado inferido. Em 2020, o time se reunia às 9:05 para descobrir o estado do trabalho uns dos outros. Em 2026, esse estado é derivado das evidências que pessoas, agentes e ferramentas já produzem. Muda o sentido da reunião diária, do quadro e do relatório de acompanhamento, que deixam de ser a fonte da verdade e viram formas de visualizá-la.
 5. Da atenção distribuída para a atenção concentrada. Em 2020, Jeff dedicava o mesmo cuidado a tudo o que passava pelas mãos dele. Em 2026, a atenção cresce com impacto, incerteza e dificuldade de reverter, e diminui quando existe evidência confiável. Uma alteração pequena e reversível segue sozinha. Alterações críticas ou irreversíveis escalam para uma pessoa.
 
-Ainda sim, algumas coisas não mudaram: a responsabilidade pelo resultado, a conversa com o cliente e o julgamento sobre o que vale a pena construir. A IA não tira nada disso do desenvolvedor. O que ela faz é tornar visível o quanto do trabalho antigo era execução, e o quanto do processo em volta existia apenas para administrar essa execução.
+Ainda assim, algumas coisas não mudaram: a responsabilidade pelo resultado, a conversa com o cliente e o julgamento sobre o que vale a pena construir. A IA não tira nada disso do desenvolvedor. O que ela faz é tornar visível o quanto do trabalho antigo era execução, e o quanto do processo em volta existia apenas para administrar essa execução.
 
 ---
 

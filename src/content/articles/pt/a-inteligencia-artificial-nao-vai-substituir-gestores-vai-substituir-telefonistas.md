@@ -11,7 +11,7 @@ draft: false
 
 ![Telefonista com fones de ouvido encaixa plugues num painel de madeira cheio de tomadas identificadas por cidades, como São Paulo, Rio de Janeiro e Belo Horizonte; ao fundo, outras telefonistas trabalham em fila](../../../assets/articles/a-inteligencia-artificial-nao-vai-substituir-gestores-vai-substituir-telefonistas/capa.png)
 
-*A telefonista do passado - Imgem criada pelo Gemini (NanoBanna 2)*
+*A telefonista do passado - Imagem criada pelo Gemini (NanoBanana 2)*
 
 Durante boa parte do século XX, para falar com alguém no telefone, você precisava falar antes com outra pessoa.
 

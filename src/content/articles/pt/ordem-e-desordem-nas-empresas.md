@@ -27,7 +27,7 @@ O modelo de gestão tradicional busca estabilidade, a “zona de conforto” par
 
 *Desordem*
 
-Os novos modelos de gestão buscam a melhoria contínua, adaptação à realidade e inovação. Também favorecem o aprendizado e vêem as pessoas como essenciais para o negócio. Como consequência, obtêm retorno financeiro superior. Para isso precisam de coragem para cometer erros, propósito e objetivos claros, gestão dirigida por valor e autonomia-e-colaboração.
+Os novos modelos de gestão buscam a melhoria contínua, adaptação à realidade e inovação. Também favorecem o aprendizado e veem as pessoas como essenciais para o negócio. Como consequência, obtêm retorno financeiro superior. Para isso precisam de coragem para cometer erros, propósito e objetivos claros, gestão dirigida por valor e autonomia-e-colaboração.
 
 ---
 

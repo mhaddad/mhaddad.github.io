@@ -37,7 +37,7 @@ Diante disso, iniciamos um grande esforço comercial para conquistar novos clien
 
 Esse era o projeto que a fábrica precisava naquele momento. No entanto, havia um detalhe crucial: o software precisava ser concluído em apenas seis meses, pois uma data já estava marcada para que empresas de todo o Brasil o utilizassem para participar do prêmio.
 
-Cientes de que o processo pré-definido de desenvolvimento da fábrica de software era completamente inviável para esse cenário, e estando à beira do abismo, decidimos arriscar e adotar uma abordagem diferente de trabalho e gestão.
+Cientes de que o processo predefinido de desenvolvimento da fábrica de software era completamente inviável para esse cenário, e estando à beira do abismo, decidimos arriscar e adotar uma abordagem diferente de trabalho e gestão.
 
 Naquela época, alguns integrantes da fábrica de software já estudavam sobre agilidade e os métodos ágeis, e aquela parecia ser a oportunidade ideal para experimentarmos uma abordagem iterativa e incremental de desenvolvimento de software.
 
@@ -49,7 +49,7 @@ Dessa forma, o projeto avançou rapidamente com base em feedback e aprendizados 
 
 Depois do sucesso daquele projeto e do software construído, a equipe de analistas, programadores, testadores e designers estava empolgada para continuar trabalhando daquela forma, que era muito mais leve e trazia resultados melhores para o cliente e para a fábrica.
 
-Então, em uma reunião do *Grupo de Processo de Engenharia de Software*, o diretor da fábrica nos avisou que não faríamos mais projetos daquela forma, utilizando aquele tipo de método. Ele destacou que deveríamos seguir estritamente todas as certificações e processos pré-definidos, dado o grande investimento feito nessas certificações e práticas.
+Então, em uma reunião do *Grupo de Processo de Engenharia de Software*, o diretor da fábrica nos avisou que não faríamos mais projetos daquela forma, utilizando aquele tipo de método. Ele destacou que deveríamos seguir estritamente todas as certificações e processos predefinidos, dado o grande investimento feito nessas certificações e práticas.
 
 Apesar de todas as nossas alegações e das provas incontestáveis da eficiência e eficácia da abordagem ágil para desenvolvimento de software, apesar do sucesso do projeto e da satisfação do cliente, a fábrica de software optou por não trabalhar mais com agilidade. Assim, resolvemos partir e iniciar uma jornada completamente diferente.
 
@@ -71,11 +71,11 @@ Então, decidimos participar do treinamento de Scrum oferecido pela Caelum (hoje
 
 Nos primeiros projetos do Ateliê de Software, percebemos que realizar planejamentos recorrentes e focar em entregar software funcional ao final de cada Sprint realmente melhorava o fluxo de geração de valor para o cliente. Aprendemos a trabalhar em equipe, a comunicar-nos de forma eficaz com os clientes e a manter a transparência nas relações.
 
-Nesse início, também tivemos que aprender a vender projetos ágeis e elaborar contratos comerciais que fossem compatíveis com esse tipo de abordagem de trabalho. Para isso, recorremos a experiência do Vinícius Teles ([viniciusteles](https://medium.com/u/838042bebf54)) e utilizamos como referência o modelo de contrato que ele criou na sua empresa *Improve It*.
+Nesse início, também tivemos que aprender a vender projetos ágeis e elaborar contratos comerciais que fossem compatíveis com esse tipo de abordagem de trabalho. Para isso, recorremos à experiência do Vinícius Teles ([viniciusteles](https://medium.com/u/838042bebf54)) e utilizamos como referência o modelo de contrato que ele criou na sua empresa *Improve It*.
 
 Apesar desse início promissor, nossas entregas de software ainda apresentavam baixa qualidade, com vários *bugs* retornando para correção nas Sprints seguintes. Embora tenhamos conseguido vender e fazer a gestão dos projetos e das equipes de forma ágil, ainda enfrentávamos desafios significativos em relação à qualidade na engenharia de software.
 
-### Prática Ágeis de Engenharia de Software
+### Práticas Ágeis de Engenharia de Software
 
 Então decidimos investir em práticas ágeis de engenharia de software, como *TDD (Test-Driven Development)*, *Pair Programming*, *Peer Review*, *Refactoring*, *Continuous Integration*, *Continuous Deployment*, *Continuous Delivery* e diversas outras boas práticas que estavam surgindo ou se consolidando na primeira década dos anos 2000.
 
@@ -95,7 +95,7 @@ De forma geral, percebemos que as empresas que solicitavam desenvolvimento de so
 
 ![Slide “Análise de Negócio e Requisitos Ágeis” com uma ilustração de uma pessoa interagindo com painéis de dados e documentos, cercada pelos termos cenário atual, problemas e necessidades, cenário futuro, objetivos e resultados, Lean Inception, estimativas, priorização, user stories, critérios de aceitação e documentação](../../../assets/articles/uma-jornada-em-busca-da-agilidade/analise-de-negocios.png)
 
-Para ajudar os nossos clientes com essas definições, buscamos a orientação e os conhecimento do nosso amigo [Luiz C. Parzianello](https://medium.com/u/95236a29bc8b), que naquela época já apresentava uma abordagem ágil para análise de negócios e requisitos baseada no BABOK (hoje conhecido como "*AGILE Extension to the BABOK Guide*").
+Para ajudar os nossos clientes com essas definições, buscamos a orientação e os conhecimentos do nosso amigo [Luiz C. Parzianello](https://medium.com/u/95236a29bc8b), que naquela época já apresentava uma abordagem ágil para análise de negócios e requisitos baseada no BABOK (hoje conhecido como "*AGILE Extension to the BABOK Guide*").
 
 Adotamos também o método *Lean Inception* (que na época ainda se chamava "Direto ao Ponto") do [Paulo Caroli](https://www.linkedin.com/in/paulocaroli/) para elaborar projetos de MVPs e propostas técnicas mais consistentes. Para isso, tivemos a honra de ser capacitados pelo nosso amigo [Yoris Linhares](https://medium.com/u/7b36d96f37e5), da Orgganica, que ministrou o treinamento de *Lean Inception* para toda a equipe do Ateliê de Software e representantes dos nossos clientes.
 
@@ -115,7 +115,7 @@ Também tivemos o privilégio de contar com os conhecimentos e as orientações 
 
 Assim, aprendemos que *Análise de Negócios e Requisitos* falhava quando não considerava em profundidade a perspectiva dos usuários, que era quem realmente utilizaria a nossa solução no dia a dia. Então, passamos a realizar pesquisas e entrevistas com usuários, criar personas, mapear suas respectivas jornadas nos processos de negócio e a realizar testes de usabilidade com a ajuda de protótipos de alta fidelidade.
 
-Depois de quase 5 anos de muito aprendizado, os projetos do Ateliê de Software já contavam com Análise de Negócios e Requisitos Ágeis, Product *UX Design*, *Lean Inception*, Scrum e prática ágeis de Engenharia de Software da XP. Entretanto, ainda era preciso melhorar continuamente a nossa forma de trabalho...
+Depois de quase 5 anos de muito aprendizado, os projetos do Ateliê de Software já contavam com Análise de Negócios e Requisitos Ágeis, Product *UX Design*, *Lean Inception*, Scrum e práticas ágeis de Engenharia de Software da XP. Entretanto, ainda era preciso melhorar continuamente a nossa forma de trabalho...
 
 ### Gestão do Fluxo de Trabalho
 

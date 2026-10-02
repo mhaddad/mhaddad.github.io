@@ -104,7 +104,7 @@ Os valores centrais do Manifesto Ágil são:
 - **Indivíduos e interações mais que processos e ferramentas**: a comunicação aberta e as relações entre as pessoas são mais importantes que a aderência a processos ou ferramentas rígidas;
 - **Software em funcionamento mais que documentação abrangente**: o foco está na entrega de software funcional que gere valor, em vez de gastar muito tempo com documentação detalhada como uma garantia de resultado;
 - **Colaboração com o cliente mais que negociação de contratos**: o cliente é um parceiro ativo no processo de desenvolvimento, e os requisitos devem ser ajustados em conjunto ao longo do projeto conforme necessário;
-- **Responder a mudanças mais que seguir um plano**: a capacidade de adaptar-se rapidamente a novas circunstâncias ou informações é valorizada mais do que a aderência estrita a um plano fixo e pré-determinado.
+- **Responder a mudanças mais que seguir um plano**: a capacidade de adaptar-se rapidamente a novas circunstâncias ou informações é valorizada mais do que a aderência estrita a um plano fixo e predeterminado.
 
 No Ateliê de Software, esses valores (e também os [12 princípios do Manifesto Ágil](https://agilemanifesto.org/iso/ptbr/principles.html)) estão profundamente integrados na cultura da empresa. As equipes multidisciplinares trabalham de forma colaborativa, sempre ajustando seu trabalho às necessidades do cliente e às mudanças do mercado. A gestão ágil permite que as equipes respondam rapidamente a novas informações, mantendo uma abordagem iterativa e adaptativa em todos os projetos.
 

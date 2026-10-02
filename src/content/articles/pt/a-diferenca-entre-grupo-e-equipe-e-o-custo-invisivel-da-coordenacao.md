@@ -43,13 +43,13 @@ A pesquisa organizacional dá sustentação a essa ideia sob nomes diferentes. O
 
 Para alguns perfis cognitivos, esse imposto é suportável e até energizante. Para outros, é exponencialmente mais pesado. Um profissional que necessita de blocos longos de concentração, ou cujo estilo de processamento funciona melhor em fluxos contínuos e não interrompidos, pode ser extraordinariamente produtivo trabalhando de forma independente dentro de um grupo, mas ter sua performance drasticamente reduzida quando forçado a operar em uma equipe com rituais de alinhamento frequentes, interrupções de chat e reuniões de sincronização diárias.
 
-Isso não significa que essas pessoas sejam incapazes de trabalhar em equipe. Significa que a modalidade de coordenação imposta pelo ambiente precisa ser coerente com o perfil de processamento do indivíduo. O que muda não é o valor da contribuição, mas o custo energético de produzí-la.
+Isso não significa que essas pessoas sejam incapazes de trabalhar em equipe. Significa que a modalidade de coordenação imposta pelo ambiente precisa ser coerente com o perfil de processamento do indivíduo. O que muda não é o valor da contribuição, mas o custo energético de produzi-la.
 
 ## Três dimensões da orientação para a coordenação
 
 Assim como a **Prontidão para Autonomia** pode ser decomposta em dimensões empiricamente ancoradas, a orientação do indivíduo para a coordenação interpessoal também pode. No modelo que proponho, ela se articula em três construtos independentes mas complementares, embasados na literatura do **Big Five** (Costa & McCrae, 1992), da **Segurança Psicológica** (Edmondson, 1999) e da **Coordenação Lateral em Sistemas Descentralizados** (Martela & Nandram, 2025):
 
-1. **Amabilidade Social:** A preferência e a energia para a interação coletiva. Pessoas com alta amabilidade social experimentam o convívio em equipe como fonte de energia: reuniões, conversas, negociações e dinâmicas colaborativas alimentam seu engajamento. Pessoas com baixa amabilidade social, sem que isso implique qualquer déficit, experimentam o mesmo convívio como consumo de energia, preservando sua produtividade quando tem espaço para trabalhar de forma mais isolada.
+1. **Amabilidade Social:** A preferência e a energia para a interação coletiva. Pessoas com alta amabilidade social experimentam o convívio em equipe como fonte de energia: reuniões, conversas, negociações e dinâmicas colaborativas alimentam seu engajamento. Pessoas com baixa amabilidade social, sem que isso implique qualquer déficit, experimentam o mesmo convívio como consumo de energia, preservando sua produtividade quando têm espaço para trabalhar de forma mais isolada.
 2. **Integridade Ética e Transparência Informacional:** A disposição para compartilhar proativamente informação, erros, dúvidas e aprendizados. Essa dimensão é menos óbvia do que parece. Em organizações horizontais, a retenção estratégica de informação funciona como veneno sistêmico: ela corrói a confiança, trava a agilidade dos círculos e cria assimetrias invisíveis de poder. A transparência, nesse contexto, não é um valor declarado, mas uma prática diária que exige coragem e esforço.
 3. **Empatia Sistêmica e Comportamento de Cidadania Organizacional.** A proatividade em ajudar pares sem que isso seja comandado por um superior ou formalizado num processo. É o que aparece quando alguém assume espontaneamente a facilitação de uma reunião tensa, compensa um colega sobrecarregado ou reorganiza um fluxo informacional sem ser solicitado. Essa dimensão é o que mantém equipes autogeridas coesas na ausência de coordenação hierárquica.
 
@@ -73,7 +73,7 @@ Com as duas dimensões definidas, **Autogestão** no eixo horizontal e **Coorden
 
 ![Matriz de dois eixos: na horizontal, de Gestão Tradicional a Autogestão; na vertical, de Individual a Coletivo. Os quadrantes são Cooperativo (superior esquerdo), Colaborativo (superior direito), Estruturado (inferior esquerdo) e Autônomo (inferior direito)](../../../assets/articles/a-diferenca-entre-grupo-e-equipe-e-o-custo-invisivel-da-coordenacao/matriz-p-o-fit.png)
 
-*Matriz P-O Fit Autonimia x Coordenação*
+*Matriz P-O Fit Autonomia x Coordenação*
 
 Quatro grandes territórios emergem desse cruzamento. O canto superior direito abriga ambientes de **autogestão plenamente colaborativa**, com alta autonomia individual e alta interdependência de equipe. O canto inferior direito representa a **autogestão independente**, com autonomia igualmente elevada, mas coordenação mais lateral e menos interdependente. O canto superior esquerdo corresponde à **gestão tradicional colaborativa**, com autoridade hierárquica clara e forte espírito de equipe. O canto inferior esquerdo reúne estruturas de **gestão tradicional especializada**, com cargos bem definidos e trabalho predominantemente individual dentro de um grupo coordenado por liderança.
 

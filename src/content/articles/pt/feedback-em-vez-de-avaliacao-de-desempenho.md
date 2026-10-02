@@ -33,7 +33,7 @@ Naquele contexto econômico e industrial, essa abordagem funcionou muito bem. Co
 
 Hoje as coisas são bem diferentes. Os mercados são instáveis, a concorrência é muito maior, a informação está disponível para todas as pessoas, o conhecimento e a comunicação ganharam muita importância e a **inovação é o único fator consistente de diferenciação** que pode manter uma empresa competitiva.
 
-**O trabalho se tornou tão dependente da criatividade que não é possível dividí-lo em partes ou funções** sem que exista alguma perda significativa de comunicação e eficácia (fazer a coisa certa). Individualmente, o trabalho também tornou-se mais complexo. Agora, é necessário um grupo de pessoas, uma equipe, para conseguir trabalhar com todo o conhecimento disponível e produzir uma inovação que garanta, de forma sustentável, a geração de valor para os clientes e para o negócio.
+**O trabalho se tornou tão dependente da criatividade que não é possível dividi-lo em partes ou funções** sem que exista alguma perda significativa de comunicação e eficácia (fazer a coisa certa). Individualmente, o trabalho também tornou-se mais complexo. Agora, é necessário um grupo de pessoas, uma equipe, para conseguir trabalhar com todo o conhecimento disponível e produzir uma inovação que garanta, de forma sustentável, a geração de valor para os clientes e para o negócio.
 
 ## Desempenho individual
 
@@ -45,7 +45,7 @@ Entretanto, se não faz sentido medir o desempenho individual, e medir o desempe
 
 ## Feedback
 
-Adotando uma visão mais sistêmica, devemos favorecer o *feedback* e não avaliar o desempenho de uma pessoa ou de uma equipe. Deixar claro quais são os resultados negativos e positivos no trabalho pode fazer que a própria pessoa avalie seu desempenho e melhore na direção dos objetivos do negócio. O desempenho no trabalho é uma conseqüência direta das ações tomadas por uma pessoa de acordo com o *feedback* recebido do ambiente que ela se encontra.
+Adotando uma visão mais sistêmica, devemos favorecer o *feedback* e não avaliar o desempenho de uma pessoa ou de uma equipe. Deixar claro quais são os resultados negativos e positivos no trabalho pode fazer que a própria pessoa avalie seu desempenho e melhore na direção dos objetivos do negócio. O desempenho no trabalho é uma consequência direta das ações tomadas por uma pessoa de acordo com o *feedback* recebido do ambiente que ela se encontra.
 
 Desta forma, uma pessoa pode melhorar seu desempenho no trabalho recebendo feedback dos outros integrantes da sua equipe, mudando seu comportamento e buscando novos conhecimentos.
 
@@ -59,7 +59,7 @@ Para abandonar a avaliação de desempenho individual, precisamos de uma maneira
 
 ![Modelo do Feedback Canvas: colunas de competência e atividades, escala de 1 (Novato) a 7 (Mestre) e quadros de pontos positivos, pontos negativos e ações de melhoria](../../../assets/articles/feedback-em-vez-de-avaliacao-de-desempenho/feedback-canvas.png)
 
-Essa ferramenta tem como objetivo estruturar, orientar e suportar o processo de feedback dentro do contexto do trabalho em equipe. Sua dinâmica cria um ambiente de confiança para que um integrante de uma time possa receber feedback de seus pares.
+Essa ferramenta tem como objetivo estruturar, orientar e suportar o processo de feedback dentro do contexto do trabalho em equipe. Sua dinâmica cria um ambiente de confiança para que um integrante de um time possa receber feedback de seus pares.
 
 A apresentação a seguir mostra como utilizar o **Feedback Canvas** para realizar uma sessão de feedback:
 

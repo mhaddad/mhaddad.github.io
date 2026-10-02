@@ -19,7 +19,7 @@ No [artigo anterior](/artigos/os-quatro-indices-da-coerencia-cognitiva-no-trabal
 
 ### Artigos sobre Coerência Cognitiva e o Modelo P-O Fit
 
-*Para compreender melhor o contexto deste texto e os conceitos de Coerência Congnitiva e Person-Organization Fit, recomendo a leitura dos artigos:*
+*Para compreender melhor o contexto deste texto e os conceitos de Coerência Cognitiva e Person-Organization Fit, recomendo a leitura dos artigos:*
 
 1. [Quando uma pessoa não combina com o seu trabalho](/artigos/quando-uma-pessoa-nao-combina-com-o-seu-trabalho/)
 2. [Coerência Cognitiva: quando a forma de pensar, decidir e agir encontra a forma de trabalhar](/artigos/coerencia-cognitiva/)

@@ -61,7 +61,7 @@ Automação existe: testes automatizados, análise estática e deploy são feito
 
 Onde o trabalho trava: na implementação e, logo em seguida, na capacidade de revisar o que foi implementado. O recurso escasso é a execução humana qualificada.
 
-Do ponto de vista de negócio, esse modo tem uma propriedade que costuma ser subestimada: a capacidade é linear e previsível. Dobrar a entrega exige dobrar o time, com todo o custo de coordenação que isso traz. Em compensação, o conhecimento fica quase todo tácito, distribuído em conversas, memória de time e documentação esparsa. É por isso que a saída de duas pessoas sêniores muda o desempenho de uma equipe inteira.
+Do ponto de vista de negócio, esse modo tem uma propriedade que costuma ser subestimada: a capacidade é linear e previsível. Dobrar a entrega exige dobrar o time, com todo o custo de coordenação que isso traz. Em compensação, o conhecimento fica quase todo tácito, distribuído em conversas, memória de time e documentação esparsa. É por isso que a saída de duas pessoas seniores muda o desempenho de uma equipe inteira.
 
 ## Modo 2: assistência de IA no editor
 

@@ -15,7 +15,7 @@ draft: false
 
 Hoje vamos conversar um pouco sobre o modelo de gestão adotado aqui no Ateliê de Software. Vamos descobrir as diferenças?
 
-Este é o trevo de Alfenas, cidade localizada no Sul de Minas Gerais, que conecta as estradas que ligam Poços de Caldas, Varginha e Pouso Alegre, além de dar acesso a Universidade José do Rosário Vellano (UNIFENAS).
+Este é o trevo de Alfenas, cidade localizada no Sul de Minas Gerais, que conecta as estradas que ligam Poços de Caldas, Varginha e Pouso Alegre, além de dar acesso à Universidade José do Rosário Vellano (UNIFENAS).
 
 ![Vista aérea de um trevo em nível em Alfenas, com carros, um ônibus e uma moto cruzando as pistas entre canteiros gramados](../../../assets/articles/gestao-dirigida-pelo-medo/trevo-alfenas.jpeg)
 
@@ -25,7 +25,7 @@ Este é o trevo de Alfenas, cidade localizada no Sul de Minas Gerais, que conect
 
 Apesar desse cenário, é um trevo onde acontecem poucos acidentes por ano. Essa eficiência em relação ao número de acidentes contribui para que não exista prioridade de melhorá-lo no sentido de aumentar a segurança das pessoas que passam por ali. Entretanto, todos atravessam esse trevo com medo.
 
-Como o risco de acidente é alto, os motoristas tem que diminuir a velocidade e as pessoas precisam ficar atentas para não serem vitimadas pelos veículos. Todos dedicam energia e foco para atravessar esse trevo. É sempre um momento de tensão para as pessoas envolvidas nessa travessia…
+Como o risco de acidente é alto, os motoristas têm que diminuir a velocidade e as pessoas precisam ficar atentas para não serem vitimadas pelos veículos. Todos dedicam energia e foco para atravessar esse trevo. É sempre um momento de tensão para as pessoas envolvidas nessa travessia…
 
 Já este outro trevo, que está localizado na Rodovia Fernão Dias, faz a conexão entre as cidades de Pouso Alegre e Itajubá.
 
@@ -43,6 +43,6 @@ Esses trevos nos ajudam a entender os modelos de gestão das empresas. Enquanto 
 
 Empresas que adotam uma **gestão dirigida pelo medo** sofrem com o baixo engajamento das pessoas no trabalho. As pessoas trabalham constantemente com medo de serem advertidas, medo de serem demitidas, medo de serem repreendidas se propuserem algo diferente e medo de serem responsabilizadas por um trabalho que depende muito mais do esforço coletivo do que do individual. Por outro lado, são essas mesmas empresas que pedem para as pessoas pensarem “*fora da caixa*”, esperando que, apesar do medo, consigam inovar.
 
-Já as empresas que apostam na **gestão dirigida pela confiança**, cultivam a segurança psicológica no ambiente de trabalho e acreditam que todos estão ali para conquistar um objetivo grandioso, que ninguém, individualmente, seria capaz de alcançar. Essas empresas buscam valorizar as pessoas e uní-las ao redor de um propósito forte, compartilhando um conjunto semelhante de princípios e valores. Empresas assim escolhem a autonomia e a colaboração como tecnologias sociais substitutas para o comando e controle baseado em ameaças. Assim, trabalho em equipe, inovação e desempenho superior passam a ser uma consequência natural dessas escolhas.
+Já as empresas que apostam na **gestão dirigida pela confiança**, cultivam a segurança psicológica no ambiente de trabalho e acreditam que todos estão ali para conquistar um objetivo grandioso, que ninguém, individualmente, seria capaz de alcançar. Essas empresas buscam valorizar as pessoas e uni-las ao redor de um propósito forte, compartilhando um conjunto semelhante de princípios e valores. Empresas assim escolhem a autonomia e a colaboração como tecnologias sociais substitutas para o comando e controle baseado em ameaças. Assim, trabalho em equipe, inovação e desempenho superior passam a ser uma consequência natural dessas escolhas.
 
 Para finalizar, uma proposta de reflexão: Como é a gestão na sua empresa? Ela é dirigida pelo medo ou pela confiança? Que tipo de “trevo” as pessoas estão atravessando no trabalho?

@@ -49,7 +49,7 @@ Observando nossa estrutura organizacional, fica claro que equipes autônomas sã
 
 A autonomia não se limita à execução do trabalho técnico, mas se estende às decisões estratégicas, como contratação de novos membros, definição de planejamento, alocação de recursos e negociação de contratos.
 
-Cada equipe é multidisciplinar e composta por profissionais com diferentes habilidades que colaboram ativamente, ocupando diversos papéis que estão relacionados à definições de cargos mais genéricas (para não limitar a atuação das pessoas).
+Cada equipe é multidisciplinar e composta por profissionais com diferentes habilidades que colaboram ativamente, ocupando diversos papéis que estão relacionados a definições de cargos mais genéricas (para não limitar a atuação das pessoas).
 
 Não há uma figura central de comando; em vez disso, surge uma liderança de acordo com o contexto e as necessidades do momento. Essa abordagem distribui o poder de decisão entre todos os membros, eliminando barreiras burocráticas e promovendo uma cultura de responsabilidade compartilhada.
 

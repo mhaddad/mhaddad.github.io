@@ -21,7 +21,7 @@ Os jogos acontecem num campo society de grama sintética cercado por telas, cuja
 
 Cada partida tem duração de 8 minutos, tempo ideal para conciliar esforço e descanso físico dos “atletas” de ocasião e permitir que todos aproveitem as 2 horas de “pelada”.
 
-A escalação oficial e as desculpas de não comparecimento nos jogos acontecem via WhatsApp, onde os jogadores mantém um grupo para trocar mensagens, algumas piadas, fotos e vídeos interessantes.
+A escalação oficial e as desculpas de não comparecimento nos jogos acontecem via WhatsApp, onde os jogadores mantêm um grupo para trocar mensagens, algumas piadas, fotos e vídeos interessantes.
 
 Os jogadores pagam R$ 50,00 por mês ou R$ 20,00 por jogo avulso. Um dos integrantes do grupo fica responsável por recolher o dinheiro, que além de pagar o aluguel do campo serve também para manter um *kit* de primeiros socorros e pagar um churrasco no final do ano para todos os participantes.
 
@@ -45,7 +45,7 @@ Após a entrada de novos integrantes no grupo do futebol, convidados para comple
 
 > Restrição #1: no terceiro jogo de um time, caso esse vença por mais de 3 gols de diferença, ele continuará jogando. No quarto jogo, deverá ganhar por 4 gols de diferença para continuar jogando e assim por diante.
 
-Essa restrição foi criada para resolver o seguinte problema: no terceiro jogo de um time os jogadores do time adversário relaxavam, uma vez que não seria necessário vencer para continuar em campo. Fazia mas sentido se poupar para a próxima partida, que realmente seria determinante para continuar jogando ou sair.
+Essa restrição foi criada para resolver o seguinte problema: no terceiro jogo de um time os jogadores do time adversário relaxavam, uma vez que não seria necessário vencer para continuar em campo. Fazia mais sentido se poupar para a próxima partida, que realmente seria determinante para continuar jogando ou sair.
 
 > Restrição #2: quando a bola encostar na tela que cobre o campo, será marcado arremesso lateral.
 
@@ -57,9 +57,9 @@ Algumas pessoas reclamaram que haviam “panelinhas” na formação dos times, 
 
 > Regra #2: ao recuar a bola para o goleiro, este não poderá pegá-la com as mãos.
 
-Essa regra foi criada par evitar a famosa “cera” no futebol. Quando algumas pessoas que faziam parte de um time que estava ganhando percebiam que faltava pouco tempo para acabar a partida, recuavam várias vezes a bola para o goleiro com o objetivo de ganharem tempo e "esfriar" a partida. Esse comportamento ruim de alguns jogadores foi percebido pelo grupo, que estabeleceu esta regra para tornar as partidas mais dinâmicas e evitar esse antijogo.
+Essa regra foi criada para evitar a famosa “cera” no futebol. Quando algumas pessoas que faziam parte de um time que estava ganhando percebiam que faltava pouco tempo para acabar a partida, recuavam várias vezes a bola para o goleiro com o objetivo de ganharem tempo e "esfriar" a partida. Esse comportamento ruim de alguns jogadores foi percebido pelo grupo, que estabeleceu esta regra para tornar as partidas mais dinâmicas e evitar esse antijogo.
 
-> Regra #3: quando algum jogador colocar propositadamente a mão na bola, com excessão dos goleiros, será marcado um tiro livre direto a favor do time adversário.
+> Regra #3: quando algum jogador colocar propositadamente a mão na bola, com exceção dos goleiros, será marcado um tiro livre direto a favor do time adversário.
 
 Essa regra também foi criada para evitar o antijogo. Alguns jogadores, ao perceberem que não seria possível evitar o gol do time adversário, “matavam” um lance de perigo colocando a mão na bola. Esse ato irritava demais os jogadores adversários. Então, o grupo estabeleceu a regra da mão na bola para coibir esse mau comportamento.
 
@@ -89,13 +89,13 @@ Estabelecer restrições ajudam as equipes a repensarem sua forma de "jogar" dur
 
 As regras criadas para evitar o antijogo e a “cera” não funcionaram, pois estabeleceram controle e punição para os jogadores e times por conta do mau comportamento de algumas pessoas.
 
-Além disso, essas regras pretendiam criar um micro-gerenciamento das atividades dos jogadores, substituindo a autonomia e a maestria para lidar com as situações de antijogo.
+Além disso, essas regras pretendiam criar um microgerenciamento das atividades dos jogadores, substituindo a autonomia e a maestria para lidar com as situações de antijogo.
 
 Gestão não significa impor decisões e controlar o comportamento de 3% dos trabalhadores que fazem o trabalho mal feito, mas sim garantir liberdade e todo apoio necessário para que os outros 97% dos trabalhadores alcancem resultados ainda melhores.
 
 *3. Não delegue a responsabilidade pela gestão para uma pessoa ou para o acaso*
 
-As regras começaram a ser questionadas e interpretadas de formas diferentes por cada jogador, o que sucitou a presença de um juiz para garantir esses controles e punições.
+As regras começaram a ser questionadas e interpretadas de formas diferentes por cada jogador, o que suscitou a presença de um juiz para garantir esses controles e punições.
 
 Ter um "juiz" significa delegar decisões sobre o "jogo" para uma pessoa que teoricamente estaria mais preparada para isso do que todos os jogadores juntos.
 
@@ -117,6 +117,6 @@ No início, todos sabiam que estavam ali por um propósito e junto com os conhec
 
 Quais são as definições (propósito, objetivos, valores, princípios e restrições) que caracterizam a sua empresa e que orientam o trabalho e o comportamento das pessoas na direção de melhores resultados?
 
-Quais são as regras que foram criadas para micro-gerenciar o trabalho das pessoas e que promovem comportamentos ruins e resultados piores?
+Quais são as regras que foram criadas para microgerenciar o trabalho das pessoas e que promovem comportamentos ruins e resultados piores?
 
 Em que situações na empresa a participação ativa das pessoas foi substituída por processos, ferramentas ou gerentes?

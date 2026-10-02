@@ -11,7 +11,7 @@ draft: false
 
 ![Parede de alvenaria quebrada numa reforma, revelando fios coloridos emaranhados e canos desviando por trás do reboco, com tijolos, marreta e pá no chão](../../../assets/articles/a-ia-esta-quebrando-paredes-nas-organizacoes/capa.png)
 
-*A parede quebrada - Imgem criada pelo Gemini (NanoBanna 2)*
+*A parede quebrada - Imagem criada pelo Gemini (NanoBanana 2)*
 
 Quem já reformou uma casa conhece o momento em que a marreta quebra uma parede antiga. Cai o reboco e aparece o que estava atrás: uma fiação que ninguém projetou daquele jeito, uma emenda feita às pressas, um cano que faz uma curva esquisita para desviar de alguma coisa que já nem está mais ali.
 
@@ -33,7 +33,7 @@ Vale dizer que nem toda improvisação é virtuosa. Boa parte dela encobre erro,
 
 ## A automação por IA abre a parede
 
-É aqui que a inteligência artificial entra, mas o ponto é menos glamouroso do que costumam vender.
+É aqui que a inteligência artificial entra, mas o ponto é menos glamoroso do que costumam vender.
 
 Um sistema precisa transformar registros, regras, permissões e objetivos em decisões e ações executáveis. Para isso, ele precisa que essas coisas estejam explícitas. E quando encontra uma lacuna, ele nem sempre para para perguntar, como um funcionário novo faria.
 

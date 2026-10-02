@@ -13,7 +13,7 @@ draft: false
 
 Gestão horizontal. Gestão distribuída. Gestão sem gerentes. Gestão sem hierarquias. Gestão proibida!
 
-Liderança dinâmica. Trabalho em equipe. Autonomia. Colaboração. Auto-organização.Transparência.
+Liderança dinâmica. Trabalho em equipe. Autonomia. Colaboração. Auto-organização. Transparência.
 
 Há 10 anos vejo a busca do mercado por uma definição e por características que representem o estilo de gestão da Webgoal.
 

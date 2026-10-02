@@ -38,7 +38,3 @@ HR professionals must relearn a new way of working when they decide to use agile
 
 **Matheus Haddad and Yoris Linhares in partnership with Scopphu**
 [www.scopphu.com](http://www.scopphu.com)
-
-At Scopphu, we have identified these needs and prepared a training program for you on people management and new approaches and practices.
-
-Save the date: February 13 to 17, from 2 p.m. to 5 p.m., the AGILE RH MASTERCLASS will be held fully online.

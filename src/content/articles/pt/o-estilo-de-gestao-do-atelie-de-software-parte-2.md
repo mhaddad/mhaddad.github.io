@@ -39,7 +39,7 @@ Os 6 valores do **Ateliê de Software Way** são:
    Fazer o trabalho que precisa ser feito da maneira que cada um acredita ser a melhor, considerando as consequências dessa escolha sobre os colegas de trabalho, sobre o nosso negócio e no negócio do cliente.  
    ➝ *Valores base: liberdade, responsabilidade e respeito*
 2. **Colaboração**  
-   Fazer o trabalho em conjunto com outras pessoas para co-criar soluções, compartilhar conhecimentos, desenvolver novas habilidades e obter resultados de maior qualidade.  
+   Fazer o trabalho em conjunto com outras pessoas para cocriar soluções, compartilhar conhecimentos, desenvolver novas habilidades e obter resultados de maior qualidade.  
    ➝ *Valores base: empatia, comunicação e trabalho em equipe*
 3. **Auto-organização**  
    Encontrar a melhor forma de trabalhar coletivamente, respeitando regras e restrições, e confiando na capacidade das pessoas para alcançar resultados que não se conseguira sozinho.  
@@ -79,7 +79,7 @@ Essas premissas não apenas refletem a maneira como enxergamos as pessoas e o tr
 
 Os nossos princípios são diretrizes amplas que derivam dos valores e premissas. São **orientações práticas** que ajudam a implementar os valores de forma coerente e consistente, fornecendo uma estrutura clara sobre como agir ou tomar decisões dentro do Ateliê de Software.
 
-Nosso principal atividade é desenvolver software sob medida para grandes empresas e para o governo. Assim, os princípios que temos para executar esse trabalho são:
+Nossa principal atividade é desenvolver software sob medida para grandes empresas e para o governo. Assim, os princípios que temos para executar esse trabalho são:
 
 - **Decisões são tomadas por quem está mais próximo dos desafios**: *Aqueles que estão diretamente envolvidos com o trabalho têm maior propriedade para tomar as decisões necessárias, promovendo agilidade e responsabilidade nas ações.*
 - **Transparência organizacional**: *Informações financeiras, decisões estratégicas e operacionais devem estar acessíveis para todos os membros da equipe, promovendo confiança e participação ativa no processo decisório.*

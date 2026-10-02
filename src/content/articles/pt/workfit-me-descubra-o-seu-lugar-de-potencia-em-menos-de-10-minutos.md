@@ -11,7 +11,7 @@ draft: false
 
 ![Página inicial do Workfit.me com o título "O trabalho que mais combina com você", o botão "Fazer o diagnóstico gratuito" e uma matriz com quatro quadrantes: Cooperativo, Colaborativo, Estruturado e Autônomo](../../../assets/articles/workfit-me-descubra-o-seu-lugar-de-potencia-em-menos-de-10-minutos/capa.png)
 
-*Workfit.me — Ferramenta de diagnótico para o modelo P-O Fit que estou propondo*
+*Workfit.me — Ferramenta de diagnóstico para o modelo P-O Fit que estou propondo*
 
 No [artigo anterior](/artigos/gestao-padronizada-num-mundo-de-mentes-diversas/), encerrei o argumento conceitual desta série com uma proposta: **reconhecer a diversidade cognitiva das pessoas não é uma concessão a sensibilidades individuais, mas o próximo passo necessário no design organizacional contemporâneo**.
 
@@ -19,7 +19,7 @@ No [artigo anterior](/artigos/gestao-padronizada-num-mundo-de-mentes-diversas/),
 
 ### Artigos sobre Coerência Cognitiva e o Modelo P-O Fit
 
-*Para compreender melhor o contexto deste texto e os conceitos de Coerência Congnitiva e Person-Organization Fit, recomendo a leitura dos artigos:*
+*Para compreender melhor o contexto deste texto e os conceitos de Coerência Cognitiva e Person-Organization Fit, recomendo a leitura dos artigos:*
 
 1. [Quando uma pessoa não combina com o seu trabalho](/artigos/quando-uma-pessoa-nao-combina-com-o-seu-trabalho/)
 2. [Coerência Cognitiva: quando a forma de pensar, decidir e agir encontra a forma de trabalhar](/artigos/coerencia-cognitiva/)
@@ -55,7 +55,7 @@ O questionário leva no máximo 10 minutos para ser respondido. Ao final, o sist
 
 ![Diagrama da arquitetura do modelo P-O Fit em quatro camadas: coleta de 36 itens em escala Likert; cálculo dos índices IPA, IRCC, IISE e IPC; Matriz P-O Fit com quatro quadrantes e os 16 perfis de Lugar de Potência; estados, flags de Design Universal e personas de risco; e, por fim, o relatório diagnóstico](../../../assets/articles/workfit-me-descubra-o-seu-lugar-de-potencia-em-menos-de-10-minutos/arquitetura-do-algoritmo.png)
 
-*Workfit.me -Arquitetura do algoritmo para avaliação dos índices, classificação do perfil e abordagem para onbarding*
+*Workfit.me - Arquitetura do algoritmo para avaliação dos índices, classificação do perfil e abordagem para onboarding*
 
 O resultado é entregue em formato de relatório personalizado, escrito em linguagem acessível e orientado à ação. Nada de rótulos definitivos sobre “quem você é”. O relatório traduz o diagnóstico em descrições sobre onde a pessoa tende a prosperar, o tipo de comunicação que ela processa melhor, o nível de autonomia adequado para o seu perfil e o modelo de onboarding que faria mais sentido se ela fosse integrada hoje a uma nova organização.
 

@@ -18,7 +18,7 @@ Por isso, predominam hoje rígidas estruturas hierárquicas nas empresas, dividi
 
 Entretanto, o mercado cada vez mais complexo, a economia criativa e as novas gerações de trabalhadores têm exigido das organizações um estilo de gestão mais flexível e adaptável para que continuem competitivas e relevantes. Enquanto isso não acontece, vemos como um dos efeitos colaterais, resultados em que grande parte dos trabalhadores não estão engajados (66%) ou estão totalmente desengajados no trabalho (14%), como aponta a pesquisa bianual State of the Global Workplace 2021 Report do Instituto GALLUP. A abordagem ágil de gestão - que teve origem na área de Engenharia de Software, tem sido o principal representante desta nova perspectiva de organização e execução do trabalho para um mundo em constante mudança.
 
-Assim, os departamentos de RH têm percebido que as práticas tradicionais não são efetivas como antes. Deparando-se com trabalhadores bem informados, pela facilidade de acesso via internet, com boa formação educacional, que necessitam mais de suporte no desenvolvimento de habilidades sócio-emocionais do que em competência técnicas, estes departamentos precisam de uma nova perspectiva para que a gestão de pessoas colha os frutos da agilidade.
+Assim, os departamentos de RH têm percebido que as práticas tradicionais não são efetivas como antes. Deparando-se com trabalhadores bem informados, pela facilidade de acesso via internet, com boa formação educacional, que necessitam mais de suporte no desenvolvimento de habilidades socioemocionais do que em competências técnicas, estes departamentos precisam de uma nova perspectiva para que a gestão de pessoas colha os frutos da agilidade.
 
 É bastante comum encontrar em transformações ágeis, departamentos de RH que utilizam conceitos como squads (equipas multidisciplinares capazes de assumir, de ponta-a-ponta, todo o trabalho necessário para gerar valor para um cliente) combinados a Scrum, Kanban ou Design Thinking. Quando idealizam um novo processo de seleção e contratação, uma squad responsável pela iniciativa pode utilizar Scrum para gerir esse projeto. Por sua vez, um novo processo de seleção e contratação de pessoas, que envolve a triagem de currículos, entrevistas e outras etapas, pode ser visualizado e controlado com Kanban.
 
@@ -38,7 +38,3 @@ Os profissionais de RH devem reaprender uma nova forma de trabalhar quando decid
 
 **Matheus Haddad e Yoris Linhares em parceria com a Scopphu**
 [www.scopphu.com](http://www.scopphu.com)
-
-Na Scopphu, identificámos estas necessidades e preparámos para si uma formação sobre gestão de pessoas e novas abordagens e práticas.
-
-Aponte na agenda: 13 a 17 de fevereiro, das 14h às 17h, a AGILE RH MASTERCLASS será totalmente online.

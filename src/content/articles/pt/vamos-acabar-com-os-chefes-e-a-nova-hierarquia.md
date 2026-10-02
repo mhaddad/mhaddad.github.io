@@ -29,7 +29,7 @@ Ter liberdade, autonomia para decidir, objetivos para guiar e um propósito clar
 
 Transparência e acesso a todas as informações da empresa (inclusive as financeiras) é determinante para criar senso de responsabilidade e engajamento das pessoas. Devemos criar relações de confiança ao invés de mecanismos de punição.
 
-Para fazer tudo isso funcionar junto devemos ainda priorizar o trabalho coletivo, formar profissionais multi-disciplinares, abolir a avaliação de desempenho individual e favorecer o feedback entre as pessoas para que todos possam melhorar naquilo que interessa para cada um.
+Para fazer tudo isso funcionar junto devemos ainda priorizar o trabalho coletivo, formar profissionais multidisciplinares, abolir a avaliação de desempenho individual e favorecer o feedback entre as pessoas para que todos possam melhorar naquilo que interessa para cada um.
 
 Não devemos acabar com os chefes, mas sim perceber que esse modelo de gestão baseado em comando e controle não funciona para o contexto atual. Não queremos também uma nova hierarquia, mas abolir com as hierarquias artificiais e assumir a liderança situacional.
 

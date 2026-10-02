@@ -13,7 +13,7 @@ draft: false
 
 Como ir além das estruturas de controle e poder existentes nas empresas?
 
-Heteronomia é um conceito filosófico que se refere a "*dependência de um indivíduo à vontade de terceiros ou de uma coletividade*". É agir de acordo com normas pré-estabelecidas por outras pessoas. Heteronomia remete a obediência.
+Heteronomia é um conceito filosófico que se refere a "*dependência de um indivíduo à vontade de terceiros ou de uma coletividade*". É agir de acordo com normas preestabelecidas por outras pessoas. Heteronomia remete a obediência.
 
 Quando o sistema ético existente entre duas pessoas é a heteronomia, cria-se uma relação de submissão. Além de aceitar o modo de agir que foi determinado por outra pessoa, o indivíduo também é controlado para seguir a ordem que se impõe sobre ele.
 
