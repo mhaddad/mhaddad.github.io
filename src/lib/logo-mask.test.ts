@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { logoMask } from './logo-mask';
+import { logoColor, logoMask } from './logo-mask';
 
 const pixel = (r: number, g: number, b: number, a = 255) => new Uint8Array([r, g, b, a]);
 const alphaOf = (r: number, g: number, b: number, a = 255) => logoMask(pixel(r, g, b, a))[3];
@@ -31,5 +31,38 @@ describe('logoMask', () => {
     const result = logoMask(new Uint8Array([10, 20, 30, 255, 255, 255, 255, 255]));
     expect(result).toHaveLength(8);
     expect([...result.slice(0, 3), ...result.slice(4, 7)]).toEqual([0, 0, 0, 0, 0, 0]);
+  });
+});
+
+describe('logoColor', () => {
+  const colorOf = (r: number, g: number, b: number, a = 255) => [...logoColor(pixel(r, g, b, a))];
+
+  it('deve tornar transparente o fundo branco quando recebe um pixel branco', () => {
+    expect(colorOf(255, 255, 255)[3]).toBe(0);
+  });
+
+  it('deve manter a cor e a opacidade total quando recebe uma cor saturada', () => {
+    expect(colorOf(255, 0, 0)).toEqual([255, 0, 0, 255]);
+  });
+
+  it('deve recuperar a cor sem o branco misturado quando recebe uma cor suavizada na borda', () => {
+    // Vermelho a 50% sobre branco = (255, 128, 128); a cor original volta, com metade da opacidade.
+    const [r, g, b, a] = colorOf(255, 128, 128);
+    expect([r, g, b]).toEqual([255, 0, 0]);
+    expect(a).toBeGreaterThan(125);
+    expect(a).toBeLessThan(130);
+  });
+
+  it('deve zerar o ruído quase branco quando recebe um pixel de compressão', () => {
+    expect(colorOf(250, 250, 248)[3]).toBe(0);
+  });
+
+  it('deve respeitar a transparência original quando o pixel já é transparente', () => {
+    expect(colorOf(0, 0, 0, 0)[3]).toBe(0);
+    expect(colorOf(0, 0, 0, 128)).toEqual([0, 0, 0, 128]);
+  });
+
+  it('deve manter o tamanho quando recebe vários pixels', () => {
+    expect(logoColor(new Uint8Array([10, 20, 30, 255, 255, 255, 255, 255]))).toHaveLength(8);
   });
 });

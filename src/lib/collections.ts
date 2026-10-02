@@ -16,6 +16,7 @@ export type Book = CollectionEntry<'books'>;
 // Imagens preparadas por `npm run assets`, indexadas pelo nome do arquivo.
 const thumbnailFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/talks/*.jpg', { eager: true });
 const maskFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/companies/mono/*.png', { eager: true });
+const colorFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/companies/color/*.png', { eager: true });
 
 function byBasename(files: Record<string, { default: ImageMetadata }>): Map<string, ImageMetadata> {
   return new Map(
@@ -49,6 +50,7 @@ export function articleCover(article: Article): { src: ImageMetadata; alt: strin
   return lead && src ? { src, alt: lead.alt } : undefined;
 }
 export const companyMasks = byBasename(maskFiles);
+export const companyColors = byBasename(colorFiles);
 
 export async function getAllArticles(): Promise<Article[]> {
   const entries = await getCollection('articles');

@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { t, type Lang } from '../../i18n/ui';
-import { companyMasks, getAllCompanies } from '../../lib/collections';
+import { companyColors, companyMasks, getAllCompanies } from '../../lib/collections';
 import { sortCompanies } from '../../lib/companies';
 
 interface Props {
@@ -11,11 +11,11 @@ interface Props {
 const { lang } = Astro.props;
 
 // Cada empresa tem dois logos: a máscara (pega a cor do texto nos dois temas) e o colorido,
-// que aparece ao passar o mouse (npm run assets).
+// sem fundo, que aparece ao passar o mouse (npm run assets).
 const companies = sortCompanies(await getAllCompanies()).map((company) => ({
   name: company.data.name,
   url: company.data.url,
-  logo: company.data.logo,
+  color: companyColors.get(company.id)!,
   mask: companyMasks.get(company.id)!.src,
 }));
 ---
@@ -25,11 +25,11 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     <p id="proof-title" class="mono title">{t(lang, 'proof.logos')}</p>
     <ul>
       {
-        companies.map(({ name, url, logo, mask }) => (
+        companies.map(({ name, url, color, mask }) => (
           <li>
             <a class="tile" href={url} target="_blank" rel="noopener" aria-label={name} title={name}>
               <span class="logo" aria-hidden="true" style={`--logo: url(${mask})`} />
-              <Image class="color" src={logo} alt="" widths={[160, 320]} sizes="160px" loading="lazy" />
+              <Image class="color" src={color} alt="" widths={[160, 320]} sizes="160px" loading="lazy" />
             </a>
           </li>
         ))
@@ -68,7 +68,7 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     flex: 0 0 var(--logo-tile);
   }
 
-  /* Quadrado com o logo em cinza; no hover (ou foco) vira uma placa clara com o logo colorido. */
+  /* Quadrado com o logo em cinza; no hover (ou foco) só o logo fica colorido, o fundo não muda. */
   .tile {
     display: grid;
     grid-template: minmax(0, 1fr) / minmax(0, 1fr);
@@ -80,9 +80,7 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     background: var(--bg);
     border: var(--border-width) solid var(--border);
     border-radius: var(--radius-m);
-    transition:
-      background var(--duration-fast),
-      border-color var(--duration-fast);
+    transition: border-color var(--duration-fast);
   }
 
   .logo,
@@ -105,7 +103,6 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
 
   .tile:hover,
   .tile:focus-visible {
-    background: var(--logo-plate-bg);
     border-color: var(--accent);
   }
 

@@ -824,6 +824,23 @@ describe('empresas e iniciativas na home', () => {
     expect(phoneItem).toMatch(/flex-basis:\s*100%|flex:\s*0 0 100%/);
   });
 
+  it('deve manter o fundo do quadrado ao passar o mouse, trocando só o logo para a versão colorida', () => {
+    // Arrange
+    const html = page('index.html');
+    const css = [
+      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+    ].join('');
+
+    // Act
+    const hover = /\.tile\[data-astro-cid-[a-z0-9]+\]:hover(?:,\.tile\[data-astro-cid-[a-z0-9]+\]:focus-visible)?\{[^}]*\}/.exec(css)?.[0] ?? '';
+
+    // Assert
+    expect(hover).not.toBe('');
+    expect(hover).not.toMatch(/background/);
+    expect(css).toMatch(/\.tile\[data-astro-cid-[a-z0-9]+\]:hover \.color/);
+  });
+
   it('deve mostrar os logos em quadrados maiores que 144px', () => {
     // Arrange
     const tokens = readFileSync(join(process.cwd(), 'src/styles/tokens.css'), 'utf8');
