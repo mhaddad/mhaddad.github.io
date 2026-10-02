@@ -6,6 +6,6 @@ import { getAllArticles, getAllServices } from '../../lib/collections';
 const [services, articles] = await Promise.all([getAllServices(), getAllArticles()]);
 ---
 
-<ServicePage lang="pt" serviceKey="palestras" services={services} articles={articles}>
+<ServicePage lang="pt" serviceKey="palestras" services={services} articles={articles} topBand={false}>
   <TalksArchive slot="after" lang="pt" />
 </ServicePage>

@@ -15,9 +15,11 @@ interface Props {
   serviceKey: ServiceKey;
   services: Service[];
   articles: Article[];
+  // Faixa com o botão de WhatsApp no topo da página; fica só a coluna lateral quando false.
+  topBand?: boolean;
 }
 
-const { lang, serviceKey, services, articles } = Astro.props;
+const { lang, serviceKey, services, articles, topBand = true } = Astro.props;
 const service = serviceFor(services, serviceKey, lang);
 const { label, title, description, subtitle, audience, problem, topics, steps, format, formats, ctaLabel, ctaText, whatsappMessage } =
   service.data;
@@ -31,18 +33,22 @@ const related = relatedArticlesFor(service, articles);
   alternatePath={servicePath(serviceKey, otherLang(lang))}
   whatsappMessage={whatsappMessage}
 >
-  <div class="band">
-    <div class="container band-inner">
-      <WhatsAppButton
-        lang={lang}
-        placement="service-band"
-        service={serviceKey}
-        message={whatsappMessage}
-        label={ctaLabel}
-        class="band-button"
-      />
-    </div>
-  </div>
+  {
+    topBand && (
+      <div class="band">
+        <div class="container band-inner">
+          <WhatsAppButton
+            lang={lang}
+            placement="service-band"
+            service={serviceKey}
+            message={whatsappMessage}
+            label={ctaLabel}
+            class="band-button"
+          />
+        </div>
+      </div>
+    )
+  }
 
   <div class="container service-grid">
     <div class="content">

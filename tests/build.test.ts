@@ -306,6 +306,23 @@ describe('design system', () => {
 });
 
 describe('header e footer', () => {
+  it('deve chamar o item de palestras de "Palestras e Workshops" no menu e no rodapé, nos dois idiomas', () => {
+    // Arrange
+    const labels = (html: string, selector: RegExp) =>
+      [...(selector.exec(html)?.[0] ?? '').matchAll(/<a [^>]*>([^<]+)<\/a>/g)].map((m) => m[1]);
+
+    // Act
+    const pt = page('index.html');
+    const en = page('en/index.html');
+
+    // Assert
+    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Artigos', 'Serviços', 'Empresas', 'Palestras e Workshops', 'Sobre']);
+    expect(labels(en, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Articles', 'Services', 'Companies', 'Talks &amp; Workshops', 'About']);
+    expect(labels(pt, /<footer[\s\S]*?<\/footer>/)).toContain('Palestras e Workshops');
+    expect(pt).not.toContain('Palestras e Mídia');
+    expect(en).not.toContain('Talks &amp; Media');
+  });
+
   it('deve ter os 5 itens do menu nos caminhos do contrato e o item atual marcado quando a página é de artigos', () => {
     // Arrange
     const html = page('artigos/index.html');
@@ -378,6 +395,27 @@ describe('header e footer', () => {
     expect(hrefs).toEqual(['/en/articles/', '/en/services/', '/en/companies/', '/en/speaking/', '/en/about/', '/en/books/', '/en/rss.xml']);
     expect(footer).not.toContain('wa.me');
     expect(footer).not.toContain('button');
+  });
+});
+
+describe('faixa "Conversar sobre..." no topo das páginas de serviço', () => {
+  it('deve ficar fora da página de palestras nos dois idiomas, mas continuar na coluna lateral', () => {
+    // Arrange
+    const pages = ['palestras/index.html', 'en/speaking/index.html'];
+
+    // Act
+    const html = pages.map((path) => page(path));
+
+    // Assert
+    expect(html.filter((content) => content.includes('class="band"'))).toEqual([]);
+    expect(html.every((content) => content.includes('data-ga-params') && content.includes('service-sidebar'))).toBe(true);
+    expect(html.every((content) => !content.includes('service-band'))).toBe(true);
+  });
+
+  it('deve continuar em Consultoria e Mentoria', () => {
+    // Assert
+    expect(page('consultoria/index.html')).toContain('service-band');
+    expect(page('mentoria/index.html')).toContain('service-band');
   });
 });
 
