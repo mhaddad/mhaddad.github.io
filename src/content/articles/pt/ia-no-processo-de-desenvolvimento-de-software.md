@@ -9,6 +9,8 @@ originalUrl: https://www.linkedin.com/pulse/ia-processo-de-desenvolvimento-softw
 draft: false
 ---
 
+![Quatro ilustrações lado a lado, uma para cada modo de trabalho: um desenvolvedor sozinho entre fios emaranhados, um desenvolvedor com um robô assistente no editor, duas pessoas definindo especificações numa tela holográfica e uma pessoa supervisionando uma fábrica de agentes de IA](../../../assets/articles/ia-no-processo-de-desenvolvimento-de-software/capa.jpg)
+
 Quando a eletricidade chegou às fábricas americanas, no fim do século XIX, os industriais fizeram o movimento mais sensato do mundo: trocaram a máquina a vapor por um grande motor elétrico e mantiveram todo o resto. O motor continuava girando o mesmo eixo central que atravessava o galpão, que continuava movendo as mesmas correias penduradas no teto, que continuavam acionando as mesmas máquinas dispostas do mesmo jeito, perto do eixo, porque perto do eixo era onde havia força.
 
 A conta fechava no papel e a produtividade não se mexeu por décadas. O ganho só apareceu quando alguém percebeu que era possível colocar um motor pequeno em cada máquina, e que isso libertava o chão de fábrica do eixo. As máquinas puderam ser dispostas na ordem do trabalho, e não na ordem da transmissão de força. Aí a produtividade subiu.

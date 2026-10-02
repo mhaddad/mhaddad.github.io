@@ -9,6 +9,8 @@ originalUrl: https://www.linkedin.com/pulse/ia-processo-de-desenvolvimento-softw
 draft: false
 ---
 
+![Four illustrations side by side, one for each way of working: a developer alone among tangled wires, a developer with a robot assistant in the editor, two people defining specifications on a holographic screen, and a person supervising a factory of AI agents](../../../assets/articles/ia-no-processo-de-desenvolvimento-de-software/capa.jpg)
+
 When electricity reached American factories at the end of the 19th century, industrialists made the most sensible move in the world: they replaced the steam engine with a large electric motor and kept everything else. The motor still turned the same central shaft that ran across the shop floor, which still moved the same belts hanging from the ceiling, which still drove the same machines arranged the same way, close to the shaft, because close to the shaft was where the power was.
 
 The math worked on paper, and productivity didn't budge for decades. The gain only showed up when someone realized it was possible to put a small motor in each machine, and that this freed the factory floor from the shaft. Machines could be arranged in the order of the work, not in the order of power transmission. That's when productivity went up.
