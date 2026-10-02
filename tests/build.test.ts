@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
+import sharp from 'sharp';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 // Build de produção com os artigos de fixture, isolado do build real (dist/).
@@ -157,6 +158,23 @@ describe('SEO da página de artigo', () => {
 
     // Assert
     expect(notices).toEqual([true, true, true, true]);
+  });
+});
+
+describe('prévia com a capa do artigo', () => {
+  it('deve usar a capa recortada em JPEG 1200×630 como og:image quando o artigo abre com imagem', async () => {
+    // Arrange
+    const html = page('artigos/primeiro-artigo/index.html');
+
+    // Act
+    const image = /<meta property="og:image" content="([^"]+)">/.exec(html)?.[1];
+    const { width, height, format } = await sharp(join(OUT_DIR, 'og/artigos/primeiro-artigo.jpg')).metadata();
+
+    // Assert
+    expect(image).toBe(`${SITE}/og/artigos/primeiro-artigo.jpg`);
+    expect([width, height, format]).toEqual([1200, 630, 'jpeg']);
+    expect(exists('og/artigos/primeiro-artigo.png')).toBe(false);
+    expect(exists('og/en/articles/first-article.png')).toBe(true);
   });
 });
 
@@ -353,9 +371,9 @@ describe('header e footer', () => {
 });
 
 describe('página de artigo — Onda 2', () => {
-  it('deve gerar a imagem de prévia 1200×630 de cada artigo quando o build termina', () => {
+  it('deve gerar a arte de prévia 1200×630 de cada artigo sem capa quando o build termina', () => {
     // Arrange
-    const files = ['og/default.png', 'og/artigos/primeiro-artigo.png', 'og/en/articles/first-article.png'];
+    const files = ['og/default.png', 'og/artigos/segundo-artigo.png', 'og/en/articles/first-article.png'];
 
     // Act
     const sizes = files.map((file) => {

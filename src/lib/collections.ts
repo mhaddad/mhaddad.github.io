@@ -33,6 +33,14 @@ const articleImages = new Map(
   Object.entries(articleImageFiles).map(([path, module]) => [path.replace('../assets/', ''), module.default]),
 );
 
+/** Arquivo da capa no disco (para a prévia do WhatsApp e do LinkedIn), ou undefined sem capa. */
+export function articleCoverFile(article: Article): string | undefined {
+  const cover = article.data.cover as (ImageMetadata & { fsPath?: string }) | undefined;
+  if (cover) return cover.fsPath;
+  const lead = leadImage(article.body);
+  return lead && articleImages.has(lead.asset) ? `src/assets/${lead.asset}` : undefined;
+}
+
 /** Imagem de destaque do card: `cover` do frontmatter ou, na falta dele, a imagem que abre o artigo. */
 export function articleCover(article: Article): { src: ImageMetadata; alt: string } | undefined {
   if (article.data.cover) return { src: article.data.cover, alt: article.data.coverAlt ?? '' };

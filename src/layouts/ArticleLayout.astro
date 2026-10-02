@@ -10,7 +10,7 @@ import TableOfContents from '../components/TableOfContents.astro';
 import { absoluteUrl, articlePath, routePath } from '../i18n/routes';
 import { formatDate, otherLang, t } from '../i18n/ui';
 import { articleSlug, originalPlatform } from '../lib/articles';
-import type { Article } from '../lib/collections';
+import { articleCoverFile, type Article } from '../lib/collections';
 import { ogImagePath } from '../lib/og';
 import { tocItems, type Heading } from '../lib/toc';
 
@@ -36,7 +36,7 @@ const toc = tocItems(headings);
   description={description}
   alternatePath={alternatePath}
   type="article"
-  image={ogImagePath(lang, slug)}
+  image={ogImagePath(lang, slug, articleCoverFile(article) ? 'jpg' : 'png')}
   publishedTime={pubDate}
   modifiedTime={updatedDate}
 >

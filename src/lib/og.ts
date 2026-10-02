@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Resvg } from '@resvg/resvg-js';
 import satori from 'satori';
+import sharp from 'sharp';
 import { SITE_NAME } from '../config';
 import { categories, type CategoryKey } from '../i18n/categories';
 import { t, type Lang } from '../i18n/ui';
@@ -27,15 +28,38 @@ export interface OgCard {
   category: CategoryKey;
 }
 
-export function ogImagePath(lang: Lang, slug: string): string {
-  return lang === 'pt' ? `/og/artigos/${slug}.png` : `/og/en/articles/${slug}.png`;
+export type OgFormat = 'png' | 'jpg';
+
+// Arquivo da capa do artigo no disco, ou undefined quando ele não abre com imagem.
+export type CoverFile = (entry: ArticleEntry) => string | undefined;
+
+/** Artigo com capa usa a própria capa como prévia (JPEG); sem capa, a arte gerada (PNG). */
+export function ogImagePath(lang: Lang, slug: string, format: OgFormat = 'png'): string {
+  return lang === 'pt' ? `/og/artigos/${slug}.${format}` : `/og/en/articles/${slug}.${format}`;
 }
 
-export function ogPaths(entries: ArticleEntry[]) {
+function ogParam(lang: Lang, entry: ArticleEntry): string {
+  return ogImagePath(lang, articleSlug(entry)).replace(/^\/og\//, '').replace(/\.png$/, '');
+}
+
+function publishedBothLangs(entries: ArticleEntry[]) {
+  return (['pt', 'en'] as const).flatMap((lang) => publishedArticles(entries, lang).map((article) => ({ lang, article })));
+}
+
+/** Prévias com a capa do artigo, recortada por renderOgCover. */
+export function ogCoverPaths(entries: ArticleEntry[], coverFile: CoverFile) {
+  return publishedBothLangs(entries)
+    .map(({ lang, article }) => ({ lang, article, file: coverFile(article) }))
+    .filter((item): item is typeof item & { file: string } => item.file !== undefined)
+    .map(({ lang, article, file }) => ({ params: { path: ogParam(lang, article) }, props: { file } }));
+}
+
+export function ogPaths(entries: ArticleEntry[], coverFile: CoverFile = () => undefined) {
   const defaultCard: OgCard = { label: t('pt', 'hero.label'), title: t('pt', 'hero.title'), category: 'gestao' };
-  const articles = (['pt', 'en'] as const).flatMap((lang) =>
-    publishedArticles(entries, lang).map((article) => ({
-      params: { path: ogImagePath(lang, articleSlug(article)).replace(/^\/og\//, '').replace(/\.png$/, '') },
+  const articles = publishedBothLangs(entries)
+    .filter(({ article }) => coverFile(article) === undefined)
+    .map(({ lang, article }) => ({
+      params: { path: ogParam(lang, article) },
       props: {
         card: {
           label: categories[article.data.category].name[lang],
@@ -43,8 +67,7 @@ export function ogPaths(entries: ArticleEntry[]) {
           category: article.data.category,
         } satisfies OgCard,
       },
-    })),
-  );
+    }));
   return [{ params: { path: 'default' }, props: { card: defaultCard } }, ...articles];
 }
 
@@ -94,4 +117,16 @@ export async function renderOgImage(card: OgCard): Promise<Uint8Array> {
   };
   const svg = await satori(tree as Parameters<typeof satori>[0], { width: OG_WIDTH, height: OG_HEIGHT, fonts: loadFonts() });
   return new Resvg(svg).render().asPng();
+}
+
+// O WhatsApp deixa de mostrar a miniatura de imagens grandes: JPEG de até ~300 KB.
+const OG_JPEG_QUALITY = 80;
+
+/** Recorta a capa no formato da prévia (1200×630), ampliando se ela for menor. */
+export async function renderOgCover(file: string): Promise<Buffer> {
+  return sharp(file)
+    .flatten({ background: OG_COLORS.bg })
+    .resize(OG_WIDTH, OG_HEIGHT, { fit: 'cover', position: 'attention' })
+    .jpeg({ quality: OG_JPEG_QUALITY, mozjpeg: true })
+    .toBuffer();
 }
