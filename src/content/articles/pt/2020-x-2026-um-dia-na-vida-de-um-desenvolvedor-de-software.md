@@ -155,7 +155,7 @@ O perfil demonstrado por Jeff em 2026 aproxima-se da atuação conhecida como [F
 
 Popularizado por empresas que atuam em cenários de alta complexidade e dados não estruturados, o papel integra atividades que antes ficavam isoladas: investigação, arquitetura, desenvolvimento, testes e acompanhamento de impacto em produção.
 
-Diferente do fluxo tradicional onde o desenvolvedor recebe um item fechado para codificar, o FDE atua no ciclo completo do problema. A ampliação da capacidade de geração de código aumenta a necessidade de visão sistêmica e integração com o contexto do cliente.
+Diferente do fluxo tradicional, em que o desenvolvedor recebe um item fechado para codificar, o FDE atua no ciclo completo do problema. A ampliação da capacidade de geração de código aumenta a necessidade de visão sistêmica e integração com o contexto do cliente.
 
 Esse perfil combina três frentes essenciais:
 

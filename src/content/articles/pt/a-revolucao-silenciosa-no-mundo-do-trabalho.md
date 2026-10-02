@@ -37,11 +37,11 @@ Cultivar um ambiente de trabalho com segurança psicológica é importante, assi
 
 ## 3. Experiência traz consciência
 
-O predomínio atual de processos empíricos nas organizações (aqueles que só descobrimos como executar depois de vivenciar) e a pressão por inovação de um mercado cada vez mais complexo, fazem dos experimentos um caminho muito importante de descoberta sobre como pensamos a respeito das pessoas e das coisas que nos cercam.
+O predomínio atual de processos empíricos nas organizações (aqueles que só descobrimos como executar depois de vivenciar) e a pressão por inovação de um mercado cada vez mais complexo fazem dos experimentos um caminho muito importante de descoberta sobre como pensamos a respeito das pessoas e das coisas que nos cercam.
 
 Ter discernimento sobre como ações, comportamentos e relacionamentos afetam os resultados do trabalho faz com que sejamos responsáveis por nossas capacidades e por aquilo que temos vontade de criar (afinal, "a vontade é um desejo que passou pelo crivo da razão").
 
-A alegria do sucesso, a dor do fracasso, a dúvida se seremos capazes e a esperança que conseguiremos moldam a nossa consciência no ambiente de trabalho.
+A alegria do sucesso, a dor do fracasso, a dúvida se seremos capazes e a esperança de que conseguiremos moldam a nossa consciência no ambiente de trabalho.
 
 ## 4. Consciência cria aprendizado
 

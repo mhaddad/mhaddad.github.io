@@ -27,10 +27,10 @@ Decidir onde, como e com quem trabalhar deve ser uma prerrogativa das pessoas pa
 
 Ter liberdade, autonomia para decidir, objetivos para guiar e um propósito claro que justifique o trabalho a ser feito é a base para dispensarmos as relações de poder e a hierarquia nas empresas.
 
-Transparência e acesso a todas as informações da empresa (inclusive as financeiras) é determinante para criar senso de responsabilidade e engajamento das pessoas. Devemos criar relações de confiança ao invés de mecanismos de punição.
+Transparência e acesso a todas as informações da empresa (inclusive as financeiras) são determinantes para criar senso de responsabilidade e engajamento das pessoas. Devemos criar relações de confiança ao invés de mecanismos de punição.
 
 Para fazer tudo isso funcionar junto devemos ainda priorizar o trabalho coletivo, formar profissionais multidisciplinares, abolir a avaliação de desempenho individual e favorecer o feedback entre as pessoas para que todos possam melhorar naquilo que interessa para cada um.
 
-Não devemos acabar com os chefes, mas sim perceber que esse modelo de gestão baseado em comando e controle não funciona para o contexto atual. Não queremos também uma nova hierarquia, mas abolir com as hierarquias artificiais e assumir a liderança situacional.
+Não devemos acabar com os chefes, mas sim perceber que esse modelo de gestão baseado em comando e controle não funciona para o contexto atual. Não queremos também uma nova hierarquia, mas abolir as hierarquias artificiais e assumir a liderança situacional.
 
 As práticas tradicionais de gestão foram criadas para resolver os problemas mais complicados de uma empresa, tornando-os simples e criando soluções padronizadas baseadas em regras. Entretanto, os problemas mais importantes de gestão numa empresa não são do tipo complicado, e sim complexos. Assim, precisamos de uma nova abordagem de gestão que seja baseada em pessoas e não em ferramentas e processos.

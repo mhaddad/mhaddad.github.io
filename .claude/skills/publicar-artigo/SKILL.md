@@ -37,7 +37,7 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
 - Títulos internos do artigo começam em `##` (o `#` é o título da página).
 - **Exportações do Medium** começam com uma linha `---` e repetem o título como `### Título`: remova as duas e promova os subtítulos `###` para `##`.
 - Corrija formatação Markdown quebrada (ex.: `***termo***(texto)**palavra**` sem espaços).
-- Corrija **erros ortográficos** no PT (decisão de Matheus em 02/10/2026): letras trocadas ou faltando, acentuação ("têm", "veem", "heroico", ênclise como "dividi-lo"), grafia do Acordo Ortográfico ("consequência", "socioemocionais", "predeterminado", "multidisciplinar") e crase. Não mexa em concordância, regência, pontuação de estilo nem escolhas de palavra: liste esses casos no relatório para Matheus decidir.
+- Corrija **erros de português** no PT (decisão de Matheus em 02/10/2026): letras trocadas ou faltando, acentuação ("têm", "veem", "heroico", ênclise como "dividi-lo"), grafia do Acordo Ortográfico ("consequência", "socioemocionais", "predeterminado", "multidisciplinar") e crase. Corrija também concordância, regência e vírgula entre sujeito e verbo (decisão de 02/10/2026). Não mexa em estilo, escolha de palavras nem estrutura de frases: quando o sentido pretendido for incerto, mantenha e liste no relatório para Matheus decidir.
 - Links para outros artigos no Medium/LinkedIn (inclusive `share.atelie.software` e publicações do Medium) ficam como estão até o artigo de destino estar publicado no site. Quando estiver, troque pelo link interno nos dois idiomas, com o título em inglês na versão EN. O ID do post do Medium (o hash no fim da URL) é o mesmo em todos esses domínios.
 
 **Sanitização (obrigatória):**

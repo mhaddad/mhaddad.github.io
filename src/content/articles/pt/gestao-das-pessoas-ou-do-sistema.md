@@ -11,13 +11,13 @@ draft: false
 
 ![Grupo de pessoas de pé, conversando em roda num escritório, com um caderno sobre a mesa em primeiro plano](../../../assets/articles/gestao-das-pessoas-ou-do-sistema/capa.jpeg)
 
-Esse pequeno ensaio visa responder uma questão levantada em um evento que participei:
+Esse pequeno ensaio visa responder uma questão levantada em um evento de que participei:
 
 > “Devemos fazer a gestão das pessoas ou do sistema?”
 
 Um sistema é um conjunto de agentes ou elementos que mantêm uma relação de interdependência para cumprir um propósito ou alcançar um objetivo. Uma empresa é um sistema complexo adaptativo, dado que é formada por agentes vivos (dotados de livre-arbítrio) e está em constante mudança para se adequar às forças do mercado.
 
-A dualidade **Sistema x Pessoas** é interessante e perigosa. Ao mesmo tempo que simplifica a análise de problemas (trazendo um viés determinista de separar o todo em partes), também traz a falsa perspectiva que pessoas e sistema são duas coisas separadas ou isoladas.
+A dualidade **Sistema x Pessoas** é interessante e perigosa. Ao mesmo tempo que simplifica a análise de problemas (trazendo um viés determinista de separar o todo em partes), também traz a falsa perspectiva de que pessoas e sistema são duas coisas separadas ou isoladas.
 
 Entretanto, cada agente (pessoa) é uma representação fractal do próprio sistema (empresa) do qual faz parte. As características do sistema são definidas pelos agentes e suas relações, mas também estão refletidas em cada indivíduo.
 
@@ -25,7 +25,7 @@ Desta forma, reformulando a pergunta inicial, o questionamento ficaria melhor as
 
 > “Como construir juntos um bom sistema, fazendo o trabalho que deve ser feito para obter resultados melhores?”
 
-Em empresas que adotam uma gestão orgânica, como na Webgoal, existem muitas situações de conflitos. Por outro lado, são através de conflitos que as pessoas conseguem amadurecer, tornando o sistema do qual fazem parte mais preparado para novos desafios e dificuldades.
+Em empresas que adotam uma gestão orgânica, como na Webgoal, existem muitas situações de conflitos. Por outro lado, é através de conflitos que as pessoas conseguem amadurecer, tornando o sistema do qual fazem parte mais preparado para novos desafios e dificuldades.
 
 **Leia também:** [**O estilo de gestão da Webgoal**](/artigos/o-estilo-de-gestao-da-webgoal/)
 
@@ -39,6 +39,6 @@ O sistema deve ser “construído” todos os dias, enquanto “construímos” 
 
 É preciso entender que a necessidade, a vontade e a velocidade de amadurecimento de cada pessoa são diferentes. Ora alguém vai estar mais engajado, ora outrem não terá a mesma motivação dos demais. Agentes deixarão o sistema e outras pessoas virão para trazer novas capacidades para a empresa.
 
-Ora teremos um líder, ora existirão diversos líderes para ajudar o sistema a superar problemas específicos. Afinal, o florescimento de líderes é um sinal que o *gap* nas relações está sendo preenchido por alguém. Lembre-se: a liderança é um fenômeno social que só acontece quando existe colaboração entre as pessoas.
+Ora teremos um líder, ora existirão diversos líderes para ajudar o sistema a superar problemas específicos. Afinal, o florescimento de líderes é um sinal de que o *gap* nas relações está sendo preenchido por alguém. Lembre-se: a liderança é um fenômeno social que só acontece quando existe colaboração entre as pessoas.
 
 Pessoas e sistemas são inseparáveis. Se gerir pessoas não faz sentido, gerir o sistema também não. É preciso vivenciar o sistema entendendo que, como agente, você faz parte do todo e que o todo também está em você.

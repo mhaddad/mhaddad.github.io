@@ -25,7 +25,7 @@ A estrutura do Ateliê de Software é composta por **equipes autônomas de alto 
 
 As **Equipes de Projeto** são formadas e organizadas de acordo com as características e necessidades dos projetos de desenvolvimento de software, e cada uma delas é responsável integralmente pelo atendimento de um cliente específico.
 
-O Ateliê conta também com **Equipes de Apoio** que ocupam as atividades administrativas-financeiras, comerciais, de marketing e de gestão de pessoas. Essas equipes de apoio garantem a eficiência dos processos internos e o suporte necessário para que as equipes de projeto possam trabalhar de maneira fluida. Quando necessário, as equipes de apoio podem contar com o auxílio de consultores externos e profissionais especializados, como advogados e contadores, que trazem conhecimentos específicos para fortalecer a operação.
+O Ateliê conta também com **Equipes de Apoio** que se ocupam das atividades administrativas-financeiras, comerciais, de marketing e de gestão de pessoas. Essas equipes de apoio garantem a eficiência dos processos internos e o suporte necessário para que as equipes de projeto possam trabalhar de maneira fluida. Quando necessário, as equipes de apoio podem contar com o auxílio de consultores externos e profissionais especializados, como advogados e contadores, que trazem conhecimentos específicos para fortalecer a operação.
 
 ![Diagrama: dentro de uma elipse com o nome Ateliê de Software, as Equipes de Apoio ficam no centro e apoiam quatro Equipes de Projeto, cada uma ligada a um cliente fora da elipse; profissionais avulsos aparecem ao redor das equipes](../../../assets/articles/o-estilo-de-gestao-do-atelie-de-software-parte-3/design-organizacional.png)
 
@@ -98,7 +98,7 @@ Para promover a consciência organizacional e a comunicação aberta, o Ateliê 
 
 ### Trabalho Remoto e Espaço Físico
 
-Desde a pandemia, o Ateliê de Software atualizou o trabalho remoto como padrão, utilizando o **Discord** para colaboração diária. Também mantemos um grupo no **WhatsApp** para comunicações gerais e urgentes, enquanto o **Google Workspace** organiza agendas, documentos e processos.
+Desde a pandemia, o Ateliê de Software adotou o trabalho remoto como padrão, utilizando o **Discord** para colaboração diária. Também mantemos um grupo no **WhatsApp** para comunicações gerais e urgentes, enquanto o **Google Workspace** organiza agendas, documentos e processos.
 
 No entanto, o escritório físico em Poços de Caldas (MG) está disponível para quem deseja trabalhar presencialmente, proporcionando um momento de confraternização e integração social.
 

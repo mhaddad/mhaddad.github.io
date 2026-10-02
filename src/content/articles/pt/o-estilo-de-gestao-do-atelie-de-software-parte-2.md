@@ -17,7 +17,7 @@ Valores, princípios e premissas
 
 > Nosso objetivo é inspirar outras organizações que buscam implementar abordagens de gestão modernas, baseadas em transparência e autonomia, promovendo um ambiente de trabalho mais flexível e colaborativo.
 
-> *➔* Esse é o 2º de 4 artigos. Ele apresenta a essência do nosso estilo de gestão com bases nos nossos valores, princípios e premissas.
+> *➔* Esse é o 2º de 4 artigos. Ele apresenta a essência do nosso estilo de gestão com base nos nossos valores, princípios e premissas.
 
 ## Nossa essência
 
@@ -42,7 +42,7 @@ Os 6 valores do **Ateliê de Software Way** são:
    Fazer o trabalho em conjunto com outras pessoas para cocriar soluções, compartilhar conhecimentos, desenvolver novas habilidades e obter resultados de maior qualidade.  
    ➝ *Valores base: empatia, comunicação e trabalho em equipe*
 3. **Auto-organização**  
-   Encontrar a melhor forma de trabalhar coletivamente, respeitando regras e restrições, e confiando na capacidade das pessoas para alcançar resultados que não se conseguira sozinho.  
+   Encontrar a melhor forma de trabalhar coletivamente, respeitando regras e restrições, e confiando na capacidade das pessoas para alcançar resultados que não se conseguiria sozinho.  
    ➝ *Valores base: liderança emergente, propósito, experimentação*
 4. **Transparência**  
    Ser aberto e honesto nas intenções, decisões e ações, permitindo que outras pessoas possam ver e entender o que está acontecendo, favorecendo o diálogo para lidar com conflitos.  

@@ -17,7 +17,7 @@ draft: false
 
 Todas as segundas-feiras, um grupo de amigos se reúne para jogar futebol. É um momento para **rever os amigos**, **praticar um pouco de exercício** e **diminuir o stress** causado pelo trabalho que ainda está por vir na semana.
 
-Os jogos acontecem num campo society de grama sintética cercado por telas, cuja dimensões determinam o tamanho dos times: 6 jogadores para cada lado.
+Os jogos acontecem num campo society de grama sintética cercado por telas, cujas dimensões determinam o tamanho dos times: 6 jogadores para cada lado.
 
 Cada partida tem duração de 8 minutos, tempo ideal para conciliar esforço e descanso físico dos “atletas” de ocasião e permitir que todos aproveitem as 2 horas de “pelada”.
 
@@ -53,7 +53,7 @@ Essa restrição foi criada para evitar que os times fossem prejudicados quando,
 
 > Regra #1: os jogadores de cada time serão determinados por sorteio.
 
-Algumas pessoas reclamaram que haviam “panelinhas” na formação dos times, no sentido de bons jogadores sempre estarem juntos nas mesmas equipes. Então, o grupo achou melhor sortear os jogadores que fariam parte de cada time e deixar para o acaso o equilíbrio entre as equipes.
+Algumas pessoas reclamaram que havia “panelinhas” na formação dos times, no sentido de bons jogadores sempre estarem juntos nas mesmas equipes. Então, o grupo achou melhor sortear os jogadores que fariam parte de cada time e deixar para o acaso o equilíbrio entre as equipes.
 
 > Regra #2: ao recuar a bola para o goleiro, este não poderá pegá-la com as mãos.
 
@@ -83,7 +83,7 @@ Essas regras criaram mais discussões entre os jogadores, que acabaram criando n
 
 As restrições foram criadas com o propósito de melhorar a dinâmica dos jogos e o comportamento dos times, favorecendo a auto-organização dos jogadores e o aumento da competitividade.
 
-Estabelecer restrições ajudam as equipes a repensarem sua forma de "jogar" durante o próprio "jogo", buscando sempre um melhor desempenho. Pensar sobre o trabalho simultaneamente à sua execução gera mais aprendizado e possibilidades de inovação.
+Estabelecer restrições ajuda as equipes a repensarem sua forma de "jogar" durante o próprio "jogo", buscando sempre um melhor desempenho. Pensar sobre o trabalho simultaneamente à sua execução gera mais aprendizado e possibilidades de inovação.
 
 *2. Evite criar regras para controlar e punir as pessoas*
 
@@ -99,7 +99,7 @@ As regras começaram a ser questionadas e interpretadas de formas diferentes por
 
 Ter um "juiz" significa delegar decisões sobre o "jogo" para uma pessoa que teoricamente estaria mais preparada para isso do que todos os jogadores juntos.
 
-Porém, se as pessoas estiverem alinhadas ao propósito e objetivos da empresa, não é necessária a presença de um gerente para que realizem seu trabalho com maestria e responsabilidade. Inclusive, a presença de um gerente já é um sinal que a gestão está sendo substituída por comando-e-controle.
+Porém, se as pessoas estiverem alinhadas ao propósito e objetivos da empresa, não é necessária a presença de um gerente para que realizem seu trabalho com maestria e responsabilidade. Inclusive, a presença de um gerente já é um sinal de que a gestão está sendo substituída por comando-e-controle.
 
 O sorteio dos jogadores para compor os times era bem intencionado, mas foi ingenuidade achar que o acaso poderia ser melhor do que o bom senso das pessoas.
 
@@ -109,7 +109,7 @@ As restrições estavam alinhadas ao propósito da pelada: rever os amigos, prat
 
 As regras causaram discussões entre amigos, diminuíram a quantidade de exercício praticado e aumentaram o stress das pessoas.
 
-Antes, tratávamos todos os jogadores como adultos, pessoas conscientes que aquilo era uma pelada e que estávamos todos ali para nos divertir. Depois de observar o comportamento infantil de algumas pessoas, passamos a criar regras que trataram todos como crianças, incapazes de decidirem sobre a intenção de um determinado lance do jogo.
+Antes, tratávamos todos os jogadores como adultos, pessoas conscientes de que aquilo era uma pelada e que estávamos todos ali para nos divertir. Depois de observar o comportamento infantil de algumas pessoas, passamos a criar regras que trataram todos como crianças, incapazes de decidirem sobre a intenção de um determinado lance do jogo.
 
 No início, todos sabiam que estavam ali por um propósito e junto com os conhecimentos sobre futebol, eram capazes de tomar decisões com base no bom senso. Depois, essa capacidade foi substituída por regras e até pela possível presença de um juiz. Isso mostra como as pessoas perderam poder sobre a própria pelada.
 

@@ -52,7 +52,7 @@ Ele perseverou sete anos e colheu pouco. As versões divergem sobre quantos disc
 
 E havia uma coisa que ele ia deixando pelo caminho. Levava nos alforjes imagens da Virgem trazidas da Palestina e as distribuía nos lugares por onde passava. Quando acabaram, encomendou outras aos artesãos locais.
 
-Foi no fundo desse desânimo que aconteceram os dois episódios Marianos mais queridos da tradição.
+Foi no fundo desse desânimo que aconteceram os dois episódios marianos mais queridos da tradição.
 
 O primeiro se passa na Galiza, na costa brava de Muxía. Contam que, vendo o apóstolo abatido, a Virgem Maria veio ao seu encontro navegando numa barca de pedra conduzida por anjos. Depois de encorajá-lo, a embarcação se petrificou ali mesmo, e parte dela seria a Pedra de Abalar, um bloco enorme que ainda hoje oscila junto ao mar.
 
@@ -60,7 +60,7 @@ O primeiro se passa na Galiza, na costa brava de Muxía. Contam que, vendo o ap�
 
 O segundo episódio acontece mais para o interior, em Cesaraugusta, a atual Zaragoza, às margens do Ebro. Conta-se que na madrugada de 2 de janeiro do ano 40, enquanto Tiago rezava com seus poucos discípulos, ouviram-se vozes de anjos cantando a saudação Ave Maria. Diante deles, sobre uma coluna de jaspe, apareceu a Virgem.
 
-> O que tornam essas aparições únicas é que Maria ainda estava viva, em Jerusalém, quando se manifestou. Era a mãe de Cristo em carne mortal, aparecendo a milhares de quilômetros de onde de fato se encontrava, e é por isso que a tradição a considera as primeiras aparições mariana da história.
+> O que torna essas aparições únicas é que Maria ainda estava viva, em Jerusalém, quando se manifestou. Era a mãe de Cristo em carne mortal, aparecendo a milhares de quilômetros de onde de fato se encontrava, e é por isso que a tradição a considera as primeiras aparições marianas da história.
 
 ![Pintura de Goya com o apóstolo Tiago e seus discípulos ajoelhados diante da Virgem sobre uma coluna](../../../assets/articles/a-misteriosa-lenda-aurea-jacobeia/virgem-do-pilar-goya.jpeg)
 *Apóstolo Tiago e seus discípulos adorando a Virgem do Pilar — Francisco de Goya, 1775–1780*

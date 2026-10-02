@@ -26,7 +26,7 @@ Mas isso não é suficiente, é só o ponto de partida.
 1. A **falta de transparência** de informações financeiras suporta a discriminação e as diferenças salariais entre homens e mulheres.
 2. **Hierarquias prefixadas**, baseadas em interesses e poder, criam diversas situações sociais onde o assédio (de todos os tipos) vira instrumento de gestão, negociação e chantagem. Esse mesmo tipo de hierarquia cria as estruturas que são a base para a discriminação no trabalho.
 3. Práticas de gestão que relacionam diretamente **chefes e subordinados** (como feedback one-on-one, avaliação de desempenho individual, promoções e aumentos salariais) também podem ser estímulos estruturais para a discriminação e o assédio.
-4. A forma **como a organização divulga as suas vagas e realiza seus processos seletivos** podem prejudicar as candidaturas e as contratações de mulheres e de pessoas que ampliariam a diversidade humana, mantendo inalteradas as estruturas que favorecem a discriminação e o assédio.
+4. A forma **como a organização divulga as suas vagas e realiza seus processos seletivos** pode prejudicar as candidaturas e as contratações de mulheres e de pessoas que ampliariam a diversidade humana, mantendo inalteradas as estruturas que favorecem a discriminação e o assédio.
 
 Pensando desta maneira, você poderia levar a seguinte reflexão para as pessoas da sua empresa: **Como o nosso modelo de gestão, a nossa estrutura organizacional, as nossas práticas de gestão de pessoas, as nossas regras e processos de trabalho estimulam ou desencorajam situações de discriminação e assédio?**
 

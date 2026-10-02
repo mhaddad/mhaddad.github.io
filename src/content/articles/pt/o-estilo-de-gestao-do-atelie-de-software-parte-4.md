@@ -103,7 +103,7 @@ A ferramenta ajudou a reforçar a cultura de feedback contínuo e colaborativo e
 
 ## Desafios
 
-Por outro lado, adoção do *Ateliê de Software Way* trouxe inúmeros desafios, tanto para as pessoas quanto para a organização e seus clientes.
+Por outro lado, a adoção do *Ateliê de Software Way* trouxe inúmeros desafios, tanto para as pessoas quanto para a organização e seus clientes.
 
 ### Dificuldades de adaptação para pessoas e clientes
 

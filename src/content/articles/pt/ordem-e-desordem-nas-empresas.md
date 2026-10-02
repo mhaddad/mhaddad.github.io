@@ -23,7 +23,7 @@ Uma equipe de uma empresa que está organizada para a complexidade busca o deseq
 
 *Ordem*
 
-O modelo de gestão tradicional busca estabilidade, a “zona de conforto” para os empregados, a "zona de poder" para os gestores e retorno financeiro planejado para os acionistas. Para isso precisam de processos rígidos, planos de carreiras, gestão dirigida por planos e comando-e-controle.
+O modelo de gestão tradicional busca estabilidade, a “zona de conforto” para os empregados, a "zona de poder" para os gestores e retorno financeiro planejado para os acionistas. Para isso precisa de processos rígidos, planos de carreiras, gestão dirigida por planos e comando-e-controle.
 
 *Desordem*
 

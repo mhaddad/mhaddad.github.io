@@ -19,7 +19,7 @@ Há 10 anos vejo a busca do mercado por uma definição e por características q
 
 Primeiro, ouvi que era impossível. Depois disseram que só funcionava em empresas de tecnologia. Afirmaram que esse estilo de gestão serviria apenas para empresas pequenas. Por fim, repetiam que não era escalável.
 
-Enquanto isso, trabalhávamos com a crença de fazer parte de uma organização que cumpre um propósito e almeja objetivos que sozinhos, nenhum de nós, seria capaz de alcançar.
+Enquanto isso, trabalhávamos com a crença de fazer parte de uma organização que cumpre um propósito e almeja objetivos que, sozinhos, nenhum de nós seria capaz de alcançar.
 
 Buscávamos, todos os dias, encontrar uma forma melhor de entregar valor e atender os nossos clientes. Construíamos, física e emocionalmente, um ambiente de trabalho que visava promover o desenvolvimento pessoal e profissional de todos. Víamos emergir uma cultura que valorizava o aprendizado e o companheirismo entre as pessoas.
 

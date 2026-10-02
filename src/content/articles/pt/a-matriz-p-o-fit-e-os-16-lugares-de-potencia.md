@@ -73,9 +73,9 @@ Pessoas no Q2 também têm alta prontidão para autonomia, mas operam preferenci
 
 **2.2 Executor de Alto Impacto** (Típico Alto). O intraempreendedor clássico que faz acontecer de forma independente. Assume riscos calculados, gere o próprio tempo com disciplina e entrega resultados mensuráveis com consistência. Não precisa de estímulos intelectuais novos constantemente: precisa de responsabilidade clara e métricas objetivas.
 
-**2.3 Especialista Autônomo** (Típico). Maestria do ofício consolidada, método próprio refinado e entrega de ponta a ponta. Estabilidade e confiabilidade são seus ativos. É o profissional que a organização sabe que pode contar para sustentar a entrega técnica de longo prazo sem precisar de monitoramento.
+**2.3 Especialista Autônomo** (Típico). Maestria do ofício consolidada, método próprio refinado e entrega de ponta a ponta. Estabilidade e confiabilidade são seus ativos. É o profissional que a organização sabe com quem pode contar para sustentar a entrega técnica de longo prazo sem precisar de monitoramento.
 
-**2.4 Especialista Analítico** (Nuance, associável a padrões funcionais de TEA). Altíssima transparência e integridade combinada com menor orientação para diplomacia relacional. Âncora lógica do time, detecta padrões e inconsistências que outros não percebem. Prospera em análise profunda, comunicação assíncrona e ambientes com baixo ruído sensorial.
+**2.4 Especialista Analítico** (Nuance, associável a padrões funcionais de TEA). Altíssima transparência e integridade combinadas com menor orientação para diplomacia relacional. Âncora lógica do time, detecta padrões e inconsistências que outros não percebem. Prospera em análise profunda, comunicação assíncrona e ambientes com baixo ruído sensorial.
 
 ## Quadrante 3 — Gestão Tradicional Colaborativa
 

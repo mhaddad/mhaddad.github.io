@@ -21,7 +21,7 @@ Por volta de 2006, meus sócios e eu trabalhávamos numa "*Fábrica de Software*
 
 Cada projeto começava com a equipe de "*Análise de Negócios*", que descrevia os objetivos e também as principais regras do negócio do cliente. Depois, iniciava-se uma fase de "*Análise de Requisitos*", onde os requisitos funcionais e não-funcionais eram levantados, descritos e documentados por uma outra equipe especializada apenas nessa atividade.
 
-A seguir, a equipe de "*Análise de Sistemas*", especificava os casos de uso e os seus respectivos protótipos de baixa fidelidade. Paralelamente, a equipe de design iniciava o desenvolvimento da interface, elaborando o conceito visual e definindo os padrões de interação com o usuário.
+A seguir, a equipe de "*Análise de Sistemas*" especificava os casos de uso e os seus respectivos protótipos de baixa fidelidade. Paralelamente, a equipe de design iniciava o desenvolvimento da interface, elaborando o conceito visual e definindo os padrões de interação com o usuário.
 
 Quando o projeto chegava a esse ponto, cerca de seis meses já haviam se passado desde seu início. Somente então a equipe de programadores começava a implementar os casos de uso, enquanto a equipe de testes iniciava a especificação dos casos de teste. No final da implementação de cada caso de uso, os desenvolvedores enviavam o trabalho concluído para verificação e validação pela equipe de testes.
 
@@ -119,7 +119,7 @@ Depois de quase 5 anos de muito aprendizado, os projetos do Ateliê de Software 
 
 ### Gestão do Fluxo de Trabalho
 
-Em 2013, para aumentar a eficiência e a eficácia dos nossos projetos de desenvolvimento software, decidimos adotar Kanban de maneira integrada ao Scrum.
+Em 2013, para aumentar a eficiência e a eficácia dos nossos projetos de desenvolvimento de software, decidimos adotar Kanban de maneira integrada ao Scrum.
 
 Nosso interesse pelo Kanban surgiu após a palestra de [Alisson Vale](https://medium.com/u/1c7af9ed8737) no Agile Brazil 2010, em Porto Alegre, onde compreendemos a importância de gerenciar filas e lidar com gargalos e desperdícios em projetos de software.
 
@@ -143,7 +143,7 @@ Baseado em equipes autônomas de alto desempenho, estáveis, formadas por profis
 
 Não temos uma estrutura hierárquica formal, mas valorizamos a liderança emergente para lidar com os desafios que enfrentamos. Temos uma cultura organizacional que promove um ambiente de segurança psicológica e que fomenta feedback para desenvolvimento profissional (inclusive, criamos o [Feedback Canvas](https://share.atelie.software/usando-o-feedback-canvas-na-pr%C3%A1tica-f3edd5d145da), uma ferramenta para facilitar o processo de feedback no contexto do trabalho em equipe).
 
-O estilo de gestão do Ateliê de Software foi concebido, ao longo dos anos, com o apoio de grandes nomes como [Ricardo Semler](https://www.linkedin.com/in/ricardosemler/), [Niels Pflaeging](https://medium.com/u/333b6308a9a7) , [Frederic Laloux](https://medium.com/u/ce10a9fbf9a9) e [Jurgen Appelo](https://medium.com/u/79df0d151f0e). A partir dos livros, cursos, conselhos e consultorias desses profissionais, encontramos uma maneira de fazer gestão compatível com os valores e princípios do [Manifesto Ágil](https://agilemanifesto.org/iso/ptbr/manifesto.html).
+O estilo de gestão do Ateliê de Software foi concebido, ao longo dos anos, com o apoio de grandes nomes como [Ricardo Semler](https://www.linkedin.com/in/ricardosemler/), [Niels Pflaeging](https://medium.com/u/333b6308a9a7), [Frederic Laloux](https://medium.com/u/ce10a9fbf9a9) e [Jurgen Appelo](https://medium.com/u/79df0d151f0e). A partir dos livros, cursos, conselhos e consultorias desses profissionais, encontramos uma maneira de fazer gestão compatível com os valores e princípios do [Manifesto Ágil](https://agilemanifesto.org/iso/ptbr/manifesto.html).
 
 Como resultado desse enfoque na gestão, em 2012 o Ateliê de Software conquistou o *Prêmio MPE Brasil*, promovido pelo SEBRAE. Na ocasião (quando ainda utilizávamos o nome Webgoal), fomos reconhecidos como a melhor empresa de TI do Estado de SP e também recebemos o prêmio de inovação, destacando-nos pelo nosso estilo de gestão (que atendia a todos os critérios de excelência e qualidade em gestão elencados pelo SEBRAE, mas os implementava de uma maneira muito diferente do tradicional).
 

@@ -35,7 +35,7 @@ O que faltava, pelo menos para o que eu precisava nas consultorias, era um instr
 
 De acordo com a pesquisa bianual *State of the Global Workplace*, do Instituto Gallup, cerca de 80% dos trabalhadores no mundo não estão engajados no trabalho. São números que se repetem há anos.
 
-A resposta convencional costuma ser: falta de motivação, liderança ruim, cultura organizacional fraca. Todas essas explicações têm alguma validade. Nenhuma delas aprofunda no problema.
+A resposta convencional costuma ser: falta de motivação, liderança ruim, cultura organizacional fraca. Todas essas explicações têm alguma validade. Nenhuma delas se aprofunda no problema.
 
 O que raramente se questiona é se o problema começa antes, no momento em que a organização decide quem contratar, como integrar e em qual ambiente colocar essa pessoa para trabalhar.
 
@@ -57,7 +57,7 @@ A abordagem de P-O Fit que estou desenvolvendo parte de uma pergunta diferente d
 
 A diferença parece sutil, mas muda a perspectiva de avaliação. Valores são fáceis de declarar e difíceis de verificar. Já a forma como alguém pensa e decide pode ser observada na **maneira como essa pessoa lida com a ambiguidade, colabora com outras pessoas e sustenta o trabalho ao longo do tempo**.
 
-Essa mudança de pergunta abre espaço para um diagnóstico diferente. Duas pessoas podem acreditar genuinamente nos mesmos valores e, ainda assim, prosperarem em ambientes completamente diferentes. Uma pode precisar de autonomia radical para dar o melhor de si. A outra pode precisar de estrutura clara e previsibilidade para o mesmo propósito. Não há superioridade entre os dois perfis, apenas compatibilidades diferentes com diferentes modelos de organização.
+Essa mudança de pergunta abre espaço para um diagnóstico diferente. Duas pessoas podem acreditar genuinamente nos mesmos valores e, ainda assim, prosperar em ambientes completamente diferentes. Uma pode precisar de autonomia radical para dar o melhor de si. A outra pode precisar de estrutura clara e previsibilidade para o mesmo propósito. Não há superioridade entre os dois perfis, apenas compatibilidades diferentes com diferentes modelos de organização.
 
 Nos [próximos artigos](/artigos/coerencia-cognitiva/) desta série, vou apresentar os fundamentos dessa nova abordagem. Os conceitos que a sustentam, os quatro índices que ela mede, a matriz de posicionamento e os 16 perfis que emergem dela. A intenção é oferecer algo útil tanto para as organizações que querem construir ambientes onde as pessoas prosperam, quanto para as pessoas que querem entender por que alguns ambientes as energizam enquanto outros as esgotam.
 
