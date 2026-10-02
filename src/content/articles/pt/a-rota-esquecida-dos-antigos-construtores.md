@@ -9,6 +9,10 @@ originalUrl: https://medium.com/@mhaddad/a-rota-esquecida-dos-antigos-construtor
 draft: false
 ---
 
+![Peregrino com mochila e cajado no alto de um morro, sob a Via Láctea, olhando as torres de uma catedral iluminadas no horizonte](../../../assets/articles/a-rota-esquecida-dos-antigos-construtores/via-lactea.jpeg)
+
+*Ilustração que mostra a Via-Láctea como guia noturno para os peregrinos.*
+
 > Muito antes do Caminho Francês para Santiago de Compostela existir, uma rota iniciática de construtores já cruzava os Pireneus. Reconstruí seu traçado a partir das pistas deixadas por Louis Charpentier.
 
 Quem caminha hoje para Santiago de Compostela segue uma trilha bem sinalizada. Há setas amarelas pintadas em placas, muros, postes e calçadas; albergues a cada poucos quilômetros; mapas, livros e guias que descrevem cada igreja e cada lenda do percurso. Tudo parece feito para que ninguém se perca. E talvez esse seja justamente o ponto que merece atenção: um caminho tão cuidadosamente preparado para ser percorrido por multidões pode ser, ele mesmo, o resultado de uma escolha. **Alguém decidiu por onde os peregrinos deveriam passar**.
@@ -40,10 +44,6 @@ Portanto, guarde esse traçado e essa origem, porque o argumento de Charpentier 
 A primeira pista de Charpentier vem de um objeto curioso. O relicário de Carlos Magno trazia, gravada, a direção de Compostela indicada por duas fileiras de estrelas. Charpentier não as lê como ornamento, mas sim como um mapa.
 
 Há uma razão antiga para essa associação entre Compostela e as estrelas. Na tradição popular, o Caminho de Santiago é a própria Via Láctea, aquele rastro de estrelas que atravessa o céu noturno em direção à constelação do Cão Maior. Os peregrinos caminhavam para o oeste tendo, à noite, essa faixa luminosa apontando o rumo. O nome Compostela, aliás, é muitas vezes ligado a *campus stellae*, o campo da estrela. O céu e a terra, nessa leitura, repetem o mesmo desenho: um corredor que vai do nascente ao poente.
-
-![Peregrino com mochila e cajado no alto de um morro, sob a Via Láctea, olhando as torres de uma catedral iluminadas no horizonte](../../../assets/articles/a-rota-esquecida-dos-antigos-construtores/via-lactea.jpeg)
-
-*Ilustração que mostra a Via-Láctea como guia noturno para os peregrinos.*
 
 Para Charpentier, as duas fileiras de estrelas do relicário correspondem a duas linhas paralelas que cruzam a Península Ibérica do Mediterrâneo ao Atlântico. E o que sustentaria essa leitura é a toponímia. Ao longo dessas linhas, ele encontra uma sucessão de nomes ligados à estrela: o Pic d’Estelle e o Puig de l’Estelle na Catalunha, Estella em Navarra, cujo nome basco Lizarra também designa a estrela, e ainda Lizárraga, já em direção à Galícia. São pontos espalhados por quase mil quilômetros, e quase todos se alinham em torno de duas faixas de latitude muito próximas.
 

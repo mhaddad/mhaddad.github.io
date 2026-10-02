@@ -9,6 +9,10 @@ originalUrl: https://medium.com/@mhaddad/a-rota-esquecida-dos-antigos-construtor
 draft: false
 ---
 
+![A pilgrim with a backpack and walking stick on a hilltop under the Milky Way, looking toward the lit towers of a cathedral on the horizon](../../../assets/articles/a-rota-esquecida-dos-antigos-construtores/via-lactea.jpeg)
+
+*Illustration showing the Milky Way as a night guide for pilgrims.*
+
 > Long before the French Way to Santiago de Compostela existed, an initiatory route of builders already crossed the Pyrenees. I rebuilt its path from the clues left by Louis Charpentier.
 
 Anyone walking to Santiago de Compostela today follows a well-marked trail. There are yellow arrows painted on signs, walls, posts and sidewalks; hostels every few kilometers; maps, books and guides that describe every church and every legend along the way. Everything seems designed so that no one gets lost. And perhaps that is exactly the point that deserves attention: a path so carefully prepared to be walked by crowds may itself be the result of a choice. **Someone decided where the pilgrims should go**.
@@ -40,10 +44,6 @@ So keep this path and this origin in mind, because Charpentier's argument is bor
 Charpentier's first clue comes from a curious object. Charlemagne's reliquary bore an engraving of the direction of Compostela, marked by two rows of stars. Charpentier does not read them as ornament, but as a map.
 
 There is an old reason for this association between Compostela and the stars. In popular tradition, the Camino de Santiago is the Milky Way itself, that trail of stars that crosses the night sky toward the constellation Canis Major. Pilgrims walked west with that band of light pointing the way at night. The name Compostela, by the way, is often linked to *campus stellae*, the field of the star. Sky and earth, in this reading, repeat the same design: a corridor running from sunrise to sunset.
-
-![A pilgrim with a backpack and walking stick on a hilltop under the Milky Way, looking toward the lit towers of a cathedral on the horizon](../../../assets/articles/a-rota-esquecida-dos-antigos-construtores/via-lactea.jpeg)
-
-*Illustration showing the Milky Way as a night guide for pilgrims.*
 
 For Charpentier, the two rows of stars on the reliquary correspond to two parallel lines that cross the Iberian Peninsula from the Mediterranean to the Atlantic. And what would support this reading is toponymy. Along these lines, he finds a succession of place names connected to the star: the Pic d’Estelle and the Puig de l’Estelle in Catalonia, Estella in Navarre, whose Basque name Lizarra also means star, and Lizárraga as well, farther on toward Galicia. These points are spread over almost a thousand kilometers, and nearly all of them line up around two very close bands of latitude.
 
