@@ -9,6 +9,10 @@ originalUrl: https://www.linkedin.com/pulse/ia-muda-quase-tudo-na-sua-empresa-me
 draft: false
 ---
 
+![An empty leather office chair in the middle of a concrete warehouse, with a golden coin marked "IA" (AI in Portuguese) resting on the seat](../../../assets/articles/a-ia-muda-quase-tudo-na-sua-empresa-menos-o-jogo-de-poder/capa.png)
+
+*AI vs. the Power Game in Organizations - Image created with Gemini (Nano Banana 2)*
+
 Every promise of a leaner organization powered by artificial intelligence comes with the same built-in line: fewer layers, less bureaucracy and less politics. The idea is that if the machine takes care of coordination, the fight for power loses its reason to exist.
 
 In practice, that is exactly the part of the promise that doesn't come true. AI touches almost everything a hierarchy does, but there is one thing it doesn't lay a finger on: power.

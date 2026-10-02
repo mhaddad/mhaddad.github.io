@@ -9,6 +9,10 @@ originalUrl: https://www.linkedin.com/pulse/ia-muda-quase-tudo-na-sua-empresa-me
 draft: false
 ---
 
+![Poltrona de escritório de couro vazia no centro de um galpão de concreto, com uma moeda dourada com as letras IA apoiada no assento](../../../assets/articles/a-ia-muda-quase-tudo-na-sua-empresa-menos-o-jogo-de-poder/capa.png)
+
+*IA x Jogo de Poder nas Organizações - Imagem criada pelo Gemini (NanoBanana 2)*
+
 Toda promessa de organização mais enxuta com inteligência artificial vem com a mesma frase embutida: menos camadas, menos burocracia e menos política. A ideia é que, se a máquina cuida da coordenação, a disputa por poder perde a razão de existir.
 
 Na prática, é justamente essa parte da promessa que não se cumpre. A IA mexe com quase tudo que uma hierarquia faz, mas em uma coisa ela não encosta: o poder.
