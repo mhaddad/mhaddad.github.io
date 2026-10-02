@@ -21,9 +21,9 @@ Defini “Coerência Cognitiva” como a **compatibilidade funcional entre a arq
 
 *Para compreender melhor o contexto deste texto e os conceitos de Coerência Congnitiva e Person-Organization Fit, recomendo a leitura dos artigos:*
 
-1. [Quando uma pessoa não combina com o seu trabalho](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b)
+1. [Quando uma pessoa não combina com o seu trabalho](/artigos/quando-uma-pessoa-nao-combina-com-o-seu-trabalho/)
 2. [Coerência Cognitiva: quando a forma de pensar, decidir e agir encontra a forma de trabalhar](/artigos/coerencia-cognitiva/)
-3. [A diferença entre grupo e equipe e o custo invisível da coordenação do trabalho](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f)
+3. [A diferença entre grupo e equipe e o custo invisível da coordenação do trabalho](/artigos/a-diferenca-entre-grupo-e-equipe-e-o-custo-invisivel-da-coordenacao/)
 
 ---
 
@@ -106,7 +106,7 @@ Pense em quatro indivíduos com IPA alto. Todos prosperariam, em tese, em ambien
 
 São quatro perfis com o mesmo “score de autonomia”, e que demandam desenhos de trabalho completamente diferentes. Reduzir qualquer um deles a um único número seria perder exatamente a informação mais útil para a organização e para o próprio indivíduo.
 
-No [próximo artigo](https://medium.com/@mhaddad/a-matriz-p-o-fit-e-os-16-lugares-de-pot%C3%AAncia-c701320742bb), vou mostrar como essa configuração conjunta dos quatro índices se traduz em posicionamento na Matriz P-O Fit e gera os **16 perfis** que o modelo identifica, cada um com um **Lugar de Potência**, ambientes ideais e riscos de desengajamento específicos.
+No [próximo artigo](/artigos/a-matriz-p-o-fit-e-os-16-lugares-de-potencia/), vou mostrar como essa configuração conjunta dos quatro índices se traduz em posicionamento na Matriz P-O Fit e gera os **16 perfis** que o modelo identifica, cada um com um **Lugar de Potência**, ambientes ideais e riscos de desengajamento específicos.
 
 ## Uma proposta de reflexão
 

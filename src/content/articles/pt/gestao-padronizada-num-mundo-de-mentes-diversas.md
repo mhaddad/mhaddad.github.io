@@ -27,12 +27,12 @@ Essa é a contradição que motivou esta série de artigos.
 
 *Para compreender melhor o contexto deste texto e os conceitos de Coerência Congnitiva e Person-Organization Fit, recomendo a leitura dos artigos:*
 
-1. [Quando uma pessoa não combina com o seu trabalho](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b)
+1. [Quando uma pessoa não combina com o seu trabalho](/artigos/quando-uma-pessoa-nao-combina-com-o-seu-trabalho/)
 2. [Coerência Cognitiva: quando a forma de pensar, decidir e agir encontra a forma de trabalhar](/artigos/coerencia-cognitiva/)
-3. [A diferença entre grupo e equipe e o custo invisível da coordenação do trabalho](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f)
-4. [Os quatro índices da Coerência Cognitiva no trabalho](https://medium.com/@mhaddad/os-quatro-%C3%ADndices-da-coer%C3%AAncia-cognitiva-no-trabalho-7beb2b8ee468)
-5. [A Matriz P-O Fit e os 16 Lugares de Potência](https://medium.com/@mhaddad/a-matriz-p-o-fit-e-os-16-lugares-de-pot%C3%AAncia-c701320742bb)
-6. [Coerência Cognitiva e o Modelo de Onboarding nas Organizações](https://medium.com/@mhaddad/coer%C3%AAncia-cognitiva-e-o-modelo-de-onboarding-nas-organiza%C3%A7%C3%B5es-8e4319b02a00)
+3. [A diferença entre grupo e equipe e o custo invisível da coordenação do trabalho](/artigos/a-diferenca-entre-grupo-e-equipe-e-o-custo-invisivel-da-coordenacao/)
+4. [Os quatro índices da Coerência Cognitiva no trabalho](/artigos/os-quatro-indices-da-coerencia-cognitiva-no-trabalho/)
+5. [A Matriz P-O Fit e os 16 Lugares de Potência](/artigos/a-matriz-p-o-fit-e-os-16-lugares-de-potencia/)
+6. [Coerência Cognitiva e o Modelo de Onboarding nas Organizações](/artigos/coerencia-cognitiva-e-o-modelo-de-onboarding-nas-organizacoes/)
 
 ---
 

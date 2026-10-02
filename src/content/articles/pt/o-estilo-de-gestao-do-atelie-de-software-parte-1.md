@@ -108,13 +108,13 @@ Os valores centrais do Manifesto Ágil são:
 
 No Ateliê de Software, esses valores (e também os [12 princípios do Manifesto Ágil](https://agilemanifesto.org/iso/ptbr/principles.html)) estão profundamente integrados na cultura da empresa. As equipes multidisciplinares trabalham de forma colaborativa, sempre ajustando seu trabalho às necessidades do cliente e às mudanças do mercado. A gestão ágil permite que as equipes respondam rapidamente a novas informações, mantendo uma abordagem iterativa e adaptativa em todos os projetos.
 
-Além do Manifesto Ágil, o Ateliê de Software se apoia em uma série de métodos de gestão e engenharia de software, como **Scrum, Kanban e Extreme Programming (XP)**, que compõem [sua jornada em busca de agilidade](https://share.atelie.software/uma-jornada-em-busca-da-agilidade-1aea10303dbd). Esses métodos permitem que o Ateliê mantenha um alto nível de qualidade no desenvolvimento de software, ao mesmo tempo que promove um ambiente de colaboração contínua e resposta rápida a mudanças.
+Além do Manifesto Ágil, o Ateliê de Software se apoia em uma série de métodos de gestão e engenharia de software, como **Scrum, Kanban e Extreme Programming (XP)**, que compõem [sua jornada em busca de agilidade](/artigos/uma-jornada-em-busca-da-agilidade/). Esses métodos permitem que o Ateliê mantenha um alto nível de qualidade no desenvolvimento de software, ao mesmo tempo que promove um ambiente de colaboração contínua e resposta rápida a mudanças.
 
 ---
 
 ## O estilo de gestão do Ateliê de Software
 
 - Parte 1: Introdução e principais influências
-- [Parte 2: Valores, premissas e princípios](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-2-afa58ec674e3)
-- [Parte 3: Estrutura organizacional e práticas de gestão](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-3-42119df11601)
-- [Parte 4: Resultados e desafios](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-4-97ca2795b16a)
+- [Parte 2: Valores, premissas e princípios](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-2/)
+- [Parte 3: Estrutura organizacional e práticas de gestão](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-3/)
+- [Parte 4: Resultados e desafios](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-4/)

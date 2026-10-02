@@ -91,7 +91,7 @@ The award reinforced the Ateliê's role as an organization that not only uses bu
 
 ### Spreading the Feedback Canvas
 
-Another significant contribution Ateliê de Software made to the market was the development of the [**Feedback Canvas**](https://medium.com/além-da-gestão-tradicional/feedback-em-vez-de-avaliação-de-desempenho-22a23a07efc7), a tool created to make the feedback process easier in the context of teamwork.
+Another significant contribution Ateliê de Software made to the market was the development of the [**Feedback Canvas**](/en/articles/feedback-instead-of-performance-reviews/), a tool created to make the feedback process easier in the context of teamwork.
 
 ![Feedback Canvas filled in for the Project Manager role: columns for role and activities, a scale from 1 (Novice) to 7 (Master) with markers, and three areas of sticky notes under a happy face, a sad face and a verified badge](../../../assets/articles/o-estilo-de-gestao-do-atelie-de-software-parte-4/feedback-canvas.png)
 
@@ -137,7 +137,7 @@ The experience gained and the culture built over the years establish the Ateliê
 
 ### The management style at Ateliê de Software
 
-→ [Part 1: Introduction and main influences](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-1-e4481f7712d3)  
-→ [Part 2: Values, premises and principles](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-2-afa58ec674e3)  
-→ [Part 3: Organizational structure and management practices](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-3-42119df11601)  
+→ [Part 1: Introduction and main influences](/en/articles/the-management-style-at-atelie-de-software-part-1/)  
+→ [Part 2: Values, premises and principles](/en/articles/the-management-style-at-atelie-de-software-part-2/)  
+→ [Part 3: Organizational structure and management practices](/en/articles/the-management-style-at-atelie-de-software-part-3/)  
 → Part 4: Results, recognition and challenges

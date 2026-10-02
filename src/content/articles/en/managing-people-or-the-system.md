@@ -27,7 +27,7 @@ So, reframing the original question, it would be better put this way:
 
 In companies that adopt organic management, like Webgoal, there are many situations of conflict. On the other hand, it is through conflict that people are able to mature, making the system they are part of better prepared for new challenges and difficulties.
 
-**Read also:** [**O estilo de gestão da Webgoal**](https://share.atelie.software/o-estilo-de-gest%C3%A3o-da-webgoal-cff6d44ef15b) (Webgoal's management style, in Portuguese)
+**Read also:** [**Webgoal's management style**](/en/articles/webgoals-management-style/)
 
 When I see traditional management trying to formalize the system, standardize the operation, fix the hierarchical structure and prescribe how everything should happen in order to keep control, I also understand that there is a systemic effort to keep conflicts from arising.
 

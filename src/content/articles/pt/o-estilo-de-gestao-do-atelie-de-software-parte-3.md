@@ -17,7 +17,7 @@ draft: false
 
 > *➔* Esse é o 3º de uma série de 4 artigos. Ele explica nossa estrutura organizacional e apresenta nossas práticas atuais de gestão.
 
-As práticas do **Ateliê de Software Way** são o reflexo de uma abordagem de gestão moderna e centrada nas pessoas. Elas demonstram como o dia a dia da organização funciona e como os [valores, princípios e premissas](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-2-afa58ec674e3) se manifestam de forma pragmática através de estruturas, processos e ferramentas de gestão.
+As práticas do **Ateliê de Software Way** são o reflexo de uma abordagem de gestão moderna e centrada nas pessoas. Elas demonstram como o dia a dia da organização funciona e como os [valores, princípios e premissas](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-2/) se manifestam de forma pragmática através de estruturas, processos e ferramentas de gestão.
 
 ## Estrutura organizacional
 
@@ -61,7 +61,7 @@ Ao eliminar a necessidade de supervisão hierárquica e fortalecer a auto-organi
 
 O desenvolvimento profissional no Ateliê de Software é orientado por um processo contínuo de **feedback** e pela criação de **oportunidades de aprendizado constante**. A cultura de feedback não visa comparações entre pares ou avaliações de desempenho tradicionais; ao contrário, é utilizada como uma ferramenta de crescimento individual.
 
-Para facilitar esse processo, o Ateliê criou o [**Feedback Canvas**](https://medium.com/além-da-gestão-tradicional/feedback-em-vez-de-avaliação-de-desempenho-22a23a07efc7), uma ferramenta interna que organiza e estrutura o feedback no contexto de trabalho em equipe. O Feedback Canvas permite que os membros alinhem suas percepções e promovam melhorias constantes, contribuindo para o desenvolvimento profissional e a união das equipes.
+Para facilitar esse processo, o Ateliê criou o [**Feedback Canvas**](/artigos/feedback-em-vez-de-avaliacao-de-desempenho/), uma ferramenta interna que organiza e estrutura o feedback no contexto de trabalho em equipe. O Feedback Canvas permite que os membros alinhem suas percepções e promovam melhorias constantes, contribuindo para o desenvolvimento profissional e a união das equipes.
 
 Por fim, as pessoas têm autonomia para escolher cursos, eventos e treinamentos que considerem relevantes para o seu desenvolvimento. As próprias equipes decidem sobre os investimentos em educação, como a participação em conferências de tecnologia, ampliando ainda mais as oportunidades de aprendizado.
 
@@ -106,7 +106,7 @@ No entanto, o escritório físico em Poços de Caldas (MG) está disponível par
 
 ## O estilo de gestão do Ateliê de Software
 
-- [Parte 1: Introdução e principais influências](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-1-e4481f7712d3)
-- [Parte 2: Valores, propostas e princípios](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-2-afa58ec674e3)
+- [Parte 1: Introdução e principais influências](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-1/)
+- [Parte 2: Valores, propostas e princípios](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-2/)
 - Parte 3: Estrutura organizacional e práticas de gestão
-- [Parte 4: Resultados e desafios](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-4-97ca2795b16a)
+- [Parte 4: Resultados e desafios](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-4/)

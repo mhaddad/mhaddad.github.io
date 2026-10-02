@@ -17,7 +17,7 @@ draft: false
 
 > *➔* This is the 3rd in a series of 4 articles. It explains our organizational structure and presents our current management practices.
 
-The practices of the **Ateliê de Software Way** reflect a modern, people-centered approach to management. They show how the organization works day to day and how our [values, principles and premises](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-2-afa58ec674e3) show up pragmatically through management structures, processes and tools.
+The practices of the **Ateliê de Software Way** reflect a modern, people-centered approach to management. They show how the organization works day to day and how our [values, principles and premises](/en/articles/the-management-style-at-atelie-de-software-part-2/) show up pragmatically through management structures, processes and tools.
 
 ## Organizational structure
 
@@ -61,7 +61,7 @@ By eliminating the need for hierarchical supervision and strengthening self-orga
 
 Professional development at Ateliê de Software is guided by a continuous **feedback** process and by creating **opportunities for constant learning**. The feedback culture isn't aimed at comparing peers or at traditional performance reviews; on the contrary, it is used as a tool for individual growth.
 
-To support this process, the Ateliê created the [**Feedback Canvas**](https://medium.com/além-da-gestão-tradicional/feedback-em-vez-de-avaliação-de-desempenho-22a23a07efc7), an internal tool that organizes and structures feedback in the context of teamwork. The Feedback Canvas lets members align their perceptions and drive constant improvement, contributing to professional development and to team cohesion.
+To support this process, the Ateliê created the [**Feedback Canvas**](/en/articles/feedback-instead-of-performance-reviews/), an internal tool that organizes and structures feedback in the context of teamwork. The Feedback Canvas lets members align their perceptions and drive constant improvement, contributing to professional development and to team cohesion.
 
 Finally, people have the autonomy to choose courses, events and training they consider relevant to their development. The teams themselves decide on investments in education, such as attending technology conferences, further expanding learning opportunities.
 
@@ -106,7 +106,7 @@ Even so, the physical office in Poços de Caldas, Minas Gerais, is available to 
 
 ## The management style at Ateliê de Software
 
-- [Part 1: Introduction and main influences](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-1-e4481f7712d3)
-- [Part 2: Values, proposals and principles](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-2-afa58ec674e3)
+- [Part 1: Introduction and main influences](/en/articles/the-management-style-at-atelie-de-software-part-1/)
+- [Part 2: Values, proposals and principles](/en/articles/the-management-style-at-atelie-de-software-part-2/)
 - Part 3: Organizational structure and management practices
-- [Part 4: Results and challenges](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-4-97ca2795b16a)
+- [Part 4: Results and challenges](/en/articles/the-management-style-at-atelie-de-software-part-4/)

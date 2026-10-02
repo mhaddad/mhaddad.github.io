@@ -13,7 +13,7 @@ draft: false
 
 *Workfit.me — Diagnostic tool for the P-O Fit model I am proposing*
 
-In the [previous article](https://medium.com/@mhaddad/gest%C3%A3o-padronizada-num-mundo-de-mentes-diversas-0947e8ee8ab8), I closed the conceptual argument of this series with a proposal: **recognizing people's cognitive diversity is not a concession to individual sensitivities, but the necessary next step in contemporary organizational design**.
+In the [previous article](/en/articles/standardized-management-in-a-world-of-diverse-minds/), I closed the conceptual argument of this series with a proposal: **recognizing people's cognitive diversity is not a concession to individual sensitivities, but the necessary next step in contemporary organizational design**.
 
 ---
 
@@ -21,13 +21,13 @@ In the [previous article](https://medium.com/@mhaddad/gest%C3%A3o-padronizada-nu
 
 *To better understand the context of this text and the concepts of Cognitive Coherence and Person-Organization Fit, I recommend reading these articles:*
 
-1. [When a person doesn't fit their work](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b)
+1. [When a person doesn't fit their work](/en/articles/when-a-person-doesnt-fit-their-work/)
 2. [Cognitive Coherence: when the way you think, decide and act meets the way you work](/en/articles/cognitive-coherence/)
-3. [The difference between a group and a team, and the invisible cost of coordinating work](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f)
-4. [The four indices of Cognitive Coherence at work](https://medium.com/@mhaddad/os-quatro-%C3%ADndices-da-coer%C3%AAncia-cognitiva-no-trabalho-7beb2b8ee468)
-5. [The P-O Fit Matrix and the 16 Places of Potential](https://medium.com/@mhaddad/a-matriz-p-o-fit-e-os-16-lugares-de-pot%C3%AAncia-c701320742bb)
-6. [Cognitive Coherence and the Onboarding Model in Organizations](https://medium.com/@mhaddad/coer%C3%AAncia-cognitiva-e-o-modelo-de-onboarding-nas-organiza%C3%A7%C3%B5es-8e4319b02a00)
-7. [Standardized management in a world of diverse minds](https://medium.com/@mhaddad/gest%C3%A3o-padronizada-num-mundo-de-mentes-diversas-0947e8ee8ab8)
+3. [The difference between a group and a team, and the invisible cost of coordinating work](/en/articles/the-difference-between-a-group-and-a-team-and-the-invisible-cost/)
+4. [The four indices of Cognitive Coherence at work](/en/articles/the-four-indices-of-cognitive-coherence-at-work/)
+5. [The P-O Fit Matrix and the 16 Places of Potential](/en/articles/the-p-o-fit-matrix-and-the-16-places-of-potential/)
+6. [Cognitive Coherence and the Onboarding Model in Organizations](/en/articles/cognitive-coherence-and-the-onboarding-model-in-organizations/)
+7. [Standardized management in a world of diverse minds](/en/articles/standardized-management-in-a-world-of-diverse-minds/)
 
 ---
 

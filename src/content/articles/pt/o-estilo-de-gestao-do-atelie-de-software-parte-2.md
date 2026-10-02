@@ -97,7 +97,7 @@ Esses princípios transformam nossos valores e premissas em ações práticas no
 
 ## O estilo de gestão do Ateliê de Software
 
-→ [Parte 1: Introdução e principais influências](https://medium.com/atelie-de-software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-1-e4481f7712d3)  
+→ [Parte 1: Introdução e principais influências](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-1/)  
 → Parte 2: Valores, premissas e princípios  
-→ [Parte 3: Estrutura organizacional e práticas de gestão](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-3-42119df11601)  
-→ [Parte 4: Resultados e desafios](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-4-97ca2795b16a)
+→ [Parte 3: Estrutura organizacional e práticas de gestão](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-3/)  
+→ [Parte 4: Resultados e desafios](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-4/)

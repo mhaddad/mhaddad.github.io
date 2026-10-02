@@ -21,9 +21,9 @@ I defined "Cognitive Coherence" as the **functional compatibility between the in
 
 *To better understand the context of this text and the concepts of Cognitive Coherence and Person-Organization Fit, I recommend reading these articles:*
 
-1. [Quando uma pessoa não combina com o seu trabalho](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b) (in Portuguese)
+1. [When a person doesn't fit their work](/en/articles/when-a-person-doesnt-fit-their-work/)
 2. [Cognitive Coherence: when the way you think, decide and act meets the way you work](/en/articles/cognitive-coherence/)
-3. [A diferença entre grupo e equipe e o custo invisível da coordenação do trabalho](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f) (in Portuguese)
+3. [The difference between a group and a team and the invisible cost of coordinating work](/en/articles/the-difference-between-a-group-and-a-team-and-the-invisible-cost/)
 
 ---
 
@@ -106,7 +106,7 @@ Think of four individuals with a high IPA. All of them would, in theory, thrive 
 
 These are four profiles with the same "autonomy score" that call for completely different work designs. Reducing any of them to a single number would mean losing exactly the information that is most useful to the organization and to the individual themselves.
 
-In the [next article](https://medium.com/@mhaddad/a-matriz-p-o-fit-e-os-16-lugares-de-pot%C3%AAncia-c701320742bb), I will show how this combined configuration of the four indices translates into a position on the P-O Fit Matrix and produces the **16 profiles** the model identifies, each with its own **Place of Potential**, ideal environments and specific disengagement risks.
+In the [next article](/en/articles/the-p-o-fit-matrix-and-the-16-places-of-potential/), I will show how this combined configuration of the four indices translates into a position on the P-O Fit Matrix and produces the **16 profiles** the model identifies, each with its own **Place of Potential**, ideal environments and specific disengagement risks.
 
 ## Something to reflect on
 

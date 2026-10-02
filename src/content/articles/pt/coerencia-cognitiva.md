@@ -13,7 +13,7 @@ draft: false
 
 *Imagem criada com ChatGPT (Images 2) — Coerência Cognitiva*
 
-No [artigo anterior](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b), argumentei que a abordagem tradicional de *Person-Organization Fit*, centrada na congruência de valores entre indivíduo e organização, tem um limite estrutural: **os valores declarados não predizem bem o comportamento real no trabalho**. A abordagem que proponho não se interessa pelo que a pessoa diz acreditar, mas pela forma como ela pensa, decide e coordena o próprio trabalho com os outros.
+No [artigo anterior](/artigos/quando-uma-pessoa-nao-combina-com-o-seu-trabalho/), argumentei que a abordagem tradicional de *Person-Organization Fit*, centrada na congruência de valores entre indivíduo e organização, tem um limite estrutural: **os valores declarados não predizem bem o comportamento real no trabalho**. A abordagem que proponho não se interessa pelo que a pessoa diz acreditar, mas pela forma como ela pensa, decide e coordena o próprio trabalho com os outros.
 
 Essa mudança exige um princípio teórico que a sustente. Afinal o que significa, em termos precisos, haver compatibilidade entre a maneira como alguém pensa e o que a organização exige dele? Esse princípio é o que chamo de **Coerência Cognitiva**.
 
@@ -75,7 +75,7 @@ Um desalinhamento entre colaborador e organização pode ser, na essência, um c
 
 ---
 
-No [próximo artigo](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f), vou desenvolver a segunda dimensão da Coerência Cognitiva, frequentemente subestimada e mal compreendida: a diferença estrutural entre trabalhar em grupo e trabalhar em equipe, e por que confundir essas duas modalidades de coordenação tem um custo real para pessoas e organizações.
+No [próximo artigo](/artigos/a-diferenca-entre-grupo-e-equipe-e-o-custo-invisivel-da-coordenacao/), vou desenvolver a segunda dimensão da Coerência Cognitiva, frequentemente subestimada e mal compreendida: a diferença estrutural entre trabalhar em grupo e trabalhar em equipe, e por que confundir essas duas modalidades de coordenação tem um custo real para pessoas e organizações.
 
 ## Uma proposta de reflexão
 

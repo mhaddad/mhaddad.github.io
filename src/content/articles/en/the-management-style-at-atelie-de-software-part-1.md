@@ -108,13 +108,13 @@ The core values of the Agile Manifesto are:
 
 At Ateliê de Software, these values (as well as the [12 principles of the Agile Manifesto](https://agilemanifesto.org/principles.html)) are deeply woven into the company's culture. Multidisciplinary teams work collaboratively, always adjusting their work to clients' needs and to market changes. Agile management allows teams to respond quickly to new information, keeping an iterative, adaptive approach across every project.
 
-Beyond the Agile Manifesto, Ateliê de Software relies on a number of management and software engineering methods, such as **Scrum, Kanban and Extreme Programming (XP)**, which make up [its journey in search of agility](https://share.atelie.software/uma-jornada-em-busca-da-agilidade-1aea10303dbd). These methods allow the Ateliê to maintain a high level of quality in software development, while fostering an environment of continuous collaboration and rapid response to change.
+Beyond the Agile Manifesto, Ateliê de Software relies on a number of management and software engineering methods, such as **Scrum, Kanban and Extreme Programming (XP)**, which make up [its journey in search of agility](/en/articles/a-journey-in-search-of-agility/). These methods allow the Ateliê to maintain a high level of quality in software development, while fostering an environment of continuous collaboration and rapid response to change.
 
 ---
 
 ## The management style at Ateliê de Software
 
 - Part 1: Introduction and main influences
-- [Part 2: Values, assumptions and principles](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-2-afa58ec674e3)
-- [Part 3: Organizational structure and management practices](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-3-42119df11601)
-- [Part 4: Results and challenges](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-4-97ca2795b16a)
+- [Part 2: Values, assumptions and principles](/en/articles/the-management-style-at-atelie-de-software-part-2/)
+- [Part 3: Organizational structure and management practices](/en/articles/the-management-style-at-atelie-de-software-part-3/)
+- [Part 4: Results and challenges](/en/articles/the-management-style-at-atelie-de-software-part-4/)

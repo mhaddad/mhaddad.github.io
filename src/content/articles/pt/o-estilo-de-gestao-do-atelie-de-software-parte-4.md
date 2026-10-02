@@ -91,7 +91,7 @@ A premiação reforçou o papel do Ateliê como uma organização que não só u
 
 ### Popularização do Feedback Canvas
 
-Outra contribuição significativa do Ateliê de Software para o mercado foi o desenvolvimento do [**Feedback Canvas**](https://medium.com/além-da-gestão-tradicional/feedback-em-vez-de-avaliação-de-desempenho-22a23a07efc7), uma ferramenta criada para facilitar o processo de feedback no contexto do trabalho em equipe.
+Outra contribuição significativa do Ateliê de Software para o mercado foi o desenvolvimento do [**Feedback Canvas**](/artigos/feedback-em-vez-de-avaliacao-de-desempenho/), uma ferramenta criada para facilitar o processo de feedback no contexto do trabalho em equipe.
 
 ![Feedback Canvas preenchido para o papel de Gerente de Projetos: colunas de papel e atividades, uma escala de 1 (Novato) a 7 (Mestre) com marcações, e três áreas de post-its sob um rosto feliz, um rosto triste e um selo de verificado](../../../assets/articles/o-estilo-de-gestao-do-atelie-de-software-parte-4/feedback-canvas.png)
 
@@ -137,7 +137,7 @@ A experiência acumulada e a cultura construída ao longo dos anos consolidam o 
 
 ### O estilo de gestão do Ateliê de Software
 
-→ [Parte 1: Introdução e principais influências](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-1-e4481f7712d3)  
-→ [Parte 2: Valores, premissas e princípios](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-2-afa58ec674e3)  
-→ [Parte 3: Estrutura organizacional e práticas de gestão](https://medium.com/atelie-de-software/o-estilo-de-gestão-do-ateliê-de-software-parte-3-42119df11601)  
+→ [Parte 1: Introdução e principais influências](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-1/)  
+→ [Parte 2: Valores, premissas e princípios](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-2/)  
+→ [Parte 3: Estrutura organizacional e práticas de gestão](/artigos/o-estilo-de-gestao-do-atelie-de-software-parte-3/)  
 → Parte 4: Resultados, reconhecimentos e desafios

@@ -21,11 +21,11 @@ Nos cinco artigos anteriores, construí o argumento de que a compatibilidade ent
 
 *Para compreender melhor o contexto deste texto e os conceitos de Coerência Congnitiva e Person-Organization Fit, recomendo a leitura dos artigos:*
 
-1. [Quando uma pessoa não combina com o seu trabalho](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b)
+1. [Quando uma pessoa não combina com o seu trabalho](/artigos/quando-uma-pessoa-nao-combina-com-o-seu-trabalho/)
 2. [Coerência Cognitiva: quando a forma de pensar, decidir e agir encontra a forma de trabalhar](/artigos/coerencia-cognitiva/)
-3. [A diferença entre grupo e equipe e o custo invisível da coordenação do trabalho](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f)
-4. [Os quatro índices da Coerência Cognitiva no trabalho](https://medium.com/@mhaddad/os-quatro-%C3%ADndices-da-coer%C3%AAncia-cognitiva-no-trabalho-7beb2b8ee468)
-5. [A Matriz P-O Fit e os 16 Lugares de Potência](https://medium.com/@mhaddad/a-matriz-p-o-fit-e-os-16-lugares-de-pot%C3%AAncia-c701320742bb)
+3. [A diferença entre grupo e equipe e o custo invisível da coordenação do trabalho](/artigos/a-diferenca-entre-grupo-e-equipe-e-o-custo-invisivel-da-coordenacao/)
+4. [Os quatro índices da Coerência Cognitiva no trabalho](/artigos/os-quatro-indices-da-coerencia-cognitiva-no-trabalho/)
+5. [A Matriz P-O Fit e os 16 Lugares de Potência](/artigos/a-matriz-p-o-fit-e-os-16-lugares-de-potencia/)
 
 ---
 
@@ -125,7 +125,7 @@ Vale fechar com a inversão da pergunta. Se as organizações continuam usando u
 
 O custo é triplo. Para a organização, é tempo perdido até a nova pessoa começar a contribuir efetivamente, somado a taxas de turnover precoce que costumam ser interpretadas como “má seleção” quando, na verdade, são má integração. Para a pessoa, é o desgaste emocional de estar num ambiente que não a entende e a sensação persistente de estar começando errado. Para a cultura organizacional, é a perda da diversidade cognitiva que a empresa, no discurso, diz valorizar e, na prática, expulsa pelas portas do fundo.
 
-No [próximo artigo da série](https://medium.com/@mhaddad/gest%C3%A3o-padronizada-num-mundo-de-mentes-diversas-0947e8ee8ab8), vou desenvolver essa crítica mais ampla: por que a padronização de modelos de gestão num mundo de arquiteturas cognitivas diversas é, simultaneamente, ineficiente e injusta. E por que reconhecer essa diversidade não é uma concessão a sensibilidades individuais, mas o próximo passo necessário no design organizacional contemporâneo.
+No [próximo artigo da série](/artigos/gestao-padronizada-num-mundo-de-mentes-diversas/), vou desenvolver essa crítica mais ampla: por que a padronização de modelos de gestão num mundo de arquiteturas cognitivas diversas é, simultaneamente, ineficiente e injusta. E por que reconhecer essa diversidade não é uma concessão a sensibilidades individuais, mas o próximo passo necessário no design organizacional contemporâneo.
 
 ## Uma proposta de reflexão
 

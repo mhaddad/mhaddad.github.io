@@ -13,7 +13,7 @@ draft: false
 
 *Image created with ChatGPT (Images 2) — Cognitive Coherence*
 
-In the [previous article](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b), I argued that the traditional approach to *Person-Organization Fit*, centered on the congruence of values between individual and organization, has a structural limit: **declared values are poor predictors of actual behavior at work**. The approach I propose is not interested in what a person says they believe, but in how they think, decide and coordinate their own work with others.
+In the [previous article](/en/articles/when-a-person-doesnt-fit-their-work/), I argued that the traditional approach to *Person-Organization Fit*, centered on the congruence of values between individual and organization, has a structural limit: **declared values are poor predictors of actual behavior at work**. The approach I propose is not interested in what a person says they believe, but in how they think, decide and coordinate their own work with others.
 
 This shift requires a theoretical principle to support it. After all, what does it mean, in precise terms, for there to be compatibility between the way someone thinks and what the organization demands of them? That principle is what I call **Cognitive Coherence**.
 
@@ -75,7 +75,7 @@ A misalignment between employee and organization may be, in essence, a silent co
 
 ---
 
-In the [next article](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f), I will develop the second dimension of Cognitive Coherence, which is often underestimated and misunderstood: the structural difference between working as a group and working as a team, and why confusing these two modes of coordination has a real cost for people and organizations.
+In the [next article](/en/articles/the-difference-between-a-group-and-a-team-and-the-invisible-cost/), I will develop the second dimension of Cognitive Coherence, which is often underestimated and misunderstood: the structural difference between working as a group and working as a team, and why confusing these two modes of coordination has a real cost for people and organizations.
 
 ## Something to reflect on
 

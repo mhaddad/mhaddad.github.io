@@ -97,7 +97,7 @@ These principles turn our values and premises into practical actions in the day-
 
 ## The management style at Ateliê de Software
 
-→ [Part 1: Introduction and main influences](https://medium.com/atelie-de-software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-1-e4481f7712d3)  
+→ [Part 1: Introduction and main influences](/en/articles/the-management-style-at-atelie-de-software-part-1/)  
 → Part 2: Values, premises and principles  
-→ [Part 3: Organizational structure and management practices](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-3-42119df11601)  
-→ [Part 4: Results and challenges](https://share.atelie.software/o-estilo-de-gest%C3%A3o-do-ateli%C3%AA-de-software-parte-4-97ca2795b16a)
+→ [Part 3: Organizational structure and management practices](/en/articles/the-management-style-at-atelie-de-software-part-3/)  
+→ [Part 4: Results and challenges](/en/articles/the-management-style-at-atelie-de-software-part-4/)

@@ -359,7 +359,7 @@ Chegamos ao ponto que costura tudo. Como um corpo levado por uma barca à deriva
 
 A resposta que a corrente esotérica oferece é ousada: **o Caminho já existiria muito antes de Santiago**. Seria uma rota de peregrinação pré-cristã, aberta por povos construtores que sabiam ler as energias da terra e as posições do céu, percorrida rumo ao ocidente em busca de renascimento. A lenda do apóstolo teria vindo depois, cristianizando uma tradição anterior, dando nomes cristãos aos velhos deuses e santos às antigas festas.
 
-Essa [rota dos antigos construtores](https://medium.com/@mhaddad/a-rota-esquecida-dos-antigos-construtores-045f338508ee) é um tema por si só, com sua própria geografia e suas próprias evidências. O que importa aqui é a consequência: a lenda áurea Jacobéia não apagou o que veio antes. Ela guardou. Funcionou como um baú que preservou os símbolos de um mundo mais velho justamente ao traduzi-los para a linguagem da nova religião.
+Essa [rota dos antigos construtores](/artigos/a-rota-esquecida-dos-antigos-construtores/) é um tema por si só, com sua própria geografia e suas próprias evidências. O que importa aqui é a consequência: a lenda áurea Jacobéia não apagou o que veio antes. Ela guardou. Funcionou como um baú que preservou os símbolos de um mundo mais velho justamente ao traduzi-los para a linguagem da nova religião.
 
 Talvez seja essa a razão de o Caminho continuar lotado numa época que se diz sem mistério. Quem parte hoje não precisa acreditar em nada disso, mas acaba tocando, sem saber, numa camada de significados que atravessa milênios. A concha na mochila, a flecha amarela que substitui a estrela, o cansaço do corpo, a chegada ao mar. Tudo isso já era feito muito antes, com outros nomes.
 

@@ -13,7 +13,7 @@ draft: false
 
 *Image created with Gemini (Nano banana 2) — 16 places of potential*
 
-In the [previous article](https://medium.com/@mhaddad/os-quatro-%C3%ADndices-da-coer%C3%AAncia-cognitiva-no-trabalho-7beb2b8ee468), I presented the four indices that turn Cognitive Coherence into a diagnosis: two positioning indices (the **Readiness for Autonomy Index** and the **Social and Ethical Intelligence Index**) that determine where the individual stands on the P-O Fit Matrix, and two qualifying indices (the **Resilience and Cognitive Load Index** and the **Cognitive Processing Index**) that describe how deep that positioning goes and under what conditions it holds. What was still missing was to show how this configuration translates into something concrete and actionable for people and organizations.
+In the [previous article](/en/articles/the-four-indices-of-cognitive-coherence-at-work/), I presented the four indices that turn Cognitive Coherence into a diagnosis: two positioning indices (the **Readiness for Autonomy Index** and the **Social and Ethical Intelligence Index**) that determine where the individual stands on the P-O Fit Matrix, and two qualifying indices (the **Resilience and Cognitive Load Index** and the **Cognitive Processing Index**) that describe how deep that positioning goes and under what conditions it holds. What was still missing was to show how this configuration translates into something concrete and actionable for people and organizations.
 
 ---
 
@@ -21,10 +21,10 @@ In the [previous article](https://medium.com/@mhaddad/os-quatro-%C3%ADndices-da-
 
 *To better understand the context of this text and the concepts of Cognitive Coherence and Person-Organization Fit, I recommend reading these articles:*
 
-1. [When a person doesn't fit their work](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b)
+1. [When a person doesn't fit their work](/en/articles/when-a-person-doesnt-fit-their-work/)
 2. [Cognitive Coherence: when the way you think, decide and act meets the way you work](/en/articles/cognitive-coherence/)
-3. [The difference between a group and a team and the invisible cost of coordinating work](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f)
-4. [The four indices of Cognitive Coherence at work](https://medium.com/@mhaddad/os-quatro-%C3%ADndices-da-coer%C3%AAncia-cognitiva-no-trabalho-7beb2b8ee468)
+3. [The difference between a group and a team and the invisible cost of coordinating work](/en/articles/the-difference-between-a-group-and-a-team-and-the-invisible-cost/)
+4. [The four indices of Cognitive Coherence at work](/en/articles/the-four-indices-of-cognitive-coherence-at-work/)
 
 ---
 

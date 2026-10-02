@@ -21,11 +21,11 @@ In the five previous articles, I built the argument that the compatibility betwe
 
 *To better understand the context of this text and the concepts of Cognitive Coherence and Person-Organization Fit, I recommend reading these articles:*
 
-1. [When a person doesn't fit their work](https://medium.com/@mhaddad/quando-uma-pessoa-n%C3%A3o-combina-com-o-seu-trabalho-57661576e96b)
+1. [When a person doesn't fit their work](/en/articles/when-a-person-doesnt-fit-their-work/)
 2. [Cognitive Coherence: when the way you think, decide and act meets the way you work](/en/articles/cognitive-coherence/)
-3. [The difference between a group and a team and the invisible cost of coordinating work](https://medium.com/@mhaddad/a-diferen%C3%A7a-entre-grupo-e-equipe-e-o-custo-invis%C3%ADvel-da-coordena%C3%A7%C3%A3o-do-trabalho-d39a65fc042f)
-4. [The four indices of Cognitive Coherence at work](https://medium.com/@mhaddad/os-quatro-%C3%ADndices-da-coer%C3%AAncia-cognitiva-no-trabalho-7beb2b8ee468)
-5. [The P-O Fit Matrix and the 16 Places of Potential](https://medium.com/@mhaddad/a-matriz-p-o-fit-e-os-16-lugares-de-pot%C3%AAncia-c701320742bb)
+3. [The difference between a group and a team and the invisible cost of coordinating work](/en/articles/the-difference-between-a-group-and-a-team-and-the-invisible-cost/)
+4. [The four indices of Cognitive Coherence at work](/en/articles/the-four-indices-of-cognitive-coherence-at-work/)
+5. [The P-O Fit Matrix and the 16 Places of Potential](/en/articles/the-p-o-fit-matrix-and-the-16-places-of-potential/)
 
 ---
 
@@ -125,7 +125,7 @@ Let me close by flipping the question. If organizations keep using a single onbo
 
 The cost is threefold. For the organization, it is time lost until the new person starts contributing effectively, plus early turnover rates that are usually interpreted as "bad hiring" when, in fact, they are bad integration. For the person, it is the emotional toll of being in an environment that doesn't understand them, and the persistent feeling of getting off on the wrong foot. For the organizational culture, it is the loss of the cognitive diversity that the company, in its discourse, claims to value and, in practice, pushes out the back door.
 
-In the [next article in the series](https://medium.com/@mhaddad/gest%C3%A3o-padronizada-num-mundo-de-mentes-diversas-0947e8ee8ab8), I will develop this broader critique: why standardizing management models in a world of diverse cognitive architectures is, at the same time, inefficient and unfair. And why recognizing this diversity is not a concession to individual sensitivities, but the necessary next step in contemporary organizational design.
+In the [next article in the series](/en/articles/standardized-management-in-a-world-of-diverse-minds/), I will develop this broader critique: why standardizing management models in a world of diverse cognitive architectures is, at the same time, inefficient and unfair. And why recognizing this diversity is not a concession to individual sensitivities, but the necessary next step in contemporary organizational design.
 
 ## Something to reflect on
 

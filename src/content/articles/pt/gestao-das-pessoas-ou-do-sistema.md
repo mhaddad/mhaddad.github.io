@@ -27,7 +27,7 @@ Desta forma, reformulando a pergunta inicial, o questionamento ficaria melhor as
 
 Em empresas que adotam uma gestão orgânica, como na Webgoal, existem muitas situações de conflitos. Por outro lado, são através de conflitos que as pessoas conseguem amadurecer, tornando o sistema do qual fazem parte mais preparado para novos desafios e dificuldades.
 
-**Leia também:** [**O estilo de gestão da Webgoal**](https://share.atelie.software/o-estilo-de-gest%C3%A3o-da-webgoal-cff6d44ef15b)
+**Leia também:** [**O estilo de gestão da Webgoal**](/artigos/o-estilo-de-gestao-da-webgoal/)
 
 Quando eu vejo a gestão tradicional querendo formalizar o sistema, padronizar a operação, fixar a estrutura hierárquica e prescrever como tudo deve acontecer para manter o controle, entendo também que existe um esforço sistêmico para evitar que surjam conflitos.
 
