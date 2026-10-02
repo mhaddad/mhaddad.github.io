@@ -5,3 +5,6 @@ node_modules/
 dist/
 .test-dist/
 .astro/
+
+# Arquivos de referência enviados manualmente (imagens e outros que não consigo obter); não vão para o repositório
+/reference-files/
