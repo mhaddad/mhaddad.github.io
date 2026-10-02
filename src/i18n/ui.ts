@@ -34,10 +34,6 @@ const pt = {
   'hero.subtitle':
     'Matheus Haddad ajuda CEOs e CTOs a redesenhar organizações para crescer com clareza, combinando estratégia de negócios, tecnologia e gestão de pessoas.',
   'hero.services': 'Ver serviços',
-  'proof.label': 'Números e empresas',
-  'proof.companies': 'empresas fundadas',
-  'proof.years': 'anos de gestão',
-  'proof.leaders': 'líderes apoiados',
   'proof.logos': 'Empresas e iniciativas',
   'home.featured': 'Artigos em destaque',
   'home.allArticles': 'Ver todos os artigos',
@@ -177,10 +173,6 @@ const en: Record<UIKey, string> = {
   'hero.subtitle':
     'Matheus Haddad helps CEOs and CTOs redesign organizations to grow with clarity, combining business strategy, technology, and people management.',
   'hero.services': 'See services',
-  'proof.label': 'Numbers and companies',
-  'proof.companies': 'companies founded',
-  'proof.years': 'years in management',
-  'proof.leaders': 'leaders supported',
   'proof.logos': 'Companies & initiatives',
   'home.featured': 'Featured articles',
   'home.allArticles': 'See all articles',

@@ -510,10 +510,33 @@ describe('home', () => {
     // Assert
     expect(h1).toBe('Negócios, tecnologia e pessoas: como organizações crescem na era da IA.');
     expect(html).toMatch(/<div class="waves"[^>]*aria-hidden="true"[^>]*>\s*<canvas/);
-    expect(html).toContain('500+');
     expect(featured).toBeGreaterThan(-1);
     expect(older).toBeGreaterThan(featured);
     expect(html).not.toContain('Rascunho de teste');
+  });
+});
+
+describe('faixa de prova da home', () => {
+  it('deve mostrar só as empresas e iniciativas, sem os números de empresas, anos e líderes, nos dois idiomas', () => {
+    // Arrange
+    const pages = [page('index.html'), page('en/index.html')];
+
+    // Act
+    const sections = pages.map((html) => /<section class="proof"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '');
+
+    // Assert
+    expect(sections.every((section) => section.includes('class="logo"'))).toBe(true);
+    expect(sections.map((section) => (section.match(/class="logo"/g) ?? []).length)).toEqual([8, 8]);
+    expect(sections[0]).toContain('Empresas e iniciativas');
+    expect(sections[1]).toContain('Companies &amp; initiatives');
+    for (const html of pages) {
+      const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, '');
+      expect(visible).not.toMatch(/500\+|15\+|empresas fundadas|anos de gestão|líderes apoiados|companies founded|years in management|leaders supported/);
+      expect(visible).not.toContain('<dl');
+    }
+    // A faixa é nomeada pelo próprio título, sem um segundo texto só para leitores de tela.
+    expect(sections[0]).toMatch(/<section class="proof"[^>]*aria-labelledby="proof-title"/);
+    expect(sections[0]).toContain('id="proof-title"');
   });
 });
 

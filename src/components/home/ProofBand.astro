@@ -1,5 +1,5 @@
 ---
-import { t, type Lang, type UIKey } from '../../i18n/ui';
+import { t, type Lang } from '../../i18n/ui';
 import { companyMasks, getAllCompanies } from '../../lib/collections';
 import { sortCompanies } from '../../lib/companies';
 
@@ -9,13 +9,6 @@ interface Props {
 
 const { lang } = Astro.props;
 
-// Números confirmados pelo autor em 01/10/2026.
-const stats: { value: string; label: UIKey }[] = [
-  { value: '5', label: 'proof.companies' },
-  { value: '15+', label: 'proof.years' },
-  { value: '500+', label: 'proof.leaders' },
-];
-
 // Logos em máscara: pegam a cor do texto nos dois temas (npm run assets).
 const companies = sortCompanies(await getAllCompanies()).map((company) => ({
   name: company.data.name,
@@ -23,20 +16,10 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
 }));
 ---
 
-<section class="proof" aria-label={t(lang, 'proof.label')}>
+<section class="proof" aria-labelledby="proof-title">
   <div class="container">
-    <dl class="stats">
-      {
-        stats.map((stat) => (
-          <div class="stat">
-            <dt class="mono">{t(lang, stat.label)}</dt>
-            <dd>{stat.value}</dd>
-          </div>
-        ))
-      }
-    </dl>
     <div class="companies">
-      <p class="mono title">{t(lang, 'proof.logos')}</p>
+      <p id="proof-title" class="mono title">{t(lang, 'proof.logos')}</p>
       <ul>
         {
           companies.map(({ name, mask }) => (
@@ -55,39 +38,6 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     padding-block: var(--space-48);
     background: var(--surface);
     border-bottom: var(--border-width) solid var(--border);
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-32);
-    margin: 0 0 var(--space-48);
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: var(--space-8);
-    padding: var(--space-24);
-    text-align: center;
-  }
-
-  dd {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: var(--fs-48);
-    font-weight: 600;
-    line-height: var(--lh-none);
-  }
-
-  dt {
-    color: var(--text-muted);
-  }
-
-  .companies {
-    padding-top: var(--space-32);
-    border-top: var(--border-width) solid var(--border);
   }
 
   .title {
@@ -116,17 +66,6 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     height: var(--logo-height);
     background: currentColor;
     mask: var(--logo) center / contain no-repeat;
-  }
-
-  @media (max-width: 767px) {
-    .stats {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .stat {
-      padding: var(--space-16);
-    }
   }
 
   @media (max-width: 1023px) {
