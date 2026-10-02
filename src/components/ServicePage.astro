@@ -15,11 +15,9 @@ interface Props {
   serviceKey: ServiceKey;
   services: Service[];
   articles: Article[];
-  // Faixa com o botão de WhatsApp no topo da página; fica só a coluna lateral quando false.
-  topBand?: boolean;
 }
 
-const { lang, serviceKey, services, articles, topBand = true } = Astro.props;
+const { lang, serviceKey, services, articles } = Astro.props;
 const service = serviceFor(services, serviceKey, lang);
 const { label, title, description, subtitle, audience, problem, topics, steps, format, formats, ctaLabel, ctaText, whatsappMessage } =
   service.data;
@@ -33,23 +31,6 @@ const related = relatedArticlesFor(service, articles);
   alternatePath={servicePath(serviceKey, otherLang(lang))}
   whatsappMessage={whatsappMessage}
 >
-  {
-    topBand && (
-      <div class="band">
-        <div class="container band-inner">
-          <WhatsAppButton
-            lang={lang}
-            placement="service-band"
-            service={serviceKey}
-            message={whatsappMessage}
-            label={ctaLabel}
-            class="band-button"
-          />
-        </div>
-      </div>
-    )
-  }
-
   <div class="container service-grid">
     <div class="content">
       <a class="back mono" href={routePath('services', lang)}><Icon name="arrow-left" size="s" />{t(lang, 'services.pageTitle')}</a>
@@ -132,28 +113,6 @@ const related = relatedArticlesFor(service, articles);
 </BaseLayout>
 
 <style>
-  .band {
-    padding-block: var(--space-12);
-    background: var(--accent);
-  }
-
-  .band-inner {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .band :global(.band-button) {
-    min-height: auto;
-    padding: var(--space-4) 0;
-    background: none;
-    color: var(--accent-contrast);
-  }
-
-  .band :global(.band-button:hover) {
-    background: none;
-    text-decoration: underline;
-  }
-
   .service-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) var(--width-aside);

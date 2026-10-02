@@ -7,7 +7,7 @@ export const ogLocale: Record<Lang, string> = { pt: 'pt_BR', en: 'en_US' };
 
 const pt = {
   'site.description':
-    'Negócios, tecnologia e pessoas: artigos de Matheus Haddad sobre gestão, liderança, AI e desenvolvimento de software.',
+    'Empresário, palestrante e pesquisador em tecnologia, gestão e educação. Ajudo CEOs e CTOs a repensar suas organizações com pessoas, estratégia, software e IA.',
   'skip.toContent': 'Pular para o conteúdo',
   'nav.label': 'Navegação principal',
   'nav.footerLabel': 'Navegação do rodapé',
@@ -32,7 +32,7 @@ const pt = {
   'hero.label': 'Consultoria · Mentoria · Palestras',
   'hero.title': 'Empresário, palestrante e pesquisador em tecnologia, gestão e educação.',
   'hero.subtitle':
-    'Matheus Haddad ajuda CEOs e CTOs a repensar suas organizações, combinando gestão de pessoas, estratégia de negócios, desenvolvimento de software e inteligência artificial.',
+    'Ajudo CEOs e CTOs a repensar suas organizações, combinando gestão de pessoas, estratégia de negócios, desenvolvimento de software e inteligência artificial.',
   'hero.services': 'Ver serviços',
   'hero.about': 'Saber mais',
   'proof.logos': 'Empresas e iniciativas',
@@ -58,7 +58,7 @@ const pt = {
   'article.linkCopied': 'Link copiado!',
   'article.author': 'Quem escreve',
   'article.authorDesc':
-    'Matheus Haddad é empresário, consultor e palestrante com 15+ anos de experiência em gestão e tecnologia. Fundou 5 empresas e apoiou 500+ líderes.',
+    'Empresário, consultor e palestrante com 20+ anos de experiência em gestão, tecnologia e educação.',
   'article.authorLink': 'Conheça a trajetória',
   'whatsapp.messageFrom': 'Olá, Matheus! Vim pela página "{page}" do seu site e gostaria de conversar.',
   'whatsapp.articleMessage': 'Olá, Matheus! Li o artigo "{title}" no seu site e gostaria de conversar sobre {service}.',
@@ -147,7 +147,7 @@ export type UIKey = keyof typeof pt;
 
 const en: Record<UIKey, string> = {
   'site.description':
-    'Business, technology and people: articles by Matheus Haddad on management, leadership, AI and software development.',
+    'Entrepreneur, speaker and researcher in technology, management and education. I help CEOs and CTOs rethink organizations with people, strategy, software and AI.',
   'skip.toContent': 'Skip to content',
   'nav.label': 'Main navigation',
   'nav.footerLabel': 'Footer navigation',
@@ -172,7 +172,7 @@ const en: Record<UIKey, string> = {
   'hero.label': 'Consulting · Mentoring · Talks',
   'hero.title': 'Entrepreneur, speaker and researcher in technology, management and education.',
   'hero.subtitle':
-    'Matheus Haddad helps CEOs and CTOs rethink their organizations, combining people management, business strategy, software development and artificial intelligence.',
+    'I help CEOs and CTOs rethink their organizations, combining people management, business strategy, software development and artificial intelligence.',
   'hero.services': 'See services',
   'hero.about': 'Learn more',
   'proof.logos': 'Companies & initiatives',
@@ -198,7 +198,7 @@ const en: Record<UIKey, string> = {
   'article.linkCopied': 'Link copied!',
   'article.author': 'About the author',
   'article.authorDesc':
-    'Matheus Haddad is an entrepreneur, consultant, and speaker with 15+ years of experience in management and technology. He founded 5 companies and supported 500+ leaders.',
+    'Entrepreneur, consultant and speaker with 20+ years of experience in management, technology and education.',
   'article.authorLink': 'Read his story',
   'whatsapp.messageFrom': 'Hi Matheus! I came from the "{page}" page on your website and would like to talk.',
   'whatsapp.articleMessage': 'Hi Matheus! I read the article "{title}" on your website and would like to talk about {service}.',

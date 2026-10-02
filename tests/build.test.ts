@@ -400,9 +400,16 @@ describe('header e footer', () => {
 });
 
 describe('faixa "Conversar sobre..." no topo das páginas de serviço', () => {
-  it('deve ficar fora da página de palestras nos dois idiomas, mas continuar na coluna lateral', () => {
+  it('deve ficar fora de todas as páginas de serviço nos dois idiomas, mas continuar na coluna lateral', () => {
     // Arrange
-    const pages = ['palestras/index.html', 'en/speaking/index.html'];
+    const pages = [
+      'consultoria/index.html',
+      'en/consulting/index.html',
+      'mentoria/index.html',
+      'en/mentoring/index.html',
+      'palestras/index.html',
+      'en/speaking/index.html',
+    ];
 
     // Act
     const html = pages.map((path) => page(path));
@@ -411,12 +418,6 @@ describe('faixa "Conversar sobre..." no topo das páginas de serviço', () => {
     expect(html.filter((content) => content.includes('class="band"'))).toEqual([]);
     expect(html.every((content) => content.includes('data-ga-params') && content.includes('service-sidebar'))).toBe(true);
     expect(html.every((content) => !content.includes('service-band'))).toBe(true);
-  });
-
-  it('deve continuar em Consultoria e Mentoria', () => {
-    // Assert
-    expect(page('consultoria/index.html')).toContain('service-band');
-    expect(page('mentoria/index.html')).toContain('service-band');
   });
 });
 
@@ -496,6 +497,21 @@ describe('página de artigo — Onda 2', () => {
     expect(author).toMatch(/<img[^>]*alt="Matheus Haddad"/);
     expect(author).toContain('href="/en/about/"');
   });
+
+  it('deve descrever o autor com 20+ anos de experiência, sem os números antigos, nos dois idiomas', () => {
+    // Arrange
+    const pages = ['artigos/primeiro-artigo/index.html', 'en/articles/first-article/index.html'];
+
+    // Act
+    const descriptions = pages.map((path) => /<aside class="author"[\s\S]*?<p class="description"[^>]*>([\s\S]*?)<\/p>/.exec(page(path))?.[1]);
+
+    // Assert
+    expect(descriptions).toEqual([
+      'Empresário, consultor e palestrante com 20+ anos de experiência em gestão, tecnologia e educação.',
+      'Entrepreneur, consultant and speaker with 20+ years of experience in management, technology and education.',
+    ]);
+    expect(descriptions.every((text) => !/15\+|500\+|5 empresas|5 companies/.test(text ?? ''))).toBe(true);
+  });
 });
 
 describe('home', () => {
@@ -566,7 +582,7 @@ describe('texto principal da home', () => {
     expect(label).toBe('Consultoria · Mentoria · Palestras');
     expect(title).toBe('Empresário, palestrante e pesquisador em tecnologia, gestão e educação.');
     expect(subtitle).toBe(
-      'Matheus Haddad ajuda CEOs e CTOs a repensar suas organizações, combinando gestão de pessoas, estratégia de negócios, desenvolvimento de software e inteligência artificial.',
+      'Ajudo CEOs e CTOs a repensar suas organizações, combinando gestão de pessoas, estratégia de negócios, desenvolvimento de software e inteligência artificial.',
     );
   });
 
@@ -578,8 +594,25 @@ describe('texto principal da home', () => {
     expect(label).toBe('Consulting · Mentoring · Talks');
     expect(title).toBe('Entrepreneur, speaker and researcher in technology, management and education.');
     expect(subtitle).toBe(
-      'Matheus Haddad helps CEOs and CTOs rethink their organizations, combining people management, business strategy, software development and artificial intelligence.',
+      'I help CEOs and CTOs rethink their organizations, combining people management, business strategy, software development and artificial intelligence.',
     );
+  });
+});
+
+describe('descrição da home para buscadores e prévias', () => {
+  it('deve seguir o título e a descrição do hero, com até 160 caracteres, nos dois idiomas', () => {
+    // Arrange
+    const pages = ['index.html', 'en/index.html'];
+
+    // Act
+    const descriptions = pages.map((path) => /<meta name="description" content="([^"]*)"/.exec(page(path))?.[1]);
+
+    // Assert
+    expect(descriptions).toEqual([
+      'Empresário, palestrante e pesquisador em tecnologia, gestão e educação. Ajudo CEOs e CTOs a repensar suas organizações com pessoas, estratégia, software e IA.',
+      'Entrepreneur, speaker and researcher in technology, management and education. I help CEOs and CTOs rethink organizations with people, strategy, software and AI.',
+    ]);
+    expect(descriptions.every((text) => (text ?? '').length <= 160)).toBe(true);
   });
 });
 
@@ -683,9 +716,9 @@ describe('páginas de serviço — Onda 3', () => {
     const links = [...html.matchAll(new RegExp(`<a [^>]*href="https://wa\\.me/5535988867870\\?text=${encoded.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`, 'g'))].map((m) => m[0]);
 
     // Assert
-    // Cabeçalho (ícone), faixa do topo e coluna lateral.
-    expect(links).toHaveLength(3);
-    expect(links.filter((link) => link.includes('&quot;service&quot;:&quot;consultoria&quot;')).length).toBe(2);
+    // Cabeçalho (ícone) e coluna lateral.
+    expect(links).toHaveLength(2);
+    expect(links.filter((link) => link.includes('&quot;service&quot;:&quot;consultoria&quot;')).length).toBe(1);
   });
 
   it('deve acender "Serviços" no menu quando a página é de consultoria', () => {
