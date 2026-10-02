@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import { routePath } from '../../i18n/routes';
 import { t, type Lang } from '../../i18n/ui';
 import { companyMasks, getAllCompanies } from '../../lib/collections';
 import { sortCompanies } from '../../lib/companies';
@@ -9,26 +12,36 @@ interface Props {
 
 const { lang } = Astro.props;
 
-// Logos em máscara: pegam a cor do texto nos dois temas (npm run assets).
+// Cada empresa tem dois logos: a máscara (pega a cor do texto nos dois temas) e o colorido,
+// que aparece ao passar o mouse (npm run assets).
 const companies = sortCompanies(await getAllCompanies()).map((company) => ({
   name: company.data.name,
+  url: company.data.url,
+  logo: company.data.logo,
   mask: companyMasks.get(company.id)!.src,
 }));
 ---
 
 <section class="proof" aria-labelledby="proof-title">
   <div class="container">
-    <div class="companies">
-      <p id="proof-title" class="mono title">{t(lang, 'proof.logos')}</p>
-      <ul>
-        {
-          companies.map(({ name, mask }) => (
-            <li>
-              <span class="logo" role="img" aria-label={name} style={`--logo: url(${mask})`} />
-            </li>
-          ))
-        }
-      </ul>
+    <p id="proof-title" class="mono title">{t(lang, 'proof.logos')}</p>
+    <ul>
+      {
+        companies.map(({ name, url, logo, mask }) => (
+          <li>
+            <a class="tile" href={url} target="_blank" rel="noopener" aria-label={name} title={name}>
+              <span class="logo" aria-hidden="true" style={`--logo: url(${mask})`} />
+              <Image class="color" src={logo} alt="" widths={[160, 320]} sizes="96px" loading="lazy" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="more">
+      <a class="button button--secondary button--large" href={routePath('companies', lang)}>
+        {t(lang, 'proof.more')}
+        <Icon name="arrow-right" size="s" />
+      </a>
     </div>
   </div>
 </section>
@@ -44,33 +57,79 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     margin-bottom: var(--space-24);
     color: var(--text-muted);
     font-size: var(--fs-10);
+    text-align: center;
   }
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: var(--space-24);
-    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-16);
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  li {
+  /* Quadrado com o logo em cinza; no hover (ou foco) vira uma placa clara com o logo colorido. */
+  .tile {
+    display: grid;
+    place-items: center;
+    width: var(--logo-tile);
+    aspect-ratio: 1;
+    padding: var(--space-16);
     color: var(--text-muted);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-m);
+    transition:
+      background var(--duration-fast),
+      border-color var(--duration-fast);
+  }
+
+  .logo,
+  .tile :global(.color) {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    transition: opacity var(--duration-fast);
   }
 
   .logo {
-    display: block;
-    width: 100%;
-    height: var(--logo-height);
     background: currentColor;
     mask: var(--logo) center / contain no-repeat;
   }
 
-  @media (max-width: 1023px) {
-    ul {
-      grid-template-columns: repeat(4, 1fr);
+  .tile :global(.color) {
+    object-fit: contain;
+    opacity: 0;
+  }
+
+  .tile:hover,
+  .tile:focus-visible {
+    background: var(--logo-plate-bg);
+    border-color: var(--accent);
+  }
+
+  .tile:hover .logo,
+  .tile:focus-visible .logo {
+    opacity: 0;
+  }
+
+  .tile:hover :global(.color),
+  .tile:focus-visible :global(.color) {
+    opacity: 1;
+  }
+
+  .more {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-40);
+  }
+
+  @media (max-width: 767px) {
+    .tile {
+      width: var(--logo-tile-mobile);
+      padding: var(--space-12);
     }
   }
 </style>

@@ -756,16 +756,21 @@ describe('WhatsApp por página e chamada no fim do artigo — Onda 3', () => {
   });
 });
 
-describe('home — Onda 4', () => {
-  it('deve mostrar os 8 logos em máscara com o nome acessível quando a faixa de prova é gerada', () => {
-    // Arrange
-    const html = page('index.html');
+describe('empresas e iniciativas na home', () => {
+  const tiles = (html: string) =>
+    [...(/<section class="proof"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '').matchAll(/<a ([^>]*)>([\s\S]*?)<\/a>/g)].map((m) => ({
+      attrs: m[1] ?? '',
+      inner: m[2] ?? '',
+      name: /aria-label="([^"]+)"/.exec(m[1] ?? '')?.[1],
+      href: /href="([^"]+)"/.exec(m[1] ?? '')?.[1],
+    })).filter((tile) => tile.attrs.includes('class="tile"'));
 
-    // Act
-    const logos = [...html.matchAll(/<span class="logo"[^>]*role="img"[^>]*aria-label="([^"]+)"[^>]*style="--logo: url\(([^)]+)\)"/g)];
+  it('deve mostrar os 8 logos em quadrados que levam, em nova aba, ao site de cada empresa ou iniciativa', () => {
+    // Arrange
+    const found = tiles(page('index.html'));
 
     // Assert
-    expect(logos.map((m) => m[1])).toEqual([
+    expect(found.map((tile) => tile.name)).toEqual([
       'Webgoal',
       'Granatum Financeiro',
       'Ateliê de Software',
@@ -775,7 +780,38 @@ describe('home — Onda 4', () => {
       'A Guarda-Chuva',
       'TugÁgil',
     ]);
-    expect(logos.every((m) => m[2]?.startsWith('/_astro/'))).toBe(true);
+    expect(found[0]?.href).toBe('https://www.webgoal.com.br');
+    expect(found.every((tile) => tile.href?.startsWith('https://'))).toBe(true);
+    expect(found.every((tile) => tile.attrs.includes('target="_blank"') && tile.attrs.includes('rel="noopener"'))).toBe(true);
+    expect(found.every((tile) => tile.attrs.includes(`title="${tile.name}"`))).toBe(true);
+    expect(found.every((tile) => tile.attrs.includes('class="tile"'))).toBe(true);
+  });
+
+  it('deve levar em cada quadrado o logo em máscara e o logo colorido, que só aparece ao passar o mouse', () => {
+    // Arrange
+    const found = tiles(page('index.html'));
+
+    // Act
+    const masks = found.map((tile) => /<span class="logo"[^>]*aria-hidden="true"[^>]*style="--logo: url\((\/_astro\/[^)]+)\)"/.exec(tile.inner)?.[1]);
+    const colors = found.map((tile) => /<img[^>]*>/.exec(tile.inner)?.[0] ?? '');
+
+    // Assert
+    expect(masks.every((src) => src !== undefined)).toBe(true);
+    expect(colors.every((tag) => /\balt(=""|[ >])/.test(tag) && tag.includes('class="color"') && tag.includes('src="/_astro/'))).toBe(true);
+    expect(new Set(masks).size).toBe(8);
+  });
+
+  it('deve ter o botão para conhecer as empresas e iniciativas, nos dois idiomas', () => {
+    // Arrange
+    const button = (html: string) => /<a [^>]*class="button button--secondary[^"]*"[^>]*href="([^"]+)"[^>]*>\s*([^<]+?)\s*(?:<|$)/.exec(/<section class="proof"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '');
+
+    // Act
+    const pt = button(page('index.html'));
+    const en = button(page('en/index.html'));
+
+    // Assert
+    expect([pt?.[1], pt?.[2]]).toEqual(['/empresas/', 'Conhecer empresas e iniciativas']);
+    expect([en?.[1], en?.[2]]).toEqual(['/en/companies/', 'Explore companies and initiatives']);
   });
 });
 
