@@ -37,7 +37,7 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
 - Títulos internos do artigo começam em `##` (o `#` é o título da página).
 - **Exportações do Medium** começam com uma linha `---` e repetem o título como `### Título`: remova as duas e promova os subtítulos `###` para `##`.
 - Corrija apenas formatação Markdown quebrada (ex.: `***termo***(texto)**palavra**` sem espaços). Não corrija o texto do autor; liste erros de digitação no relatório para Matheus decidir.
-- Links para outros artigos no Medium/LinkedIn ficam como estão até o artigo de destino estar publicado no site.
+- Links para outros artigos no Medium/LinkedIn (inclusive `share.atelie.software` e publicações do Medium) ficam como estão até o artigo de destino estar publicado no site. Quando estiver, troque pelo link interno nos dois idiomas, com o título em inglês na versão EN. O ID do post do Medium (o hash no fim da URL) é o mesmo em todos esses domínios.
 
 **Sanitização (obrigatória):**
 - Remova qualquer `<script>`.
@@ -46,7 +46,7 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
 
 **Imagens:** se o artigo tiver imagens, copie-as para `src/assets/articles/<translationKey>/` e use caminho relativo no Markdown (`../../../assets/articles/<translationKey>/<arquivo>`), com texto alternativo em cada idioma. Se não conseguir ler a imagem do vault, pare e peça o arquivo a Matheus.
 - Imagens remotas (CDN do Medium, `media.licdn.com`) são **baixadas** para a mesma pasta (`curl -sSL -o …`), nunca referenciadas pela URL externa. Confira o tipo com `file`.
-- URLs do LinkedIn exportadas costumam vir truncadas e responder 404. Nesse caso, peça a imagem a Matheus ou a decisão de publicar sem ela.
+- URLs do LinkedIn exportadas costumam vir truncadas (`https://media.licdn.com/media<ID>`) e responder 404. Antes de desistir, abra a página pública do artigo (`originalUrl`) e use a URL completa do `og:image`, que traz o mesmo `<ID>`. Só se não houver, peça a imagem a Matheus ou a decisão de publicar sem ela.
 - Legendas da exportação (ex.: "Imagem criada com …") viram uma linha em itálico logo abaixo da imagem.
 
 ## 3. Montar o frontmatter
@@ -122,6 +122,9 @@ Procure também pelo título, caso o slug calculado tenha mudado. Se o artigo j�
 | Caminho de Santiago | Camino de Santiago |
 | desenvolvimento de software | software development |
 | agilidade / ágil | agility / agile |
+| Lugar de Potência / 16 Lugares de Potência | Place of Potential / 16 Places of Potential (decisão de 02/10/2026; evita confusão com "power") |
+| Índice de Prontidão para Autonomia (IPA) | Readiness for Autonomy Index (IPA) |
+| Para refletir / Uma proposta de reflexão | Food for thought / Something to reflect on |
 
 Nomes de empresas e produtos não se traduzem (Webgoal, Ateliê de Software, Granatum, Lumiar, Orgganica, Aliança Empreendedora, A Guarda-Chuva, TugÁgil, Feedback Canvas).
 
