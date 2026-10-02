@@ -508,11 +508,43 @@ describe('home', () => {
     const older = html.indexOf('Primeiro artigo de teste');
 
     // Assert
-    expect(h1).toBe('Negócios, tecnologia e pessoas: como organizações crescem na era da IA.');
+    expect(h1).toBe('Empresário, palestrante e pesquisador em tecnologia, gestão e educação.');
     expect(html).toMatch(/<div class="waves"[^>]*aria-hidden="true"[^>]*>\s*<canvas/);
     expect(featured).toBeGreaterThan(-1);
     expect(older).toBeGreaterThan(featured);
     expect(html).not.toContain('Rascunho de teste');
+  });
+});
+
+describe('texto principal da home', () => {
+  const hero = (html: string) => ({
+    label: />([^<]+)<\/p>\s*<h1/.exec(html)?.[1],
+    title: /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1],
+    subtitle: /<p class="subtitle"[^>]*>([\s\S]*?)<\/p>/.exec(html)?.[1],
+  });
+
+  it('deve apresentar o autor, os serviços e o que ele faz, em português, quando a home é gerada', () => {
+    // Act
+    const { label, title, subtitle } = hero(page('index.html'));
+
+    // Assert
+    expect(label).toBe('Consultoria · Mentoria · Palestras');
+    expect(title).toBe('Empresário, palestrante e pesquisador em tecnologia, gestão e educação.');
+    expect(subtitle).toBe(
+      'Matheus Haddad ajuda CEOs e CTOs a repensar suas organizações, combinando gestão de pessoas, estratégia de negócios, desenvolvimento de software e inteligência artificial.',
+    );
+  });
+
+  it('deve manter o mesmo sentido em inglês quando a home em inglês é gerada', () => {
+    // Act
+    const { label, title, subtitle } = hero(page('en/index.html'));
+
+    // Assert
+    expect(label).toBe('Consulting · Mentoring · Talks');
+    expect(title).toBe('Entrepreneur, speaker and researcher in technology, management and education.');
+    expect(subtitle).toBe(
+      'Matheus Haddad helps CEOs and CTOs rethink their organizations, combining people management, business strategy, software development and artificial intelligence.',
+    );
   });
 });
 
