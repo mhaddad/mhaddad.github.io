@@ -9,11 +9,11 @@ originalUrl: https://medium.com/@mhaddad/trabalho-remoto-uma-oportunidade-para-a
 draft: false
 ---
 
-Uma oportunidade para as empresas apostarem na autonomia e colaboração no trabalho.
-
 ![Seis membros do time do Ateliê de Software em uma videochamada, cada um em sua casa, com o selo "Office Less" abaixo](../../../assets/articles/trabalho-remoto-uma-oportunidade-para-a-autogestao/capa.png)
 
 *Alguns membros do time do Ateliê de Software se reunindo remotamente*
+
+Uma oportunidade para as empresas apostarem na autonomia e colaboração no trabalho.
 
 A mudança na natureza do trabalho foi notável nestes últimos cem anos. Partimos das atividades braçais e pesadas, que necessitavam ser realizadas nas instalações de uma empresa, até os dias de hoje quando vivemos numa era onde o trabalho do conhecimento predomina e podemos **gerar valor para os nossos clientes atuando de qualquer lugar do mundo**.
 

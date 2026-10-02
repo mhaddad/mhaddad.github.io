@@ -9,6 +9,8 @@ translationKey: fixture-primeiro
 originalUrl: https://www.linkedin.com/pulse/primeiro-artigo
 ---
 
+![Capa de teste](../../../../src/assets/articles/coerencia-cognitiva/capa.png)
+
 ## Um subtítulo
 
 Texto do primeiro artigo.

@@ -49,6 +49,7 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
 - Imagens remotas (CDN do Medium, `media.licdn.com`) são **baixadas** para a mesma pasta (`curl -sSL -o …`), nunca referenciadas pela URL externa. Confira o tipo com `file`.
 - URLs do LinkedIn exportadas costumam vir truncadas (`https://media.licdn.com/media<ID>`) e responder 404. Antes de desistir, abra a página pública do artigo (`originalUrl`) e use a URL completa do `og:image`, que traz o mesmo `<ID>`. Só se não houver, peça a imagem a Matheus ou a decisão de publicar sem ela.
 - Legendas da exportação (ex.: "Imagem criada com …") viram uma linha em itálico logo abaixo da imagem.
+- **Imagem de abertura = imagem de destaque.** Se o original abre com uma imagem (a capa no Medium ou no LinkedIn), ela deve ser o **primeiro elemento do corpo**, antes do subtítulo e de qualquer citação: o site usa automaticamente a imagem que abre o artigo como destaque do card na listagem. Não preencha `cover` no frontmatter para isso.
 
 ## 3. Montar o frontmatter
 

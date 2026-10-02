@@ -6,6 +6,7 @@ import {
   categoriesInUse,
   categoryStaticPaths,
   findTranslation,
+  leadImage,
   originalPlatform,
   publishedArticles,
   readingTime,
@@ -348,5 +349,34 @@ describe('categoryStaticPaths', () => {
 
     // Assert
     expect(paths).toEqual([{ params: { category: 'management' }, props: { categoryKey: 'gestao' } }]);
+  });
+});
+
+describe('leadImage', () => {
+  it('deve devolver o caminho dentro de assets e o texto alternativo quando o artigo começa com uma imagem', () => {
+    // Arrange
+    const body = '\n![Pessoas em roda](../../../assets/articles/meu-artigo/capa.png)\n\n*Legenda*\n\nTexto.';
+
+    // Act
+    const image = leadImage(body);
+
+    // Assert
+    expect(image).toEqual({ alt: 'Pessoas em roda', asset: 'articles/meu-artigo/capa.png' });
+  });
+
+  it('deve ignorar a imagem quando o artigo começa com texto', () => {
+    // Arrange
+    const body = 'Primeiro parágrafo.\n\n![Imagem](../../../assets/articles/meu-artigo/capa.png)';
+
+    // Act
+    const image = leadImage(body);
+
+    // Assert
+    expect(image).toBeUndefined();
+  });
+
+  it('deve ignorar a imagem quando ela não está em assets ou o corpo está vazio', () => {
+    expect(leadImage('![Remota](https://exemplo.com/capa.png)\n\nTexto.')).toBeUndefined();
+    expect(leadImage(undefined)).toBeUndefined();
   });
 });

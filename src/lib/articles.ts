@@ -37,6 +37,16 @@ function folderLang(entry: ArticleEntry): string {
   return entry.id.split('/')[0] ?? '';
 }
 
+// Imagem que abre o corpo do artigo, como no Medium e no LinkedIn: vira a imagem de
+// destaque na listagem. `asset` é o caminho dentro de src/assets/ (ex.: articles/x/capa.png).
+const LEAD_IMAGE = /^\s*!\[([^\]]*)\]\(([^)\s]+)\)/;
+
+export function leadImage(body: string | undefined): { alt: string; asset: string } | undefined {
+  const match = LEAD_IMAGE.exec(body ?? '');
+  const asset = match?.[2].split('/assets/')[1];
+  return match && asset ? { alt: match[1], asset } : undefined;
+}
+
 export function unsafeHtmlProblems(body: string): string[] {
   const problems: string[] = [];
   if (/<script\b/i.test(body)) problems.push('contém <script>');

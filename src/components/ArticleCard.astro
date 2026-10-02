@@ -4,7 +4,7 @@ import ArticleMeta from './ArticleMeta.astro';
 import GeometricPattern from './GeometricPattern.astro';
 import { articlePath } from '../i18n/routes';
 import { articleSlug } from '../lib/articles';
-import type { Article } from '../lib/collections';
+import { articleCover, type Article } from '../lib/collections';
 
 interface Props {
   article: Article;
@@ -13,7 +13,8 @@ interface Props {
 }
 
 const { article, featured = false, headingLevel = 'h3' } = Astro.props;
-const { lang, title, description, cover, coverAlt } = article.data;
+const { lang, title, description } = article.data;
+const cover = articleCover(article);
 const Heading = featured ? 'h2' : headingLevel;
 ---
 
@@ -21,7 +22,7 @@ const Heading = featured ? 'h2' : headingLevel;
   <div class="cover">
     {
       cover ? (
-        <Image src={cover} alt={coverAlt ?? ''} widths={[480, 720, 960]} sizes="(max-width: 767px) 100vw, 600px" />
+        <Image src={cover.src} alt={cover.alt} widths={[480, 720, 960]} sizes="(max-width: 767px) 100vw, 600px" />
       ) : (
         <GeometricPattern category={article.data.category} />
       )

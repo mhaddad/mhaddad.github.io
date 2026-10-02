@@ -9,11 +9,11 @@ originalUrl: https://medium.com/@mhaddad/trabalho-remoto-uma-oportunidade-para-a
 draft: false
 ---
 
-An opportunity for companies to bet on autonomy and collaboration at work.
-
 ![Six members of the Ateliê de Software team on a video call, each from their own home, with an "Office Less" badge below](../../../assets/articles/trabalho-remoto-uma-oportunidade-para-a-autogestao/capa.png)
 
 *Some members of the Ateliê de Software team meeting remotely*
+
+An opportunity for companies to bet on autonomy and collaboration at work.
 
 The change in the nature of work over the last hundred years has been remarkable. We started from heavy manual labor, which had to be done on a company's premises, and arrived at the present day, when we live in an era where knowledge work predominates and we can **create value for our clients working from anywhere in the world**.
 

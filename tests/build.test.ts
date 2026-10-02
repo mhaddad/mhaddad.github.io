@@ -175,6 +175,21 @@ describe('lista de artigos', () => {
     expect(html).not.toContain('Rascunho de teste');
   });
 
+  it('deve usar a imagem que abre o artigo como destaque do card e o padrão quando não há imagem', () => {
+    // Arrange
+    const html = page('artigos/index.html');
+
+    // Act
+    const cards = [...html.matchAll(/<article class="card[^"]*"[\s\S]*?<\/article>/g)].map((m) => m[0]);
+    const primeiro = cards.find((card) => card.includes('Primeiro artigo de teste')) ?? '';
+    const segundo = cards.find((card) => card.includes('Segundo artigo de teste')) ?? '';
+
+    // Assert
+    expect(primeiro).toMatch(/<img[^>]*alt="Capa de teste"/);
+    expect(segundo).not.toContain('<img');
+    expect(segundo).toContain('class="pattern"');
+  });
+
   it('deve mostrar filtros com contagem só quando a categoria tem publicados', () => {
     // Arrange
     const html = page('en/articles/index.html');

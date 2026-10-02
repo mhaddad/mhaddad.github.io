@@ -1,7 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n/ui';
 import { validateAbout } from './about';
-import { validateArticles } from './articles';
+import { leadImage, validateArticles } from './articles';
 import { validateCompanies } from './companies';
 import { validateServices } from './services';
 import { validateTalks } from './talks';
@@ -24,6 +24,22 @@ function byBasename(files: Record<string, { default: ImageMetadata }>): Map<stri
 }
 
 export const talkThumbnails = byBasename(thumbnailFiles);
+
+// Imagens dos artigos, pelo caminho dentro de src/assets/ (ex.: articles/x/capa.png).
+const articleImageFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/articles/**/*.{png,jpg,jpeg,webp,gif}', {
+  eager: true,
+});
+const articleImages = new Map(
+  Object.entries(articleImageFiles).map(([path, module]) => [path.replace('../assets/', ''), module.default]),
+);
+
+/** Imagem de destaque do card: `cover` do frontmatter ou, na falta dele, a imagem que abre o artigo. */
+export function articleCover(article: Article): { src: ImageMetadata; alt: string } | undefined {
+  if (article.data.cover) return { src: article.data.cover, alt: article.data.coverAlt ?? '' };
+  const lead = leadImage(article.body);
+  const src = lead && articleImages.get(lead.asset);
+  return lead && src ? { src, alt: lead.alt } : undefined;
+}
 export const companyMasks = byBasename(maskFiles);
 
 export async function getAllArticles(): Promise<Article[]> {
