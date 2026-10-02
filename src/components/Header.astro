@@ -179,13 +179,14 @@ const pathname = Astro.url.pathname;
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .menu-button {
       display: none;
     }
   }
 
-  @media (max-width: 767px) {
+  /* Com 6 itens, o menu inteiro só cabe a partir de 1024 px; abaixo disso vale o menu do celular. */
+  @media (max-width: 1023px) {
     .desktop-nav,
     .desktop-only {
       display: none;

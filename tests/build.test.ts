@@ -316,14 +316,14 @@ describe('header e footer', () => {
     const en = page('en/index.html');
 
     // Assert
-    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Artigos', 'Serviços', 'Empresas', 'Palestras e Workshops', 'Sobre']);
-    expect(labels(en, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Articles', 'Services', 'Companies', 'Talks &amp; Workshops', 'About']);
+    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Artigos', 'Serviços', 'Empresas', 'Palestras e Workshops', 'Livros', 'Sobre']);
+    expect(labels(en, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Articles', 'Services', 'Companies', 'Talks &amp; Workshops', 'Books', 'About']);
     expect(labels(pt, /<footer[\s\S]*?<\/footer>/)).toContain('Palestras e Workshops');
     expect(pt).not.toContain('Palestras e Mídia');
     expect(en).not.toContain('Talks &amp; Media');
   });
 
-  it('deve ter os 5 itens do menu nos caminhos do contrato e o item atual marcado quando a página é de artigos', () => {
+  it('deve ter os 6 itens do menu nos caminhos do contrato e o item atual marcado quando a página é de artigos', () => {
     // Arrange
     const html = page('artigos/index.html');
 
@@ -333,7 +333,7 @@ describe('header e footer', () => {
     const current = /<a href="([^"]+)" aria-current="page"/.exec(nav)?.[1];
 
     // Assert
-    expect(hrefs).toEqual(['/artigos/', '/servicos/', '/empresas/', '/palestras/', '/sobre/']);
+    expect(hrefs).toEqual(['/artigos/', '/servicos/', '/empresas/', '/palestras/', '/livros/', '/sobre/']);
     expect(current).toBe('/artigos/');
   });
 
@@ -392,7 +392,7 @@ describe('header e footer', () => {
     const hrefs = [...(/<nav[\s\S]*?<\/nav>/.exec(footer)?.[0] ?? '').matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
 
     // Assert
-    expect(hrefs).toEqual(['/en/articles/', '/en/services/', '/en/companies/', '/en/speaking/', '/en/about/', '/en/books/', '/en/rss.xml']);
+    expect(hrefs).toEqual(['/en/articles/', '/en/services/', '/en/companies/', '/en/speaking/', '/en/books/', '/en/about/', '/en/rss.xml']);
     expect(footer).not.toContain('wa.me');
     expect(footer).not.toContain('button');
   });
@@ -747,6 +747,21 @@ describe('páginas institucionais — Onda 4', () => {
     expect(external).toHaveLength(8);
     expect(external.every((tag) => tag.includes('rel="noopener"') && tag.includes('target="_blank"'))).toBe(true);
     expect(html).toMatch(/<img[^>]*alt="Logo: Granatum Financeiro"/);
+  });
+
+  it('deve mostrar a capa de cada edição, azul na inglesa, quando a página é Livros', () => {
+    // Arrange
+    const pt = page('livros/index.html');
+    const en = page('en/books/index.html');
+
+    // Act
+    const cover = (html: string) => /<img[^>]*src="(\/_astro\/feedback-canvas-[a-z]+\.[^"]+)"/.exec(html)?.[1] ?? '';
+
+    // Assert
+    expect(cover(pt)).toContain('feedback-canvas-pt.');
+    expect(cover(en)).toContain('feedback-canvas-en.');
+    expect(pt).not.toContain('feedback-canvas-en.');
+    expect(en).not.toContain('feedback-canvas-pt.');
   });
 
   it('deve apontar para a edição de cada idioma na Amazon quando a página é Livros', () => {

@@ -13,10 +13,11 @@ export const mainNav: NavItem[] = [
   { route: 'services', label: 'nav.services', also: ['consulting', 'mentoring'] },
   { route: 'companies', label: 'nav.companies' },
   { route: 'speaking', label: 'nav.speaking' },
+  { route: 'books', label: 'nav.books' },
   { route: 'about', label: 'nav.about' },
 ];
 
-export const footerNav: NavItem[] = [...mainNav, { route: 'books', label: 'nav.books' }];
+export const footerNav: NavItem[] = [...mainNav];
 
 export function isCurrent(pathname: string, item: NavItem, lang: Lang): boolean {
   return [item.route, ...(item.also ?? [])].some((route) => pathname.startsWith(routePath(route, lang)));

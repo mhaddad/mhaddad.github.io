@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isCurrent, mainNav } from './navigation';
+import { footerNav, isCurrent, mainNav } from './navigation';
 
 function current(pathname: string, lang: 'pt' | 'en') {
   return mainNav.filter((item) => isCurrent(pathname, item, lang)).map((item) => item.route);
@@ -48,5 +48,25 @@ describe('isCurrent', () => {
 
     // Assert
     expect(result).toEqual([]);
+  });
+});
+
+describe('mainNav e footerNav', () => {
+  it('deve ter Livros no menu, antes de Sobre, e acendê-lo nas páginas do livro', () => {
+    // Arrange
+    const routes = mainNav.map((item) => item.route);
+
+    // Act
+    const pt = current('/livros/', 'pt');
+    const en = current('/en/books/', 'en');
+
+    // Assert
+    expect(routes).toEqual(['articles', 'services', 'companies', 'speaking', 'books', 'about']);
+    expect(pt).toEqual(['books']);
+    expect(en).toEqual(['books']);
+  });
+
+  it('deve repetir no rodapé os mesmos itens do menu, sem duplicar Livros', () => {
+    expect(footerNav.map((item) => item.route)).toEqual(mainNav.map((item) => item.route));
   });
 });
