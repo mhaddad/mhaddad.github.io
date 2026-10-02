@@ -18,7 +18,8 @@
 **Rules**
 - Nenhum segredo no repositório, em hipótese alguma.
 - Nenhum conteúdo do vault fora da seção `## Conteúdo original` pode chegar ao site.
-- Nenhum script de terceiro novo além de GA4 e YouTube sem aprovação explícita.
+- Nenhum script de terceiro novo além de GA4, YouTube e Google My Maps sem aprovação explícita.
+- Google My Maps (`www.google.com/maps/d/embed?mid=`) foi aprovado em 02/10/2026 só com carregamento no clique (bloco com botão, sem chamada ao Google antes); nenhum outro iframe do Google é permitido.
 - Riscos aceitos pelo autor (ex.: LGPD) são registrados, não reabertos a cada revisão, salvo mudança de contexto.
 
 **Output** — Parecer de segurança com achados classificados (crítico / alto / médio / baixo), evidência, cenário de exploração e correção recomendada.

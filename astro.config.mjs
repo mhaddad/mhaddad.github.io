@@ -2,6 +2,8 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { SITE_URL } from './src/config.ts';
+import { satteri } from '@astrojs/markdown-satteri';
+import { mapEmbedPlugin } from './src/lib/map-embed.ts';
 
 export default defineConfig({
   site: SITE_URL,
@@ -12,6 +14,8 @@ export default defineConfig({
     locales: ['pt', 'en'],
     routing: { prefixDefaultLocale: false },
   },
+  // Mapas do My Maps nos artigos só carregam depois do clique (src/lib/map-embed.ts).
+  markdown: { processor: satteri({ hastPlugins: [mapEmbedPlugin] }) },
   integrations: [sitemap({ filter: (page) => !page.includes('/og/') })],
   // Fontes servidas pelo próprio site, a partir dos pacotes @fontsource (sem rede no build).
   // Só o subconjunto latin, que cobre o português; o provedor npm traria cirílico,

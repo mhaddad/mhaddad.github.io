@@ -29,7 +29,9 @@ In 1966 he published [*Le Mystère de la cathédrale de Chartres*](https://link.
 
 It is worth starting with the present, because everything else moves away from it. The main route to Santiago de Compostela today is the so-called French Way, the Camino Francés. It starts in Saint-Jean-Pied-de-Port, on the French side of the Pyrenees, crosses the border at Roncesvalles and continues through Pamplona, Puente la Reina, Logroño, Burgos, León and Ponferrada until it reaches Santiago, in Galicia. It is the most walked route, the best documented and the best served by hostels. When someone says they are doing the Camino, this is almost always the one they mean.
 
-*[Map of the current route of the French Way, from Saint-Jean-Pied-de-Port to Santiago de Compostela.](https://www.google.com/maps/d/viewer?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg)*
+<iframe src="https://www.google.com/maps/d/embed?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg" title="Map of the current French Way route"></iframe>
+
+*Map of the current route of the French Way, from Saint-Jean-Pied-de-Port to Santiago de Compostela.*
 
 It is worth remembering that the Christian pilgrimage to Compostela is, historically, something relatively recent. It was only born around the 9th century, when a rumor spread through the Christian West that, in a corner of Galicia free from the Muslim invasion, holy men guided by mysterious lights had discovered the tomb of the apostle Saint James the Greater. Over time the legend grew, there was talk of miracles, and people from France, Italy, Germany, Portugal and England began to take to the road. It became fashionable: whoever could not go to Jerusalem or Rome set out for Santiago.
 
@@ -51,7 +53,9 @@ The first line runs near latitude 42°30′. The second, a little farther north,
 
 This is where the story gets interesting for anyone who wants to uncover this ancient route. Charpentier does not speak of a single line, but of a band. The original route would run between latitudes 42°30′ and 42°50′. That band is what I used as the frame for the cartographic reconstruction.
 
-*[Map showing the band bounded by latitudes 42°30′ and 42°50′, laid over the north of the Iberian Peninsula.](https://www.google.com/maps/d/viewer?mid=1Ax6iD0sLWObdO-zJpI2PZ_hB0TfCFzU)*
+<iframe src="https://www.google.com/maps/d/embed?mid=1Ax6iD0sLWObdO-zJpI2PZ_hB0TfCFzU" title="Map of the 42°30′ to 42°50′ latitude band over northern Iberia"></iframe>
+
+*Map showing the band bounded by latitudes 42°30′ and 42°50′, laid over the north of the Iberian Peninsula.*
 
 Within this band, the places the author mentions stop being a list of curious names and start drawing a corridor. It is as if the sky, with its Milky Way, had been projected onto the ground between two parallels.
 
@@ -97,7 +101,9 @@ It was from this logic of meetings and partings that I reconstructed the route, 
 
 The ending, however, is where the recovered route breaks away from the modern one for good. On reaching the Pico Sacro, instead of heading to the cathedral of Santiago, it turns toward Padrón and, from there, to Noia, ending in front of the ocean at Finisterre. It is this final divergence that best reveals the difference in purpose between the two routes.
 
-*[Map showing the band of latitudes and the path of the recovered initiatory route, combining the seven gates, the Aragonese Way and the Camino Olvidado](https://www.google.com/maps/d/viewer?mid=1aNv_iFdyQiLdZk7j9Dzxcsfwm_vgvvo)*
+<iframe src="https://www.google.com/maps/d/embed?mid=1aNv_iFdyQiLdZk7j9Dzxcsfwm_vgvvo" title="Map of the recovered initiatory route"></iframe>
+
+*Map showing the band of latitudes and the path of the recovered initiatory route, combining the seven gates, the Aragonese Way and the Camino Olvidado*
 
 ## The influence of the Order of Cluny
 

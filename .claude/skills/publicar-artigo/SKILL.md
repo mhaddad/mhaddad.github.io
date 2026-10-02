@@ -43,7 +43,8 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
 **Sanitização (obrigatória):**
 - Remova qualquer `<script>`.
 - Remova `<iframe>` que não seja do YouTube. Iframes do YouTube devem usar `https://www.youtube-nocookie.com/embed/<id>`; converta `youtube.com/embed/` para esse formato.
-- O build falha se sobrar `<script>` ou iframe fora de `youtube-nocookie.com` (`validateArticles` em `src/lib/articles.ts`).
+- **Mapas do Google My Maps** (iframe do Medium via embedly) são permitidos, com carregamento só no clique: escreva `<iframe src="https://www.google.com/maps/d/embed?mid=<id>" title="descrição curta"></iframe>` **sozinho num parágrafo** (linha em branco antes e depois), seguido da legenda em itálico. Use o `mid` do link `maps/d/viewer?mid=` ou `maps/d/embed?mid=`. Qualquer outro iframe do Google é removido.
+- O build falha se sobrar `<script>` ou iframe fora de `youtube-nocookie.com` e dos mapas do My Maps (`validateArticles` em `src/lib/articles.ts`).
 
 **Imagens:** se o artigo tiver imagens, copie-as para `src/assets/articles/<translationKey>/` e use caminho relativo no Markdown (`../../../assets/articles/<translationKey>/<arquivo>`), com texto alternativo em cada idioma. Se não conseguir ler a imagem do vault, pare e peça o arquivo a Matheus.
 - Imagens remotas (CDN do Medium, `media.licdn.com`) são **baixadas** para a mesma pasta (`curl -sSL -o …`), nunca referenciadas pela URL externa. Confira o tipo com `file`.

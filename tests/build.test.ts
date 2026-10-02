@@ -729,6 +729,27 @@ describe('Palestras e Mídia — Onda 4', () => {
   });
 });
 
+describe('mapa do Google My Maps no artigo', () => {
+  it('deve gerar um bloco com botão e sem iframe, com o endereço do mapa, quando o artigo traz um mapa', () => {
+    // Arrange
+    const pt = page('artigos/segundo-artigo/index.html');
+    const en = page('en/articles/second-article/index.html');
+
+    // Act
+    const block = (html: string) => /<figure class="map-embed"[\s\S]*?<\/figure>/.exec(html)?.[0] ?? '';
+
+    // Assert
+    expect(block(pt)).toContain('data-src="https://www.google.com/maps/d/embed?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg"');
+    expect(block(pt)).toContain('data-title="Mapa de teste"');
+    expect(block(pt)).toContain('>Carregar mapa interativo</button>');
+    expect(block(pt)).toContain('href="https://www.google.com/maps/d/viewer?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg"');
+    expect(block(en)).toContain('>Load interactive map</button>');
+    expect(block(en)).toContain('>Open in Google Maps</a>');
+    expect(pt).not.toContain('<iframe');
+    expect(en).not.toContain('<iframe');
+  });
+});
+
 describe('404 — Onda 4', () => {
   it('deve gerar a 404 bilíngue fora dos buscadores e do sitemap quando o build termina', () => {
     // Arrange

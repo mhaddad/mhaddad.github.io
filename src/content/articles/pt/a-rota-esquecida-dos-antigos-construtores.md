@@ -29,7 +29,9 @@ Em 1966 publicou [*Le Mystère de la cathédrale de Chartres*](https://link.amaz
 
 Vale começar pelo presente, porque é dele que todo o resto se distancia. O principal itinerário para Santiago de Compostela hoje é o chamado Caminho Francês. Ele começa em Saint-Jean-Pied-de-Port, do lado francês dos Pireneus, cruza a fronteira por Roncesvalles e segue por Pamplona, Puente la Reina, Logroño, Burgos, León e Ponferrada até chegar a Santiago, já na Galícia. É a rota mais percorrida, a mais documentada e a mais bem servida de albergues. Quando alguém diz que está fazendo o Caminho, quase sempre é desse que está falando.
 
-*[Mapa da rota atual do Caminho Francês, de Saint-Jean-Pied-de-Port a Santiago de Compostela.](https://www.google.com/maps/d/viewer?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg)*
+<iframe src="https://www.google.com/maps/d/embed?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg" title="Mapa da rota atual do Caminho Francês"></iframe>
+
+*Mapa da rota atual do Caminho Francês, de Saint-Jean-Pied-de-Port a Santiago de Compostela.*
 
 Convém lembrar que a peregrinação cristã a Compostela é, historicamente, algo relativamente recente. Ela só nasce por volta do século IX, quando corre pelo Ocidente cristão o rumor de que, num canto da Galícia livre da invasão muçulmana, homens santos haviam descoberto, avisados por luzes misteriosas, o túmulo do apóstolo Santiago Maior. Com o tempo, a lenda cresceu, falou-se de milagres, e gente da França, da Itália, da Alemanha, de Portugal e da Inglaterra começou a tomar a estrada. Tornou-se moda: quem não podia ir a Jerusalém ou Roma, partia para Santiago.
 
@@ -51,7 +53,9 @@ A primeira linha corre perto da latitude 42°30′. A segunda, um pouco mais ao 
 
 É aqui que a história fica interessante para quem quer desvendar essa antiga rota. Charpentier não fala de uma linha única, mas de uma faixa. O caminho original correria entre as latitudes 42°30′ e 42°50′. Foi essa faixa que usei como moldura para a reconstituição cartográfica.
 
-*[Mapa contendo a faixa delimitada pelas latitudes 42°30′ e 42°50′, sobreposta ao norte da Península Ibérica.](https://www.google.com/maps/d/viewer?mid=1Ax6iD0sLWObdO-zJpI2PZ_hB0TfCFzU)*
+<iframe src="https://www.google.com/maps/d/embed?mid=1Ax6iD0sLWObdO-zJpI2PZ_hB0TfCFzU" title="Mapa da faixa de latitudes 42°30′ a 42°50′ no norte da Península Ibérica"></iframe>
+
+*Mapa contendo a faixa delimitada pelas latitudes 42°30′ e 42°50′, sobreposta ao norte da Península Ibérica.*
 
 Dentro dessa faixa, os pontos citados pelo autor deixam de ser uma lista de nomes curiosos e passam a desenhar um corredor. É como se o céu, com sua Via Láctea, tivesse sido projetado no solo entre dois paralelos.
 
@@ -97,7 +101,9 @@ Foi a partir dessa lógica de aproximações e afastamentos que reconstituí a r
 
 O desfecho, porém, é onde a rota recuperada se separa de vez do caminho moderno. Ao alcançar o Pico Sacro, em vez de seguir para a catedral de Santiago, ela toma o rumo de Padrón e, de lá para Noia, terminando diante do oceano em Finisterre. É essa divergência final que melhor revela a diferença de propósito entre os dois caminhos.
 
-*[Mapa contendo a faixa de latitudes e o traçado da rota iniciática recuperada, combinando as sete portas, o Caminho Aragonês e o Camino Olvidado](https://www.google.com/maps/d/viewer?mid=1aNv_iFdyQiLdZk7j9Dzxcsfwm_vgvvo)*
+<iframe src="https://www.google.com/maps/d/embed?mid=1aNv_iFdyQiLdZk7j9Dzxcsfwm_vgvvo" title="Mapa do traçado da rota iniciática recuperada"></iframe>
+
+*Mapa contendo a faixa de latitudes e o traçado da rota iniciática recuperada, combinando as sete portas, o Caminho Aragonês e o Camino Olvidado*
 
 ## A influência da Ordem de Cluny
 

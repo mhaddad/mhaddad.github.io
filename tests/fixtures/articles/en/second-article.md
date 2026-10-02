@@ -9,3 +9,5 @@ translationKey: fixture-segundo
 ---
 
 Text of the second article.
+
+<iframe src="https://www.google.com/maps/d/embed?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg" title="Test map"></iframe>

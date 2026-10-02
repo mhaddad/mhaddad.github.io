@@ -184,3 +184,22 @@ const toc = tocItems(headings);
     }
   }
 </style>
+
+<script>
+  import { MAP_EMBED_SRC } from '../lib/map-embed';
+
+  // Mapas do My Maps: o Google só é chamado depois do clique.
+  document.querySelectorAll<HTMLElement>('[data-map-embed]').forEach((block) => {
+    block.querySelector('button')?.addEventListener('click', () => {
+      const src = block.dataset.src ?? '';
+      if (!MAP_EMBED_SRC.test(src)) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = block.dataset.title ?? '';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      block.querySelector('.map-embed__stage')?.replaceChildren(iframe);
+      iframe.focus();
+    });
+  });
+</script>

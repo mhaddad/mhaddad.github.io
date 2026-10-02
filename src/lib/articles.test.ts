@@ -194,6 +194,33 @@ describe('unsafeHtmlProblems', () => {
     ]);
   });
 
+  it('deve aceitar quando o iframe é um mapa do Google My Maps', () => {
+    // Arrange
+    const body = '<iframe src="https://www.google.com/maps/d/embed?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg"></iframe>';
+
+    // Act
+    const problems = unsafeHtmlProblems(body);
+
+    // Assert
+    expect(problems).toEqual([]);
+  });
+
+  it('deve rejeitar quando o endereço do Google Maps não é um mapa do My Maps', () => {
+    // Arrange
+    const bodies = [
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18"></iframe>',
+      '<iframe src="https://www.google.com/maps/d/embed"></iframe>',
+      '<iframe src="https://www.google.com.evil.com/maps/d/embed?mid=abc"></iframe>',
+      '<iframe src="https://www.google.com/maps/d/embed?mid=abc&q=x"></iframe>',
+    ];
+
+    // Act
+    const problems = bodies.map((body) => unsafeHtmlProblems(body).length);
+
+    // Assert
+    expect(problems).toEqual([1, 1, 1, 1]);
+  });
+
   it('deve rejeitar script quando escrito em qualquer caixa', () => {
     // Arrange
     const body = 'Texto <SCRIPT src="x.js"></SCRIPT>';
