@@ -3,12 +3,12 @@
 // o YouTube; as miniaturas ficam locais.
 //
 // - Logos (images/*.png do site antigo): recorta a margem branca e grava a versão
-//   colorida (Empresas), a máscara de opacidade e a versão colorida sem fundo (faixa da home).
+//   colorida (Empresas) e a máscara de opacidade (faixa de prova da home).
 // - Miniaturas: baixa a hqdefault de cada youtubeId de talks.yaml e recorta em 16:9.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import sharp from 'sharp';
-import { logoColor, logoMask } from '../src/lib/logo-mask.ts';
+import { logoMask } from '../src/lib/logo-mask.ts';
 
 const LOGOS = ['webgoal', 'granatum', 'atelie', 'orgganica', 'lumiar', 'alianca', 'guardachuva', 'tugagil'];
 const LOGO_WIDTH = 480;
@@ -16,7 +16,6 @@ const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
 
 async function prepareLogos() {
   await mkdir('src/assets/companies/mono', { recursive: true });
-  await mkdir('src/assets/companies/color', { recursive: true });
   for (const id of LOGOS) {
     const trimmed = await sharp(`images/${id}.png`)
       .flatten({ background: '#ffffff' })
@@ -32,11 +31,6 @@ async function prepareLogos() {
     })
       .png()
       .toFile(`src/assets/companies/mono/${id}.png`);
-    await sharp(Buffer.from(logoColor(new Uint8Array(data))), {
-      raw: { width: info.width, height: info.height, channels: 4 },
-    })
-      .png()
-      .toFile(`src/assets/companies/color/${id}.png`);
     console.log(`logo ${id}: ${info.width}×${info.height}`);
   }
 }

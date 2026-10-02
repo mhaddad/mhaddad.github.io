@@ -787,18 +787,17 @@ describe('empresas e iniciativas na home', () => {
     expect(found.every((tile) => tile.attrs.includes('class="tile"'))).toBe(true);
   });
 
-  it('deve levar em cada quadrado o logo em máscara e o logo colorido, que só aparece ao passar o mouse', () => {
+  it('deve levar em cada quadrado só o logo em máscara, sem imagem colorida', () => {
     // Arrange
     const found = tiles(page('index.html'));
 
     // Act
     const masks = found.map((tile) => /<span class="logo"[^>]*aria-hidden="true"[^>]*style="--logo: url\((\/_astro\/[^)]+)\)"/.exec(tile.inner)?.[1]);
-    const colors = found.map((tile) => /<img[^>]*>/.exec(tile.inner)?.[0] ?? '');
 
     // Assert
     expect(masks.every((src) => src !== undefined)).toBe(true);
-    expect(colors.every((tag) => /\balt(=""|[ >])/.test(tag) && tag.includes('class="color"') && tag.includes('src="/_astro/'))).toBe(true);
     expect(new Set(masks).size).toBe(8);
+    expect(found.every((tile) => !tile.inner.includes('<img'))).toBe(true);
   });
 
   it('deve ajustar sozinho o número de quadrados por linha, com a última linha centralizada, e empilhar um por linha no celular', () => {
@@ -824,7 +823,7 @@ describe('empresas e iniciativas na home', () => {
     expect(phoneItem).toMatch(/flex-basis:\s*100%|flex:\s*0 0 100%/);
   });
 
-  it('deve manter o fundo do quadrado ao passar o mouse, trocando só o logo para a versão colorida', () => {
+  it('deve manter o fundo e o logo do quadrado ao passar o mouse, mudando só a borda', () => {
     // Arrange
     const html = page('index.html');
     const css = [
@@ -836,9 +835,9 @@ describe('empresas e iniciativas na home', () => {
     const hover = /\.tile\[data-astro-cid-[a-z0-9]+\]:hover(?:,\.tile\[data-astro-cid-[a-z0-9]+\]:focus-visible)?\{[^}]*\}/.exec(css)?.[0] ?? '';
 
     // Assert
-    expect(hover).not.toBe('');
+    expect(hover).toMatch(/border-color/);
     expect(hover).not.toMatch(/background/);
-    expect(css).toMatch(/\.tile\[data-astro-cid-[a-z0-9]+\]:hover \.color/);
+    expect(css).not.toMatch(/\.tile\[data-astro-cid-[a-z0-9]+\]:hover \./);
   });
 
   it('deve mostrar os logos em quadrados maiores que 144px', () => {

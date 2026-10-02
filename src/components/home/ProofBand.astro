@@ -1,7 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { t, type Lang } from '../../i18n/ui';
-import { companyColors, companyMasks, getAllCompanies } from '../../lib/collections';
+import { companyMasks, getAllCompanies } from '../../lib/collections';
 import { sortCompanies } from '../../lib/companies';
 
 interface Props {
@@ -10,12 +9,10 @@ interface Props {
 
 const { lang } = Astro.props;
 
-// Cada empresa tem dois logos: a máscara (pega a cor do texto nos dois temas) e o colorido,
-// sem fundo, que aparece ao passar o mouse (npm run assets).
+// O logo é uma máscara (npm run assets) pintada com a cor do texto, então serve nos dois temas.
 const companies = sortCompanies(await getAllCompanies()).map((company) => ({
   name: company.data.name,
   url: company.data.url,
-  color: companyColors.get(company.id)!,
   mask: companyMasks.get(company.id)!.src,
 }));
 ---
@@ -25,11 +22,10 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     <p id="proof-title" class="mono title">{t(lang, 'proof.logos')}</p>
     <ul>
       {
-        companies.map(({ name, url, color, mask }) => (
+        companies.map(({ name, url, mask }) => (
           <li>
             <a class="tile" href={url} target="_blank" rel="noopener" aria-label={name} title={name}>
               <span class="logo" aria-hidden="true" style={`--logo: url(${mask})`} />
-              <Image class="color" src={color} alt="" widths={[160, 320]} sizes="160px" loading="lazy" />
             </a>
           </li>
         ))
@@ -68,7 +64,7 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     flex: 0 0 var(--logo-tile);
   }
 
-  /* Quadrado com o logo em cinza; no hover (ou foco) só o logo fica colorido, o fundo não muda. */
+  /* Quadrado com o logo em cinza; no hover (ou foco) só a borda ganha o destaque. */
   .tile {
     display: grid;
     grid-template: minmax(0, 1fr) / minmax(0, 1fr);
@@ -83,37 +79,17 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     transition: border-color var(--duration-fast);
   }
 
-  .logo,
-  .tile :global(.color) {
+  .logo {
     grid-area: 1 / 1;
     width: 100%;
     height: 100%;
-    transition: opacity var(--duration-fast);
-  }
-
-  .logo {
     background: currentColor;
     mask: var(--logo) center / contain no-repeat;
-  }
-
-  .tile :global(.color) {
-    object-fit: contain;
-    opacity: 0;
   }
 
   .tile:hover,
   .tile:focus-visible {
     border-color: var(--accent);
-  }
-
-  .tile:hover .logo,
-  .tile:focus-visible .logo {
-    opacity: 0;
-  }
-
-  .tile:hover :global(.color),
-  .tile:focus-visible :global(.color) {
-    opacity: 1;
   }
 
   @media (max-width: 767px) {
