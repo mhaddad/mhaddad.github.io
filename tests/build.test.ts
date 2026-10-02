@@ -256,6 +256,20 @@ describe('feeds e sitemap', () => {
     // Assert
     expect(result).toEqual({ index: true, pt: true, en: true, draft: false });
   });
+
+  it('deve publicar o robots.txt liberando os buscadores e apontando para o sitemap quando o build termina', () => {
+    // Arrange
+    const robots = page('robots.txt');
+
+    // Act
+    const lines = robots.split('\n').map((line) => line.trim());
+
+    // Assert
+    expect(lines).toContain('User-agent: *');
+    expect(lines).toContain('Allow: /');
+    expect(lines).toContain(`Sitemap: ${SITE}/sitemap-index.xml`);
+    expect(robots).not.toMatch(/Disallow:\s*\//);
+  });
 });
 
 describe('analytics', () => {
