@@ -729,24 +729,38 @@ describe('Palestras e Mídia — Onda 4', () => {
   });
 });
 
-describe('mapa do Google My Maps no artigo', () => {
-  it('deve gerar um bloco com botão e sem iframe, com o endereço do mapa, quando o artigo traz um mapa', () => {
+describe('mapas do Google no artigo', () => {
+  const figures = (html: string) => [...html.matchAll(/<figure class="map-embed">[\s\S]*?<\/figure>/g)].map((m) => m[0]);
+
+  it('deve gerar cada mapa já no HTML, com carregamento preguiçoso e sem botão, quando o artigo traz mapas', () => {
     // Arrange
-    const pt = page('artigos/segundo-artigo/index.html');
-    const en = page('en/articles/second-article/index.html');
+    const pt = figures(page('artigos/segundo-artigo/index.html'));
 
     // Act
-    const block = (html: string) => /<figure class="map-embed"[\s\S]*?<\/figure>/.exec(html)?.[0] ?? '';
+    const iframes = pt.map((figure) => /<iframe[^>]*>/.exec(figure)?.[0] ?? '');
 
     // Assert
-    expect(block(pt)).toContain('data-src="https://www.google.com/maps/d/embed?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg"');
-    expect(block(pt)).toContain('data-title="Mapa de teste"');
-    expect(block(pt)).toContain('>Carregar mapa interativo</button>');
-    expect(block(pt)).toContain('href="https://www.google.com/maps/d/viewer?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg"');
-    expect(block(en)).toContain('>Load interactive map</button>');
-    expect(block(en)).toContain('>Open in Google Maps</a>');
-    expect(pt).not.toContain('<iframe');
-    expect(en).not.toContain('<iframe');
+    expect(pt).toHaveLength(2);
+    expect(iframes[0]).toContain('src="https://www.google.com/maps/d/embed?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg"');
+    expect(iframes[0]).toContain('title="Mapa de teste"');
+    expect(iframes[1]).toContain('src="https://www.google.com/maps/embed?pb=');
+    expect(iframes[1]).toContain('title="Mapa padrão de teste"');
+    expect(iframes.every((tag) => tag.includes('loading="lazy"') && tag.includes('referrerpolicy="strict-origin-when-cross-origin"'))).toBe(true);
+    expect(pt.join('')).not.toContain('<button');
+    expect(page('artigos/segundo-artigo/index.html')).not.toContain('data-map-embed');
+  });
+
+  it('deve levar o link para abrir o My Maps só no mapa que tem página própria, no idioma do artigo', () => {
+    // Arrange
+    const pt = figures(page('artigos/segundo-artigo/index.html'));
+    const en = figures(page('en/articles/second-article/index.html'));
+
+    // Assert
+    expect(pt[0]).toContain('href="https://www.google.com/maps/d/viewer?mid=1sET9YDELCtNMjR9M6hGqK8ml2iroXGg"');
+    expect(pt[0]).toContain('>Abrir no Google Maps</a>');
+    expect(pt[1]).not.toContain('<a ');
+    expect(en[0]).toContain('>Open in Google Maps</a>');
+    expect(en[1]).toContain('title="Standard test map"');
   });
 });
 

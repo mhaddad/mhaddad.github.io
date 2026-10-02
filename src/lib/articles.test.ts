@@ -205,10 +205,22 @@ describe('unsafeHtmlProblems', () => {
     expect(problems).toEqual([]);
   });
 
-  it('deve rejeitar quando o endereço do Google Maps não é um mapa do My Maps', () => {
+  it('deve aceitar quando o iframe é o embed padrão do Google Maps', () => {
+    // Arrange
+    const body = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1!2d-46.65!3d-23.56!5e0!3m2!1spt-BR!2sbr" width="600" height="450" loading="lazy"></iframe>';
+
+    // Act
+    const problems = unsafeHtmlProblems(body);
+
+    // Assert
+    expect(problems).toEqual([]);
+  });
+
+  it('deve rejeitar quando o endereço do Google Maps não é um embed de mapa', () => {
     // Arrange
     const bodies = [
-      '<iframe src="https://www.google.com/maps/embed?pb=!1m18"></iframe>',
+      '<iframe src="https://www.google.com/maps/api/staticmap?center=x"></iframe>',
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18&amp;x=1"></iframe>',
       '<iframe src="https://www.google.com/maps/d/embed"></iframe>',
       '<iframe src="https://www.google.com.evil.com/maps/d/embed?mid=abc"></iframe>',
       '<iframe src="https://www.google.com/maps/d/embed?mid=abc&q=x"></iframe>',
@@ -218,7 +230,7 @@ describe('unsafeHtmlProblems', () => {
     const problems = bodies.map((body) => unsafeHtmlProblems(body).length);
 
     // Assert
-    expect(problems).toEqual([1, 1, 1, 1]);
+    expect(problems).toEqual([1, 1, 1, 1, 1]);
   });
 
   it('deve rejeitar script quando escrito em qualquer caixa', () => {

@@ -30,7 +30,7 @@ describe('conteúdo real', () => {
     // Act
     const loose = files.flatMap((file) => {
       const body = readFileSync(file, 'utf8');
-      const all = [...body.matchAll(/<iframe\b[^>]*maps\/d\/embed[^>]*>/gi)].length;
+      const all = [...body.matchAll(/<iframe\b[^>]*maps\/(?:d\/)?embed[^>]*>/gi)].length;
       const alone = body.split(/\n\s*\n/).filter((block) => parseMapIframe(block) !== undefined).length;
       return all === alone ? [] : [file];
     });

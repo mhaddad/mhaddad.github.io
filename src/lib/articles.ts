@@ -1,14 +1,14 @@
 import { categories, categoryKeys, type CategoryKey } from '../i18n/categories';
 import { languages, type Lang } from '../i18n/ui';
-import { MAP_EMBED_SRC } from './map-embed';
+import { isMapEmbedSrc } from './map-embed';
 
 export const DESCRIPTION_MAX = 160;
 export const WORDS_PER_MINUTE = 200;
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const YOUTUBE_IFRAME_SRC = /^https:\/\/www\.youtube-nocookie\.com\/embed\//;
-// Mapas do My Maps viram um bloco com botão no build (src/lib/map-embed.ts).
-const ALLOWED_IFRAME_SRC = { test: (src: string) => YOUTUBE_IFRAME_SRC.test(src) || MAP_EMBED_SRC.test(src) };
+// Mapas do Google são padronizados no build (src/lib/map-embed.ts).
+const ALLOWED_IFRAME_SRC = { test: (src: string) => YOUTUBE_IFRAME_SRC.test(src) || isMapEmbedSrc(src) };
 
 export interface ArticleData {
   title: string;

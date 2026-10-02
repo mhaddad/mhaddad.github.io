@@ -14,7 +14,7 @@ export default defineConfig({
     locales: ['pt', 'en'],
     routing: { prefixDefaultLocale: false },
   },
-  // Mapas do My Maps nos artigos só carregam depois do clique (src/lib/map-embed.ts).
+  // Mapas do Google nos artigos são padronizados no build (src/lib/map-embed.ts).
   markdown: { processor: satteri({ hastPlugins: [mapEmbedPlugin] }) },
   integrations: [sitemap({ filter: (page) => !page.includes('/og/') })],
   // Fontes servidas pelo próprio site, a partir dos pacotes @fontsource (sem rede no build).
