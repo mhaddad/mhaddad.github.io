@@ -801,7 +801,7 @@ describe('empresas e iniciativas na home', () => {
     expect(new Set(masks).size).toBe(8);
   });
 
-  it('deve arrumar os quadrados em 5 por linha, com a última linha centralizada, e em 4 por linha no celular', () => {
+  it('deve ajustar sozinho o número de quadrados por linha, com a última linha centralizada, e empilhar um por linha no celular', () => {
     // Arrange
     const html = page('index.html');
     const css = [
@@ -811,32 +811,43 @@ describe('empresas e iniciativas na home', () => {
 
     // Act
     const list = /ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
-    const phone = /(?:max-width:\s*767px|width\s*<=\s*767px)\)\s*\{ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
     const item = /li\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
+    const cid = /data-astro-cid-([a-z0-9]+)/.exec(list)?.[1] ?? '';
+    const phoneItem = new RegExp(`(?:max-width:\\s*767px|width\\s*<=\\s*767px)\\)\\s*\\{ul\\[data-astro-cid-${cid}\\]\\{[^}]*\\}li\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css)?.[0] ?? '';
 
     // Assert
     expect(list).toMatch(/display:\s*flex/);
     expect(list).toMatch(/flex-wrap:\s*wrap/);
     expect(list).toMatch(/justify-content:\s*center/);
-    expect(list).toMatch(/--per-row:\s*5/);
-    // A largura da lista cabe exatamente --per-row quadrados, para a linha nunca passar de 5.
-    expect(list).toMatch(/max-width:\s*calc\(var\(--per-row\)\s*\*\s*var\(--logo-tile\)/);
-    expect(phone).toMatch(/--per-row:\s*4/);
-    expect(item).toMatch(/var\(--per-row\)/);
-    expect(css).not.toMatch(/--logo-tile-mobile/);
+    expect(list).not.toMatch(/--per-row|max-width/);
+    expect(item).toMatch(/flex:\s*0 0 var\(--logo-tile\)/);
+    expect(phoneItem).toMatch(/flex-basis:\s*100%|flex:\s*0 0 100%/);
   });
 
-  it('deve ter o botão para conhecer as empresas e iniciativas, nos dois idiomas', () => {
+  it('deve mostrar os logos em quadrados maiores que 144px', () => {
     // Arrange
-    const button = (html: string) => /<a [^>]*class="button button--secondary[^"]*"[^>]*href="([^"]+)"[^>]*>\s*([^<]+?)\s*(?:<|$)/.exec(/<section class="proof"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '');
+    const tokens = readFileSync(join(process.cwd(), 'src/styles/tokens.css'), 'utf8');
 
     // Act
-    const pt = button(page('index.html'));
-    const en = button(page('en/index.html'));
+    const size = Number(/--logo-tile:\s*(\d+)px/.exec(tokens)?.[1]);
 
     // Assert
-    expect([pt?.[1], pt?.[2]]).toEqual(['/empresas/', 'Conhecer empresas e iniciativas']);
-    expect([en?.[1], en?.[2]]).toEqual(['/en/companies/', 'Explore companies and initiatives']);
+    expect(size).toBeGreaterThan(144);
+  });
+
+  it('deve deixar a faixa de empresas sem botão, nos dois idiomas', () => {
+    // Arrange
+    const section = (html: string) => /<section class="proof"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+
+    // Act
+    const pt = section(page('index.html'));
+    const en = section(page('en/index.html'));
+
+    // Assert
+    expect(pt).not.toContain('class="button');
+    expect(en).not.toContain('class="button');
+    expect(pt).not.toContain('Conhecer empresas');
+    expect(en).not.toContain('Explore companies');
   });
 });
 
