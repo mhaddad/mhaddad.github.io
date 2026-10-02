@@ -19,12 +19,12 @@ const { lang } = Astro.props;
     <h1>{t(lang, 'hero.title')}</h1>
     <p class="subtitle">{t(lang, 'hero.subtitle')}</p>
     <div class="ctas">
-      <a class="button button--primary button--large" href={routePath('services', lang)}>
-        {t(lang, 'hero.services')}
-        <Icon name="arrow-right" size="s" />
-      </a>
       <a class="button button--secondary button--large" href={routePath('about', lang)}>
         {t(lang, 'hero.about')}
+        <Icon name="arrow-right" size="s" />
+      </a>
+      <a class="button button--primary button--large" href={routePath('services', lang)}>
+        {t(lang, 'hero.services')}
         <Icon name="arrow-right" size="s" />
       </a>
     </div>

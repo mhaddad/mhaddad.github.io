@@ -34,7 +34,7 @@ const pt = {
   'hero.subtitle':
     'Matheus Haddad ajuda CEOs e CTOs a repensar suas organizações, combinando gestão de pessoas, estratégia de negócios, desenvolvimento de software e inteligência artificial.',
   'hero.services': 'Ver serviços',
-  'hero.about': 'Conheça o Matheus',
+  'hero.about': 'Saber mais',
   'proof.logos': 'Empresas e iniciativas',
   'home.featured': 'Artigos em destaque',
   'home.allArticles': 'Ver todos os artigos',
@@ -174,7 +174,7 @@ const en: Record<UIKey, string> = {
   'hero.subtitle':
     'Matheus Haddad helps CEOs and CTOs rethink their organizations, combining people management, business strategy, software development and artificial intelligence.',
   'hero.services': 'See services',
-  'hero.about': 'Meet Matheus',
+  'hero.about': 'Learn more',
   'proof.logos': 'Companies & initiatives',
   'home.featured': 'Featured articles',
   'home.allArticles': 'See all articles',

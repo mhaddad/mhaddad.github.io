@@ -525,28 +525,29 @@ describe('botões do hero da home', () => {
       text: (m[2] ?? '').replace(/<[^>]+>/g, '').trim(),
     }));
 
-  it('deve levar a Serviços e ao Sobre, e não ao WhatsApp, em português', () => {
+  it('deve levar ao Sobre e a Serviços, com destaque em Serviços, e não ao WhatsApp, em português', () => {
     // Act
     const buttons = ctas(page('index.html'));
 
     // Assert
     expect(buttons.map((b) => [b.href, b.text])).toEqual([
+      ['/sobre/', 'Saber mais'],
       ['/servicos/', 'Ver serviços'],
-      ['/sobre/', 'Conheça o Matheus'],
     ]);
-    expect(buttons[0]?.class).toContain('button--primary');
-    expect(buttons[1]?.class).toContain('button--secondary');
+    expect(buttons[0]?.class).toContain('button--secondary');
+    expect(buttons[1]?.class).toContain('button--primary');
   });
 
-  it('deve levar a Serviços e ao Sobre, e não ao WhatsApp, em inglês', () => {
+  it('deve levar ao Sobre e a Serviços, com destaque em Serviços, e não ao WhatsApp, em inglês', () => {
     // Act
     const buttons = ctas(page('en/index.html'));
 
     // Assert
     expect(buttons.map((b) => [b.href, b.text])).toEqual([
+      ['/en/about/', 'Learn more'],
       ['/en/services/', 'See services'],
-      ['/en/about/', 'Meet Matheus'],
     ]);
+    expect(buttons[1]?.class).toContain('button--primary');
   });
 });
 
