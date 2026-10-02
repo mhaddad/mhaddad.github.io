@@ -356,7 +356,7 @@ describe('header e footer', () => {
     expect(header).not.toContain('>Chat on WhatsApp<');
   });
 
-  it('deve manter o número real e o evento do GA em todo botão de WhatsApp quando a página é a home', () => {
+  it('deve deixar só o ícone do cabeçalho como botão de WhatsApp, com o número real e o evento do GA, quando a página é a home', () => {
     // Arrange
     const html = page('en/index.html');
 
@@ -364,7 +364,8 @@ describe('header e footer', () => {
     const links = [...html.matchAll(/<a [^>]*href="https:\/\/wa\.me\/5535988867870\?text=[^"]+"[^>]*>/g)].map((m) => m[0]);
 
     // Assert
-    expect(links).toHaveLength(2);
+    expect(links).toHaveLength(1);
+    expect(links[0]).toContain('button--icon');
     expect(links.every((link) => link.includes('data-ga-event="whatsapp_click"') && link.includes('rel="noopener"'))).toBe(true);
   });
 
@@ -513,6 +514,39 @@ describe('home', () => {
     expect(featured).toBeGreaterThan(-1);
     expect(older).toBeGreaterThan(featured);
     expect(html).not.toContain('Rascunho de teste');
+  });
+});
+
+describe('botões do hero da home', () => {
+  const ctas = (html: string) =>
+    [...(/<div class="ctas"[\s\S]*?<\/div>/.exec(html)?.[0] ?? '').matchAll(/<a ([^>]*)>([\s\S]*?)<\/a>/g)].map((m) => ({
+      class: /class="([^"]*)"/.exec(m[1] ?? '')?.[1] ?? '',
+      href: /href="([^"]*)"/.exec(m[1] ?? '')?.[1],
+      text: (m[2] ?? '').replace(/<[^>]+>/g, '').trim(),
+    }));
+
+  it('deve levar a Serviços e ao Sobre, e não ao WhatsApp, em português', () => {
+    // Act
+    const buttons = ctas(page('index.html'));
+
+    // Assert
+    expect(buttons.map((b) => [b.href, b.text])).toEqual([
+      ['/servicos/', 'Ver serviços'],
+      ['/sobre/', 'Conheça o Matheus'],
+    ]);
+    expect(buttons[0]?.class).toContain('button--primary');
+    expect(buttons[1]?.class).toContain('button--secondary');
+  });
+
+  it('deve levar a Serviços e ao Sobre, e não ao WhatsApp, em inglês', () => {
+    // Act
+    const buttons = ctas(page('en/index.html'));
+
+    // Assert
+    expect(buttons.map((b) => [b.href, b.text])).toEqual([
+      ['/en/services/', 'See services'],
+      ['/en/about/', 'Meet Matheus'],
+    ]);
   });
 });
 
