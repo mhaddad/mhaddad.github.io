@@ -801,7 +801,7 @@ describe('empresas e iniciativas na home', () => {
     expect(new Set(masks).size).toBe(8);
   });
 
-  it('deve arrumar os 8 quadrados em 4 colunas, ou seja, 2 linhas de 4, em qualquer largura', () => {
+  it('deve arrumar os quadrados em 5 por linha, com a última linha centralizada, e em 4 por linha no celular', () => {
     // Arrange
     const html = page('index.html');
     const css = [
@@ -810,14 +810,20 @@ describe('empresas e iniciativas na home', () => {
     ].join('');
 
     // Act
-    const grid = /ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*grid-template-columns:repeat\(4,\s*minmax\(0,\s*var\(--logo-tile\)\)\)[^}]*\}/.exec(css)?.[0] ?? '';
+    const list = /ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
+    const phone = /(?:max-width:\s*767px|width\s*<=\s*767px)\)\s*\{ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
+    const item = /li\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
 
     // Assert
-    expect(grid).toContain('display:grid');
-    expect(grid).toContain('justify-content:center');
-    // Nenhuma regra de largura redefine o número de colunas.
+    expect(list).toMatch(/display:\s*flex/);
+    expect(list).toMatch(/flex-wrap:\s*wrap/);
+    expect(list).toMatch(/justify-content:\s*center/);
+    expect(list).toMatch(/--per-row:\s*5/);
+    // A largura da lista cabe exatamente --per-row quadrados, para a linha nunca passar de 5.
+    expect(list).toMatch(/max-width:\s*calc\(var\(--per-row\)\s*\*\s*var\(--logo-tile\)/);
+    expect(phone).toMatch(/--per-row:\s*4/);
+    expect(item).toMatch(/var\(--per-row\)/);
     expect(css).not.toMatch(/--logo-tile-mobile/);
-    expect(css).not.toMatch(/ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*grid-template-columns:repeat\((?!4,)/);
   });
 
   it('deve ter o botão para conhecer as empresas e iniciativas, nos dois idiomas', () => {

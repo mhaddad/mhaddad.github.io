@@ -60,15 +60,23 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     text-align: center;
   }
 
-  /* 2 linhas de 4: os quadrados chegam a --logo-tile e encolhem junto com a tela. */
+  /* 5 por linha (4 no celular): os quadrados chegam a --logo-tile e encolhem junto com a tela.
+     A última linha, incompleta, fica centralizada. */
   ul {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, var(--logo-tile)));
+    --gap: var(--space-24);
+    --per-row: 5;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: var(--space-24);
-    margin: 0;
+    gap: var(--gap);
+    max-width: calc(var(--per-row) * var(--logo-tile) + (var(--per-row) - 1) * var(--gap));
+    margin: 0 auto;
     padding: 0;
     list-style: none;
+  }
+
+  li {
+    flex: 0 0 min(var(--logo-tile), calc((100% - (var(--per-row) - 1) * var(--gap)) / var(--per-row)));
   }
 
   /* Quadrado com o logo em cinza; no hover (ou foco) vira uma placa clara com o logo colorido. */
@@ -129,7 +137,8 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
 
   @media (max-width: 767px) {
     ul {
-      gap: var(--space-12);
+      --gap: var(--space-12);
+      --per-row: 4;
     }
 
     .tile {
