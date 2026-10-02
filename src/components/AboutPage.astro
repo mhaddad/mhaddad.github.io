@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import portrait from '../assets/matheus-haddad.jpg';
 import Timeline from './Timeline.astro';
-import FinalCta from './home/FinalCta.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { articlePath, routePath } from '../i18n/routes';
 import { otherLang, t, type Lang } from '../i18n/ui';
@@ -76,7 +75,6 @@ const degrees = education.map((item) => ({ marker: item.period, title: item.degr
       </ul>
     </section>
   </div>
-  <FinalCta lang={lang} placement="about-cta" showServices />
 </BaseLayout>
 
 <style>

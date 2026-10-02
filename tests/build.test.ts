@@ -320,7 +320,26 @@ describe('header e footer', () => {
     expect(current).toBe('/artigos/');
   });
 
-  it('deve ter o botão de WhatsApp com o número real e evento do GA quando a página é gerada', () => {
+  it('deve ter no cabeçalho só o ícone do WhatsApp, com o texto como nome acessível e dica, e evento do GA', () => {
+    // Arrange
+    const html = page('en/index.html');
+
+    // Act
+    const header = /<header[\s\S]*?<\/header>/.exec(html)?.[0] ?? '';
+    const link = /<a [^>]*href="https:\/\/wa\.me\/5535988867870\?text=[^"]+"[^>]*>[\s\S]*?<\/a>/.exec(header)?.[0] ?? '';
+
+    // Assert
+    expect(link).toContain('button--icon');
+    expect(link).toContain('aria-label="Chat on WhatsApp"');
+    expect(link).toContain('title="Chat on WhatsApp"');
+    expect(link).toContain('data-ga-event="whatsapp_click"');
+    expect(link).toContain('rel="noopener"');
+    expect(link).toContain('<svg');
+    expect(link).not.toContain('whatsapp-label');
+    expect(header).not.toContain('>Chat on WhatsApp<');
+  });
+
+  it('deve manter o número real e o evento do GA em todo botão de WhatsApp quando a página é a home', () => {
     // Arrange
     const html = page('en/index.html');
 
@@ -328,17 +347,7 @@ describe('header e footer', () => {
     const links = [...html.matchAll(/<a [^>]*href="https:\/\/wa\.me\/5535988867870\?text=[^"]+"[^>]*>/g)].map((m) => m[0]);
 
     // Assert
-    expect(links.length).toBeGreaterThanOrEqual(3);
-    // No celular o texto some da tela, mas precisa continuar sendo o nome acessível:
-    // display:none tiraria o texto da árvore de acessibilidade.
-    const css = [
-      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
-      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
-    ].join('');
-    const labelRules = [...css.matchAll(/[^{}]*whatsapp-label[^{}]*\{([^}]*)\}/g)].map((m) => m[1] ?? '');
-    expect(html).toMatch(/whatsapp-header"[^>]*>[\s\S]*?<span class="whatsapp-label">Chat on WhatsApp<\/span>/);
-    expect(labelRules.length).toBeGreaterThan(0);
-    expect(labelRules.some((rule) => /display:\s*none/.test(rule))).toBe(false);
+    expect(links).toHaveLength(2);
     expect(links.every((link) => link.includes('data-ga-event="whatsapp_click"') && link.includes('rel="noopener"'))).toBe(true);
   });
 
@@ -357,16 +366,37 @@ describe('header e footer', () => {
     expect(html).toMatch(/<div id="mobile-menu"[^>]*hidden/);
   });
 
-  it('deve levar Livros e RSS no rodapé quando a página é gerada', () => {
+  it('deve levar os 7 links em lista e nenhum botão de WhatsApp no rodapé quando a página é gerada', () => {
     // Arrange
     const html = page('en/index.html');
 
     // Act
     const footer = /<footer[\s\S]*?<\/footer>/.exec(html)?.[0] ?? '';
+    const hrefs = [...(/<nav[\s\S]*?<\/nav>/.exec(footer)?.[0] ?? '').matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
 
     // Assert
-    expect(footer).toContain('href="/en/books/"');
-    expect(footer).toContain('href="/en/rss.xml"');
+    expect(hrefs).toEqual(['/en/articles/', '/en/services/', '/en/companies/', '/en/speaking/', '/en/about/', '/en/books/', '/en/rss.xml']);
+    expect(footer).not.toContain('wa.me');
+    expect(footer).not.toContain('button');
+  });
+});
+
+describe('faixa "Vamos conversar?"', () => {
+  it('deve ficar fora da home, de Empresas e do Sobre nos dois idiomas', () => {
+    // Arrange
+    const pages = ['index.html', 'en/index.html', 'empresas/index.html', 'en/companies/index.html', 'sobre/index.html', 'en/about/index.html'];
+
+    // Act
+    const withBand = pages.filter((path) => page(path).includes('id="cta-heading"'));
+
+    // Assert
+    expect(withBand).toEqual([]);
+  });
+
+  it('deve continuar nas páginas de serviço e no fim do artigo', () => {
+    // Assert
+    expect(page('consultoria/index.html')).toContain('Vamos conversar?');
+    expect(page('artigos/primeiro-artigo/index.html')).toContain('class="article-cta"');
   });
 });
 
@@ -525,7 +555,8 @@ describe('páginas de serviço — Onda 3', () => {
     const links = [...html.matchAll(new RegExp(`<a [^>]*href="https://wa\\.me/5535988867870\\?text=${encoded.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`, 'g'))].map((m) => m[0]);
 
     // Assert
-    expect(links.length).toBeGreaterThanOrEqual(4);
+    // Cabeçalho (ícone), faixa do topo e coluna lateral.
+    expect(links).toHaveLength(3);
     expect(links.filter((link) => link.includes('&quot;service&quot;:&quot;consultoria&quot;')).length).toBe(2);
   });
 
@@ -655,7 +686,7 @@ describe('páginas institucionais — Onda 4', () => {
     // Assert
     expect(html).toMatch(/<img[^>]*alt="Matheus Haddad, entrepreneur and consultant in business and technology"/);
     expect(html).toContain('Test About title.');
-    expect(headings).toEqual(['Journey', 'Education', 'Principles', 'Let&#39;s talk?']);
+    expect(headings).toEqual(['Journey', 'Education', 'Principles']);
     expect((timeline.match(/<li/g) ?? []).length).toBe(2);
     expect(timeline).toContain('href="/en/articles/first-article/"');
     expect(html).toContain('href="/en/services/"');

@@ -35,7 +35,7 @@ const pathname = Astro.url.pathname;
     <div class="actions">
       <span class="desktop-only"><LanguageSwitcher lang={lang} alternatePath={alternatePath} /></span>
       <span class="desktop-only"><ThemeToggle lang={lang} /></span>
-      <WhatsAppButton lang={lang} placement="header" message={whatsappMessage} class="whatsapp-header" />
+      <WhatsAppButton lang={lang} placement="header" message={whatsappMessage} variant="icon" />
       <button
         type="button"
         class="button button--outline button--icon menu-button"
@@ -125,10 +125,6 @@ const pathname = Astro.url.pathname;
     margin-left: auto;
   }
 
-  .actions :global(.whatsapp-header) {
-    font-size: var(--fs-13);
-  }
-
   .menu-button[aria-expanded='false'] .icon-close,
   .menu-button[aria-expanded='true'] .icon-open {
     display: none;
@@ -186,23 +182,6 @@ const pathname = Astro.url.pathname;
   @media (min-width: 768px) {
     .menu-button {
       display: none;
-    }
-  }
-
-  @media (max-width: 1023px) {
-    /* Some da tela, mas continua sendo o nome acessível do link. */
-    .actions :global(.whatsapp-label) {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-    }
-
-    .actions :global(.whatsapp-header) {
-      width: var(--touch-target);
-      padding: 0;
     }
   }
 

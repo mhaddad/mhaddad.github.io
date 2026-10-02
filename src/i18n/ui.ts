@@ -41,9 +41,6 @@ const pt = {
   'proof.logos': 'Empresas e iniciativas',
   'home.featured': 'Artigos em destaque',
   'home.allArticles': 'Ver todos os artigos',
-  'home.ctaTitle': 'Vamos conversar?',
-  'home.ctaText':
-    'Se você está redesenhando sua organização, adotando IA ou enfrentando um momento de transição, me escreva. Respondo pessoalmente.',
   'articles.title': 'Artigos',
   'articles.description':
     'Artigos de Matheus Haddad sobre gestão, liderança, AI e desenvolvimento de software.',
@@ -107,7 +104,6 @@ const pt = {
   'about.education': 'Formação',
   'about.principles': 'Princípios',
   'about.readArticle': 'Ler o artigo',
-  'about.servicesLink': 'Ver serviços',
   'companies.label': 'Empresas',
   'companies.title': 'Empresas que cofundei e organizações onde atuo',
   'companies.description':
@@ -188,9 +184,6 @@ const en: Record<UIKey, string> = {
   'proof.logos': 'Companies & initiatives',
   'home.featured': 'Featured articles',
   'home.allArticles': 'See all articles',
-  'home.ctaTitle': "Let's talk?",
-  'home.ctaText':
-    "If you're redesigning your organization, adopting AI, or facing a moment of transition, reach out. I respond personally.",
   'articles.title': 'Articles',
   'articles.description':
     'Articles by Matheus Haddad on management, leadership, AI and software development.',
@@ -254,7 +247,6 @@ const en: Record<UIKey, string> = {
   'about.education': 'Education',
   'about.principles': 'Principles',
   'about.readArticle': 'Read the article',
-  'about.servicesLink': 'See services',
   'companies.label': 'Companies',
   'companies.title': 'Companies I co-founded and organizations I work with',
   'companies.description':

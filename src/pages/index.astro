@@ -1,6 +1,5 @@
 ---
 import FeaturedArticles from '../components/home/FeaturedArticles.astro';
-import FinalCta from '../components/home/FinalCta.astro';
 import Hero from '../components/home/Hero.astro';
 import ProofBand from '../components/home/ProofBand.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -16,5 +15,4 @@ const articles = await getAllArticles();
   <Hero lang={lang} />
   <ProofBand lang={lang} />
   <FeaturedArticles lang={lang} articles={articles} />
-  <FinalCta lang={lang} />
 </BaseLayout>

@@ -1,5 +1,4 @@
 ---
-import WhatsAppButton from './WhatsAppButton.astro';
 import { SITE_NAME } from '../config';
 import { footerNav } from '../i18n/navigation';
 import { routePath } from '../i18n/routes';
@@ -7,10 +6,9 @@ import { t, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
-  whatsappMessage: string;
 }
 
-const { lang, whatsappMessage } = Astro.props;
+const { lang } = Astro.props;
 ---
 
 <footer class="site-footer">
@@ -32,9 +30,6 @@ const { lang, whatsappMessage } = Astro.props;
           <li><a href={routePath('rss', lang)}>{t(lang, 'footer.rss')}</a></li>
         </ul>
       </nav>
-      <div>
-        <WhatsAppButton lang={lang} placement="footer" message={whatsappMessage} />
-      </div>
     </div>
     <p class="copyright mono">{t(lang, 'footer.rights', { year: new Date().getFullYear() })}</p>
   </div>
@@ -50,7 +45,7 @@ const { lang, whatsappMessage } = Astro.props;
 
   .columns {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--col-min-footer), 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-48);
   }
 
@@ -67,13 +62,22 @@ const { lang, whatsappMessage } = Astro.props;
     font-size: var(--fs-14);
   }
 
+  /* Lista em duas colunas: os links descem pela primeira e continuam na segunda. */
   nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+    grid-auto-columns: minmax(0, max-content);
+    column-gap: var(--space-64);
+    row-gap: var(--space-12);
     margin: 0;
     padding: 0;
     list-style: none;
+    justify-content: start;
+  }
+
+  .columns nav {
+    justify-self: end;
   }
 
   nav a {
@@ -83,6 +87,17 @@ const { lang, whatsappMessage } = Astro.props;
 
   nav a:hover {
     color: var(--text);
+  }
+
+  @media (max-width: 767px) {
+    .columns {
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+
+    .columns nav {
+      justify-self: start;
+    }
   }
 
   .copyright {

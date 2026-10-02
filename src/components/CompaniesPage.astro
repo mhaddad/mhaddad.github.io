@@ -1,6 +1,5 @@
 ---
 import CompanyRow from './CompanyRow.astro';
-import FinalCta from './home/FinalCta.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { routePath } from '../i18n/routes';
 import { otherLang, t, type Lang, type UIKey } from '../i18n/ui';
@@ -44,7 +43,6 @@ const headings: Record<CompanyGroup, UIKey> = { founded: 'companies.founded', bo
       ))
     }
   </div>
-  <FinalCta lang={lang} placement="companies-cta" showServices />
 </BaseLayout>
 
 <style>
