@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { ui } from '../src/i18n/ui';
 import { parseMapIframe } from '../src/lib/map-embed';
 
 const CONTENT_DIR = 'src/content/articles';
@@ -37,5 +38,21 @@ describe('conteúdo real', () => {
 
     // Assert
     expect(loose).toEqual([]);
+  });
+});
+
+describe('serviço de palestras', () => {
+  it('deve anunciar só palestras, sem workshops, na página, no menu e nas chamadas dos artigos', () => {
+    // Arrange
+    const pages = ['pt', 'en'].map((lang) => readFileSync(`src/content/services/${lang}/palestras.md`, 'utf8'));
+    const texts = (['pt', 'en'] as const).flatMap((lang) => [ui[lang]['nav.speaking'], ui[lang]['cta.educacao.text'], ui[lang]['service.name.palestras']]);
+
+    // Act
+    const withWorkshop = [...pages, ...texts].filter((text) => /workshop/i.test(text));
+
+    // Assert
+    expect(withWorkshop).toEqual([]);
+    expect(ui.pt['nav.speaking']).toBe('Palestras');
+    expect(ui.en['nav.speaking']).toBe('Talks');
   });
 });

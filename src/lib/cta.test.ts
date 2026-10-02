@@ -74,6 +74,6 @@ describe('articleWhatsappMessage', () => {
     expect(pt).toBe(
       'Olá, Matheus! Li o artigo "A IA muda quase tudo na sua empresa, menos o jogo de poder" no seu site e gostaria de conversar sobre consultoria.',
     );
-    expect(en).toBe('Hi Matheus! I read the article "AI & power" on your website and would like to talk about talks and workshops.');
+    expect(en).toBe('Hi Matheus! I read the article "AI & power" on your website and would like to talk about speaking engagements.');
   });
 });

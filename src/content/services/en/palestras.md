@@ -2,11 +2,11 @@
 key: palestras
 lang: en
 order: 3
-label: Talks and workshops
-title: Talks and workshops on the future of work and organizations
-description: Talks and workshops by Matheus Haddad on AI in organizations, the future of work, emergent leadership and feedback culture.
+label: Talks
+title: Talks on the future of work and organizations
+description: Talks by Matheus Haddad on AI in organizations, the future of work, emergent leadership and feedback culture.
 subtitle: Each talk is tailored to the event's context and audience.
-cardTitle: Talks and workshops
+cardTitle: Talks
 summary: For events, leadership gatherings and internal programs on the future of work and organizations.
 audience: Conference organizers, HR and leadership development teams and companies that want to open an internal conversation about management and AI.
 problem: A generic talk about transformation rarely changes anything the following Monday. What stays is content that speaks to the organization's moment and leaves questions the team keeps discussing after the event.
@@ -29,10 +29,9 @@ steps:
   - title: Tailoring
     text: The content is adjusted to the audience's moment and industry.
   - title: Delivery
-    text: A talk or workshop with time for questions and supporting material.
+    text: A talk with time for questions and supporting material.
 formats:
   - Keynote (45 to 90 min)
-  - Workshop (3 to 8 h)
   - Webinar (60 to 90 min)
   - Roundtable or panel
 ctaLabel: Talk about an event

@@ -17,7 +17,7 @@ describe('isCurrent', () => {
     expect(result).toEqual([['services'], ['services'], ['services']]);
   });
 
-  it('deve acender "Palestras e Workshops" quando a página é a de palestras', () => {
+  it('deve acender "Palestras" quando a página é a de palestras', () => {
     // Arrange
     const path = '/en/speaking/';
 

@@ -306,7 +306,7 @@ describe('design system', () => {
 });
 
 describe('header e footer', () => {
-  it('deve chamar o item de palestras de "Palestras e Workshops" no menu e no rodapé, nos dois idiomas', () => {
+  it('deve chamar o item de palestras de "Palestras" no menu e no rodapé, nos dois idiomas', () => {
     // Arrange
     const labels = (html: string, selector: RegExp) =>
       [...(selector.exec(html)?.[0] ?? '').matchAll(/<a [^>]*>([^<]+)<\/a>/g)].map((m) => m[1]);
@@ -316,11 +316,11 @@ describe('header e footer', () => {
     const en = page('en/index.html');
 
     // Assert
-    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Artigos', 'Serviços', 'Empresas', 'Palestras e Workshops', 'Livros', 'Sobre']);
-    expect(labels(en, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Articles', 'Services', 'Companies', 'Talks &amp; Workshops', 'Books', 'About']);
-    expect(labels(pt, /<footer[\s\S]*?<\/footer>/)).toContain('Palestras e Workshops');
-    expect(pt).not.toContain('Palestras e Mídia');
-    expect(en).not.toContain('Talks &amp; Media');
+    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Artigos', 'Serviços', 'Empresas', 'Palestras', 'Livros', 'Sobre']);
+    expect(labels(en, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Articles', 'Services', 'Companies', 'Talks', 'Books', 'About']);
+    expect(labels(pt, /<footer[\s\S]*?<\/footer>/)).toContain('Palestras');
+    expect(pt).not.toMatch(/Palestras e (Mídia|Workshops)/);
+    expect(en).not.toMatch(/Talks &amp; (Media|Workshops)/);
   });
 
   it('deve ter os 6 itens do menu nos caminhos do contrato e o item atual marcado quando a página é de artigos', () => {

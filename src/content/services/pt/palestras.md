@@ -2,11 +2,11 @@
 key: palestras
 lang: pt
 order: 3
-label: Palestras e workshops
-title: Palestras e workshops sobre o futuro do trabalho e das organizações
-description: Palestras e workshops de Matheus Haddad sobre IA nas organizações, futuro do trabalho, liderança emergente e cultura de feedback.
+label: Palestras
+title: Palestras sobre o futuro do trabalho e das organizações
+description: Palestras de Matheus Haddad sobre IA nas organizações, futuro do trabalho, liderança emergente e cultura de feedback.
 subtitle: Cada palestra é adaptada ao contexto e ao público do evento.
-cardTitle: Palestras e workshops
+cardTitle: Palestras
 summary: Para eventos, encontros de liderança e programas internos sobre o futuro do trabalho e das organizações.
 audience: Organizadores de conferências, áreas de RH e de desenvolvimento de lideranças e empresas que querem abrir uma conversa interna sobre gestão e IA.
 problem: Palestra genérica sobre transformação raramente muda alguma coisa na segunda-feira seguinte. O que fica é o conteúdo que conversa com o momento da organização e deixa perguntas que a equipe continua discutindo depois do evento.
@@ -29,10 +29,9 @@ steps:
   - title: Adaptação
     text: O conteúdo é ajustado ao momento e ao setor da audiência.
   - title: Apresentação
-    text: Palestra ou workshop com tempo para perguntas e material de apoio.
+    text: Palestra com tempo para perguntas e material de apoio.
 formats:
   - Keynote (45 a 90 min)
-  - Workshop (3 a 8 h)
   - Webinar (60 a 90 min)
   - Mesa-redonda ou painel
 ctaLabel: Conversar sobre um evento
