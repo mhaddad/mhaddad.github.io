@@ -801,6 +801,25 @@ describe('empresas e iniciativas na home', () => {
     expect(new Set(masks).size).toBe(8);
   });
 
+  it('deve arrumar os 8 quadrados em 4 colunas, ou seja, 2 linhas de 4, em qualquer largura', () => {
+    // Arrange
+    const html = page('index.html');
+    const css = [
+      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+    ].join('');
+
+    // Act
+    const grid = /ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*grid-template-columns:repeat\(4,\s*minmax\(0,\s*var\(--logo-tile\)\)\)[^}]*\}/.exec(css)?.[0] ?? '';
+
+    // Assert
+    expect(grid).toContain('display:grid');
+    expect(grid).toContain('justify-content:center');
+    // Nenhuma regra de largura redefine o número de colunas.
+    expect(css).not.toMatch(/--logo-tile-mobile/);
+    expect(css).not.toMatch(/ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*grid-template-columns:repeat\((?!4,)/);
+  });
+
   it('deve ter o botão para conhecer as empresas e iniciativas, nos dois idiomas', () => {
     // Arrange
     const button = (html: string) => /<a [^>]*class="button button--secondary[^"]*"[^>]*href="([^"]+)"[^>]*>\s*([^<]+?)\s*(?:<|$)/.exec(/<section class="proof"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '');
