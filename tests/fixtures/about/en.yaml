@@ -3,7 +3,7 @@ title: Test About title.
 description: Test About description.
 bio:
   - First test paragraph.
-  - Second test paragraph.
+  - Second paragraph with the [Test company](https://empresa.example.com) and the [book](/en/books/).
 timeline:
   - year: 2008
     title: Milestone without article

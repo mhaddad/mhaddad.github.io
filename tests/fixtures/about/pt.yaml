@@ -3,7 +3,7 @@ title: Título de teste do Sobre.
 description: Descrição de teste do Sobre.
 bio:
   - Primeiro parágrafo de teste.
-  - Segundo parágrafo de teste.
+  - Segundo parágrafo com a [Empresa de teste](https://empresa.example.com) e o [livro](/livros/).
 timeline:
   - year: 2008
     title: Marco sem artigo

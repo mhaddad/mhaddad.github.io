@@ -1,0 +1,21 @@
+---
+import type { BioSegment } from '../lib/about';
+
+interface Props {
+  segments: BioSegment[];
+}
+
+const { segments } = Astro.props;
+---
+
+{
+  segments.map(({ text, href }) =>
+    href ? (
+      <a href={href} {...(href.startsWith('https://') ? { target: '_blank', rel: 'noopener' } : {})}>
+        {text}
+      </a>
+    ) : (
+      text
+    ),
+  )
+}

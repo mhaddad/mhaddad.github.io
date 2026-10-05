@@ -37,6 +37,10 @@ const meta = [year, role[lang]].filter(Boolean).join(' · ');
     border-bottom: var(--border-width) solid var(--border);
   }
 
+  .row:last-child {
+    border-bottom: none;
+  }
+
   .meta {
     margin-bottom: var(--space-12);
     color: var(--text-muted);

@@ -35,6 +35,20 @@ async function prepareLogos() {
   }
 }
 
+// Retrato recortado no rosto, para a moldura redonda do bloco "Quem escreve" (64 px, até 128 px na tela).
+// A foto inteira (src/assets/matheus-haddad.jpg) fica para a página Sobre.
+const FACE_CROP = { left: 215, top: 10, width: 760, height: 760 };
+const FACE_SIZE = 256;
+
+async function prepareFace() {
+  await sharp('src/assets/matheus-haddad.jpg')
+    .extract(FACE_CROP)
+    .resize(FACE_SIZE, FACE_SIZE)
+    .jpeg({ quality: 88 })
+    .toFile('src/assets/matheus-haddad-rosto.jpg');
+  console.log(`rosto: ${FACE_SIZE}×${FACE_SIZE}`);
+}
+
 async function prepareThumbnails() {
   await mkdir('src/assets/talks', { recursive: true });
   const yaml = await readFile('src/content/talks/talks.yaml', 'utf8');
@@ -59,4 +73,5 @@ async function prepareThumbnails() {
 }
 
 await prepareLogos();
+await prepareFace();
 await prepareThumbnails();

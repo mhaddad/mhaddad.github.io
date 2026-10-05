@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { ArticleEntry } from './articles';
-import { AboutValidationError, timelineArticle, validateAbout, type AboutEntry } from './about';
+import { AboutValidationError, bioSegments, timelineArticle, validateAbout, type AboutEntry } from './about';
 
 function about(lang: 'pt' | 'en', data: Partial<AboutEntry['data']> = {}): AboutEntry {
   return {
@@ -73,5 +73,46 @@ describe('timelineArticle', () => {
   it('deve achar o artigo publicado no idioma quando o item aponta um translationKey', () => {
     expect(timelineArticle('coerencia-cognitiva', articles, 'en')?.id).toBe('en/coerencia-cognitiva');
     expect(timelineArticle(undefined, articles, 'en')).toBeUndefined();
+  });
+});
+
+describe('bioSegments', () => {
+  it('deve devolver um único trecho de texto quando o parágrafo não tem link', () => {
+    expect(bioSegments('Texto simples.')).toEqual([{ text: 'Texto simples.' }]);
+  });
+
+  it('deve separar o texto e os links no formato [texto](endereço) quando o parágrafo tem links', () => {
+    // Arrange
+    const text = 'Comecei na [Webgoal](https://www.webgoal.com.br) e escrevi um [livro](/livros/).';
+
+    // Act
+    const segments = bioSegments(text);
+
+    // Assert
+    expect(segments).toEqual([
+      { text: 'Comecei na ' },
+      { text: 'Webgoal', href: 'https://www.webgoal.com.br' },
+      { text: ' e escrevi um ' },
+      { text: 'livro', href: '/livros/' },
+      { text: '.' },
+    ]);
+  });
+
+  it('deve recusar o link quando o endereço não é https nem um caminho do próprio site', () => {
+    // Arrange
+    const unsafe = ['[x](javascript:alert(1))', '[x](http://exemplo.com)', '[x](//exemplo.com)', '[x](data:text/html,oi)'];
+
+    // Act
+    const results = unsafe.map((text) => {
+      try {
+        bioSegments(text);
+        return 'aceitou';
+      } catch (error) {
+        return error instanceof AboutValidationError ? 'recusou' : 'outro erro';
+      }
+    });
+
+    // Assert
+    expect(results).toEqual(['recusou', 'recusou', 'recusou', 'recusou']);
   });
 });

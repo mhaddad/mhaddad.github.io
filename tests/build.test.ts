@@ -569,8 +569,8 @@ describe('página de artigo — Onda 2', () => {
 
     // Assert
     expect(descriptions).toEqual([
-      'Empresário, consultor e palestrante com 20+ anos de experiência em gestão, tecnologia e educação.',
-      'Entrepreneur, consultant and speaker with 20+ years of experience in management, technology and education.',
+      'Empresário, mentor e palestrante com 20+ anos de experiência em gestão, tecnologia e educação.',
+      'Entrepreneur, mentor and speaker with 20+ years of experience in management, technology and education.',
     ]);
     expect(descriptions.every((text) => !/15\+|500\+|5 empresas|5 companies/.test(text ?? ''))).toBe(true);
   });
@@ -1052,26 +1052,82 @@ describe('páginas institucionais — Onda 4', () => {
   });
 });
 
-describe('Palestras e Mídia — Onda 4', () => {
-  it('deve mostrar os 23 itens do acervo com o filtro por tipo abaixo do bloco de serviço', () => {
+describe('Mídia — acervo de vídeos e podcasts', () => {
+  it('deve levar das palestras para a página de mídia e de nenhuma outra página de serviço', () => {
     // Arrange
-    const html = page('palestras/index.html');
+    const link = (path: string) => /<section aria-labelledby="media-heading"[\s\S]*?<\/section>/.exec(page(path))?.[0] ?? '';
 
     // Act
-    const cards = [...html.matchAll(/<li class="card"[^>]*data-type="([a-z]+)"/g)].map((m) => m[1]);
-    const filters = [...html.matchAll(/<button class="filter mono"[^>]*data-filter="([a-z]+)"/g)].map((m) => m[1]);
-    const service = html.indexOf('id="steps-heading"');
-    const archive = html.indexOf('id="talks-heading"');
+    const pt = link('palestras/index.html');
+    const en = link('en/speaking/index.html');
 
     // Assert
-    expect(cards).toHaveLength(23);
-    expect(filters).toEqual(['all', 'palestra', 'webinar', 'podcast', 'entrevista']);
-    expect(archive).toBeGreaterThan(service);
+    expect(pt).toContain('href="/midia/"');
+    expect(pt).toContain('Ver vídeos e podcasts');
+    expect(en).toContain('href="/en/media/"');
+    expect(en).toContain('Watch videos and podcasts');
+    expect(link('mentoria/index.html')).toBe('');
+    expect(link('en/mentoring/index.html')).toBe('');
+  });
+
+  it('deve mostrar os 23 itens do acervo com o filtro por tipo na página de mídia, nos dois idiomas', () => {
+    // Arrange
+    const pages = ['midia/index.html', 'en/media/index.html'];
+
+    // Act
+    const found = pages.map((path) => {
+      const html = page(path);
+      return {
+        cards: [...html.matchAll(/<li class="card"[^>]*data-type="([a-z]+)"/g)].map((m) => m[1]),
+        filters: [...html.matchAll(/<button class="filter mono"[^>]*data-filter="([a-z]+)"/g)].map((m) => m[1]),
+        title: /<h1[^>]*>([^<]+)<\/h1>/.exec(html)?.[1],
+      };
+    });
+
+    // Assert
+    expect(found.map((item) => item.cards.length)).toEqual([23, 23]);
+    expect(found.map((item) => item.filters)).toEqual([
+      ['all', 'palestra', 'webinar', 'podcast', 'entrevista'],
+      ['all', 'palestra', 'webinar', 'podcast', 'entrevista'],
+    ]);
+    expect(found.map((item) => item.title)).toEqual(['Mídia', 'Media']);
+  });
+
+  it('deve manter o acervo fora das páginas de palestras, que só descrevem o serviço', () => {
+    // Arrange
+    const pages = ['palestras/index.html', 'en/speaking/index.html'];
+
+    // Act
+    const html = pages.map((path) => page(path));
+
+    // Assert
+    expect(html.every((content) => !content.includes('id="talks-heading"') && !content.includes('data-talks'))).toBe(true);
+    expect(html.every((content) => content.includes('id="steps-heading"'))).toBe(true);
+  });
+
+  it('deve gerar mídia e palestras nos dois idiomas com hreflang cruzado e fora das antigas rotas de serviços', () => {
+    // Arrange
+    const pairs = [
+      ['midia/index.html', 'en/media/index.html'],
+      ['palestras/index.html', 'en/speaking/index.html'],
+    ];
+    const removed = ['servicos/index.html', 'en/services/index.html', 'consultoria/index.html', 'en/consulting/index.html'];
+
+    // Act
+    const crossLinks = pairs.map(([pt = '', en = '']) => {
+      const ptPath = `/${pt.replace('index.html', '')}`;
+      const enPath = `/${en.replace('index.html', '')}`;
+      return page(pt).includes(`hreflang="en" href="${SITE}${enPath}"`) && page(en).includes(`hreflang="pt-BR" href="${SITE}${ptPath}"`);
+    });
+
+    // Assert
+    expect(crossLinks).toEqual([true, true]);
+    expect(removed.filter(exists)).toEqual([]);
   });
 
   it('deve carregar o YouTube só no clique, com miniaturas locais, quando o acervo é gerado', () => {
     // Arrange
-    const html = page('en/speaking/index.html');
+    const html = page('en/media/index.html');
 
     // Act
     const plays = (html.match(/<button class="play"[^>]*data-youtube="[A-Za-z0-9_-]{11}"/g) ?? []).length;

@@ -1,11 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import portrait from '../assets/matheus-haddad.jpg';
+import BioText from './BioText.astro';
 import Timeline from './Timeline.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { articlePath, routePath } from '../i18n/routes';
 import { otherLang, t, type Lang } from '../i18n/ui';
-import { timelineArticle } from '../lib/about';
+import { bioSegments, timelineArticle } from '../lib/about';
 import { articleSlug } from '../lib/articles';
 import { getAbout, getAllArticles } from '../lib/collections';
 
@@ -16,7 +17,7 @@ interface Props {
 const { lang } = Astro.props;
 const [about, articles] = await Promise.all([getAbout(lang), getAllArticles()]);
 const { title, description, bio, timeline, education, principles } = about.data;
-const [lead, ...paragraphs] = bio;
+const [lead, ...paragraphs] = bio.map(bioSegments);
 
 const journey = timeline.map((item) => {
   const article = timelineArticle(item.article, articles, lang);
@@ -36,8 +37,14 @@ const degrees = education.map((item) => ({ marker: item.period, title: item.degr
       <div>
         <p class="label mono">{t(lang, 'about.label')}</p>
         <h1>{title}</h1>
-        <p class="lead">{lead}</p>
-        {paragraphs.map((paragraph) => <p class="bio">{paragraph}</p>)}
+        <p class="lead"><BioText segments={lead ?? []} /></p>
+        {
+          paragraphs.map((paragraph) => (
+            <p class="bio">
+              <BioText segments={paragraph} />
+            </p>
+          ))
+        }
       </div>
       <div class="portrait">
         <Image
@@ -112,6 +119,17 @@ const degrees = education.map((item) => ({ marker: item.period, title: item.degr
     margin-bottom: var(--space-20);
     font-size: var(--fs-17);
     line-height: var(--lh-body);
+  }
+
+  .lead :global(a),
+  .bio :global(a) {
+    color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+
+  .lead :global(a):hover,
+  .bio :global(a):hover {
+    color: var(--text);
   }
 
   .bio:last-child {

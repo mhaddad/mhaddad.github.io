@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { parse } from 'yaml';
 import { ui } from '../src/i18n/ui';
 import { parseMapIframe } from '../src/lib/map-embed';
 
@@ -54,5 +55,102 @@ describe('serviço de palestras', () => {
     expect(withWorkshop).toEqual([]);
     expect(ui.pt['nav.speaking']).toBe('Palestras');
     expect(ui.en['nav.speaking']).toBe('Talks');
+  });
+});
+
+describe('serviços oferecidos', () => {
+  it('deve oferecer só mentoria e palestras, sem consultoria, nas páginas, no menu e nas chamadas', () => {
+    // Arrange
+    const serviceFiles = (lang: string) => readdirSync(`src/content/services/${lang}`).filter((file) => file.endsWith('.md')).sort();
+    const files = (['pt', 'en'] as const).map(serviceFiles);
+    const texts = (['pt', 'en'] as const).flatMap((lang) =>
+      [
+        ...serviceFiles(lang).map((file) => readFileSync(`src/content/services/${lang}/${file}`, 'utf8')),
+        ui[lang]['hero.label'],
+        ui[lang]['nav.mentoring'],
+        ui[lang]['nav.media'],
+      ],
+    );
+
+    // Act
+    const withConsulting = texts.filter((text) => /consultoria|consulting/i.test(text));
+
+    // Assert
+    expect(files).toEqual([['mentoria.md', 'palestras.md'], ['mentoria.md', 'palestras.md']]);
+    expect(withConsulting).toEqual([]);
+    expect(Object.keys(ui.pt).filter((key) => key.includes('consultoria'))).toEqual([]);
+    expect(ui.pt['nav.media']).toBe('Mídia');
+    expect(ui.en['nav.media']).toBe('Media');
+  });
+});
+
+describe('página Sobre', () => {
+  const load = (path: string) => parse(readFileSync(path, 'utf8')) as Record<string, unknown>;
+  const about = { pt: load('src/content/about/pt.yaml'), en: load('src/content/about/en.yaml') } as Record<'pt' | 'en', { title: string; description: string; bio: string[] }>;
+  const companies = parse(readFileSync('src/content/companies/companies.yaml', 'utf8')) as { name: string; url: string }[];
+
+  it('deve ter o nome do autor como título nos dois idiomas', () => {
+    expect([about.pt.title, about.en.title]).toEqual(['Matheus Haddad', 'Matheus Haddad']);
+  });
+
+  it('deve levar cada empresa citada no texto para o site dela, nos dois idiomas', () => {
+    // Arrange
+    const founded = ['Webgoal', 'Granatum', 'Ateliê de Software', 'Orgganica', 'Escola Lumiar Poços de Caldas'];
+    const urls = Object.fromEntries(companies.map((company) => [company.name.replace(' Financeiro', ''), company.url]));
+
+    // Act
+    const missing = (['pt', 'en'] as const).flatMap((lang) => {
+      const text = about[lang].bio.join('\n');
+      return founded.filter((name) => !text.includes(`[${name}](${urls[name]})`)).map((name) => `${lang}: ${name}`);
+    });
+    const unlinked = (['pt', 'en'] as const).flatMap((lang) => {
+      const text = about[lang].bio.join('\n').replace(/\[[^\]]+\]\([^)]+\)/g, '');
+      return founded.filter((name) => text.includes(name)).map((name) => `${lang}: ${name}`);
+    });
+
+    // Assert
+    expect(missing).toEqual([]);
+    expect(unlinked).toEqual([]);
+  });
+
+  it('deve cobrir formação, mestrado em IA, agilidade, ensino, Feedback Canvas, educação inovadora na Lumiar e IA', () => {
+    // Arrange
+    const topics: [string, RegExp, RegExp][] = [
+      ['mestrado em IA', /[Mm]estre em Inteligência Artificial/, /master's in Artificial Intelligence/],
+      ['ensino', /pós-graduação e MBA/, /graduate and MBA/],
+      ['temas do ensino', /empreendedorismo digital, design organizacional e novas abordagens de gestão/, /digital entrepreneurship, organizational design and new approaches to management/],
+      ['agilidade', /agilidade/, /[Aa]gility/],
+      ['Feedback Canvas e livro de 2025', /Feedback Canvas[\s\S]*2025/, /Feedback Canvas[\s\S]*2025/],
+      ['educação inovadora, Metodologia Lumiar, relevância e IA', /educação inovadora[\s\S]*Metodologia Lumiar[\s\S]*relevância[\s\S]*tempos de IA/, /[Ii]nnovative education[\s\S]*Lumiar Methodology[\s\S]*relevance[\s\S]*age of AI/],
+      ['adoção de IA e agentes', /orquestração de agentes de IA/, /orchestration of AI agents/],
+    ];
+
+    // Act
+    const missing = topics.flatMap(([name, pt, en]) => [
+      ...(pt.test(about.pt.bio.join('\n')) ? [] : [`pt: ${name}`]),
+      ...(en.test(about.en.bio.join('\n')) ? [] : [`en: ${name}`]),
+    ]);
+
+    // Assert
+    expect(missing).toEqual([]);
+  });
+
+  it('deve citar a escola pelo nome completo só na abertura, e depois falar da Metodologia Lumiar', () => {
+    // Arrange
+    const count = (lang: 'pt' | 'en') => about[lang].bio.join('\n').split('Escola Lumiar Poços de Caldas').length - 1;
+
+    // Assert
+    expect([count('pt'), count('en')]).toEqual([1, 1]);
+  });
+
+  it('deve evitar travessão e linkar o livro pela página do próprio site', () => {
+    // Arrange
+    const text = (lang: 'pt' | 'en') => about[lang].bio.join('\n');
+
+    // Assert
+    expect(text('pt')).not.toMatch(/[—–]/);
+    expect(text('en')).not.toMatch(/[—–]/);
+    expect(text('pt')).toContain('](/livros/)');
+    expect(text('en')).toContain('](/en/books/)');
   });
 });

@@ -60,3 +60,27 @@ export function timelineArticle<T extends ArticleEntry>(
   if (!translationKey) return undefined;
   return publishedArticles(articles, lang).find((entry) => entry.data.translationKey === translationKey);
 }
+
+export interface BioSegment {
+  text: string;
+  href?: string;
+}
+
+const BIO_LINK = /\[([^\]]+)\]\(([^)\s]+)\)/g;
+// Só https ou um caminho do próprio site (começa com uma barra, mas não com duas).
+const SAFE_HREF = /^(?:https:\/\/[^\s]+|\/(?!\/)[^\s]*)$/;
+
+/** Divide um parágrafo da bio em trechos de texto e links escritos como [texto](endereço). */
+export function bioSegments(paragraph: string): BioSegment[] {
+  const segments: BioSegment[] = [];
+  let last = 0;
+  for (const match of paragraph.matchAll(BIO_LINK)) {
+    const [whole, text = '', href = ''] = match;
+    if (!SAFE_HREF.test(href)) throw new AboutValidationError([`sobre: link recusado "${href}" (use https ou um caminho do site)`]);
+    if (match.index > last) segments.push({ text: paragraph.slice(last, match.index) });
+    segments.push({ text, href });
+    last = match.index + whole.length;
+  }
+  if (last < paragraph.length) segments.push({ text: paragraph.slice(last) });
+  return segments;
+}
