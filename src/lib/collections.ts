@@ -57,8 +57,8 @@ export async function getAllArticles(): Promise<Article[]> {
 }
 
 export async function getAllServices(): Promise<Service[]> {
-  const [services, articles] = await Promise.all([getCollection('services'), getAllArticles()]);
-  validateServices(services, articles);
+  const [services, articles, talks] = await Promise.all([getCollection('services'), getAllArticles(), getAllTalks()]);
+  validateServices(services, articles, new Set(talks.map((talk) => talk.id)));
   return services;
 }
 

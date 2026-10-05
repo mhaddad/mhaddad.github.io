@@ -9,7 +9,6 @@ subtitle: Subtítulo de palestras em en.
 cardTitle: Card palestras en
 summary: Resumo de palestras em en.
 audience: Público de palestras em en.
-problem: Problema de palestras em en.
 topics:
   - title: Tema 1 de palestras
     text: Texto do tema 1.
@@ -28,6 +27,9 @@ formats:
 ctaLabel: Botão de palestras en
 ctaText: Texto lateral de palestras en.
 whatsappMessage: Mensagem de palestras em en & teste
-relatedArticles:
-  - fixture-segundo
+relatedTalks:
+  - vanguarda-em-foco
+  - agile-trends
+  - agile-in-the-jungle
+  - podfalar
 ---

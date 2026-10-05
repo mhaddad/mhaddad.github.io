@@ -27,9 +27,9 @@ const complete = ['pt', 'en'].flatMap((lang) =>
   ['mentoria', 'palestras'].map((key, index) => service(`${lang}/${key}`, { order: index + 1 })),
 );
 
-function problemsOf(services: ServiceEntry[], articles: ArticleEntry[] = []): string[] {
+function problemsOf(services: ServiceEntry[], articles: ArticleEntry[] = [], talkIds: Set<string> = new Set(['palestra-a', 'podcast-b'])): string[] {
   try {
-    validateServices(services, articles);
+    validateServices(services, articles, talkIds);
     return [];
   } catch (error) {
     if (error instanceof ServiceValidationError) return error.problems;
@@ -113,6 +113,30 @@ describe('validateServices', () => {
       'pt/mentoria: artigo relacionado "rascunho" não está publicado em pt',
       'pt/mentoria: artigo relacionado "inexistente" não está publicado em pt',
     ]);
+  });
+});
+
+describe('mídias relacionadas', () => {
+  it('deve aceitar quando as mídias existem no acervo', () => {
+    // Arrange
+    const services = complete.map((entry) => (entry.id === 'pt/palestras' ? service('pt/palestras', { relatedTalks: ['palestra-a', 'podcast-b'] }) : entry));
+
+    // Act
+    const problems = problemsOf(services);
+
+    // Assert
+    expect(problems).toEqual([]);
+  });
+
+  it('deve falhar quando a mídia relacionada não existe no acervo', () => {
+    // Arrange
+    const services = complete.map((entry) => (entry.id === 'en/palestras' ? service('en/palestras', { relatedTalks: ['palestra-a', 'fantasma'] }) : entry));
+
+    // Act
+    const problems = problemsOf(services);
+
+    // Assert
+    expect(problems).toEqual(['en/palestras: mídia relacionada "fantasma" não existe no acervo']);
   });
 });
 

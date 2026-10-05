@@ -9,7 +9,6 @@ subtitle: Cada palestra é adaptada ao contexto e ao público do evento.
 cardTitle: Palestras
 summary: Para eventos, encontros de liderança e programas internos sobre o futuro do trabalho e das organizações.
 audience: Organizadores de conferências, áreas de RH e de desenvolvimento de lideranças e empresas que querem abrir uma conversa interna sobre gestão e IA.
-problem: Palestra genérica sobre transformação raramente muda alguma coisa na segunda-feira seguinte. O que fica é o conteúdo que conversa com o momento da organização e deixa perguntas que a equipe continua discutindo depois do evento.
 topics:
   - title: IA nas organizações
     text: O que a IA muda na gestão e o que continua igual, como a disputa por poder e por critérios de decisão.
@@ -37,7 +36,9 @@ formats:
 ctaLabel: Conversar sobre um evento
 ctaText: Me conta sobre o seu evento e o seu público.
 whatsappMessage: Olá, Matheus! Vi a página de Palestras no seu site e gostaria de conversar sobre um evento.
-relatedArticles:
-  - a-ia-muda-quase-tudo-na-sua-empresa-menos-o-jogo-de-poder
-  - coerencia-cognitiva
+relatedTalks:
+  - vanguarda-em-foco
+  - tdc-recife-2020
+  - agile-in-the-jungle
+  - podfalar
 ---

@@ -747,7 +747,6 @@ describe('páginas de serviço — Onda 3', () => {
 
     // Assert
     expect(sections).toEqual(['Para quem é', 'Temas e abordagens', 'Estrutura da mentoria', 'Como funciona', 'Artigos relacionados']);
-    expect(page('palestras/index.html')).toContain('id="problem-heading"');
     expect(steps).toBe(3);
     expect(related).toContain('href="/artigos/primeiro-artigo/"');
     expect(related).toContain('href="/artigos/segundo-artigo/"');
@@ -1157,24 +1156,84 @@ describe('páginas institucionais — Onda 4', () => {
   });
 });
 
-describe('Mídia — acervo de vídeos e podcasts', () => {
-  it('deve levar das palestras para a página de mídia e de nenhuma outra página de serviço', () => {
+describe('Palestras — mídias relacionadas', () => {
+  const related = (path: string) => /<section aria-labelledby="related-media-heading"[\s\S]*?<\/section>/.exec(page(path))?.[0] ?? '';
+
+  it('deve listar 3 vídeos de palestra e 1 podcast no lugar de O problema, Palestras anteriores e Artigos relacionados', () => {
     // Arrange
-    const link = (path: string) => /<section aria-labelledby="media-heading"[\s\S]*?<\/section>/.exec(page(path))?.[0] ?? '';
+    const pages = ['palestras/index.html', 'en/speaking/index.html'];
 
     // Act
-    const pt = link('palestras/index.html');
-    const en = link('en/speaking/index.html');
+    const found = pages.map((path) => {
+      const section = related(path);
+      return {
+        types: [...section.matchAll(/<li class="card"[^>]*data-type="([a-z]+)"/g)].map((m) => m[1]),
+        heading: /<h2 id="related-media-heading"[^>]*>\s*([^<]+?)\s*<\/h2>/.exec(section)?.[1],
+        html: page(path),
+      };
+    });
 
     // Assert
-    expect(pt).toContain('href="/midia/"');
-    expect(pt).toContain('Ver vídeos e podcasts');
-    expect(en).toContain('href="/en/media/"');
-    expect(en).toContain('Watch videos and podcasts');
-    expect(link('mentoria/index.html')).toBe('');
-    expect(link('en/mentoring/index.html')).toBe('');
+    expect(found.map((item) => item.types)).toEqual([
+      ['palestra', 'palestra', 'palestra', 'podcast'],
+      ['palestra', 'palestra', 'palestra', 'podcast'],
+    ]);
+    expect(found.map((item) => item.heading)).toEqual(['Mídias relacionadas', 'Related media']);
+    for (const { html } of found) {
+      expect(html).not.toContain('id="problem-heading"');
+      expect(html).not.toContain('id="media-heading"');
+      expect(html).not.toContain('id="related-heading"');
+    }
   });
 
+  it('deve carregar o YouTube só no clique nas mídias relacionadas, sem iframe na página', () => {
+    // Arrange
+    const html = page('palestras/index.html');
+
+    // Act
+    const plays = (related('palestras/index.html').match(/<button class="play"[^>]*data-youtube="[A-Za-z0-9_-]{11}"/g) ?? []).length;
+
+    // Assert
+    expect(plays).toBe(4);
+    expect(html).not.toContain('<iframe');
+    expect(html).toContain('youtube-nocookie.com');
+  });
+
+  it('deve manter os artigos relacionados na mentoria e não mostrar mídias lá', () => {
+    // Arrange
+    const html = page('mentoria/index.html');
+
+    // Assert
+    expect(html).toContain('id="related-heading"');
+    expect(html).not.toContain('related-media-heading');
+  });
+});
+
+describe('página do livro — separadores', () => {
+  it('deve ficar sem a linha entre a abertura e a seção Sobre o livro, nos dois idiomas', () => {
+    // Arrange
+    const css = (html: string) =>
+      [
+        ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+        ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+      ].join('');
+
+    // Act
+    const intros = ['livros/index.html', 'en/books/index.html'].map((path) => {
+      const html = page(path);
+      const cid = /<section class="intro"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+      return new RegExp(`\\.intro\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css(html))?.[0] ?? '';
+    });
+
+    // Assert
+    for (const intro of intros) {
+      expect(intro).not.toBe('');
+      expect(intro).not.toMatch(/border/);
+    }
+  });
+});
+
+describe('Mídia — acervo de vídeos e podcasts', () => {
   it('deve mostrar os 23 itens do acervo com o filtro por tipo na página de mídia, nos dois idiomas', () => {
     // Arrange
     const pages = ['midia/index.html', 'en/media/index.html'];

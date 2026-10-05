@@ -1,0 +1,55 @@
+---
+import TalkCard from './TalkCard.astro';
+import type { Lang } from '../i18n/ui';
+import type { Talk } from '../lib/collections';
+
+interface Props {
+  talks: Talk[];
+  lang: Lang;
+}
+
+const { talks, lang } = Astro.props;
+---
+
+<ul class="grid" data-talk-list>
+  {talks.map((talk) => <TalkCard talk={talk} lang={lang} />)}
+</ul>
+
+<script>
+  import { YOUTUBE_ID, youtubeEmbedUrl } from '../lib/talks';
+
+  // Fachada: o YouTube só é chamado depois do clique, em youtube-nocookie.com.
+  document.querySelectorAll<HTMLElement>('[data-talk-list]').forEach((list) => {
+    list.querySelectorAll<HTMLButtonElement>('[data-youtube]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.youtube ?? '';
+        if (!YOUTUBE_ID.test(id)) return;
+        const iframe = document.createElement('iframe');
+        iframe.src = youtubeEmbedUrl(id);
+        iframe.title = button.dataset.title ?? '';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        button.replaceWith(iframe);
+        iframe.focus();
+      });
+    });
+  });
+</script>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--col-min-card), 1fr));
+    gap: var(--space-24);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (max-width: 767px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

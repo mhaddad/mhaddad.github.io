@@ -1,5 +1,5 @@
 ---
-import TalkCard from './TalkCard.astro';
+import TalkList from './TalkList.astro';
 import { t, type Lang } from '../i18n/ui';
 import { getAllTalks } from '../lib/collections';
 import { sortTalks, talkCounts, talkTypes } from '../lib/talks';
@@ -29,15 +29,11 @@ const filters = [
       }
     </div>
 
-    <ul class="grid">
-      {talks.map((talk) => <TalkCard talk={talk} lang={lang} />)}
-    </ul>
+    <TalkList talks={talks} lang={lang} />
   </div>
 </section>
 
 <script>
-  import { YOUTUBE_ID, youtubeEmbedUrl } from '../lib/talks';
-
   document.querySelectorAll<HTMLElement>('[data-talks]').forEach((archive) => {
     const filters = archive.querySelectorAll<HTMLButtonElement>('[data-filter]');
     const cards = archive.querySelectorAll<HTMLElement>('[data-type]');
@@ -49,22 +45,6 @@ const filters = [
         cards.forEach((card) => {
           card.hidden = selected !== 'all' && card.dataset.type !== selected;
         });
-      });
-    });
-
-    // Fachada: o YouTube só é chamado depois do clique, em youtube-nocookie.com.
-    archive.querySelectorAll<HTMLButtonElement>('[data-youtube]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const id = button.dataset.youtube ?? '';
-        if (!YOUTUBE_ID.test(id)) return;
-        const iframe = document.createElement('iframe');
-        iframe.src = youtubeEmbedUrl(id);
-        iframe.title = button.dataset.title ?? '';
-        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
-        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-        iframe.allowFullscreen = true;
-        button.replaceWith(iframe);
-        iframe.focus();
       });
     });
   });
@@ -107,22 +87,9 @@ const filters = [
     border-color: var(--accent);
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--col-min-card), 1fr));
-    gap: var(--space-24);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
   @media (max-width: 767px) {
     .archive {
       padding-block: var(--space-32) var(--space-64);
-    }
-
-    .grid {
-      grid-template-columns: 1fr;
     }
   }
 </style>

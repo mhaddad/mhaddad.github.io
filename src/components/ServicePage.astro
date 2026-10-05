@@ -1,13 +1,12 @@
 ---
 import ArticleCard from './ArticleCard.astro';
 import CheckList from './CheckList.astro';
-import Icon from './Icon.astro';
+import TalkList from './TalkList.astro';
 import ServiceSteps from './ServiceSteps.astro';
 import WhatsAppButton from './WhatsAppButton.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { routePath } from '../i18n/routes';
 import { otherLang, t, type Lang } from '../i18n/ui';
-import type { Article, Service } from '../lib/collections';
+import { getAllTalks, type Article, type Service } from '../lib/collections';
 import { relatedArticlesFor, serviceFor, servicePath, type ServiceKey } from '../lib/services';
 
 interface Props {
@@ -22,6 +21,8 @@ const service = serviceFor(services, serviceKey, lang);
 const { label, title, description, subtitle, audience, problem, topics, steps, structure, format, formats, ctaLabel, ctaText, whatsappMessage } =
   service.data;
 const related = relatedArticlesFor(service, articles);
+const allTalks = await getAllTalks();
+const relatedTalks = (service.data.relatedTalks ?? []).flatMap((id) => allTalks.filter((talk) => talk.id === id));
 ---
 
 <BaseLayout
@@ -94,15 +95,12 @@ const related = relatedArticlesFor(service, articles);
       </section>
 
       {
-        serviceKey === 'palestras' && (
-          <section aria-labelledby="media-heading">
-            <h2 id="media-heading" class="section-title mono">
-              {t(lang, 'services.mediaTitle')}
+        relatedTalks.length > 0 && (
+          <section aria-labelledby="related-media-heading">
+            <h2 id="related-media-heading" class="section-title mono">
+              {t(lang, 'services.relatedMedia')}
             </h2>
-            <a class="button button--secondary" href={routePath('media', lang)}>
-              {t(lang, 'services.mediaLink')}
-              <Icon name="arrow-right" size="s" />
-            </a>
+            <TalkList talks={relatedTalks} lang={lang} />
           </section>
         )
       }

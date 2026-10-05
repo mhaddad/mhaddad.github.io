@@ -20,6 +20,7 @@ export interface ServiceData {
   lang: Lang;
   order: number;
   relatedArticles: string[];
+  relatedTalks?: string[];
 }
 
 export interface ServiceEntry<TData extends ServiceData = ServiceData> {
@@ -34,7 +35,8 @@ export class ServiceValidationError extends Error {
   }
 }
 
-export function validateServices(services: ServiceEntry[], articles: ArticleEntry[]): void {
+/** `talkIds`: ids do acervo de mídia; sem ele, as mídias relacionadas não são conferidas. */
+export function validateServices(services: ServiceEntry[], articles: ArticleEntry[], talkIds?: Set<string>): void {
   const problems: string[] = [];
 
   for (const service of services) {
@@ -42,6 +44,10 @@ export function validateServices(services: ServiceEntry[], articles: ArticleEntr
     const { key, lang, relatedArticles } = service.data;
     if (folder !== lang) problems.push(`${service.id}: está na pasta "${folder}" mas declara lang "${lang}"`);
     if (file !== key) problems.push(`${service.id}: o arquivo deve se chamar "${key}.md"`);
+
+    for (const talkId of service.data.relatedTalks ?? []) {
+      if (talkIds && !talkIds.has(talkId)) problems.push(`${service.id}: mídia relacionada "${talkId}" não existe no acervo`);
+    }
 
     const published = new Set(publishedArticles(articles, lang).map((article) => article.data.translationKey));
     for (const translationKey of relatedArticles) {

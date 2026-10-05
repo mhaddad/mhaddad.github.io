@@ -236,3 +236,27 @@ describe('serviço de mentoria', () => {
     );
   });
 });
+
+describe('serviço de palestras — mídias relacionadas', () => {
+  const talks = parse(readFileSync('src/content/talks/talks.yaml', 'utf8')) as { id: string; type: string }[];
+  const read = (lang: 'pt' | 'en') => readFileSync(`src/content/services/${lang}/palestras.md`, 'utf8');
+  const ids = (lang: 'pt' | 'en') => (/relatedTalks:\n((?:  - .*\n)+)/.exec(read(lang))?.[1].match(/- (.*)/g) ?? []).map((item) => item.slice(2));
+
+  it('deve relacionar 3 vídeos de palestra e 1 podcast do acervo, nos dois idiomas, sem problema nem artigos', () => {
+    // Arrange
+    const type = (id: string) => talks.find((talk) => talk.id === id)?.type;
+
+    // Assert
+    for (const lang of ['pt', 'en'] as const) {
+      expect(ids(lang).map(type)).toEqual(['palestra', 'palestra', 'palestra', 'podcast']);
+      expect(read(lang)).not.toMatch(/^problem:/m);
+      expect(read(lang)).not.toMatch(/^relatedArticles:/m);
+    }
+    expect(ids('pt')).toEqual(ids('en'));
+  });
+
+  it('deve incluir a palestra Estruturas Organizacionais Ágeis e não a sobre o fim da avaliação individual', () => {
+    expect(ids('pt')).toEqual(['vanguarda-em-foco', 'tdc-recife-2020', 'agile-in-the-jungle', 'podfalar']);
+    expect(ids('pt')).not.toContain('agile-trends');
+  });
+});

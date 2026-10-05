@@ -9,7 +9,6 @@ subtitle: Each talk is tailored to the event's context and audience.
 cardTitle: Talks
 summary: For events, leadership gatherings and internal programs on the future of work and organizations.
 audience: Conference organizers, HR and leadership development teams and companies that want to open an internal conversation about management and AI.
-problem: A generic talk about transformation rarely changes anything the following Monday. What stays is content that speaks to the organization's moment and leaves questions the team keeps discussing after the event.
 topics:
   - title: AI in organizations
     text: What AI changes in management and what stays the same, such as the fight over power and decision criteria.
@@ -37,7 +36,9 @@ formats:
 ctaLabel: Talk about an event
 ctaText: Tell me about your event and your audience.
 whatsappMessage: Hi Matheus! I saw the Talks page on your website and would like to talk about an event.
-relatedArticles:
-  - a-ia-muda-quase-tudo-na-sua-empresa-menos-o-jogo-de-poder
-  - coerencia-cognitiva
+relatedTalks:
+  - vanguarda-em-foco
+  - tdc-recife-2020
+  - agile-in-the-jungle
+  - podfalar
 ---

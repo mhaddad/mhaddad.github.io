@@ -128,6 +128,7 @@ const services = defineCollection({
     ctaText: z.string().min(1),
     whatsappMessage: z.string().min(1),
     relatedArticles: z.array(z.string()).default([]),
+    relatedTalks: z.array(z.string()).default([]),
   }),
 });
 
