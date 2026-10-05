@@ -30,7 +30,7 @@ jobs:
         with:
           path: dist
 
-  # Só publica a partir da main. Até a troca de 27/10, a novo-site roda apenas o build.
+  # Só publica a partir da main; as demais branches rodam apenas o build.
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: build

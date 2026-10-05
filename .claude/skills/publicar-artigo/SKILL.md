@@ -13,9 +13,7 @@ Regra de ouro: **se qualquer passo falhar, pare, explique o problema e não faç
 
 1. Confirme a nota pedida. Se Matheus não disse qual é, pergunte. Nunca escolha por conta própria.
 2. Rode `git status --short`. Se houver mudanças não commitadas em `src/content/articles/`, pare e pergunte.
-3. Rode `git branch --show-current`:
-   - **Antes de 27/10/2026:** a branch precisa ser `novo-site`. Se for `main`, **pare**: publicar na `main` antes da troca mistura o Astro com o site antigo no ar.
-   - **A partir de 27/10/2026:** a branch esperada é `main`.
+3. Rode `git branch --show-current`. O site novo foi ao ar em 05/10/2026, então a branch esperada é a `main`. Se for outra, **pare** e avise: só a `main` publica.
 4. Rode `git pull --ff-only`. Se falhar (conflito ou divergência), pare e avise.
 
 ## 1. Ler a nota no vault
@@ -167,7 +165,7 @@ Se o push for rejeitado, rode `git pull --ff-only` uma vez. Se ainda houver conf
 ## 9. Relatório
 
 Informe a Matheus:
-- As URLs: `https://matheushaddad.com/artigos/<slug-pt>/` e `https://matheushaddad.com/en/articles/<slug-en>/` (no ar após o deploy, a partir de 27/10)
+- As URLs: `https://matheushaddad.com/artigos/<slug-pt>/` e `https://matheushaddad.com/en/articles/<slug-en>/` (no ar poucos minutos depois do push, após o deploy do GitHub Actions)
 - O hash do commit
 - Decisões tomadas (descrição reescrita, termos do glossário, citações traduzidas, imagens), para revisão amostral da tradução
 

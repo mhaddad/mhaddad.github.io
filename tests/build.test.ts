@@ -482,6 +482,47 @@ describe('seletor de idioma', () => {
   });
 });
 
+describe('endereços do site antigo', () => {
+  const redirects: [string, string][] = [
+    ['sobre.html', '/sobre/'],
+    ['palestras.html', '/palestras/'],
+    ['mentoria.html', '/mentoria/'],
+    ['livros.html', '/livros/'],
+    ['empresas.html', '/empresas/'],
+    ['contato.html', '/'],
+    ['index-old.html', '/'],
+  ];
+
+  it('deve levar cada endereço .html do site antigo à página equivalente, com canonical e sem noindex', () => {
+    // Act
+    const found = redirects.map(([file, target]) => {
+      const html = exists(file) ? page(file) : '';
+      return {
+        file,
+        refresh: new RegExp(`<meta http-equiv="refresh" content="0; url=${target}">`).test(html),
+        canonical: html.includes(`<link rel="canonical" href="${SITE}${target}">`),
+        link: html.includes(`href="${target}"`),
+        noindex: /noindex/i.test(html),
+      };
+    });
+
+    // Assert
+    expect(found.filter((item) => !item.refresh || !item.canonical || !item.link || item.noindex)).toEqual([]);
+  });
+
+  it('deve manter a home gerada pelo site novo, e não um redirecionamento, em index.html', () => {
+    expect(page('index.html')).not.toContain('http-equiv="refresh"');
+  });
+
+  it('deve deixar os endereços antigos fora do sitemap', () => {
+    // Arrange
+    const sitemap = page('sitemap-0.xml');
+
+    // Assert
+    expect(redirects.filter(([file]) => sitemap.includes(file))).toEqual([]);
+  });
+});
+
 describe('rodapé em 3 colunas', () => {
   const footer = (path: string) => /<footer[\s\S]*?<\/footer>/.exec(page(path))?.[0] ?? '';
   const column = (html: string, title: string) => {

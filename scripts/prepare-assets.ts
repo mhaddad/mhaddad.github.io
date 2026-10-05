@@ -2,7 +2,7 @@
 // Roda só em desenvolvimento: `npm run assets`. O build e o navegador nunca chamam
 // o YouTube; as miniaturas ficam locais.
 //
-// - Logos (images/*.png do site antigo): recorta a margem branca e grava a versão
+// - Logos (scripts/logos/*.png, os originais do site antigo): recorta a margem branca e grava a versão
 //   colorida (Empresas) e a máscara de opacidade (faixa de prova da home).
 // - Miniaturas: baixa a hqdefault de cada youtubeId de talks.yaml e recorta em 16:9.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -17,7 +17,7 @@ const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
 async function prepareLogos() {
   await mkdir('src/assets/companies/mono', { recursive: true });
   for (const id of LOGOS) {
-    const trimmed = await sharp(`images/${id}.png`)
+    const trimmed = await sharp(`scripts/logos/${id}.png`)
       .flatten({ background: '#ffffff' })
       .trim({ background: '#ffffff', threshold: 12 })
       .resize({ width: LOGO_WIDTH, withoutEnlargement: true })
