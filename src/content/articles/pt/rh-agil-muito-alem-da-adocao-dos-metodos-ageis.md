@@ -8,6 +8,8 @@ translationKey: rh-agil-muito-alem-da-adocao-dos-metodos-ageis
 draft: false
 ---
 
+![Mulher de cabelo cacheado e olhos fechados, sorrindo, com as mãos em volta de um copo de café, cercada por notas adesivas coloridas](../../../assets/articles/rh-agil-muito-alem-da-adocao-dos-metodos-ageis/capa.jpg)
+
 Um artigo de Matheus Haddad e Yoris Linhares em parceria com a Scopphu.
 
 Estamos habituados a um estilo de gestão inspirado nos princípios da administração científica e influenciado pelos valores e normas de instituições religiosas e militares. Baseado na relação entre comando e controlo, este estilo de gestão mais tradicional tem como premissa a divisão da organização entre pensadores (executivos e gestores) e executores (as pessoas que efetivamente executam o trabalho que gera valor para os clientes).

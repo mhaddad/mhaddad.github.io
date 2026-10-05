@@ -9,11 +9,11 @@ originalUrl: https://medium.com/@mhaddad/a-educa%C3%A7%C3%A3o-e-a-escola-mudar%C
 draft: false
 ---
 
-Aqui no Brasil, mas também em muitas partes do mundo, a grande maioria das escolas ainda adota uma abordagem educacional do século XVII.
-
 ![Cena de animação dividida ao meio: à esquerda, uma criança sorridente sentada numa carteira escolar; à direita, um adulto abatido trabalhando num escritório, diante de uma pilha de papéis e de um relógio de parede](../../../assets/articles/a-educacao-e-a-escola-mudarao-para-sempre/alike.png)
 
 *Cena do curta-metragem Alike — <https://www.youtube.com/watch?v=kQjtK32mGJQ>*
+
+Aqui no Brasil, mas também em muitas partes do mundo, a grande maioria das escolas ainda adota uma abordagem educacional do século XVII.
 
 Queremos organizar, ordenar, disciplinar e controlar todo o processo de ensino-aprendizagem, **padronizando o desenvolvimento das crianças e dos jovens** (como se todos fossem iguais) **para formar funcionários e empregados competitivos para o mercado de trabalho** (como se esse fosse o único ou o principal objetivo da educação).
 

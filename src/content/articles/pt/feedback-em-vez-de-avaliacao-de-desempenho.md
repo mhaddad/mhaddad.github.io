@@ -9,6 +9,8 @@ originalUrl: https://medium.com/@mhaddad/feedback-em-vez-de-avalia%C3%A7%C3%A3o-
 draft: false
 ---
 
+![Modelo do Feedback Canvas: colunas de competência e atividades, escala de 1 (Novato) a 7 (Mestre) e quadros de pontos positivos, pontos negativos e ações de melhoria](../../../assets/articles/feedback-em-vez-de-avaliacao-de-desempenho/feedback-canvas.png)
+
 *Texto originalmente publicado no blog "Além da gestão tradicional" em março de 2013.*
 
 Há alguns anos, tenho estudado e discutido com amigos sobre como avaliar o desempenho de uma pessoa no trabalho. Até então, ao contrário dos inúmeros métodos e ferramentas disponíveis no mercado, tenho concluído que **não faz sentido determinar o desempenho individual quando o resultado do trabalho a ser feito depende mais do desempenho coletivo**.
@@ -63,6 +65,10 @@ Essa ferramenta tem como objetivo estruturar, orientar e suportar o processo de 
 
 A apresentação a seguir mostra como utilizar o **Feedback Canvas** para realizar uma sessão de feedback:
 
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/azn2w3F2Y0OlBQ" title="Feedback Canvas: como realizar uma sessão de feedback"></iframe>
+
 Neste vídeo também mostro como utilizar essa ferramenta de feedback e explico mais detalhes sobre como adotá-la nas empresas ou equipes:
+
+<iframe src="https://www.youtube-nocookie.com/embed/dJLKlPPhPCQ" title="O que é Feedback e Feedback Canvas (entrevista a José JR)"></iframe>
 
 Baixe o [arquivo de impressão do Feedback Canvas](http://bit.ly/feedback-canvas-A2) e experimente com a sua equipe, começando por você.

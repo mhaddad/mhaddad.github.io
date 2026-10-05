@@ -8,6 +8,8 @@ translationKey: rh-agil-muito-alem-da-adocao-dos-metodos-ageis
 draft: false
 ---
 
+![Woman with curly hair and closed eyes, smiling, with her hands around a coffee cup, surrounded by colorful sticky notes](../../../assets/articles/rh-agil-muito-alem-da-adocao-dos-metodos-ageis/capa.jpg)
+
 An article by Matheus Haddad and Yoris Linhares in partnership with Scopphu.
 
 We are used to a management style inspired by the principles of scientific management and influenced by the values and norms of religious and military institutions. Built on the relationship between command and control, this more traditional management style rests on the premise that the organization is divided between thinkers (executives and managers) and doers (the people who actually carry out the work that creates value for customers).

@@ -9,11 +9,11 @@ originalUrl: https://medium.com/@mhaddad/a-educa%C3%A7%C3%A3o-e-a-escola-mudar%C
 draft: false
 ---
 
-Here in Brazil, but also in many parts of the world, the vast majority of schools still take a 17th-century approach to education.
-
 ![Animated scene split down the middle: on the left, a smiling child sits at a school desk; on the right, a dejected adult works in an office, facing a stack of papers and a wall clock](../../../assets/articles/a-educacao-e-a-escola-mudarao-para-sempre/alike.png)
 
 *Scene from the short film Alike — <https://www.youtube.com/watch?v=kQjtK32mGJQ>*
+
+Here in Brazil, but also in many parts of the world, the vast majority of schools still take a 17th-century approach to education.
 
 We want to organize, order, discipline and control the entire teaching and learning process, **standardizing the development of children and young people** (as if they were all the same) **to turn out workers and employees who are competitive in the job market** (as if that were the only or the main goal of education).
 

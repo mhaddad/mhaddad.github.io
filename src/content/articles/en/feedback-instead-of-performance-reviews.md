@@ -9,6 +9,8 @@ originalUrl: https://medium.com/@mhaddad/feedback-em-vez-de-avalia%C3%A7%C3%A3o-
 draft: false
 ---
 
+![The Feedback Canvas template: columns for competency and activities, a scale from 1 (Novice) to 7 (Master), and boxes for positive points, negative points and improvement actions](../../../assets/articles/feedback-em-vez-de-avaliacao-de-desempenho/feedback-canvas.png)
+
 *This text was originally published on the blog "Além da gestão tradicional" (Beyond traditional management) in March 2013.*
 
 For a few years now, I have been studying and discussing with friends how to evaluate a person's performance at work. So far, unlike the countless methods and tools available on the market, I have come to the conclusion that **it makes no sense to determine individual performance when the result of the work to be done depends more on collective performance**.
@@ -63,6 +65,10 @@ The goal of this tool is to structure, guide and support the feedback process wi
 
 The following presentation shows how to use the **Feedback Canvas** to run a feedback session:
 
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/azn2w3F2Y0OlBQ" title="Feedback Canvas: how to run a feedback session"></iframe>
+
 In this video, I also show how to use this feedback tool and explain in more detail how to adopt it in companies or teams:
+
+<iframe src="https://www.youtube-nocookie.com/embed/dJLKlPPhPCQ" title="What is Feedback and Feedback Canvas (interview with José JR, in Portuguese)"></iframe>
 
 Download the [Feedback Canvas print file](http://bit.ly/feedback-canvas-A2) and try it with your team, starting with yourself.

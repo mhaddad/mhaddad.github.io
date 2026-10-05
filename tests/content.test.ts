@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { parse } from 'yaml';
@@ -258,5 +258,91 @@ describe('serviço de palestras — mídias relacionadas', () => {
   it('deve incluir a palestra Estruturas Organizacionais Ágeis e não a sobre o fim da avaliação individual', () => {
     expect(ids('pt')).toEqual(['vanguarda-em-foco', 'tdc-recife-2020', 'agile-in-the-jungle', 'podfalar']);
     expect(ids('pt')).not.toContain('agile-trends');
+  });
+});
+
+describe('capa do artigo RH Ágil', () => {
+  const KEY = 'rh-agil-muito-alem-da-adocao-dos-metodos-ageis';
+  const files = { pt: `${CONTENT_DIR}/pt/${KEY}.md`, en: `${CONTENT_DIR}/en/agile-hr-far-beyond-adopting-agile-methods.md` };
+
+  it('deve abrir o artigo, nos dois idiomas, com a imagem de capa antes do texto, com texto alternativo', () => {
+    // Arrange
+    const body = (path: string) => readFileSync(path, 'utf8').replace(/^---[\s\S]*?---\n+/, '');
+
+    // Act
+    const firsts = Object.values(files).map((path) => /^!\[([^\]]+)\]\(([^)]+)\)/.exec(body(path)));
+
+    // Assert
+    for (const match of firsts) {
+      expect(match?.[2]).toBe(`../../../assets/articles/${KEY}/capa.jpg`);
+      expect(match?.[1]?.length).toBeGreaterThan(20);
+    }
+    expect(firsts[0]?.[1]).not.toBe(firsts[1]?.[1]);
+    expect(existsSync(`src/assets/articles/${KEY}/capa.jpg`)).toBe(true);
+  });
+});
+
+describe('capa do artigo A educação e a escola mudarão para sempre', () => {
+  const KEY = 'a-educacao-e-a-escola-mudarao-para-sempre';
+  const files = [`${CONTENT_DIR}/pt/${KEY}.md`, `${CONTENT_DIR}/en/education-and-schools-will-change-forever.md`];
+
+  it('deve abrir o artigo, nos dois idiomas, com a imagem do curta Alike, que aparece uma única vez', () => {
+    // Arrange
+    const body = (path: string) => readFileSync(path, 'utf8').replace(/^---[\s\S]*?---\n+/, '');
+
+    // Assert
+    for (const path of files) {
+      const text = body(path);
+      expect(/^!\[[^\]]{20,}\]\(\.\.\/\.\.\/\.\.\/assets\/articles\/[^)]+\/alike\.png\)/.test(text)).toBe(true);
+      expect((text.match(/alike\.png/g) ?? []).length).toBe(1);
+      expect(text.split('\n\n')[1]).toMatch(/^\*.*Alike/);
+    }
+  });
+});
+
+describe('capa do artigo Feedback em vez de avaliação de desempenho', () => {
+  const files = [
+    `${CONTENT_DIR}/pt/feedback-em-vez-de-avaliacao-de-desempenho.md`,
+    `${CONTENT_DIR}/en/feedback-instead-of-performance-reviews.md`,
+  ];
+
+  it('deve abrir o artigo, nos dois idiomas, com a imagem do Feedback Canvas e repeti-la na seção que apresenta a ferramenta', () => {
+    // Arrange
+    const body = (path: string) => readFileSync(path, 'utf8').replace(/^---[\s\S]*?---\n+/, '');
+
+    // Assert
+    for (const path of files) {
+      const text = body(path);
+      expect(/^!\[[^\]]{20,}\]\(\.\.\/\.\.\/\.\.\/assets\/articles\/[^)]+\/feedback-canvas\.png\)/.test(text)).toBe(true);
+      expect((text.match(/feedback-canvas\.png/g) ?? []).length).toBe(2);
+      const section = text.slice(text.lastIndexOf('\n## '));
+      expect(section).toContain('feedback-canvas.png');
+    }
+  });
+});
+
+describe('apresentação e vídeo no artigo Feedback em vez de avaliação de desempenho', () => {
+  const files = [
+    `${CONTENT_DIR}/pt/feedback-em-vez-de-avaliacao-de-desempenho.md`,
+    `${CONTENT_DIR}/en/feedback-instead-of-performance-reviews.md`,
+  ];
+
+  it('deve incorporar a apresentação do SlideShare e o vídeo da entrevista logo após as frases que os anunciam, nos dois idiomas', () => {
+    // Arrange
+    const slides = '<iframe src="https://www.slideshare.net/slideshow/embed_code/key/azn2w3F2Y0OlBQ"';
+    const video = '<iframe src="https://www.youtube-nocookie.com/embed/dJLKlPPhPCQ"';
+
+    // Act
+    const texts = files.map((path) => readFileSync(path, 'utf8'));
+
+    // Assert
+    for (const text of texts) {
+      const paragraphs = text.split('\n\n');
+      const at = (marker: string) => paragraphs.findIndex((paragraph) => paragraph.startsWith(marker));
+      expect(paragraphs[at(slides) - 1]).toMatch(/:$/);
+      expect(paragraphs[at(video) - 1]).toMatch(/:$/);
+      expect(text).toMatch(/title="[^"]{10,}"/);
+      expect((text.match(/<iframe/g) ?? []).length).toBe(2);
+    }
   });
 });
