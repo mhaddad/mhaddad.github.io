@@ -95,6 +95,54 @@ describe('rotas geradas', () => {
   });
 });
 
+describe('favicon', () => {
+  it('deve declarar o favicon SVG, o ICO e o ícone do iPhone no head quando a página é gerada', () => {
+    // Arrange
+    const html = page('index.html');
+
+    // Act
+    const links = [...html.matchAll(/<link rel="(icon|apple-touch-icon)"[^>]*>/g)].map((m) => m[0]);
+
+    // Assert
+    expect(links.some((tag) => tag.includes('href="/favicon.svg"') && tag.includes('type="image/svg+xml"'))).toBe(true);
+    expect(links.some((tag) => tag.includes('href="/favicon.ico"'))).toBe(true);
+    expect(links.some((tag) => tag.includes('rel="apple-touch-icon"') && tag.includes('href="/apple-touch-icon.png"'))).toBe(true);
+  });
+
+  it('deve ter fundo preto e a letra M em branco no SVG', () => {
+    // Arrange
+    const svg = page('favicon.svg');
+
+    // Act
+    const background = /<rect[^>]*fill="#000(?:000)?"/.test(svg);
+    const letter = /<path[^>]*fill="#fff(?:fff)?"/.test(svg);
+
+    // Assert
+    expect(background).toBe(true);
+    expect(letter).toBe(true);
+    expect(svg).not.toContain('<text');
+  });
+
+  it('deve gerar o ICO com 16, 32 e 48 px e o ícone do iPhone com 180 px, em preto com M branco', async () => {
+    // Arrange
+    const ico = readFileSync(join(OUT_DIR, 'favicon.ico'));
+    const apple = await sharp(join(OUT_DIR, 'apple-touch-icon.png')).metadata();
+    const raw = await sharp(join(OUT_DIR, 'apple-touch-icon.png')).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+
+    // Act
+    const count = ico.readUInt16LE(4);
+    const sizes = Array.from({ length: count }, (_, i) => ico[6 + i * 16] || 256).sort((a, b) => a - b);
+    const pixel = (x: number, y: number) => [...raw.data.subarray((y * raw.info.width + x) * 3, (y * raw.info.width + x) * 3 + 3)];
+
+    // Assert
+    expect(ico.readUInt16LE(2)).toBe(1);
+    expect(sizes).toEqual([16, 32, 48]);
+    expect([apple.width, apple.height]).toEqual([180, 180]);
+    expect(pixel(2, 2)).toEqual([0, 0, 0]);
+    expect(pixel(90, 100)).toEqual([255, 255, 255]);
+  });
+});
+
 describe('SEO da página de artigo', () => {
   it('deve declarar idioma, canonical e hreflang absolutos quando a página é um artigo', () => {
     // Arrange

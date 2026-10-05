@@ -31,7 +31,9 @@ const message = whatsappMessage ?? pageWhatsappMessage(lang, title === SITE_NAME
     <Font cssVariable="--font-display" preload={[{ style: 'normal' }]} />
     <Font cssVariable="--font-body" preload={[{ style: 'normal' }]} />
     <Font cssVariable="--font-mono" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title={t(lang, 'footer.rss')} href={routePath('rss', lang)} />
     <Seo {...props} path={Astro.url.pathname} />
     <Analytics />

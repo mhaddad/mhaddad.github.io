@@ -12,6 +12,7 @@
     "check": "astro check",
     "test": "vitest run",
     "assets": "node scripts/prepare-assets.ts",
+    "favicon": "node scripts/prepare-favicon.ts",
     "posttest": "astro sync"
   },
   "dependencies": {
