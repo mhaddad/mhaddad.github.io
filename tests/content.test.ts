@@ -154,3 +154,85 @@ describe('página Sobre', () => {
     expect(text('en')).toContain('](/en/books/)');
   });
 });
+
+describe('serviço de mentoria', () => {
+  const read = (lang: 'pt' | 'en') => readFileSync(`src/content/services/${lang}/mentoria.md`, 'utf8');
+
+  it('deve manter o conteúdo original da página de mentoria do site anterior, nos dois idiomas', () => {
+    // Arrange
+    const expected: Record<'pt' | 'en', string[]> = {
+      pt: [
+        'Posicionamento executivo',
+        'Gestão de cultura',
+        'Tomada de decisão',
+        'Resiliência cognitiva',
+        'Liderança distribuída',
+        'Execução com propósito',
+        'Diagnóstico profundo',
+        'Plano de voo',
+        'Execução e ajuste',
+        'Frameworks exclusivos e diagnósticos personalizados',
+        'Estratégia e liderança de impacto',
+      ],
+      en: [
+        'Executive positioning',
+        'Culture management',
+        'Decision making',
+        'Cognitive resilience',
+        'Distributed leadership',
+        'Purposeful execution',
+        'Deep diagnosis',
+        'Flight plan',
+        'Execution and adjustment',
+        'Exclusive frameworks and personalized diagnostics',
+        'Strategy and impactful leadership',
+      ],
+    };
+
+    // Act
+    const missing = (['pt', 'en'] as const).flatMap((lang) => expected[lang].filter((text) => !read(lang).includes(text)).map((text) => `${lang}: ${text}`));
+
+    // Assert
+    expect(missing).toEqual([]);
+  });
+
+  it('deve manter o público da nova versão, sem a seção O problema, e declarar a estrutura em duração, formato e materiais', () => {
+    // Arrange
+    const structure = (lang: 'pt' | 'en') => /structure:\n((?:  - title: .*\n    text: .*\n)+)/.exec(read(lang))?.[1].match(/title: (.*)/g) ?? [];
+
+    // Assert
+    expect(read('pt')).toContain('audience: Lideranças em transição de papel');
+    expect(read('pt')).not.toMatch(/^problem:/m);
+    expect(read('en')).not.toMatch(/^problem:/m);
+    expect(structure('pt')).toEqual(['title: Duração', 'title: Formato', 'title: Materiais']);
+    expect(structure('en')).toEqual(['title: Duration', 'title: Format', 'title: Materials']);
+  });
+
+  it('deve relacionar os artigos de IA no desenvolvimento de software e de IA e jogo de poder, além dos dois anteriores', () => {
+    // Arrange
+    const related = (lang: 'pt' | 'en') => /relatedArticles:\n((?:  - .*\n)+)/.exec(read(lang))?.[1].match(/- (.*)/g) ?? [];
+
+    // Assert
+    for (const lang of ['pt', 'en'] as const) {
+      expect(related(lang)).toEqual([
+        '- autonomia-para-transformar-organizacoes',
+        '- coerencia-cognitiva',
+        '- ia-no-processo-de-desenvolvimento-de-software',
+        '- a-ia-muda-quase-tudo-na-sua-empresa-menos-o-jogo-de-poder',
+      ]);
+    }
+  });
+
+  it('deve abrir a página sem citar a duração no subtítulo, que fica só na seção de estrutura', () => {
+    // Arrange
+    const subtitle = (lang: 'pt' | 'en') => /^subtitle: (.*)$/m.exec(read(lang))?.[1];
+
+    // Assert
+    expect(subtitle('pt')).toBe(
+      'Um acompanhamento personalizado desenhado para executivos e empreendedores que buscam clareza estratégica e refinamento da liderança.',
+    );
+    expect(subtitle('en')).toBe(
+      'A personalized engagement designed for executives and entrepreneurs seeking strategic clarity and a more refined leadership.',
+    );
+  });
+});

@@ -746,10 +746,31 @@ describe('páginas de serviço — Onda 3', () => {
     const related = /<section aria-labelledby="related-heading"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
 
     // Assert
-    expect(sections).toEqual(['Para quem é', 'O problema', 'Temas e abordagens', 'Como funciona', 'Artigos relacionados']);
+    expect(sections).toEqual(['Para quem é', 'Temas e abordagens', 'Estrutura da mentoria', 'Como funciona', 'Artigos relacionados']);
+    expect(page('palestras/index.html')).toContain('id="problem-heading"');
     expect(steps).toBe(3);
     expect(related).toContain('href="/artigos/primeiro-artigo/"');
     expect(related).toContain('href="/artigos/segundo-artigo/"');
+  });
+
+  it('deve mostrar a estrutura da mentoria entre os temas e os passos, e só nela', () => {
+    // Arrange
+    const mentoria = page('mentoria/index.html');
+    const mentoring = page('en/mentoring/index.html');
+    const palestras = page('palestras/index.html');
+
+    // Act
+    const items = (html: string) =>
+      [...(/<ul class="structure"[\s\S]*?<\/ul>/.exec(html)?.[0] ?? '').matchAll(/<h3[^>]*>([^<]+)<\/h3>/g)].map((m) => m[1]);
+    const order = ['topics-heading', 'structure-heading', 'steps-heading'].map((id) => mentoria.indexOf(`id="${id}"`));
+
+    // Assert
+    expect(items(mentoria)).toEqual(['Duração de teste (pt)', 'Formato de teste (pt)', 'Materiais de teste (pt)']);
+    expect(items(mentoring)).toEqual(['Duration de teste (en)', 'Format de teste (en)', 'Materials de teste (en)']);
+    expect(order[0]).toBeGreaterThan(0);
+    expect(order[1]).toBeGreaterThan(order[0] ?? 0);
+    expect(order[2]).toBeGreaterThan(order[1] ?? 0);
+    expect(palestras).not.toContain('structure-heading');
   });
 
   it('deve mostrar o formato na mentoria e a lista de formatos nas palestras quando o serviço os define', () => {

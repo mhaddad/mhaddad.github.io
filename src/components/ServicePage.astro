@@ -19,7 +19,7 @@ interface Props {
 
 const { lang, serviceKey, services, articles } = Astro.props;
 const service = serviceFor(services, serviceKey, lang);
-const { label, title, description, subtitle, audience, problem, topics, steps, format, formats, ctaLabel, ctaText, whatsappMessage } =
+const { label, title, description, subtitle, audience, problem, topics, steps, structure, format, formats, ctaLabel, ctaText, whatsappMessage } =
   service.data;
 const related = relatedArticlesFor(service, articles);
 ---
@@ -45,10 +45,14 @@ const related = relatedArticlesFor(service, articles);
         <p class="lead">{audience}</p>
       </section>
 
-      <section aria-labelledby="problem-heading">
-        <h2 id="problem-heading" class="section-title mono">{t(lang, 'services.problem')}</h2>
-        <blockquote class="problem"><p>{problem}</p></blockquote>
-      </section>
+      {
+        problem && (
+          <section aria-labelledby="problem-heading">
+            <h2 id="problem-heading" class="section-title mono">{t(lang, 'services.problem')}</h2>
+            <blockquote class="problem"><p>{problem}</p></blockquote>
+          </section>
+        )
+      }
 
       <section aria-labelledby="topics-heading">
         <h2 id="topics-heading" class="section-title mono">{t(lang, 'services.topics')}</h2>
@@ -62,6 +66,22 @@ const related = relatedArticlesFor(service, articles);
             <ul class="formats">
               {formats.map((item) => (
                 <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        structure && (
+          <section aria-labelledby="structure-heading">
+            <h2 id="structure-heading" class="section-title mono">{t(lang, 'services.structure')}</h2>
+            <ul class="structure">
+              {structure.map((item) => (
+                <li>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </li>
               ))}
             </ul>
           </section>
@@ -191,6 +211,31 @@ const related = relatedArticlesFor(service, articles);
     font-style: italic;
     font-weight: 600;
     line-height: var(--lh-h3);
+  }
+
+  .structure {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--col-min-footer), 1fr));
+    gap: var(--space-24);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .structure li {
+    padding-top: var(--space-16);
+    border-top: var(--border-strong) solid var(--accent);
+  }
+
+  .structure h3 {
+    margin-bottom: var(--space-8);
+    font-size: var(--fs-18);
+  }
+
+  .structure p {
+    color: var(--text-muted);
+    font-size: var(--fs-15);
+    line-height: var(--lh-body);
   }
 
   .formats {

@@ -2,39 +2,46 @@
 key: mentoria
 lang: pt
 order: 2
-label: Mentoria
-title: Mentoria individual para quem lidera pessoas e decisões
-description: Mentoria individual de 3 a 6 meses para líderes, fundadores e executivos que querem mais clareza para decidir e liderar.
-subtitle: Um acompanhamento de 3 a 6 meses para líderes, fundadores e executivos que querem mais clareza para decidir e liderar.
+label: Mentoria individual
+title: Estratégia e liderança de impacto
+description: Mentoria individual de 3 a 6 meses para executivos e empreendedores que buscam clareza estratégica e refinamento da liderança.
+subtitle: Um acompanhamento personalizado desenhado para executivos e empreendedores que buscam clareza estratégica e refinamento da liderança.
 cardTitle: Mentoria
 summary: Acompanhamento individual de 3 a 6 meses para quem lidera pessoas e decisões técnicas.
 audience: Lideranças em transição de papel, fundadores assumindo a gestão, heads de engenharia recém-promovidos e executivos que passam a liderar equipes cada vez mais autônomas.
-problem: A promoção costuma chegar antes do repertório. Quem era referência técnica passa a responder por pessoas, prioridades e conflitos, e descobre que aquilo que o trouxe até ali é só parte do que o próximo passo pede.
 topics:
-  - title: Papel e posicionamento
-    text: Clareza sobre o seu papel de liderança e sobre como comunicar o que você propõe.
-  - title: Cultura e acordos de equipe
-    text: Como evoluir a cultura do time de forma intencional, com acordos explícitos.
-  - title: Decisão sob incerteza
-    text: Critérios para decidir mais rápido e com mais coerência entre valores e estratégia.
-  - title: Foco sob pressão
-    text: Ferramentas para manter o foco quando o ambiente é incerto e as demandas competem entre si.
+  - title: Posicionamento executivo
+    text: Clareza sobre seu papel de liderança e como comunicar sua proposta de valor com autenticidade.
+  - title: Gestão de cultura
+    text: Técnicas para moldar e evoluir a cultura da sua organização de forma intencional e consistente.
+  - title: Tomada de decisão
+    text: Frameworks para decisões mais ágeis, eficazes e alinhadas com seus valores e estratégia.
+  - title: Resiliência cognitiva
+    text: Ferramentas para manter o foco e a performance mesmo sob pressão e em ambientes incertos.
   - title: Liderança distribuída
-    text: Como formar times que lideram sem depender de hierarquia rígida, com autonomia e responsabilidade.
-  - title: Da estratégia à execução
-    text: Como transformar prioridades em ação de forma consistente.
+    text: Como construir times que lideram sem depender de hierarquia rígida, com autonomia e responsabilidade.
+  - title: Execução com propósito
+    text: Metodologias para transformar estratégia em ação com consistência e impacto real.
+structure:
+  - title: Duração
+    text: Processo de 3 a 6 meses, adaptado ao seu ciclo e aos seus objetivos específicos de desenvolvimento.
+  - title: Formato
+    text: Encontros online ao vivo, com duração de 60 minutos a cada duas semanas, na sua conveniência.
+  - title: Materiais
+    text: Frameworks exclusivos e diagnósticos personalizados para cada mentorado.
 steps:
-  - title: Diagnóstico
-    text: Mapeamos seus desafios, o contexto e os objetivos para entender onde você está e aonde quer chegar.
-  - title: Plano
-    text: Montamos um roteiro com as prioridades de desenvolvimento para o período.
-  - title: Encontros e ajuste
-    text: Encontros online ao vivo de 60 minutos a cada duas semanas, com acompanhamento entre eles e ajustes de rota conforme você avança.
-format: 3 a 6 meses · online ao vivo · 60 min a cada duas semanas
+  - title: Diagnóstico profundo
+    text: Mapeamos seus desafios, o contexto e seus objetivos estratégicos de longo prazo para entender onde você está e aonde quer chegar.
+  - title: Plano de voo
+    text: Desenvolvemos um roteiro personalizado com prioridades e KPIs de desenvolvimento para guiar a jornada.
+  - title: Execução e ajuste
+    text: Sessões de mentoria, acompanhamento contínuo e calibração do percurso conforme você avança.
 ctaLabel: Pedir uma sessão experimental
 ctaText: Me conta o seu momento de liderança.
 whatsappMessage: Olá, Matheus! Vi a página de Mentoria no seu site e gostaria de agendar uma sessão experimental.
 relatedArticles:
   - autonomia-para-transformar-organizacoes
   - coerencia-cognitiva
+  - ia-no-processo-de-desenvolvimento-de-software
+  - a-ia-muda-quase-tudo-na-sua-empresa-menos-o-jogo-de-poder
 ---

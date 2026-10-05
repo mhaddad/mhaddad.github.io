@@ -9,7 +9,6 @@ subtitle: Subtítulo de mentoria em en.
 cardTitle: Card mentoria en
 summary: Resumo de mentoria em en.
 audience: Público de mentoria em en.
-problem: Problema de mentoria em en.
 topics:
   - title: Tema 1 de mentoria
     text: Texto do tema 1.
@@ -22,6 +21,13 @@ steps:
     text: Texto do passo 2.
   - title: Passo 3 de mentoria
     text: Texto do passo 3.
+structure:
+  - title: Duration de teste (en)
+    text: Texto de duration (en).
+  - title: Format de teste (en)
+    text: Texto de format (en).
+  - title: Materials de teste (en)
+    text: Texto de materials (en).
 format: Formato de teste (en)
 ctaLabel: Botão de mentoria en
 ctaText: Texto lateral de mentoria en.
