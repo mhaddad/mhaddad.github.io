@@ -5,7 +5,6 @@ import {
   relatedArticlesFor,
   serviceFor,
   servicePath,
-  servicesFor,
   validateServices,
   type ServiceData,
   type ServiceEntry,
@@ -25,7 +24,7 @@ function article(id: string, translationKey: string, draft = false): ArticleEntr
 }
 
 const complete = ['pt', 'en'].flatMap((lang) =>
-  ['consultoria', 'mentoria', 'palestras'].map((key, index) => service(`${lang}/${key}`, { order: index + 1 })),
+  ['mentoria', 'palestras'].map((key, index) => service(`${lang}/${key}`, { order: index + 1 })),
 );
 
 function problemsOf(services: ServiceEntry[], articles: ArticleEntry[] = []): string[] {
@@ -41,14 +40,13 @@ function problemsOf(services: ServiceEntry[], articles: ArticleEntry[] = []): st
 describe('servicePath', () => {
   it('deve seguir o contrato de URLs quando recebe a chave e o idioma', () => {
     // Arrange
-    const keys = ['consultoria', 'mentoria', 'palestras'] as const;
+    const keys = ['mentoria', 'palestras'] as const;
 
     // Act
     const paths = keys.map((key) => [servicePath(key, 'pt'), servicePath(key, 'en')]);
 
     // Assert
     expect(paths).toEqual([
-      ['/consultoria/', '/en/consulting/'],
       ['/mentoria/', '/en/mentoring/'],
       ['/palestras/', '/en/speaking/'],
     ]);
@@ -56,7 +54,7 @@ describe('servicePath', () => {
 });
 
 describe('validateServices', () => {
-  it('deve aceitar quando os 3 serviços existem nos 2 idiomas', () => {
+  it('deve aceitar quando os 2 serviços existem nos 2 idiomas', () => {
     // Arrange
     const services = complete;
 
@@ -103,7 +101,7 @@ describe('validateServices', () => {
   it('deve falhar quando o artigo relacionado não existe ou é rascunho no idioma', () => {
     // Arrange
     const services = complete.map((entry) =>
-      entry.id === 'pt/consultoria' ? service('pt/consultoria', { relatedArticles: ['publicado', 'rascunho', 'inexistente'] }) : entry,
+      entry.id === 'pt/mentoria' ? service('pt/mentoria', { relatedArticles: ['publicado', 'rascunho', 'inexistente'] }) : entry,
     );
     const articles = [article('pt/publicado', 'publicado'), article('pt/rascunho', 'rascunho', true)];
 
@@ -112,24 +110,13 @@ describe('validateServices', () => {
 
     // Assert
     expect(problems).toEqual([
-      'pt/consultoria: artigo relacionado "rascunho" não está publicado em pt',
-      'pt/consultoria: artigo relacionado "inexistente" não está publicado em pt',
+      'pt/mentoria: artigo relacionado "rascunho" não está publicado em pt',
+      'pt/mentoria: artigo relacionado "inexistente" não está publicado em pt',
     ]);
   });
 });
 
-describe('servicesFor e serviceFor', () => {
-  it('deve listar os serviços do idioma na ordem definida quando recebe todos', () => {
-    // Arrange
-    const services = [...complete].reverse();
-
-    // Act
-    const ids = servicesFor(services, 'en').map((entry) => entry.id);
-
-    // Assert
-    expect(ids).toEqual(['en/consultoria', 'en/mentoria', 'en/palestras']);
-  });
-
+describe('serviceFor', () => {
   it('deve encontrar o serviço pela chave e idioma quando ele existe', () => {
     // Arrange
     const services = complete;
@@ -145,7 +132,7 @@ describe('servicesFor e serviceFor', () => {
 describe('relatedArticlesFor', () => {
   it('deve devolver os artigos publicados do idioma na ordem do serviço quando há relacionados', () => {
     // Arrange
-    const entry = service('en/consultoria', { relatedArticles: ['b', 'a', 'rascunho'] });
+    const entry = service('en/mentoria', { relatedArticles: ['b', 'a', 'rascunho'] });
     const articles = [article('en/a', 'a'), article('en/b', 'b'), article('pt/b', 'b'), article('en/r', 'rascunho', true)];
 
     // Act

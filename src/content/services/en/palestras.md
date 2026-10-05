@@ -1,7 +1,7 @@
 ---
 key: palestras
 lang: en
-order: 3
+order: 1
 label: Talks
 title: Talks on the future of work and organizations
 description: Talks by Matheus Haddad on AI in organizations, the future of work, emergent leadership and feedback culture.

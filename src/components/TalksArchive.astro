@@ -17,13 +17,8 @@ const filters = [
 ];
 ---
 
-<section class="archive" aria-labelledby="talks-heading" data-talks>
+<section class="archive" aria-label={t(lang, 'talks.title')} data-talks>
   <div class="container">
-    <header class="intro">
-      <h2 id="talks-heading">{t(lang, 'talks.title')}</h2>
-      <p>{t(lang, 'talks.intro')}</p>
-    </header>
-
     <div class="filters" role="group" aria-label={t(lang, 'talks.filterLabel')}>
       {
         filters.map((filter) => (
@@ -77,25 +72,7 @@ const filters = [
 
 <style>
   .archive {
-    padding-block: var(--space-80) var(--space-96);
-    border-top: var(--border-width) solid var(--border);
-  }
-
-  .intro {
-    padding-bottom: var(--space-40);
-    margin-bottom: var(--space-48);
-    border-bottom: var(--border-width) solid var(--border);
-  }
-
-  h2 {
-    margin-bottom: var(--space-12);
-    font-size: var(--fs-40);
-    line-height: var(--lh-heading);
-  }
-
-  .intro p {
-    color: var(--text-muted);
-    font-size: var(--fs-18);
+    padding-block: var(--space-48) var(--space-96);
   }
 
   .filters {
@@ -141,11 +118,7 @@ const filters = [
 
   @media (max-width: 767px) {
     .archive {
-      padding-block: var(--space-64);
-    }
-
-    h2 {
-      font-size: var(--fs-32);
+      padding-block: var(--space-32) var(--space-64);
     }
 
     .grid {

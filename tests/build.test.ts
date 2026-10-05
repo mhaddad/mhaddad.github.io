@@ -368,7 +368,7 @@ describe('design system', () => {
 });
 
 describe('header e footer', () => {
-  it('deve chamar o item de palestras de "Palestras" no menu e no rodapé, nos dois idiomas', () => {
+  it('deve ter no menu e no rodapé Palestras, Mentoria e Mídia, e não Serviços, nos dois idiomas', () => {
     // Arrange
     const labels = (html: string, selector: RegExp) =>
       [...(selector.exec(html)?.[0] ?? '').matchAll(/<a [^>]*>([^<]+)<\/a>/g)].map((m) => m[1]);
@@ -378,14 +378,15 @@ describe('header e footer', () => {
     const en = page('en/index.html');
 
     // Assert
-    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Artigos', 'Serviços', 'Empresas', 'Palestras', 'Livros', 'Sobre']);
-    expect(labels(en, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Articles', 'Services', 'Companies', 'Talks', 'Books', 'About']);
+    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Artigos', 'Palestras', 'Mentoria', 'Empresas', 'Mídia', 'Livros', 'Sobre']);
+    expect(labels(en, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).toEqual(['Articles', 'Talks', 'Mentoring', 'Companies', 'Media', 'Books', 'About']);
     expect(labels(pt, /<footer[\s\S]*?<\/footer>/)).toContain('Palestras');
+    expect(labels(pt, /<nav class="desktop-nav"[\s\S]*?<\/nav>/)).not.toContain('Serviços');
     expect(pt).not.toMatch(/Palestras e (Mídia|Workshops)/);
     expect(en).not.toMatch(/Talks &amp; (Media|Workshops)/);
   });
 
-  it('deve ter os 6 itens do menu nos caminhos do contrato e o item atual marcado quando a página é de artigos', () => {
+  it('deve ter os 7 itens do menu nos caminhos do contrato e o item atual marcado quando a página é de artigos', () => {
     // Arrange
     const html = page('artigos/index.html');
 
@@ -395,7 +396,7 @@ describe('header e footer', () => {
     const current = /<a href="([^"]+)" aria-current="page"/.exec(nav)?.[1];
 
     // Assert
-    expect(hrefs).toEqual(['/artigos/', '/servicos/', '/empresas/', '/palestras/', '/livros/', '/sobre/']);
+    expect(hrefs).toEqual(['/artigos/', '/palestras/', '/mentoria/', '/empresas/', '/midia/', '/livros/', '/sobre/']);
     expect(current).toBe('/artigos/');
   });
 
@@ -446,7 +447,7 @@ describe('header e footer', () => {
     expect(html).toMatch(/<div id="mobile-menu"[^>]*hidden/);
   });
 
-  it('deve levar os 7 links em lista e nenhum botão de WhatsApp no rodapé quando a página é gerada', () => {
+  it('deve levar os 8 links em lista e nenhum botão de WhatsApp no rodapé quando a página é gerada', () => {
     // Arrange
     const html = page('en/index.html');
 
@@ -455,7 +456,7 @@ describe('header e footer', () => {
     const hrefs = [...(/<nav[\s\S]*?<\/nav>/.exec(footer)?.[0] ?? '').matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
 
     // Assert
-    expect(hrefs).toEqual(['/en/articles/', '/en/services/', '/en/companies/', '/en/speaking/', '/en/books/', '/en/about/', '/en/rss.xml']);
+    expect(hrefs).toEqual(['/en/articles/', '/en/speaking/', '/en/mentoring/', '/en/companies/', '/en/media/', '/en/books/', '/en/about/', '/en/rss.xml']);
     expect(footer).not.toContain('wa.me');
     expect(footer).not.toContain('button');
   });
@@ -465,8 +466,6 @@ describe('faixa "Conversar sobre..." no topo das páginas de serviço', () => {
   it('deve ficar fora de todas as páginas de serviço nos dois idiomas, mas continuar na coluna lateral', () => {
     // Arrange
     const pages = [
-      'consultoria/index.html',
-      'en/consulting/index.html',
       'mentoria/index.html',
       'en/mentoring/index.html',
       'palestras/index.html',
@@ -497,7 +496,7 @@ describe('faixa "Vamos conversar?"', () => {
 
   it('deve continuar nas páginas de serviço e no fim do artigo', () => {
     // Assert
-    expect(page('consultoria/index.html')).toContain('Vamos conversar?');
+    expect(page('mentoria/index.html')).toContain('Vamos conversar?');
     expect(page('artigos/primeiro-artigo/index.html')).toContain('class="article-cta"');
   });
 });
@@ -560,6 +559,18 @@ describe('página de artigo — Onda 2', () => {
     expect(author).toContain('href="/en/about/"');
   });
 
+  it('deve usar no bloco do autor o retrato recortado no rosto, e não a foto inteira', () => {
+    // Arrange
+    const html = page('artigos/primeiro-artigo/index.html');
+
+    // Act
+    const photo = /<aside class="author"[\s\S]*?<img[^>]*class="photo"[^>]*>/.exec(html)?.[0] ?? '';
+    const src = /src="([^"]+)"/.exec(photo)?.[1] ?? '';
+
+    // Assert
+    expect(src).toContain('/_astro/matheus-haddad-rosto.');
+  });
+
   it('deve descrever o autor com 20+ anos de experiência, sem os números antigos, nos dois idiomas', () => {
     // Arrange
     const pages = ['artigos/primeiro-artigo/index.html', 'en/articles/first-article/index.html'];
@@ -603,27 +614,27 @@ describe('botões do hero da home', () => {
       text: (m[2] ?? '').replace(/<[^>]+>/g, '').trim(),
     }));
 
-  it('deve levar ao Sobre e a Serviços, com destaque em Serviços, e não ao WhatsApp, em português', () => {
+  it('deve levar ao Sobre e às Palestras, com destaque em Palestras, e não ao WhatsApp, em português', () => {
     // Act
     const buttons = ctas(page('index.html'));
 
     // Assert
     expect(buttons.map((b) => [b.href, b.text])).toEqual([
       ['/sobre/', 'Saber mais'],
-      ['/servicos/', 'Ver serviços'],
+      ['/palestras/', 'Ver palestras'],
     ]);
     expect(buttons[0]?.class).toContain('button--secondary');
     expect(buttons[1]?.class).toContain('button--primary');
   });
 
-  it('deve levar ao Sobre e a Serviços, com destaque em Serviços, e não ao WhatsApp, em inglês', () => {
+  it('deve levar ao Sobre e às Palestras, com destaque em Palestras, e não ao WhatsApp, em inglês', () => {
     // Act
     const buttons = ctas(page('en/index.html'));
 
     // Assert
     expect(buttons.map((b) => [b.href, b.text])).toEqual([
       ['/en/about/', 'Learn more'],
-      ['/en/services/', 'See services'],
+      ['/en/speaking/', 'See talks'],
     ]);
     expect(buttons[1]?.class).toContain('button--primary');
   });
@@ -641,7 +652,7 @@ describe('texto principal da home', () => {
     const { label, title, subtitle } = hero(page('index.html'));
 
     // Assert
-    expect(label).toBe('Consultoria · Mentoria · Palestras');
+    expect(label).toBe('Mentoria · Palestras');
     expect(title).toBe('Empresário, palestrante e pesquisador em tecnologia, gestão e educação.');
     expect(subtitle).toBe(
       'Ajudo CEOs e CTOs a repensar suas organizações, combinando gestão de pessoas, estratégia de negócios, desenvolvimento de software e inteligência artificial.',
@@ -653,7 +664,7 @@ describe('texto principal da home', () => {
     const { label, title, subtitle } = hero(page('en/index.html'));
 
     // Assert
-    expect(label).toBe('Consulting · Mentoring · Talks');
+    expect(label).toBe('Mentoring · Talks');
     expect(title).toBe('Entrepreneur, speaker and researcher in technology, management and education.');
     expect(subtitle).toBe(
       'I help CEOs and CTOs rethink their organizations, combining people management, business strategy, software development and artificial intelligence.',
@@ -704,13 +715,11 @@ describe('faixa de prova da home', () => {
 
 describe('páginas de serviço — Onda 3', () => {
   const pages = [
-    ['servicos/index.html', 'en/services/index.html'],
-    ['consultoria/index.html', 'en/consulting/index.html'],
     ['mentoria/index.html', 'en/mentoring/index.html'],
     ['palestras/index.html', 'en/speaking/index.html'],
   ];
 
-  it('deve gerar o hub e os 3 serviços nos dois idiomas com hreflang cruzado quando o build termina', () => {
+  it('deve gerar os 2 serviços nos dois idiomas com hreflang cruzado quando o build termina', () => {
     // Arrange
     const pairs = pages;
 
@@ -724,23 +733,12 @@ describe('páginas de serviço — Onda 3', () => {
     });
 
     // Assert
-    expect(crossLinks).toEqual([true, true, true, true]);
-  });
-
-  it('deve listar os 3 serviços na ordem com link para cada página quando o hub é gerado', () => {
-    // Arrange
-    const html = page('servicos/index.html');
-
-    // Act
-    const links = [...html.matchAll(/<article class="service-card"[\s\S]*?<h2[^>]*><a href="([^"]+)"/g)].map((m) => m[1]);
-
-    // Assert
-    expect(links).toEqual(['/consultoria/', '/mentoria/', '/palestras/']);
+    expect(crossLinks).toEqual([true, true]);
   });
 
   it('deve mostrar as seções, os 3 passos e os artigos relacionados quando a página é de serviço', () => {
     // Arrange
-    const html = page('consultoria/index.html');
+    const html = page('mentoria/index.html');
 
     // Act
     const sections = [...html.matchAll(/<h2 id="[a-z]+-heading" class="section-title mono"[^>]*>([^<]+)<\/h2>/g)].map((m) => m[1]);
@@ -771,8 +769,8 @@ describe('páginas de serviço — Onda 3', () => {
 
   it('deve levar a mensagem e o serviço no WhatsApp quando a página é de serviço', () => {
     // Arrange
-    const html = page('consultoria/index.html');
-    const encoded = encodeURIComponent('Mensagem de consultoria em pt & teste');
+    const html = page('mentoria/index.html');
+    const encoded = encodeURIComponent('Mensagem de mentoria em pt & teste');
 
     // Act
     const links = [...html.matchAll(new RegExp(`<a [^>]*href="https://wa\\.me/5535988867870\\?text=${encoded.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`, 'g'))].map((m) => m[0]);
@@ -780,19 +778,21 @@ describe('páginas de serviço — Onda 3', () => {
     // Assert
     // Cabeçalho (ícone) e coluna lateral.
     expect(links).toHaveLength(2);
-    expect(links.filter((link) => link.includes('&quot;service&quot;:&quot;consultoria&quot;')).length).toBe(1);
+    expect(links.filter((link) => link.includes('&quot;service&quot;:&quot;mentoria&quot;')).length).toBe(1);
   });
 
-  it('deve acender "Serviços" no menu quando a página é de consultoria', () => {
+  it('deve acender o item do próprio serviço no menu quando a página é de mentoria, de palestras ou de mídia', () => {
     // Arrange
-    const html = page('consultoria/index.html');
+    const pages = ['mentoria/index.html', 'palestras/index.html', 'midia/index.html'];
 
     // Act
-    const nav = /<nav class="desktop-nav"[\s\S]*?<\/nav>/.exec(html)?.[0] ?? '';
-    const current = /<a href="([^"]+)" aria-current="page"/.exec(nav)?.[1];
+    const current = pages.map((path) => {
+      const nav = /<nav class="desktop-nav"[\s\S]*?<\/nav>/.exec(page(path))?.[0] ?? '';
+      return /<a href="([^"]+)" aria-current="page"/.exec(nav)?.[1];
+    });
 
     // Assert
-    expect(current).toBe('/servicos/');
+    expect(current).toEqual(['/mentoria/', '/palestras/', '/midia/']);
   });
 });
 
@@ -824,16 +824,16 @@ describe('WhatsApp por página e chamada no fim do artigo — Onda 3', () => {
   it('deve mostrar a chamada da categoria com o título do artigo na mensagem quando o artigo não define serviço', () => {
     // Arrange
     const html = page('artigos/primeiro-artigo/index.html');
-    const message = 'Olá, Matheus! Li o artigo "Primeiro artigo de teste" no seu site e gostaria de conversar sobre consultoria.';
+    const message = 'Olá, Matheus! Li o artigo "Primeiro artigo de teste" no seu site e gostaria de conversar sobre palestras.';
 
     // Act
     const cta = /<section class="article-cta"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
 
     // Assert
-    expect(cta).toContain('data-cta-service="consultoria"');
+    expect(cta).toContain('data-cta-service="palestras"');
     expect(cta).toContain('Sua empresa está redesenhando a gestão com IA?');
     expect(cta).toContain(`text=${encodeURIComponent(message)}`);
-    expect(cta).toContain('href="/consultoria/"');
+    expect(cta).toContain('href="/palestras/"');
   });
 
   it('deve usar o serviço do artigo quando o frontmatter define service', () => {
@@ -995,12 +995,96 @@ describe('páginas institucionais — Onda 4', () => {
     const timeline = /<section[^>]*aria-labelledby="timeline-heading"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
 
     // Assert
-    expect(html).toMatch(/<img[^>]*alt="Matheus Haddad, entrepreneur and consultant in business and technology"/);
+    expect(html).toMatch(/<img[^>]*alt="Matheus Haddad, entrepreneur and mentor in business and technology"/);
     expect(html).toContain('Test About title.');
     expect(headings).toEqual(['Journey', 'Education', 'Principles']);
     expect((timeline.match(/<li/g) ?? []).length).toBe(2);
     expect(timeline).toContain('href="/en/articles/first-article/"');
-    expect(html).toContain('href="/en/services/"');
+    expect(html).toContain('href="/en/speaking/"');
+  });
+
+  it('deve transformar os links do texto sobre o autor em âncoras, com o site externo em nova aba e o interno na mesma', () => {
+    // Arrange
+    const pt = page('sobre/index.html');
+    const en = page('en/about/index.html');
+
+    // Act
+    const anchor = (html: string, label: string) => new RegExp(`<a [^>]*>${label}</a>`).exec(html)?.[0] ?? '';
+    const externalPt = anchor(pt, 'Empresa de teste');
+    const internalPt = anchor(pt, 'livro');
+    const internalEn = anchor(en, 'book');
+
+    // Assert
+    expect(externalPt).toContain('href="https://empresa.example.com"');
+    expect(externalPt).toContain('target="_blank"');
+    expect(externalPt).toContain('rel="noopener"');
+    expect(internalPt).toContain('href="/livros/"');
+    expect(internalPt).not.toContain('target=');
+    expect(internalEn).toContain('href="/en/books/"');
+  });
+
+  it('deve apresentar as cinco empresas em tecnologia, consultoria e educação no texto de abertura de Empresas, nos dois idiomas', () => {
+    // Arrange
+    const intro = (path: string) => /<p class="lead"[^>]*>([\s\S]*?)<\/p>/.exec(page(path))?.[1];
+
+    // Act
+    const pt = intro('empresas/index.html');
+    const en = intro('en/companies/index.html');
+
+    // Assert
+    expect(pt).toBe(
+      'Desde 2008 cofundei cinco empresas nos setores de tecnologia, consultoria e educação, e é delas que vem boa parte do que escrevo e ensino sobre gestão e IA. Também contribuo como conselheiro e voluntário em organizações de empreendedorismo e de agilidade.',
+    );
+    expect(en).toBe(
+      'Since 2008 I have co-founded five companies in the technology, consulting and education sectors, and they are the source of much of what I write and teach about management and AI. I also contribute as a board member and volunteer to entrepreneurship and agility organizations.',
+    );
+  });
+
+  it('deve descrever as empresas em tecnologia, consultoria e educação na descrição de Empresas, nos dois idiomas', () => {
+    // Arrange
+    const description = (path: string) => /<meta name="description" content="([^"]*)"/.exec(page(path))?.[1];
+
+    // Act
+    const pt = description('empresas/index.html');
+    const en = description('en/companies/index.html');
+
+    // Assert
+    expect(pt).toContain('Empresas de tecnologia, consultoria e educação');
+    expect(en).toContain('Technology, consulting and education companies');
+    expect(`${pt} ${en}`).not.toMatch(/finanças|finance/i);
+  });
+
+  it('deve ficar sem a linha entre o texto de abertura e o primeiro grupo de empresas na página Empresas', () => {
+    // Arrange
+    const html = page('empresas/index.html');
+    const css = [
+      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+    ].join('');
+
+    // Act
+    const intro = /\.intro\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
+
+    // Assert
+    expect(html).toContain('<header class="intro"');
+    expect(intro).not.toMatch(/border/);
+  });
+
+  it('deve ficar sem a linha embaixo da última empresa de cada grupo, antes do título do grupo seguinte', () => {
+    // Arrange
+    const html = page('empresas/index.html');
+    const css = [
+      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+    ].join('');
+
+    // Act
+    const row = /\.row\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
+    const last = /\.row\[data-astro-cid-[a-z0-9]+\]:last-child\{[^}]*\}/.exec(css)?.[0] ?? '';
+
+    // Assert
+    expect(row).toMatch(/border-bottom/);
+    expect(last).toMatch(/border-bottom:\s*(none|0)/);
   });
 
   it('deve listar as 8 empresas em 2 grupos com link externo seguro quando a página é Empresas', () => {

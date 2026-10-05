@@ -11,9 +11,9 @@ export interface ArticleCta {
 // Serviço e textos da chamada no fim do artigo, por categoria (copy aprovada em 01/10/2026).
 // Hobbies fica sem chamada.
 const byCategory: Partial<Record<CategoryKey, ArticleCta>> = {
-  gestao: { service: 'consultoria', title: 'cta.gestao.title', text: 'cta.gestao.text' },
-  coerencia: { service: 'consultoria', title: 'cta.coerencia.title', text: 'cta.coerencia.text' },
-  ai: { service: 'consultoria', title: 'cta.ai.title', text: 'cta.ai.text' },
+  gestao: { service: 'palestras', title: 'cta.gestao.title', text: 'cta.gestao.text' },
+  coerencia: { service: 'palestras', title: 'cta.coerencia.title', text: 'cta.coerencia.text' },
+  ai: { service: 'palestras', title: 'cta.ai.title', text: 'cta.ai.text' },
   software: { service: 'mentoria', title: 'cta.software.title', text: 'cta.software.text' },
   educacao: { service: 'palestras', title: 'cta.educacao.title', text: 'cta.educacao.text' },
 };

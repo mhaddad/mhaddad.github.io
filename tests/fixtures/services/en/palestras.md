@@ -1,7 +1,7 @@
 ---
 key: palestras
 lang: en
-order: 3
+order: 1
 label: Rótulo palestras en
 title: Título de palestras em en
 description: Descrição de palestras em en.

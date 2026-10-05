@@ -27,5 +27,6 @@ ctaLabel: Botão de mentoria en
 ctaText: Texto lateral de mentoria en.
 whatsappMessage: Mensagem de mentoria em en & teste
 relatedArticles:
+  - fixture-primeiro
   - fixture-segundo
 ---

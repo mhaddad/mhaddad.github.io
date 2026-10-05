@@ -2,12 +2,11 @@ import { routePath, type RouteKey } from '../i18n/routes';
 import { languages, type Lang } from '../i18n/ui';
 import { publishedArticles, type ArticleEntry } from './articles';
 
-export const serviceKeys = ['consultoria', 'mentoria', 'palestras'] as const;
+export const serviceKeys = ['mentoria', 'palestras'] as const;
 export type ServiceKey = (typeof serviceKeys)[number];
 
 // Cada serviço tem rota própria no contrato de URLs.
 export const serviceRoutes: Record<ServiceKey, RouteKey> = {
-  consultoria: 'consulting',
   mentoria: 'mentoring',
   palestras: 'speaking',
 };
@@ -60,10 +59,6 @@ export function validateServices(services: ServiceEntry[], articles: ArticleEntr
   }
 
   if (problems.length > 0) throw new ServiceValidationError(problems);
-}
-
-export function servicesFor<T extends ServiceEntry>(services: T[], lang: Lang): T[] {
-  return services.filter((service) => service.data.lang === lang).sort((a, b) => a.data.order - b.data.order);
 }
 
 export function serviceFor<T extends ServiceEntry>(services: T[], key: ServiceKey, lang: Lang): T {

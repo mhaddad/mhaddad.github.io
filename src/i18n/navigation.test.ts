@@ -6,15 +6,26 @@ function current(pathname: string, lang: 'pt' | 'en') {
 }
 
 describe('isCurrent', () => {
-  it('deve acender "Serviços" quando a página é o hub, Consultoria ou Mentoria', () => {
+  it('deve acender "Mentoria" quando a página é a de mentoria', () => {
     // Arrange
-    const paths = ['/servicos/', '/consultoria/', '/en/mentoring/'];
+    const paths = ['/mentoria/', '/en/mentoring/'];
 
     // Act
     const result = paths.map((path) => current(path, path.startsWith('/en/') ? 'en' : 'pt'));
 
     // Assert
-    expect(result).toEqual([['services'], ['services'], ['services']]);
+    expect(result).toEqual([['mentoring'], ['mentoring']]);
+  });
+
+  it('deve acender "Mídia" quando a página é a de mídia', () => {
+    // Arrange
+    const paths = ['/midia/', '/en/media/'];
+
+    // Act
+    const result = paths.map((path) => current(path, path.startsWith('/en/') ? 'en' : 'pt'));
+
+    // Assert
+    expect(result).toEqual([['media'], ['media']]);
   });
 
   it('deve acender "Palestras" quando a página é a de palestras', () => {
@@ -61,7 +72,7 @@ describe('mainNav e footerNav', () => {
     const en = current('/en/books/', 'en');
 
     // Assert
-    expect(routes).toEqual(['articles', 'services', 'companies', 'speaking', 'books', 'about']);
+    expect(routes).toEqual(['articles', 'speaking', 'mentoring', 'companies', 'media', 'books', 'about']);
     expect(pt).toEqual(['books']);
     expect(en).toEqual(['books']);
   });

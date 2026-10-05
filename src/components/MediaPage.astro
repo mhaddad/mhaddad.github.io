@@ -1,0 +1,54 @@
+---
+import TalksArchive from './TalksArchive.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { routePath } from '../i18n/routes';
+import { otherLang, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<BaseLayout
+  lang={lang}
+  title={t(lang, 'media.title')}
+  description={t(lang, 'media.description')}
+  alternatePath={routePath('media', otherLang(lang))}
+>
+  <div class="container intro">
+    <h1>{t(lang, 'media.title')}</h1>
+    <p class="lead">{t(lang, 'talks.intro')}</p>
+  </div>
+  <TalksArchive lang={lang} />
+</BaseLayout>
+
+<style>
+  .intro {
+    padding-top: var(--space-64);
+  }
+
+  h1 {
+    margin-bottom: var(--space-12);
+    font-size: var(--fs-44);
+    line-height: var(--lh-heading);
+  }
+
+  .lead {
+    max-width: var(--width-reading);
+    color: var(--text-muted);
+    font-size: var(--fs-18);
+    line-height: var(--lh-snug);
+  }
+
+  @media (max-width: 767px) {
+    .intro {
+      padding-top: var(--space-40);
+    }
+
+    h1 {
+      font-size: var(--fs-32);
+    }
+  }
+</style>

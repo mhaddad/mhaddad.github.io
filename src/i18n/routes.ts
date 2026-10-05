@@ -6,10 +6,9 @@ import type { Lang } from './ui';
 export const routes = {
   home: { pt: '/', en: '/en/' },
   about: { pt: '/sobre/', en: '/en/about/' },
-  services: { pt: '/servicos/', en: '/en/services/' },
-  consulting: { pt: '/consultoria/', en: '/en/consulting/' },
   mentoring: { pt: '/mentoria/', en: '/en/mentoring/' },
   speaking: { pt: '/palestras/', en: '/en/speaking/' },
+  media: { pt: '/midia/', en: '/en/media/' },
   companies: { pt: '/empresas/', en: '/en/companies/' },
   books: { pt: '/livros/', en: '/en/books/' },
   articles: { pt: '/artigos/', en: '/en/articles/' },

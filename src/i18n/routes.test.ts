@@ -7,16 +7,15 @@ describe('mapa de rotas', () => {
     const expected = [
       ['/', '/en/'],
       ['/sobre/', '/en/about/'],
-      ['/servicos/', '/en/services/'],
-      ['/consultoria/', '/en/consulting/'],
       ['/mentoria/', '/en/mentoring/'],
       ['/palestras/', '/en/speaking/'],
+      ['/midia/', '/en/media/'],
       ['/empresas/', '/en/companies/'],
       ['/livros/', '/en/books/'],
       ['/artigos/', '/en/articles/'],
       ['/rss.xml', '/en/rss.xml'],
     ];
-    const keys = ['home', 'about', 'services', 'consulting', 'mentoring', 'speaking', 'companies', 'books', 'articles', 'rss'] as const;
+    const keys = ['home', 'about', 'mentoring', 'speaking', 'media', 'companies', 'books', 'articles', 'rss'] as const;
 
     // Act
     const paths = keys.map((key) => [routePath(key, 'pt'), routePath(key, 'en')]);

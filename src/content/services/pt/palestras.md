@@ -1,7 +1,7 @@
 ---
 key: palestras
 lang: pt
-order: 3
+order: 1
 label: Palestras
 title: Palestras sobre o futuro do trabalho e das organizações
 description: Palestras de Matheus Haddad sobre IA nas organizações, futuro do trabalho, liderança emergente e cultura de feedback.
