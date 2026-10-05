@@ -462,6 +462,26 @@ describe('header e footer', () => {
   });
 });
 
+describe('seletor de idioma', () => {
+  it('deve começar o nome acessível pelo texto visível (WCAG 2.5.3), nos dois idiomas', () => {
+    // Arrange
+    const switcher = (path: string) => {
+      const tag = /<a class="language-switcher[^>]*>([^<]+)<\/a>/.exec(page(path));
+      return { visible: tag?.[1]?.trim() ?? '', label: /aria-label="([^"]+)"/.exec(tag?.[0] ?? '')?.[1] ?? '' };
+    };
+
+    // Act
+    const pt = switcher('index.html');
+    const en = switcher('en/index.html');
+
+    // Assert
+    expect(pt.visible).toBe('EN');
+    expect(pt.label).toBe('EN: read this page in English');
+    expect(en.visible).toBe('PT');
+    expect(en.label).toBe('PT: ler esta página em português');
+  });
+});
+
 describe('rodapé em 3 colunas', () => {
   const footer = (path: string) => /<footer[\s\S]*?<\/footer>/.exec(page(path))?.[0] ?? '';
   const column = (html: string, title: string) => {
@@ -693,7 +713,7 @@ describe('botões do hero da home', () => {
 
     // Assert
     expect(buttons.map((b) => [b.href, b.text])).toEqual([
-      ['/en/about/', 'Learn more'],
+      ['/en/about/', 'More about me'],
       ['/en/speaking/', 'See talks'],
     ]);
     expect(buttons[1]?.class).toContain('button--primary');
@@ -984,9 +1004,9 @@ describe('empresas e iniciativas na home', () => {
     ].join('');
 
     // Act
-    const list = /ul\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
-    const item = /li\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
-    const cid = /data-astro-cid-([a-z0-9]+)/.exec(list)?.[1] ?? '';
+    const cid = /<section class="proof"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+    const list = new RegExp(`ul\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css)?.[0] ?? '';
+    const item = new RegExp(`li\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css)?.[0] ?? '';
     const phoneItem = new RegExp(`(?:max-width:\\s*767px|width\\s*<=\\s*767px)\\)\\s*\\{ul\\[data-astro-cid-${cid}\\]\\{[^}]*\\}li\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css)?.[0] ?? '';
 
     // Assert
@@ -1007,12 +1027,13 @@ describe('empresas e iniciativas na home', () => {
     ].join('');
 
     // Act
-    const hover = /\.tile\[data-astro-cid-[a-z0-9]+\]:hover(?:,\.tile\[data-astro-cid-[a-z0-9]+\]:focus-visible)?\{[^}]*\}/.exec(css)?.[0] ?? '';
+    const cid = /<section class="proof"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+    const hover = new RegExp(`\\.tile\\[data-astro-cid-${cid}\\]:hover(?:,\\.tile\\[data-astro-cid-${cid}\\]:focus-visible)?\\{[^}]*\\}`).exec(css)?.[0] ?? '';
 
     // Assert
     expect(hover).toMatch(/border-color/);
     expect(hover).not.toMatch(/background/);
-    expect(css).not.toMatch(/\.tile\[data-astro-cid-[a-z0-9]+\]:hover \./);
+    expect(css).not.toMatch(new RegExp(`\\.tile\\[data-astro-cid-${cid}\\]:hover \\.`));
   });
 
   it('deve mostrar os logos em quadrados maiores que 144px', () => {
@@ -1143,7 +1164,8 @@ describe('páginas institucionais — Onda 4', () => {
     ].join('');
 
     // Act
-    const intro = /\.intro\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
+    const cid = /<header class="intro"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+    const intro = new RegExp(`\\.intro\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css)?.[0] ?? '';
 
     // Assert
     expect(html).toContain('<header class="intro"');
@@ -1159,8 +1181,9 @@ describe('páginas institucionais — Onda 4', () => {
     ].join('');
 
     // Act
-    const row = /\.row\[data-astro-cid-[a-z0-9]+\]\{[^}]*\}/.exec(css)?.[0] ?? '';
-    const last = /\.row\[data-astro-cid-[a-z0-9]+\]:last-child\{[^}]*\}/.exec(css)?.[0] ?? '';
+    const cid = /<li class="row"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+    const row = new RegExp(`\\.row\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css)?.[0] ?? '';
+    const last = new RegExp(`\\.row\\[data-astro-cid-${cid}\\]:last-child\\{[^}]*\\}`).exec(css)?.[0] ?? '';
 
     // Assert
     expect(row).toMatch(/border-bottom/);
@@ -1293,6 +1316,24 @@ describe('página do livro — separadores', () => {
   });
 });
 
+describe('Mídia — ordem dos títulos', () => {
+  it('deve usar h2 nos cards da página de mídia, que só tem o h1 acima, e h3 nas mídias relacionadas de Palestras', () => {
+    // Arrange
+    const headings = (path: string, scope: RegExp) =>
+      [...(scope.exec(page(path))?.[0] ?? '').matchAll(/<li class="card"[\s\S]*?<(h[1-6])\b/g)].map((m) => m[1]);
+
+    // Act
+    const media = headings('midia/index.html', /<section class="archive"[\s\S]*?<\/section>/);
+    const mediaEn = headings('en/media/index.html', /<section class="archive"[\s\S]*?<\/section>/);
+    const related = headings('palestras/index.html', /<section aria-labelledby="related-media-heading"[\s\S]*?<\/section>/);
+
+    // Assert
+    expect(new Set([...media, ...mediaEn])).toEqual(new Set(['h2']));
+    expect(media).toHaveLength(23);
+    expect(new Set(related)).toEqual(new Set(['h3']));
+  });
+});
+
 describe('Mídia — acervo de vídeos e podcasts', () => {
   it('deve mostrar os 23 itens do acervo com o filtro por tipo na página de mídia, nos dois idiomas', () => {
     // Arrange
@@ -1363,6 +1404,24 @@ describe('Mídia — acervo de vídeos e podcasts', () => {
     expect(html).not.toContain('<iframe');
     expect(html).not.toMatch(/<img[^>]*src="https?:/);
     expect(html).toContain('In Portuguese');
+  });
+});
+
+describe('imagem de abertura do artigo', () => {
+  it('deve carregar logo e com prioridade alta a primeira imagem do artigo, para o LCP', () => {
+    // Arrange
+    const html = page('artigos/primeiro-artigo/index.html');
+
+    // Act
+    const prose = /<div class="prose"[\s\S]*?<\/article>/.exec(html)?.[0] ?? '';
+    const images = [...prose.matchAll(/<img[^>]*>/g)].map((m) => m[0]);
+
+    // Assert
+    expect(images.length).toBeGreaterThan(0);
+    expect(images[0]).toContain('loading="eager"');
+    expect(images[0]).toMatch(/fetchpriority="high"/i);
+    expect(images[0]).not.toContain('loading="lazy"');
+    expect(images.slice(1).every((tag) => !/fetchpriority/i.test(tag))).toBe(true);
   });
 });
 

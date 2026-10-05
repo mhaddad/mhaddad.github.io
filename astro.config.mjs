@@ -3,19 +3,21 @@ import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { SITE_URL } from './src/config.ts';
 import { satteri } from '@astrojs/markdown-satteri';
-import { mapEmbedPlugin } from './src/lib/map-embed.ts';
+import { leadImagePlugin, mapEmbedPlugin } from './src/lib/map-embed.ts';
 
 export default defineConfig({
   site: SITE_URL,
   trailingSlash: 'always',
-  build: { format: 'directory' },
+  build: { format: 'directory', inlineStylesheets: 'always' },
+  image: { layout: 'constrained' },
   i18n: {
     defaultLocale: 'pt',
     locales: ['pt', 'en'],
     routing: { prefixDefaultLocale: false },
   },
-  // Mapas do Google nos artigos são padronizados no build (src/lib/map-embed.ts).
-  markdown: { processor: satteri({ hastPlugins: [mapEmbedPlugin] }) },
+  // Mapas, apresentações e vídeos dos artigos são padronizados no build, e a primeira imagem
+  // carrega com prioridade (src/lib/map-embed.ts).
+  markdown: { processor: satteri({ hastPlugins: [mapEmbedPlugin, leadImagePlugin] }) },
   integrations: [sitemap({ filter: (page) => !page.includes('/og/') })],
   // Fontes servidas pelo próprio site, a partir dos pacotes @fontsource (sem rede no build).
   // Só o subconjunto latin, que cobre o português; o provedor npm traria cirílico,

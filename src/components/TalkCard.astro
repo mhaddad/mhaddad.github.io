@@ -9,9 +9,11 @@ import { spotifyUrl, youtubeWatchUrl } from '../lib/talks';
 interface Props {
   talk: Talk;
   lang: Lang;
+  // Nível do título do card: h2 quando só há o h1 acima, h3 sob um h2 de seção.
+  heading?: 'h2' | 'h3';
 }
 
-const { talk, lang } = Astro.props;
+const { talk, lang, heading: Heading = 'h3' } = Astro.props;
 const { type, event, title, youtubeId, spotifyId } = talk.data;
 const thumbnail = youtubeId ? talkThumbnails.get(youtubeId) : undefined;
 // Títulos ficam no idioma original; na versão em inglês, marcamos o idioma.
@@ -47,7 +49,7 @@ const link = youtubeId
   </div>
   <div class="body">
     <p class="event mono" lang={contentLang}>{event}</p>
-    <h3 lang={contentLang}>{title}</h3>
+    <Heading lang={contentLang}>{title}</Heading>
     {contentLang && <p class="original mono">{t(lang, 'talks.inPortuguese')}</p>}
     <a class="arrow-link" href={link.href} target="_blank" rel="noopener">
       {link.label}
@@ -161,7 +163,7 @@ const link = youtubeId
     font-size: var(--fs-10);
   }
 
-  h3 {
+  .body :is(h2, h3) {
     margin: var(--space-8) 0 var(--space-12);
     font-size: var(--fs-18);
     line-height: var(--lh-snug);

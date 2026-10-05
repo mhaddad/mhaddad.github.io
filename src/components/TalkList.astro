@@ -6,13 +6,14 @@ import type { Talk } from '../lib/collections';
 interface Props {
   talks: Talk[];
   lang: Lang;
+  heading?: 'h2' | 'h3';
 }
 
-const { talks, lang } = Astro.props;
+const { talks, lang, heading } = Astro.props;
 ---
 
 <ul class="grid" data-talk-list>
-  {talks.map((talk) => <TalkCard talk={talk} lang={lang} />)}
+  {talks.map((talk) => <TalkCard talk={talk} lang={lang} heading={heading} />)}
 </ul>
 
 <script>

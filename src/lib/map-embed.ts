@@ -141,3 +141,23 @@ export function mapEmbedPlugin(context: { fileURL: URL | undefined }) {
     },
   };
 }
+
+/**
+ * Plugin hast do Sätteri: a primeira imagem do artigo (a que abre o texto e vira o destaque do
+ * card) carrega logo e com prioridade alta, porque costuma ser o maior elemento da página (LCP).
+ * As demais seguem preguiçosas. Um plugin novo por documento: o estado é só "já vi a primeira".
+ */
+export function leadImagePlugin() {
+  let seen = false;
+  return {
+    name: 'lead-image',
+    element: {
+      filter: ['img'],
+      visit(node: HastNode, ctx: { replaceNode(node: HastNode, replacement: HastNode): void }) {
+        if (seen) return;
+        seen = true;
+        ctx.replaceNode(node, { ...node, properties: { ...node.properties, loading: 'eager', fetchpriority: 'high' } });
+      },
+    },
+  };
+}

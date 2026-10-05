@@ -3,6 +3,7 @@ import {
   isMapEmbedSrc,
   isMediaEmbedSrc,
   langOf,
+  leadImagePlugin,
   mapEmbed,
   mapEmbedPlugin,
   mapViewerUrl,
@@ -219,5 +220,38 @@ describe('mapEmbedPlugin — apresentações e vídeos', () => {
       ['media-embed', 'media-embed--slides'],
       ['media-embed', 'media-embed--video'],
     ]);
+  });
+});
+
+describe('leadImagePlugin', () => {
+  const img = (): HastNode => ({ type: 'element', tagName: 'img', properties: { src: 'a.png', alt: 'x' }, children: [] });
+  const run = (plugin: ReturnType<typeof leadImagePlugin>, node: HastNode): HastNode | undefined => {
+    let replacement: HastNode | undefined;
+    plugin.element.visit(node, { replaceNode: (_old: HastNode, next: HastNode) => void (replacement = next) });
+    return replacement;
+  };
+
+  it('deve filtrar só as imagens e pedir carregamento imediato e prioridade alta para a primeira do artigo', () => {
+    // Arrange
+    const plugin = leadImagePlugin();
+
+    // Act
+    const first = run(plugin, img());
+    const second = run(plugin, img());
+
+    // Assert
+    expect(plugin.element.filter).toEqual(['img']);
+    expect(first?.properties).toEqual({ src: 'a.png', alt: 'x', loading: 'eager', fetchpriority: 'high' });
+    expect(second).toBeUndefined();
+  });
+
+  it('deve começar de novo em cada artigo, com um plugin novo por documento', () => {
+    // Act
+    const a = run(leadImagePlugin(), img());
+    const b = run(leadImagePlugin(), img());
+
+    // Assert
+    expect(a?.properties?.loading).toBe('eager');
+    expect(b?.properties?.loading).toBe('eager');
   });
 });
