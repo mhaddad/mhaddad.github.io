@@ -1,9 +1,23 @@
 import { describe, expect, it } from 'vitest';
-import { isMapEmbedSrc, langOf, mapEmbed, mapEmbedPlugin, mapViewerUrl, parseMapIframe, type HastNode } from './map-embed';
+import {
+  isMapEmbedSrc,
+  isMediaEmbedSrc,
+  langOf,
+  mapEmbed,
+  mapEmbedPlugin,
+  mapViewerUrl,
+  mediaEmbed,
+  parseMapIframe,
+  parseMediaIframe,
+  type HastNode,
+} from './map-embed';
 
 const MID = '1sET9YDELCtNMjR9M6hGqK8ml2iroXGg';
 const MY_MAPS = `https://www.google.com/maps/d/embed?mid=${MID}`;
 const PLACE = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1!2d-46.65!3d-23.56!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sS%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1690000000000';
+
+const SLIDES = 'https://www.slideshare.net/slideshow/embed_code/key/azn2w3F2Y0OlBQ';
+const VIDEO = 'https://www.youtube-nocookie.com/embed/dJLKlPPhPCQ';
 
 const find = (node: HastNode, tag: string): HastNode[] =>
   (node.children ?? []).flatMap((child) => [...(child.tagName === tag ? [child] : []), ...find(child, tag)]);
@@ -125,5 +139,85 @@ describe('mapEmbedPlugin', () => {
 
     // Assert
     expect(replaced).toHaveLength(0);
+  });
+});
+
+describe('isMediaEmbedSrc', () => {
+  it('deve aceitar a apresentação do SlideShare e o vídeo do youtube-nocookie', () => {
+    expect(isMediaEmbedSrc(SLIDES)).toBe('slides');
+    expect(isMediaEmbedSrc(VIDEO)).toBe('video');
+  });
+
+  it('deve recusar outros endereços, parâmetros extras, http e domínios parecidos', () => {
+    const unsafe = [
+      'https://www.slideshare.net/slideshow/embed_code/key/',
+      'https://www.slideshare.net/slideshow/embed_code/key/abc?x=1',
+      'https://www.slideshare.net/matheushaddad/feedback-canvas',
+      'https://www.slideshare.net.evil.com/slideshow/embed_code/key/abc',
+      'http://www.slideshare.net/slideshow/embed_code/key/abc',
+      'https://www.youtube.com/embed/dJLKlPPhPCQ',
+      'https://www.youtube-nocookie.com/embed/curto',
+      `${VIDEO}"onload="x`,
+    ];
+    expect(unsafe.map(isMediaEmbedSrc)).toEqual(unsafe.map(() => undefined));
+  });
+});
+
+describe('parseMediaIframe', () => {
+  it('deve devolver o tipo, o endereço e o título quando o bloco é só o iframe permitido', () => {
+    expect(parseMediaIframe(`<iframe src="${SLIDES}" title="Feedback Canvas" width="427" height="356" frameborder="0"></iframe>`)).toEqual({
+      kind: 'slides',
+      src: SLIDES,
+      title: 'Feedback Canvas',
+    });
+    expect(parseMediaIframe(`\n<iframe src="${VIDEO}"></iframe>\n`)).toEqual({ kind: 'video', src: VIDEO, title: undefined });
+  });
+
+  it('deve recusar quando o iframe não é permitido ou o bloco tem mais coisa junto', () => {
+    expect(parseMediaIframe(`<iframe src="${MY_MAPS}"></iframe>`)).toBeUndefined();
+    expect(parseMediaIframe(`<iframe src="${SLIDES}"></iframe><p>texto</p>`)).toBeUndefined();
+  });
+});
+
+describe('mediaEmbed', () => {
+  it('deve montar a apresentação com carregamento preguiçoso e título padrão em cada idioma', () => {
+    // Act
+    const pt = mediaEmbed({ kind: 'slides', src: SLIDES }, 'pt');
+    const en = mediaEmbed({ kind: 'slides', src: SLIDES, title: 'Feedback Canvas slides' }, 'en');
+
+    // Assert
+    expect(pt.properties).toMatchObject({ className: ['media-embed', 'media-embed--slides'] });
+    expect(find(pt, 'iframe')[0].properties).toMatchObject({
+      src: SLIDES,
+      title: 'Apresentação',
+      loading: 'lazy',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      allowFullScreen: true,
+    });
+    expect(find(en, 'iframe')[0].properties?.title).toBe('Feedback Canvas slides');
+  });
+
+  it('deve montar o vídeo com a classe própria', () => {
+    expect(mediaEmbed({ kind: 'video', src: VIDEO }, 'en').properties).toMatchObject({ className: ['media-embed', 'media-embed--video'] });
+    expect(find(mediaEmbed({ kind: 'video', src: VIDEO }, 'en'), 'iframe')[0].properties?.title).toBe('Video');
+  });
+});
+
+describe('mapEmbedPlugin — apresentações e vídeos', () => {
+  it('deve trocar o iframe da apresentação e o do vídeo pelo embed padronizado', () => {
+    // Arrange
+    const replaced: HastNode[] = [];
+    const ctx = { replaceNode: (_node: HastNode, replacement: HastNode) => void replaced.push(replacement) };
+    const plugin = mapEmbedPlugin({ fileURL: undefined });
+
+    // Act
+    plugin.raw({ type: 'raw', value: `<iframe src="${SLIDES}"></iframe>` }, ctx);
+    plugin.raw({ type: 'raw', value: `<iframe src="${VIDEO}" title="Entrevista"></iframe>` }, ctx);
+
+    // Assert
+    expect(replaced.map((node) => node.properties?.className)).toEqual([
+      ['media-embed', 'media-embed--slides'],
+      ['media-embed', 'media-embed--video'],
+    ]);
   });
 });

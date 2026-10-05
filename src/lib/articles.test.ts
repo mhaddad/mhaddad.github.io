@@ -180,6 +180,18 @@ describe('unsafeHtmlProblems', () => {
     expect(problems).toEqual([]);
   });
 
+  it('deve aceitar quando o iframe é a apresentação incorporada do SlideShare e rejeitar outras páginas dele', () => {
+    // Arrange
+    const ok = '<iframe src="https://www.slideshare.net/slideshow/embed_code/key/azn2w3F2Y0OlBQ"></iframe>';
+    const other = '<iframe src="https://www.slideshare.net/matheushaddad/feedback-canvas"></iframe>';
+
+    // Act
+    const problems = [unsafeHtmlProblems(ok), unsafeHtmlProblems(other)];
+
+    // Assert
+    expect(problems).toEqual([[], ['contém iframe não permitido (https://www.slideshare.net/matheushaddad/feedback-canvas)']]);
+  });
+
   it('deve rejeitar quando o iframe é de outro domínio, inclusive youtube.com', () => {
     // Arrange
     const body = '<iframe src="https://www.youtube.com/embed/abc123"></iframe><iframe></iframe>';

@@ -1366,6 +1366,27 @@ describe('Mídia — acervo de vídeos e podcasts', () => {
   });
 });
 
+describe('apresentação e vídeo no artigo', () => {
+  const media = (html: string) => [...html.matchAll(/<figure class="media-embed media-embed--(slides|video)">[\s\S]*?<\/figure>/g)].map((m) => m[0]);
+
+  it('deve gerar a apresentação e o vídeo já no HTML, com carregamento preguiçoso e sem script do SlideShare nem do YouTube', () => {
+    // Arrange
+    const html = page('artigos/segundo-artigo/index.html');
+
+    // Act
+    const figures = media(html);
+    const iframes = figures.map((figure) => /<iframe[^>]*>/.exec(figure)?.[0] ?? '');
+
+    // Assert
+    expect(figures).toHaveLength(2);
+    expect(iframes[0]).toContain('src="https://www.slideshare.net/slideshow/embed_code/key/azn2w3F2Y0OlBQ"');
+    expect(iframes[1]).toContain('src="https://www.youtube-nocookie.com/embed/dJLKlPPhPCQ"');
+    expect(iframes[0]).toContain('title="Apresentação de teste"');
+    expect(iframes.every((tag) => tag.includes('loading="lazy"') && tag.includes('referrerpolicy="strict-origin-when-cross-origin"'))).toBe(true);
+    expect(html).not.toMatch(/<script[^>]*src="[^"]*(slideshare|youtube)/);
+  });
+});
+
 describe('mapas do Google no artigo', () => {
   const figures = (html: string) => [...html.matchAll(/<figure class="map-embed">[\s\S]*?<\/figure>/g)].map((m) => m[0]);
 

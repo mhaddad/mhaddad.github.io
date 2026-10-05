@@ -20,6 +20,7 @@
 - Nenhum conteúdo do vault fora da seção `## Conteúdo original` pode chegar ao site.
 - Nenhum script de terceiro novo além de GA4, YouTube e Google Maps sem aprovação explícita.
 - Mapas do Google nos artigos foram aprovados em 02/10/2026 e carregam junto com o artigo (`loading="lazy"`, sem clique): só `www.google.com/maps/d/embed?mid=` (My Maps) e `www.google.com/maps/embed?pb=` (embed padrão), validados por regex em `src/lib/map-embed.ts` e padronizados no build. Nenhum outro iframe do Google é permitido. O Google passa a receber a visita de quem rola até o mapa; o GA4 sem aviso de cookies é um risco aceito, e isso estende o mesmo risco aos cookies do Google Maps.
+- Apresentações do SlideShare nos artigos foram aprovadas em 05/10/2026 e carregam junto com o artigo (`loading="lazy"`): só `www.slideshare.net/slideshow/embed_code/key/<chave>`, validado por regex em `src/lib/map-embed.ts` e padronizado no build. Nenhuma outra página do SlideShare é permitida. O SlideShare (Scribd) passa a receber a visita de quem rola até a apresentação, o mesmo risco aceito para o Google Maps. Vídeos do YouTube (`youtube-nocookie.com/embed/<id de 11 caracteres>`) também são padronizados no build e carregam com o artigo, de forma preguiçosa.
 - Riscos aceitos pelo autor (ex.: LGPD) são registrados, não reabertos a cada revisão, salvo mudança de contexto.
 
 **Output** — Parecer de segurança com achados classificados (crítico / alto / médio / baixo), evidência, cenário de exploração e correção recomendada.

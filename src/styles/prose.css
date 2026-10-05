@@ -111,6 +111,27 @@
   font-size: var(--fs-14);
 }
 
+/* Apresentação do SlideShare e vídeo do YouTube embutidos no artigo (src/lib/map-embed.ts) */
+.prose .media-embed {
+  margin-inline: 0;
+}
+
+.prose .media-embed iframe {
+  display: block;
+  width: 100%;
+  background: var(--surface);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-m);
+}
+
+.prose .media-embed--slides iframe {
+  aspect-ratio: 4 / 3;
+}
+
+.prose .media-embed--video iframe {
+  aspect-ratio: 16 / 9;
+}
+
 @media (max-width: 767px) {
   .prose .map-embed iframe {
     aspect-ratio: 4 / 5;
