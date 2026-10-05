@@ -133,7 +133,10 @@ const pt = {
   'notFound.text': 'O endereço pode ter mudado com a reformulação do site.',
   'notFound.home': 'Ir para a Home',
   'notFound.articles': 'Ver artigos',
-  'footer.tagline': 'Negócios, tecnologia e pessoas.',
+  'footer.tagline': 'Empresário, palestrante e pesquisador em tecnologia, gestão e educação.',
+  'footer.navTitle': 'Navegação',
+  'footer.socialTitle': 'Social',
+  'footer.usefulTitle': 'Links úteis',
   'footer.rss': 'RSS',
   'footer.rights': '© {year} Matheus Haddad. Todos os direitos reservados.',
 } as const;
@@ -268,7 +271,10 @@ const en: Record<UIKey, string> = {
   'notFound.text': 'This address may have changed when the site was redesigned.',
   'notFound.home': 'Go to Home',
   'notFound.articles': 'See articles',
-  'footer.tagline': 'Business, technology, and people.',
+  'footer.tagline': 'Entrepreneur, speaker and researcher in technology, management and education.',
+  'footer.navTitle': 'Navigation',
+  'footer.socialTitle': 'Social',
+  'footer.usefulTitle': 'Useful links',
   'footer.rss': 'RSS',
   'footer.rights': '© {year} Matheus Haddad. All rights reserved.',
 };

@@ -447,7 +447,7 @@ describe('header e footer', () => {
     expect(html).toMatch(/<div id="mobile-menu"[^>]*hidden/);
   });
 
-  it('deve levar os 8 links em lista e nenhum botão de WhatsApp no rodapé quando a página é gerada', () => {
+  it('deve levar os 7 links do menu na coluna Navegação, sem RSS e sem botão de WhatsApp, quando a página é gerada', () => {
     // Arrange
     const html = page('en/index.html');
 
@@ -456,9 +456,69 @@ describe('header e footer', () => {
     const hrefs = [...(/<nav[\s\S]*?<\/nav>/.exec(footer)?.[0] ?? '').matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
 
     // Assert
-    expect(hrefs).toEqual(['/en/articles/', '/en/speaking/', '/en/mentoring/', '/en/companies/', '/en/media/', '/en/books/', '/en/about/', '/en/rss.xml']);
+    expect(hrefs).toEqual(['/en/articles/', '/en/speaking/', '/en/mentoring/', '/en/companies/', '/en/media/', '/en/books/', '/en/about/']);
     expect(footer).not.toContain('wa.me');
     expect(footer).not.toContain('button');
+  });
+});
+
+describe('rodapé em 3 colunas', () => {
+  const footer = (path: string) => /<footer[\s\S]*?<\/footer>/.exec(page(path))?.[0] ?? '';
+  const column = (html: string, title: string) => {
+    const start = html.indexOf(`>${title}</h2>`);
+    const end = html.indexOf('</ul>', start);
+    return start < 0 ? '' : html.slice(start, end);
+  };
+  const links = (html: string) =>
+    [...html.matchAll(/<a ([^>]*)>([^<]+)<\/a>/g)].map((m) => ({
+      href: /href="([^"]+)"/.exec(m[1] ?? '')?.[1],
+      text: m[2],
+      external: (m[1] ?? '').includes('target="_blank"') && (m[1] ?? '').includes('rel="noopener"'),
+    }));
+
+  it('deve ter as colunas Navegação, Social e Links úteis, nessa ordem, nos dois idiomas', () => {
+    // Arrange
+    const titles = (path: string) => [...footer(path).matchAll(/<h2 class="column-title[^"]*"[^>]*>([^<]+)<\/h2>/g)].map((m) => m[1]);
+
+    // Assert
+    expect(titles('index.html')).toEqual(['Navegação', 'Social', 'Links úteis']);
+    expect(titles('en/index.html')).toEqual(['Navigation', 'Social', 'Useful links']);
+  });
+
+  it('deve levar a coluna Social ao LinkedIn, Instagram e X, abrindo em nova aba', () => {
+    // Act
+    const found = links(column(footer('index.html'), 'Social'));
+
+    // Assert
+    expect(found.map((item) => [item.text, item.href])).toEqual([
+      ['LinkedIn', 'https://www.linkedin.com/in/matheushaddad/'],
+      ['Instagram', 'https://www.instagram.com/matheushaddad'],
+      ['X (Twitter)', 'https://x.com/mhaddad'],
+    ]);
+    expect(found.every((item) => item.external)).toBe(true);
+  });
+
+  it('deve levar Links úteis ao Feedback Canvas, ao WorkFit.me e ao RSS, sem o Fale comigo, nos dois idiomas', () => {
+    // Act
+    const pt = links(column(footer('index.html'), 'Links úteis'));
+    const en = links(column(footer('en/index.html'), 'Useful links'));
+
+    // Assert
+    for (const [found, rss] of [[pt, '/rss.xml'], [en, '/en/rss.xml']] as const) {
+      expect(found.map((item) => [item.text, item.href])).toEqual([
+        ['Feedback Canvas', 'https://feedbackcanvas.digital/livro'],
+        ['WorkFit.me', 'https://po-fit.vercel.app/'],
+        ['RSS', rss],
+      ]);
+      expect(found.map((item) => item.external)).toEqual([true, true, false]);
+    }
+    expect(footer('index.html')).not.toMatch(/Fale comigo|contato/i);
+  });
+
+  it('deve apresentar o autor na coluna da marca, nos dois idiomas', () => {
+    // Assert
+    expect(footer('index.html')).toContain('Empresário, palestrante e pesquisador em tecnologia, gestão e educação.');
+    expect(footer('en/index.html')).toContain('Entrepreneur, speaker and researcher in technology, management and education.');
   });
 });
 
@@ -1348,7 +1408,8 @@ describe('404 — Onda 4', () => {
     const sitemap = page('sitemap-0.xml');
 
     // Act
-    const headings = [...html.matchAll(/<h[12][^>]*>([^<]+)<\/h[12]>/g)].map((m) => m[1]);
+    const content = html.replace(/<footer[\s\S]*?<\/footer>/, '');
+    const headings = [...content.matchAll(/<h[12][^>]*>([^<]+)<\/h[12]>/g)].map((m) => m[1]);
 
     // Assert
     expect(headings).toEqual(['Página não encontrada', 'Page not found']);
