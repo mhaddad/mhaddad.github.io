@@ -1036,7 +1036,7 @@ describe('empresas e iniciativas na home', () => {
     expect(found.every((tile) => !tile.inner.includes('<img'))).toBe(true);
   });
 
-  it('deve ajustar sozinho o número de quadrados por linha, com a última linha centralizada, e empilhar um por linha no celular', () => {
+  it('deve ajustar sozinho o número de quadrados por linha, com a última linha centralizada, e mostrar 2 colunas no celular', () => {
     // Arrange
     const html = page('index.html');
     const css = [
@@ -1056,9 +1056,8 @@ describe('empresas e iniciativas na home', () => {
     expect(list).toMatch(/justify-content:\s*center/);
     expect(list).not.toMatch(/--per-row|max-width/);
     expect(item).toMatch(/flex:\s*0 0 var\(--logo-tile\)/);
-    // A lista só comporta um quadrado de largura, então os logos ficam um embaixo do outro.
-    expect(phoneItem).toMatch(/max-width:\s*(\d+)px/);
-    expect(/max-width:\s*(\d+)px/.exec(phoneItem)?.[1]).toBe(/flex:\s*0 0 (\d+)px/.exec(phoneItem)?.[1]);
+    // A lista comporta dois quadrados e o espaço entre eles (16px), então os logos ficam em 2 colunas.
+    expect(Number(/max-width:\s*(\d+)px/.exec(phoneItem)?.[1])).toBe(2 * Number(/flex:\s*0 0 (\d+)px/.exec(phoneItem)?.[1]) + 16);
     expect(phoneItem).toMatch(/flex:\s*0 0 \d+px/);
   });
 
@@ -1080,7 +1079,7 @@ describe('empresas e iniciativas na home', () => {
     expect(css).not.toMatch(new RegExp(`\\.tile\\[data-astro-cid-${cid}\\]:hover \\.`));
   });
 
-  it('deve mostrar os logos em quadrados de tamanho médio no computador e no celular, um embaixo do outro no celular', () => {
+  it('deve mostrar os logos em quadrados de tamanho médio no computador e no celular, em 2 colunas no celular', () => {
     // Arrange
     const tokens = readFileSync(join(process.cwd(), 'src/styles/tokens.css'), 'utf8');
     const html = page('index.html');
