@@ -1056,7 +1056,10 @@ describe('empresas e iniciativas na home', () => {
     expect(list).toMatch(/justify-content:\s*center/);
     expect(list).not.toMatch(/--per-row|max-width/);
     expect(item).toMatch(/flex:\s*0 0 var\(--logo-tile\)/);
-    expect(phoneItem).toMatch(/flex-basis:\s*100%|flex:\s*0 0 100%/);
+    // A lista só comporta um quadrado de largura, então os logos ficam um embaixo do outro.
+    expect(phoneItem).toMatch(/max-width:\s*(\d+)px/);
+    expect(/max-width:\s*(\d+)px/.exec(phoneItem)?.[1]).toBe(/flex:\s*0 0 (\d+)px/.exec(phoneItem)?.[1]);
+    expect(phoneItem).toMatch(/flex:\s*0 0 \d+px/);
   });
 
   it('deve manter o fundo e o logo do quadrado ao passar o mouse, mudando só a borda', () => {
@@ -1077,7 +1080,7 @@ describe('empresas e iniciativas na home', () => {
     expect(css).not.toMatch(new RegExp(`\\.tile\\[data-astro-cid-${cid}\\]:hover \\.`));
   });
 
-  it('deve mostrar os logos em quadrados de tamanho médio, entre 144px e 192px, e menores no celular', () => {
+  it('deve mostrar os logos em quadrados de tamanho médio no computador e no celular, um embaixo do outro no celular', () => {
     // Arrange
     const tokens = readFileSync(join(process.cwd(), 'src/styles/tokens.css'), 'utf8');
     const html = page('index.html');
@@ -1089,15 +1092,16 @@ describe('empresas e iniciativas na home', () => {
     // Act
     const size = Number(/--logo-tile:\s*(\d+)px/.exec(tokens)?.[1]);
     const cid = /<section class="proof"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
-    const phone = new RegExp(`width<=767px\\)\\{ul\\[data-astro-cid-${cid}\\]\\{[^}]*\\}li\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}\\.tile\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}`).exec(css);
-    const maxWidth = Number(/max-width:\s*(\d+)px/.exec(phone?.[1] ?? '')?.[1]);
-    const height = Number(/height:\s*(\d+)px/.exec(phone?.[2] ?? '')?.[1]);
+    const phone = new RegExp(`width<=767px\\)\\{ul\\[data-astro-cid-${cid}\\]\\{[^}]*\\}li\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}(?:\\.tile\\[data-astro-cid-${cid}\\]\\{([^}]*)\\})?`).exec(css);
+    const phoneSide = Number(/flex:\s*0 0 (\d+)px/.exec(phone?.[1] ?? '')?.[1]);
 
     // Assert
     expect(size).toBeGreaterThan(144);
     expect(size).toBeLessThan(192);
-    expect(maxWidth).toBeLessThanOrEqual(320);
-    expect(height).toBeLessThanOrEqual(104);
+    // No celular o quadrado continua quadrado (sem altura própria nem aspect-ratio: auto) e menor que no computador.
+    expect(phoneSide).toBeGreaterThanOrEqual(112);
+    expect(phoneSide).toBeLessThan(size);
+    expect(phone?.[2] ?? '').not.toMatch(/height|aspect-ratio/);
   });
 
   it('deve deixar a faixa de empresas sem botão, nos dois idiomas', () => {

@@ -92,20 +92,20 @@ const companies = sortCompanies(await getAllCompanies()).map((company) => ({
     border-color: var(--accent);
   }
 
+  /* Celular: um quadrado por linha, centralizado e menor que no computador. */
   @media (max-width: 767px) {
     ul {
       gap: var(--space-16);
+      max-width: 136px;
+      margin-inline: auto;
     }
 
     li {
-      flex: 0 0 100%;
-      max-width: 300px;
+      flex: 0 0 136px;
     }
 
     .tile {
-      aspect-ratio: auto;
-      height: 96px;
-      padding: var(--space-16) var(--space-24);
+      padding: var(--space-16);
     }
   }
 </style>
