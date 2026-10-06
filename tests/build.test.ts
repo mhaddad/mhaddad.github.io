@@ -1077,15 +1077,27 @@ describe('empresas e iniciativas na home', () => {
     expect(css).not.toMatch(new RegExp(`\\.tile\\[data-astro-cid-${cid}\\]:hover \\.`));
   });
 
-  it('deve mostrar os logos em quadrados maiores que 144px', () => {
+  it('deve mostrar os logos em quadrados de tamanho médio, entre 144px e 192px, e menores no celular', () => {
     // Arrange
     const tokens = readFileSync(join(process.cwd(), 'src/styles/tokens.css'), 'utf8');
+    const html = page('index.html');
+    const css = [
+      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+    ].join('');
 
     // Act
     const size = Number(/--logo-tile:\s*(\d+)px/.exec(tokens)?.[1]);
+    const cid = /<section class="proof"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+    const phone = new RegExp(`width<=767px\\)\\{ul\\[data-astro-cid-${cid}\\]\\{[^}]*\\}li\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}\\.tile\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}`).exec(css);
+    const maxWidth = Number(/max-width:\s*(\d+)px/.exec(phone?.[1] ?? '')?.[1]);
+    const height = Number(/height:\s*(\d+)px/.exec(phone?.[2] ?? '')?.[1]);
 
     // Assert
     expect(size).toBeGreaterThan(144);
+    expect(size).toBeLessThan(192);
+    expect(maxWidth).toBeLessThanOrEqual(320);
+    expect(height).toBeLessThanOrEqual(104);
   });
 
   it('deve deixar a faixa de empresas sem botão, nos dois idiomas', () => {
