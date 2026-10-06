@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import sharp from 'sharp';
 import { parse } from 'yaml';
 import { ui } from '../src/i18n/ui';
 import { parseMapIframe } from '../src/lib/map-embed';
@@ -344,5 +345,32 @@ describe('apresentação e vídeo no artigo Feedback em vez de avaliação de de
       expect(text).toMatch(/title="[^"]{10,}"/);
       expect((text.match(/<iframe/g) ?? []).length).toBe(2);
     }
+  });
+});
+
+describe('logo do Ateliê de Software', () => {
+  it('deve usar a versão nova (traço grosso, proporção 1500×492) no logo colorido, na máscara e na fonte', async () => {
+    // Arrange
+    const ratio = async (path: string) => {
+      const { width = 0, height = 1 } = await sharp(path).metadata();
+      return width / height;
+    };
+
+    // Act
+    const ratios = await Promise.all(['src/assets/companies/atelie.png', 'src/assets/companies/mono/atelie.png', 'scripts/logos/atelie.png'].map(ratio));
+
+    // Assert
+    for (const value of ratios) expect(value).toBeCloseTo(1500 / 492, 1);
+  });
+
+  it('deve manter o logo colorido sem fundo branco aparente nas bordas e com o traço escuro', async () => {
+    // Arrange
+    const { data, info } = await sharp('src/assets/companies/atelie.png').raw().toBuffer({ resolveWithObject: true });
+
+    // Act
+    const dark = [...Array(info.width * info.height).keys()].filter((i) => data[i * info.channels]! < 80).length;
+
+    // Assert
+    expect(dark / (info.width * info.height)).toBeGreaterThan(0.12);
   });
 });
