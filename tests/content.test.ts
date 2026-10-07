@@ -395,3 +395,25 @@ describe('serviço de palestras — formatos', () => {
     expect(formats('en')[1]?.[1]).toContain('60 to 90 minutes');
   });
 });
+
+describe('capas dos episódios do Spotify', () => {
+  it('deve ter no repositório a imagem de cada episódio do Spotify do acervo, em JPEG quadrado', async () => {
+    // Arrange
+    const talks = parse(readFileSync('src/content/talks/talks.yaml', 'utf8')) as { id: string; spotifyId?: string }[];
+    const ids = talks.flatMap((talk) => (talk.spotifyId ? [talk.spotifyId] : []));
+
+    // Act
+    const found = await Promise.all(
+      ids.map(async (id) => {
+        const path = `src/assets/talks/${id}.jpg`;
+        if (!existsSync(path)) return [id, 'ausente'];
+        const { width, height, format } = await sharp(path).metadata();
+        return [id, width === height && format === 'jpeg' ? 'ok' : `${format} ${width}x${height}`];
+      }),
+    );
+
+    // Assert
+    expect(ids).toHaveLength(3);
+    expect(found.filter(([, status]) => status !== 'ok')).toEqual([]);
+  });
+});

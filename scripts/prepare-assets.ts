@@ -5,6 +5,7 @@
 // - Logos (scripts/logos/*.png, os originais do site antigo): recorta a margem branca e grava a versão
 //   colorida (Empresas) e a máscara de opacidade (faixa de prova da home).
 // - Miniaturas: baixa a hqdefault de cada youtubeId de talks.yaml e recorta em 16:9.
+// - Capas dos episódios do Spotify: pega a imagem pelo oEmbed público de cada spotifyId.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import sharp from 'sharp';
@@ -72,6 +73,37 @@ async function prepareThumbnails() {
   }
 }
 
+const SPOTIFY_ID = /^[A-Za-z0-9]{22}$/;
+
+async function prepareSpotifyCovers() {
+  const yaml = await readFile('src/content/talks/talks.yaml', 'utf8');
+  const ids = [...yaml.matchAll(/^\s*spotifyId:\s*(\S+)\s*$/gm)].map((match) => match[1]);
+  for (const id of ids) {
+    if (!SPOTIFY_ID.test(id)) throw new Error(`spotifyId inválido: ${id}`);
+    const target = `src/assets/talks/${id}.jpg`;
+    if (existsSync(target)) continue;
+    const oembed = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(`https://open.spotify.com/episode/${id}`)}`);
+    if (!oembed.ok) {
+      console.warn(`capa ${id}: oEmbed HTTP ${oembed.status}, o card fica com o desenho padrão`);
+      continue;
+    }
+    const { thumbnail_url: url } = (await oembed.json()) as { thumbnail_url?: string };
+    // Só imagens do CDN do Spotify, por https.
+    if (!url || !/^https:\/\/[a-z0-9.-]+\.spotifycdn\.com\//.test(url)) {
+      console.warn(`capa ${id}: sem imagem utilizável, o card fica com o desenho padrão`);
+      continue;
+    }
+    const image = await fetch(url);
+    if (!image.ok) {
+      console.warn(`capa ${id}: imagem HTTP ${image.status}, o card fica com o desenho padrão`);
+      continue;
+    }
+    await writeFile(target, await sharp(Buffer.from(await image.arrayBuffer())).jpeg({ quality: 88 }).toBuffer());
+    console.log(`capa do Spotify ${id}`);
+  }
+}
+
 await prepareLogos();
 await prepareFace();
 await prepareThumbnails();
+await prepareSpotifyCovers();

@@ -1468,6 +1468,28 @@ describe('Mídia — ordem dos títulos', () => {
   });
 });
 
+describe('Mídia — capas dos episódios do Spotify', () => {
+  it('deve mostrar a capa local de cada episódio do Spotify, sem o desenho geométrico, nos dois idiomas', () => {
+    // Arrange
+    const spotifyCards = (path: string) =>
+      [...page(path).matchAll(/<li class="card"[\s\S]*?<\/li>/g)].map((m) => m[0]).filter((card) => card.includes('open.spotify.com/episode/'));
+
+    // Act
+    const found = ['midia/index.html', 'en/media/index.html'].map((path) => spotifyCards(path));
+
+    // Assert
+    for (const cards of found) {
+      expect(cards).toHaveLength(3);
+      for (const card of cards) {
+        expect(card).toMatch(/<img[^>]*class="[^"]*cover[^"]*"[^>]*src="\/_astro\/[^"]+"|<img[^>]*src="\/_astro\/[^"]+"[^>]*class="[^"]*cover[^"]*"/);
+        expect(card).not.toContain('class="pattern"');
+        expect(card).not.toMatch(/<img[^>]*src="https?:/);
+        expect(card).not.toContain('<button class="play"');
+      }
+    }
+  });
+});
+
 describe('Mídia — acervo de vídeos e podcasts', () => {
   it('deve mostrar os 23 itens do acervo com o filtro por tipo na página de mídia, nos dois idiomas', () => {
     // Arrange

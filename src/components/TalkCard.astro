@@ -16,6 +16,8 @@ interface Props {
 const { talk, lang, heading: Heading = 'h3' } = Astro.props;
 const { type, event, title, youtubeId, spotifyId } = talk.data;
 const thumbnail = youtubeId ? talkThumbnails.get(youtubeId) : undefined;
+// Episódios só do Spotify usam a capa do episódio (npm run assets); sem ela, o desenho padrão.
+const cover = spotifyId ? talkThumbnails.get(spotifyId) : undefined;
 // Títulos ficam no idioma original; na versão em inglês, marcamos o idioma.
 const contentLang = talk.data.lang === lang ? undefined : htmlLang[talk.data.lang];
 const link = youtubeId
@@ -41,6 +43,8 @@ const link = youtubeId
             </svg>
           </span>
         </button>
+      ) : cover ? (
+        <Image class="cover" src={cover} alt="" widths={[300, 600]} sizes="(max-width: 767px) 100vw, 400px" loading="lazy" />
       ) : (
         <GeometricPattern category="coerencia" />
       )
@@ -84,6 +88,14 @@ const link = youtubeId
     width: 100%;
     height: 100%;
     border: 0;
+  }
+
+  /* Capa quadrada do episódio inteira, sem cortes, centralizada no quadro 16:9. */
+  .media :global(.cover) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .play {
