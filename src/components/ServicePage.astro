@@ -99,7 +99,7 @@ const relatedTalks = (service.data.relatedTalks ?? []).flatMap((id) => allTalks.
 
       {
         relatedTalks.length > 0 && (
-          <section aria-labelledby="related-media-heading">
+          <section aria-labelledby="related-media-heading" class="related-section">
             <h2 id="related-media-heading" class="section-title mono">
               {t(lang, 'services.relatedMedia')}
             </h2>
@@ -110,7 +110,7 @@ const relatedTalks = (service.data.relatedTalks ?? []).flatMap((id) => allTalks.
 
       {
         related.length > 0 && (
-          <section aria-labelledby="related-heading">
+          <section aria-labelledby="related-heading" class="related-section">
             <h2 id="related-heading" class="section-title mono">{t(lang, 'services.related')}</h2>
             <div class="related">
               {related.map((article) => (
@@ -241,6 +241,12 @@ const relatedTalks = (service.data.relatedTalks ?? []).flatMap((id) => allTalks.
     color: var(--text-muted);
     font-size: var(--fs-15);
     line-height: var(--lh-body);
+  }
+
+  /* Traço que separa as mídias e os artigos relacionados da descrição do serviço. */
+  .related-section {
+    padding-top: var(--space-48);
+    border-top: var(--border-width) solid var(--border);
   }
 
   .related {

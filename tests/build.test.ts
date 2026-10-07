@@ -1321,6 +1321,58 @@ describe('páginas institucionais — Onda 4', () => {
   });
 });
 
+describe('página Sobre — sem traços entre as seções', () => {
+  it('deve ficar sem linha antes de Trajetória, Formação e Princípios, nos dois idiomas', () => {
+    // Arrange
+    const pages = ['sobre/index.html', 'en/about/index.html'];
+
+    // Act
+    const found = pages.map((path) => {
+      const html = page(path);
+      const css = [
+        ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+        ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+      ].join('');
+      const cid = /<section class="intro"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+      const rules = ['intro', 'block'].map((name) =>
+        [...css.matchAll(new RegExp(`\\.${name}\\[data-astro-cid-${cid}\\](?::[a-z-]+(?:\\([^)]*\\))?)?\\{([^}]*)\\}`, 'g'))].map((m) => m[1] ?? '').join(';'),
+      );
+      return { path, cid, hasRules: rules.every((rule) => rule.length > 0), borders: rules.filter((rule) => /border-(top|bottom)\s*:\s*var\(--border-width\)/.test(rule)).length };
+    });
+
+    // Assert
+    expect(found.every((item) => item.cid !== '' && item.hasRules)).toBe(true);
+    expect(found.map((item) => item.borders)).toEqual([0, 0]);
+  });
+});
+
+describe('separador antes das seções relacionadas', () => {
+  it('deve ter um traço antes de Artigos relacionados (mentoria) e de Mídias relacionadas (palestras)', () => {
+    // Arrange
+    const pages: [string, string][] = [
+      ['mentoria/index.html', 'related-heading'],
+      ['en/mentoring/index.html', 'related-heading'],
+      ['palestras/index.html', 'related-media-heading'],
+      ['en/speaking/index.html', 'related-media-heading'],
+    ];
+
+    // Act
+    const found = pages.map(([path, id]) => {
+      const html = page(path);
+      const css = [
+        ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+        ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+      ].join('');
+      const section = new RegExp(`<section aria-labelledby="${id}" class="related-section"[^>]*data-astro-cid-([a-z0-9]+)`).exec(html);
+      const rule = section ? new RegExp(`\\.related-section\\[data-astro-cid-${section[1]}\\]\\{([^}]*)\\}`).exec(css)?.[1] ?? '' : '';
+      return { path, hasSection: Boolean(section), line: /border-top:\s*var\(--border-width\) solid var\(--border\)/.test(rule), room: /padding-top:\s*var\(--space-\d+\)/.test(rule) };
+    });
+
+    // Assert
+    expect(found.filter((item) => !item.hasSection || !item.line || !item.room)).toEqual([]);
+  });
+});
+
 describe('Palestras — mídias relacionadas', () => {
   const related = (path: string) => /<section aria-labelledby="related-media-heading"[\s\S]*?<\/section>/.exec(page(path))?.[0] ?? '';
 

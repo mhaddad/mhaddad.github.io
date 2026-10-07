@@ -90,8 +90,7 @@ const degrees = education.map((item) => ({ marker: item.period, title: item.degr
     grid-template-columns: minmax(0, 1fr) var(--width-about-portrait);
     gap: var(--space-80);
     align-items: start;
-    padding-block: var(--space-64) var(--space-80);
-    border-bottom: var(--border-width) solid var(--border);
+    padding-top: var(--space-64);
   }
 
   .label {
@@ -151,12 +150,11 @@ const degrees = education.map((item) => ({ marker: item.period, title: item.degr
   }
 
   .block {
-    padding-block: var(--space-80);
-    border-bottom: var(--border-width) solid var(--border);
+    padding-top: var(--space-96);
   }
 
   .block:last-child {
-    border-bottom: none;
+    padding-bottom: var(--space-96);
   }
 
   h2 {
@@ -213,7 +211,11 @@ const degrees = education.map((item) => ({ marker: item.period, title: item.degr
     }
 
     .block {
-      padding-block: var(--space-64);
+      padding-top: var(--space-64);
+    }
+
+    .block:last-child {
+      padding-bottom: var(--space-64);
     }
 
     h2 {
