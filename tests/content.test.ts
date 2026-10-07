@@ -374,3 +374,24 @@ describe('logo do Ateliê de Software', () => {
     expect(dark / (info.width * info.height)).toBeGreaterThan(0.12);
   });
 });
+
+describe('serviço de palestras — formatos', () => {
+  const read = (lang: 'pt' | 'en') => readFileSync(`src/content/services/${lang}/palestras.md`, 'utf8');
+  const formats = (lang: 'pt' | 'en') =>
+    [...(/formats:\n((?:  - title: .*\n    text: .*\n)+)/.exec(read(lang))?.[1] ?? '').matchAll(/title: (.*)\n    text: (.*)/g)].map((m) => [m[1], m[2]]);
+
+  it('deve ter 3 formatos, cada um com título e uma frase curta que o complementa, nos dois idiomas', () => {
+    // Assert
+    for (const lang of ['pt', 'en'] as const) {
+      const found = formats(lang);
+      expect(found.map(([title]) => title)).toHaveLength(3);
+      expect(found.every(([, text]) => (text?.length ?? 0) >= 30 && (text?.length ?? 0) <= 140)).toBe(true);
+    }
+    expect(formats('pt').map(([title]) => title)).toEqual(['Keynote', 'Webinar', 'Mesa-redonda ou painel']);
+    expect(formats('en').map(([title]) => title)).toEqual(['Keynote', 'Webinar', 'Roundtable or panel']);
+    expect(formats('pt')[0]?.[1]).toContain('45 a 90 minutos');
+    expect(formats('pt')[1]?.[1]).toContain('60 a 90 minutos');
+    expect(formats('en')[0]?.[1]).toContain('45 to 90 minutes');
+    expect(formats('en')[1]?.[1]).toContain('60 to 90 minutes');
+  });
+});

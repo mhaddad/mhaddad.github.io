@@ -30,9 +30,12 @@ steps:
   - title: Delivery
     text: A talk with time for questions and supporting material.
 formats:
-  - Keynote (45 to 90 min)
-  - Webinar (60 to 90 min)
-  - Roundtable or panel
+  - title: Keynote
+    text: A talk of 45 to 90 minutes for the whole audience, tailored to the event's theme and its attendees.
+  - title: Webinar
+    text: An online session of 60 to 90 minutes, with room for live questions.
+  - title: Roundtable or panel
+    text: A conversation with other guests and the audience about the event's topics.
 ctaLabel: Talk about an event
 ctaText: Tell me about your event and your audience.
 whatsappMessage: Hi Matheus! I saw the Talks page on your website and would like to talk about an event.

@@ -123,7 +123,7 @@ const services = defineCollection({
     steps: z.array(item).length(3),
     structure: z.array(item).optional(),
     format: z.string().optional(),
-    formats: z.array(z.string().min(1)).optional(),
+    formats: z.array(item).optional(),
     ctaLabel: z.string().min(1),
     ctaText: z.string().min(1),
     whatsappMessage: z.string().min(1),

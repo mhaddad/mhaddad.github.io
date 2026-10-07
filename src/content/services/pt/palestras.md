@@ -30,9 +30,12 @@ steps:
   - title: Apresentação
     text: Palestra com tempo para perguntas e material de apoio.
 formats:
-  - Keynote (45 a 90 min)
-  - Webinar (60 a 90 min)
-  - Mesa-redonda ou painel
+  - title: Keynote
+    text: Palestra de 45 a 90 minutos para toda a audiência, adaptada ao tema e ao público do evento.
+  - title: Webinar
+    text: Sessão online de 60 a 90 minutos, com espaço para perguntas ao vivo.
+  - title: Mesa-redonda ou painel
+    text: Conversa com outros convidados e com o público sobre os temas do evento.
 ctaLabel: Conversar sobre um evento
 ctaText: Me conta sobre o seu evento e o seu público.
 whatsappMessage: Olá, Matheus! Vi a página de Palestras no seu site e gostaria de conversar sobre um evento.

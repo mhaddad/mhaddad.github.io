@@ -881,7 +881,7 @@ describe('páginas de serviço — Onda 3', () => {
 
     // Act
     const items = (html: string) =>
-      [...(/<ul class="structure"[\s\S]*?<\/ul>/.exec(html)?.[0] ?? '').matchAll(/<h3[^>]*>([^<]+)<\/h3>/g)].map((m) => m[1]);
+      [...(/<ul class="boxes structure"[\s\S]*?<\/ul>/.exec(html)?.[0] ?? '').matchAll(/<h3[^>]*>([^<]+)<\/h3>/g)].map((m) => m[1]);
     const order = ['topics-heading', 'structure-heading', 'steps-heading'].map((id) => mentoria.indexOf(`id="${id}"`));
 
     // Assert
@@ -893,6 +893,26 @@ describe('páginas de serviço — Onda 3', () => {
     expect(palestras).not.toContain('structure-heading');
   });
 
+  it('deve agrupar Duração, Formato e Materiais em caixas, com fundo, borda, cantos arredondados e destaque no topo', () => {
+    // Arrange
+    const html = page('mentoria/index.html');
+    const css = [
+      ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+      ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+    ].join('');
+
+    // Act
+    const cid = /<ul class="boxes structure"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+    const box = new RegExp(`\\.boxes\\[data-astro-cid-${cid}\\] li\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}`).exec(css)?.[1] ?? '';
+
+    // Assert
+    expect(box).toMatch(/background:\s*var\(--surface\)/);
+    expect(box).toMatch(/border:\s*var\(--border-width\) solid var\(--border\)/);
+    expect(box).toMatch(/border-radius:\s*var\(--radius-m\)/);
+    expect(box).toMatch(/border-top:\s*var\(--border-strong\) solid var\(--accent\)/);
+    expect(box).toMatch(/padding:\s*var\(--space-24\)/);
+  });
+
   it('deve mostrar o formato na mentoria e a lista de formatos nas palestras quando o serviço os define', () => {
     // Arrange
     const mentoria = page('en/mentoring/index.html');
@@ -900,12 +920,18 @@ describe('páginas de serviço — Onda 3', () => {
 
     // Act
     const format = /<p class="format mono"[^>]*>([^<]+)<\/p>/.exec(mentoria)?.[1];
-    const formats = /<ul class="formats"[\s\S]*?<\/ul>/.exec(palestras)?.[0] ?? '';
+    const formats = /<ul class="boxes formats"[\s\S]*?<\/ul>/.exec(palestras)?.[0] ?? '';
 
     // Assert
     expect(format).toBe('Formato de teste (en)');
     expect(formats).toContain('Formato A (pt)');
     expect(formats).toContain('Formato B (pt)');
+    expect([...formats.matchAll(/<h3[^>]*>([^<]+)<\/h3>\s*<p[^>]*>([^<]+)<\/p>/g)].map((m) => [m[1], m[2]])).toEqual([
+      ['Formato A (pt)', 'Frase do formato A (pt).'],
+      ['Formato B (pt)', 'Frase do formato B (pt).'],
+    ]);
+    // Formatos e estrutura usam as mesmas caixas, com o estilo da mentoria.
+    expect(page('mentoria/index.html')).not.toContain('class="boxes formats"');
   });
 
   it('deve levar a mensagem e o serviço no WhatsApp quando a página é de serviço', () => {

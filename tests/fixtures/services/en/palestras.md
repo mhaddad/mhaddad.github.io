@@ -22,8 +22,10 @@ steps:
   - title: Passo 3 de palestras
     text: Texto do passo 3.
 formats:
-  - Formato A (en)
-  - Formato B (en)
+  - title: Formato A (en)
+    text: Frase do formato A (en).
+  - title: Formato B (en)
+    text: Frase do formato B (en).
 ctaLabel: Botão de palestras en
 ctaText: Texto lateral de palestras en.
 whatsappMessage: Mensagem de palestras em en & teste
