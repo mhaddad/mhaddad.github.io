@@ -1,5 +1,4 @@
 /specifications
-.DS_Store
 .claude/settings.local.json
 node_modules/
 dist/
@@ -8,3 +7,19 @@ dist/
 
 # Arquivos de referência enviados manualmente (imagens e outros que não consigo obter); não vão para o repositório
 /reference-files/
+
+# Arquivos de sistema e de editores, em qualquer pasta
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

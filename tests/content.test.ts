@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -415,5 +416,27 @@ describe('capas dos episódios do Spotify', () => {
     // Assert
     expect(ids).toHaveLength(3);
     expect(found.filter(([, status]) => status !== 'ok')).toEqual([]);
+  });
+});
+
+describe('arquivos de sistema fora do repositório', () => {
+  const junk = /(^|\/)(\.DS_Store|\._[^/]*|\.AppleDouble|\.LSOverride|\.Spotlight-V100|\.Trashes|\.fseventsd|\.TemporaryItems|Thumbs\.db|ehthumbs\.db|Desktop\.ini|[^/]*\.sw[po]|[^/]*~)$/;
+
+  it('deve ignorar .DS_Store e arquivos parecidos do macOS, do Windows e de editores, em qualquer pasta', () => {
+    // Arrange
+    const ignore = readFileSync('.gitignore', 'utf8').split('\n').map((line) => line.trim());
+
+    // Assert
+    for (const pattern of ['.DS_Store', '._*', '.AppleDouble', '.LSOverride', '.Spotlight-V100', '.Trashes', '.fseventsd', '.TemporaryItems', 'Thumbs.db', 'ehthumbs.db', 'Desktop.ini', '*.swp', '*.swo', '*~']) {
+      expect(ignore).toContain(pattern);
+    }
+  });
+
+  it('deve manter fora do controle de versão qualquer arquivo desse tipo', () => {
+    // Act
+    const tracked = execFileSync('git', ['ls-files'], { encoding: 'utf8' }).split('\n').filter((file) => junk.test(file));
+
+    // Assert
+    expect(tracked).toEqual([]);
   });
 });
