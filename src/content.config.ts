@@ -12,6 +12,10 @@ import { SPOTIFY_ID, YOUTUBE_ID, talkTypes } from './lib/talks';
 const articlesBase = process.env.ARTICLES_DIR ?? './src/content/articles';
 const servicesBase = process.env.SERVICES_DIR ?? './src/content/services';
 const aboutBase = process.env.ABOUT_DIR ?? './src/content/about';
+const booksBase = process.env.BOOKS_DIR ?? './src/content/books';
+
+// título curto e uma frase, como nas caixas de Estrutura (mentoria) e Formatos (palestras)
+const item = z.object({ title: z.string().min(1), text: z.string().min(1) });
 
 const localized = z.object({ pt: z.string().min(1), en: z.string().min(1) });
 
@@ -85,7 +89,7 @@ const about = defineCollection({
 });
 
 const books = defineCollection({
-  loader: glob({ pattern: '{pt,en}/*.yaml', base: './src/content/books' }),
+  loader: glob({ pattern: '{pt,en}/*.yaml', base: booksBase }),
   schema: ({ image }) =>
     z.object({
       lang: z.enum(languages),
@@ -99,11 +103,11 @@ const books = defineCollection({
       siteUrl: z.url(),
       about: z.array(z.string().min(1)).min(1),
       audience: z.array(z.string().min(1)).min(1),
-      contents: z.array(z.string().min(1)).min(1),
+      contents: z.array(item).min(1),
+      relatedArticles: z.array(z.string()).default([]),
+      relatedTalks: z.array(z.string()).default([]),
     }),
 });
-
-const item = z.object({ title: z.string().min(1), text: z.string().min(1) });
 
 const services = defineCollection({
   loader: glob({ pattern: '{pt,en}/**/*.md', base: servicesBase }),

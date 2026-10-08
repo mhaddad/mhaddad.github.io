@@ -29,6 +29,7 @@ beforeAll(() => {
       ARTICLES_DIR: './tests/fixtures/articles',
       SERVICES_DIR: './tests/fixtures/services',
       ABOUT_DIR: './tests/fixtures/about',
+      BOOKS_DIR: './tests/fixtures/books',
     },
     stdio: 'pipe',
   });
@@ -1426,26 +1427,124 @@ describe('Palestras — mídias relacionadas', () => {
   });
 });
 
-describe('página do livro — separadores', () => {
-  it('deve ficar sem a linha entre a abertura e a seção Sobre o livro, nos dois idiomas', () => {
-    // Arrange
-    const css = (html: string) =>
-      [
-        ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
-        ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
-      ].join('');
+describe('página do livro — estrutura como a da Mentoria', () => {
+  const pages = [
+    ['livros/index.html', 'Método visual e prático', 'Artigos e mídias relacionados'],
+    ['en/books/index.html', 'A visual, practical method', 'Related articles and media'],
+  ] as const;
 
+  it('deve ter conteúdo à esquerda e a capa do livro à direita, no lugar do call to action, sem a faixa final', () => {
     // Act
-    const intros = ['livros/index.html', 'en/books/index.html'].map((path) => {
+    const found = pages.map(([path]) => {
       const html = page(path);
-      const cid = /<section class="intro"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
-      return new RegExp(`\\.intro\\[data-astro-cid-${cid}\\]\\{[^}]*\\}`).exec(css(html))?.[0] ?? '';
+      const aside = /<aside class="sidebar"[\s\S]*?<\/aside>/.exec(html)?.[0] ?? '';
+      return {
+        asideCover: /<img[^>]*src="\/_astro\/feedback-canvas-[a-z]+\./.test(aside),
+        cta: aside.includes('cta-box') || aside.includes('wa.me'),
+        final: html.includes('id="final-heading"'),
+        grid: html.includes('class="container book-grid"'),
+        buttons: (/<header class="book-header"[\s\S]*?<\/header>/.exec(html)?.[0].match(/<a [^>]*class="button/g) ?? []).length,
+      };
     });
 
     // Assert
-    for (const intro of intros) {
-      expect(intro).not.toBe('');
-      expect(intro).not.toMatch(/border/);
+    expect(found).toEqual([
+      { asideCover: true, cta: false, final: false, grid: true, buttons: 2 },
+      { asideCover: true, cta: false, final: false, grid: true, buttons: 2 },
+    ]);
+  });
+
+  it('deve deixar a capa parada no topo, ao lado do cabeçalho, sem acompanhar a rolagem da página', () => {
+    // Act
+    const found = pages.map(([path]) => {
+      const html = page(path);
+      const css = [
+        ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+        ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+      ].join('');
+      const cid = /<aside class="sidebar"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+      const rules = [...css.matchAll(new RegExp(`\\.sidebar\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}`, 'g'))].map((m) => m[1]).join(';');
+      return { cid: cid !== '', rules: rules.length > 0, sticky: /sticky|fixed/.test(rules) };
+    });
+
+    // Assert
+    expect(found).toEqual([
+      { cid: true, rules: true, sticky: false },
+      { cid: true, rules: true, sticky: false },
+    ]);
+  });
+
+  it('deve centralizar a capa na tela quando a visão é de celular ou tablet', () => {
+    // Act
+    const found = pages.map(([path]) => {
+      const html = page(path);
+      const css = [
+        ...[...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1] ?? ''),
+        ...[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => readFileSync(join(OUT_DIR, m[1] ?? ''), 'utf8')),
+      ].join('');
+      const cid = /<aside class="sidebar"[^>]*data-astro-cid-([a-z0-9]+)/.exec(html)?.[1] ?? '';
+      const narrow = new RegExp(`width<=1023px\\)\\{[^@]*?\\.sidebar\\[data-astro-cid-${cid}\\]\\{([^}]*)\\}`).exec(css)?.[1] ?? '';
+      return { margin: /margin-inline:\s*auto/.test(narrow), order: /order:\s*-1/.test(narrow) };
+    });
+
+    // Assert
+    expect(found).toEqual([
+      { margin: true, order: true },
+      { margin: true, order: true },
+    ]);
+  });
+
+  it('deve mostrar as seções na ordem Sobre, Para quem é, O que você vai encontrar e relacionados', () => {
+    // Act
+    const orders = pages.map(([path]) => ['about-heading', 'audience-heading', 'contents-heading', 'related-heading'].map((id) => page(path).indexOf(`id="${id}"`)));
+
+    // Assert
+    for (const order of orders) {
+      expect(order[0]).toBeGreaterThan(0);
+      expect(order[1]).toBeGreaterThan(order[0] ?? 0);
+      expect(order[2]).toBeGreaterThan(order[1] ?? 0);
+      expect(order[3]).toBeGreaterThan(order[2] ?? 0);
+    }
+  });
+
+  it('deve mostrar O que você vai encontrar em 4 caixas, como a Estrutura da mentoria', () => {
+    // Act
+    const found = pages.map(([path, first]) => {
+      const list = /<ul class="boxes contents"[\s\S]*?<\/ul>/.exec(page(path))?.[0] ?? '';
+      const titles = [...list.matchAll(/<h3[^>]*>([^<]+)<\/h3>\s*<p[^>]*>([^<]+)<\/p>/g)].map((m) => m[1]);
+      return { count: titles.length, first: titles[0], expected: first };
+    });
+
+    // Assert
+    for (const item of found) {
+      expect(item.count).toBe(4);
+      expect(item.first).toBe(item.expected);
+    }
+    // 4 caixas ficam em 2 colunas (2 + 2), e não em 3 + 1.
+    for (const [path] of pages) {
+      expect(page(path)).toMatch(/<ul class="boxes contents"[^>]*style="grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+    }
+  });
+
+  it('deve fechar com artigos e mídias relacionados ao Feedback Canvas, separados por um traço', () => {
+    // Act
+    const found = pages.map(([path, , heading]) => {
+      const html = page(path);
+      const section = /<section aria-labelledby="related-heading" class="related-section"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+      return {
+        heading: new RegExp(`<h2 id="related-heading"[^>]*>\\s*${heading}\\s*</h2>`).test(section),
+        articles: (section.match(/<article class="card/g) ?? []).length,
+        talks: [...section.matchAll(/<li class="card"[^>]*data-type="([a-z]+)"/g)].map((m) => m[1]),
+        iframes: (section.match(/<iframe/g) ?? []).length,
+      };
+    });
+
+    // Assert
+    for (const item of found) {
+      expect(item.heading).toBe(true);
+      expect(item.articles).toBe(2);
+      expect(item.talks).toEqual(['palestra', 'webinar', 'podcast', 'entrevista']);
+      expect(item.iframes).toBe(0);
     }
   });
 });

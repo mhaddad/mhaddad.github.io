@@ -3,6 +3,7 @@ import type { Lang } from '../i18n/ui';
 import { validateAbout } from './about';
 import { leadImage, validateArticles } from './articles';
 import { validateCompanies } from './companies';
+import { validateBooks } from './books';
 import { validateServices } from './services';
 import { validateTalks } from './talks';
 
@@ -81,7 +82,9 @@ export async function getAbout(lang: Lang): Promise<About> {
 }
 
 export async function getBooks(lang: Lang): Promise<Book[]> {
-  const books = await getCollection('books', (entry) => entry.data.lang === lang);
+  const [all, articles, talks] = await Promise.all([getCollection('books'), getAllArticles(), getAllTalks()]);
+  validateBooks(all, articles, new Set(talks.map((talk) => talk.id)));
+  const books = all.filter((entry) => entry.data.lang === lang);
   if (books.length === 0) throw new Error(`Nenhum livro em ${lang} (src/content/books/${lang}/)`);
   return books.sort((a, b) => a.data.order - b.data.order);
 }

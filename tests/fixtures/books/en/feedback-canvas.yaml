@@ -4,7 +4,7 @@ order: 1
 title: Feedback Canvas
 subtitle: Create a feedback culture in your organization
 description: Feedback Canvas, a book by Matheus Haddad on how to build a feedback culture in teams and organizations of any size.
-cover: ../../../assets/books/feedback-canvas-en.png
+cover: ../../../../src/assets/books/feedback-canvas-en.png
 coverAlt: Cover of the book Feedback Canvas by Matheus Haddad, in print and digital editions
 buyUrl: https://www.amazon.com/dp/B0FNLM47WB/
 siteUrl: https://feedbackcanvas.digital/livro
@@ -26,8 +26,8 @@ contents:
   - title: Accessible language
     text: That keeps the conceptual depth.
 relatedArticles:
-  - feedback-em-vez-de-avaliacao-de-desempenho
-  - rh-agil-muito-alem-da-adocao-dos-metodos-ageis
+  - fixture-primeiro
+  - fixture-segundo
 relatedTalks:
   - vanguarda-em-foco
   - tugatalk

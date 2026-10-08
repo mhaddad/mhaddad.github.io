@@ -73,7 +73,11 @@ export function serviceFor<T extends ServiceEntry>(services: T[], key: ServiceKe
   return service;
 }
 
-export function relatedArticlesFor<T extends ArticleEntry>(service: ServiceEntry, articles: T[]): T[] {
+/** Serve a serviços e a livros: qualquer item com idioma e a lista de artigos relacionados. */
+export function relatedArticlesFor<T extends ArticleEntry>(
+  service: { data: { lang: Lang; relatedArticles: string[] } },
+  articles: T[],
+): T[] {
   const published = publishedArticles(articles, service.data.lang);
   return service.data.relatedArticles
     .map((translationKey) => published.find((article) => article.data.translationKey === translationKey))

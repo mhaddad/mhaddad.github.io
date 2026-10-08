@@ -440,3 +440,44 @@ describe('arquivos de sistema fora do repositório', () => {
     expect(tracked).toEqual([]);
   });
 });
+
+describe('livro Feedback Canvas — conteúdo relacionado', () => {
+  const read = (lang: 'pt' | 'en') => parse(readFileSync(`src/content/books/${lang}/feedback-canvas.yaml`, 'utf8')) as {
+    contents: { title: string; text: string }[];
+    relatedArticles: string[];
+    relatedTalks: string[];
+  };
+  const talks = parse(readFileSync('src/content/talks/talks.yaml', 'utf8')) as { id: string; type: string }[];
+
+  it('deve relacionar artigos e mídias do acervo, iguais nos dois idiomas, e ter 4 itens em O que você vai encontrar', () => {
+    // Assert
+    const pt = read('pt');
+    const en = read('en');
+    expect(pt.relatedArticles).toEqual(['feedback-em-vez-de-avaliacao-de-desempenho', 'rh-agil-muito-alem-da-adocao-dos-metodos-ageis']);
+    expect(pt.relatedTalks.map((id) => talks.find((talk) => talk.id === id)?.type)).toEqual(['palestra', 'webinar', 'podcast', 'entrevista']);
+    expect(en.relatedArticles).toEqual(pt.relatedArticles);
+    expect(en.relatedTalks).toEqual(pt.relatedTalks);
+    expect(pt.contents).toHaveLength(4);
+    expect(en.contents).toHaveLength(4);
+  });
+});
+
+describe('capas do livro Feedback Canvas', () => {
+  it('deve ter as capas sem margem transparente sobrando, para ocupar a coluna lateral da página', async () => {
+    // Arrange
+    const check = async (path: string) => {
+      const { width = 0, height = 1 } = await sharp(path).metadata();
+      const trimmed = await sharp(path).trim({ threshold: 10 }).toBuffer({ resolveWithObject: true });
+      return { ratio: width / height, wasted: 1 - (trimmed.info.width * trimmed.info.height) / (width * height) };
+    };
+
+    // Act
+    const found = await Promise.all(['src/assets/books/feedback-canvas-pt.png', 'src/assets/books/feedback-canvas-en.png'].map(check));
+
+    // Assert
+    for (const item of found) {
+      expect(item.ratio).toBeLessThan(1.5);
+      expect(item.wasted).toBeLessThan(0.1);
+    }
+  });
+});

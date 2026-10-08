@@ -1,10 +1,14 @@
 ---
 import { Image } from 'astro:assets';
+import ArticleCard from './ArticleCard.astro';
+import Boxes from './Boxes.astro';
 import Icon from './Icon.astro';
+import TalkList from './TalkList.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { routePath } from '../i18n/routes';
 import { otherLang, t, type Lang } from '../i18n/ui';
-import { getBooks } from '../lib/collections';
+import { getAllArticles, getAllTalks, getBooks } from '../lib/collections';
+import { relatedArticlesFor } from '../lib/services';
 
 interface Props {
   lang: Lang;
@@ -12,17 +16,16 @@ interface Props {
 
 const { lang } = Astro.props;
 const [book] = await getBooks(lang);
-const { title, subtitle, description, cover, coverAlt, buyUrl, siteUrl, about, audience, contents } = book.data;
-const lists = [
-  { id: 'audience', heading: t(lang, 'books.audience'), items: audience },
-  { id: 'contents', heading: t(lang, 'books.contents'), items: contents },
-];
+const { title, subtitle, description, cover, coverAlt, buyUrl, siteUrl, about, audience, contents, relatedTalks } = book.data;
+const [articles, talks] = await Promise.all([getAllArticles(), getAllTalks()]);
+const relatedArticles = relatedArticlesFor(book, articles);
+const relatedMedia = relatedTalks.flatMap((id) => talks.filter((talk) => talk.id === id));
 ---
 
 <BaseLayout lang={lang} title={t(lang, 'books.pageTitle')} description={description} alternatePath={routePath('books', otherLang(lang))}>
-  <div class="container">
-    <section class="intro">
-      <div>
+  <div class="container book-grid">
+    <div class="content">
+      <header class="book-header">
         <p class="label mono">{t(lang, 'books.label')}</p>
         <h1>{title}</h1>
         <p class="subtitle">{subtitle}</p>
@@ -35,85 +38,95 @@ const lists = [
             <Icon name="arrow-right" size="s" />
           </a>
         </div>
-      </div>
-      <Image src={cover} alt={coverAlt} widths={[560, 1120]} sizes="(max-width: 767px) 100vw, 560px" loading="eager" />
-    </section>
+      </header>
 
-    <section class="block" aria-labelledby="about-heading">
-      <h2 id="about-heading" class="section-title mono">{t(lang, 'books.about')}</h2>
-      {about.map((paragraph) => <p class="paragraph">{paragraph}</p>)}
-    </section>
+      <section aria-labelledby="about-heading">
+        <h2 id="about-heading" class="section-title mono">{t(lang, 'books.about')}</h2>
+        {about.map((paragraph) => <p class="paragraph">{paragraph}</p>)}
+      </section>
 
-    <div class="lists">
+      <section aria-labelledby="audience-heading">
+        <h2 id="audience-heading" class="section-title mono">{t(lang, 'books.audience')}</h2>
+        <ul class="audience">
+          {
+            audience.map((item) => (
+              <li>
+                <span class="mark">
+                  <Icon name="check" size="s" />
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="contents-heading">
+        <h2 id="contents-heading" class="section-title mono">{t(lang, 'books.contents')}</h2>
+        <Boxes class="contents" items={contents} columns={2} />
+      </section>
+
       {
-        lists.map((list) => (
-          <section aria-labelledby={`${list.id}-heading`}>
-            <h2 id={`${list.id}-heading`} class="section-title mono">
-              {list.heading}
+        (relatedArticles.length > 0 || relatedMedia.length > 0) && (
+          <section aria-labelledby="related-heading" class="related-section">
+            <h2 id="related-heading" class="section-title mono">
+              {t(lang, 'books.related')}
             </h2>
-            <ul>
-              {list.items.map((item) => (
-                <li>
-                  <span class="mark">
-                    <Icon name="check" size="s" />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div class="related">
+              {relatedArticles.length > 0 && (
+                <div class="related-articles">
+                  {relatedArticles.map((article) => (
+                    <ArticleCard article={article} />
+                  ))}
+                </div>
+              )}
+              {relatedMedia.length > 0 && <TalkList talks={relatedMedia} lang={lang} />}
+            </div>
           </section>
-        ))
+        )
       }
     </div>
-  </div>
 
-  <section class="final" aria-labelledby="final-heading">
-    <div class="container final-inner">
-      <h2 id="final-heading">{title}</h2>
-      <p>{subtitle}</p>
-      <div class="actions">
-        <a class="button button--primary button--large" href={buyUrl} target="_blank" rel="noopener">
-          {t(lang, 'books.buy')}
-        </a>
-        <a class="button button--secondary button--large" href={siteUrl} target="_blank" rel="noopener">
-          {t(lang, 'books.site')}
-          <Icon name="arrow-right" size="s" />
-        </a>
-      </div>
-    </div>
-  </section>
+    <aside class="sidebar">
+      <Image src={cover} alt={coverAlt} widths={[400, 800]} sizes="(max-width: 1023px) 100vw, 400px" loading="eager" />
+    </aside>
+  </div>
 </BaseLayout>
 
 <style>
-  .intro {
+  .book-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--space-64);
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) var(--width-aside);
+    gap: var(--space-80);
+    align-items: start;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
     padding-top: var(--space-64);
   }
 
-  .intro :global(img) {
-    width: 100%;
-    height: auto;
+  .book-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin-top: calc(-1 * var(--space-16));
   }
 
   .label {
-    margin-bottom: var(--space-24);
     color: var(--accent);
   }
 
   h1 {
-    margin-bottom: var(--space-16);
-    font-size: var(--fs-56);
-    line-height: var(--lh-display);
+    font-size: var(--fs-44);
+    line-height: var(--lh-heading);
   }
 
   .subtitle {
-    max-width: var(--width-hero-text);
-    margin-bottom: var(--space-40);
     color: var(--text-muted);
-    font-size: var(--fs-20);
+    font-size: var(--fs-18);
     line-height: var(--lh-snug);
   }
 
@@ -121,42 +134,37 @@ const lists = [
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-12);
+    margin-top: var(--space-8);
   }
 
   .section-title {
-    margin-bottom: var(--space-24);
-    color: var(--accent);
-    font-size: var(--fs-12);
-  }
-
-  .block {
-    max-width: var(--width-reading);
-    padding-block: var(--space-80) var(--space-48);
+    margin-bottom: var(--space-16);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-11);
+    font-weight: 500;
   }
 
   .paragraph {
-    margin-bottom: var(--space-20);
-    font-size: var(--fs-18);
+    margin-bottom: var(--space-16);
+    font-size: var(--fs-17);
     line-height: var(--lh-body);
   }
 
-  .lists {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-48);
-    padding-bottom: var(--space-96);
+  .paragraph:last-child {
+    margin-bottom: 0;
   }
 
-  .lists ul {
+  .audience {
     display: flex;
     flex-direction: column;
-    gap: var(--space-16);
+    gap: var(--space-12);
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .lists li {
+  .audience li {
     display: flex;
     gap: var(--space-12);
     color: var(--text-muted);
@@ -170,60 +178,61 @@ const lists = [
     color: var(--accent);
   }
 
-  .final {
-    background: var(--accent-subtle);
+  /* Traço que separa as mídias e os artigos relacionados do restante da página. */
+  .related-section {
+    padding-top: var(--space-48);
     border-top: var(--border-width) solid var(--border);
-    border-bottom: var(--border-width) solid var(--border);
   }
 
-  .final-inner {
+  .related {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-16);
-    padding-block: var(--space-80);
-    text-align: center;
+    gap: var(--space-24);
   }
 
-  .final h2 {
-    font-size: var(--fs-40);
+  .related-articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--width-portrait-tablet), 1fr));
+    gap: var(--space-24);
   }
 
-  .final p {
-    margin-bottom: var(--space-16);
-    color: var(--text-muted);
-    font-size: var(--fs-18);
+  /* A capa fica parada no topo, ao lado do cabeçalho; não acompanha a rolagem. */
+  .sidebar {
+    padding-top: var(--space-64);
   }
 
-  .final .actions {
-    justify-content: center;
+  .sidebar :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 1023px) {
+    .book-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    /* Em telas estreitas a capa vem primeiro, antes do texto. */
+    .sidebar {
+      order: -1;
+      width: 100%;
+      max-width: var(--width-portrait-tablet);
+      margin-inline: auto;
+      padding-top: var(--space-40);
+    }
+
+    .content {
+      padding-top: var(--space-32);
+    }
   }
 
   @media (max-width: 767px) {
-    .intro {
-      grid-template-columns: 1fr;
-      gap: var(--space-32);
-      padding-block: var(--space-40) var(--space-64);
-    }
-
-    .intro :global(img) {
-      order: -1;
+    .content {
+      gap: var(--space-40);
     }
 
     h1 {
-      font-size: var(--fs-40);
-    }
-
-    .block {
-      padding-block: var(--space-64) var(--space-32);
-    }
-
-    .lists {
-      grid-template-columns: 1fr;
-      padding-bottom: var(--space-64);
-    }
-
-    .final h2 {
       font-size: var(--fs-32);
     }
   }

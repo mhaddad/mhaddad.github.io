@@ -1,0 +1,54 @@
+---
+// Caixas com título e uma frase: Estrutura da mentoria, Formatos das palestras e
+// "O que você vai encontrar" do livro.
+interface Props {
+  items: { title: string; text: string }[];
+  class?: string;
+  // Número fixo de colunas; sem ele, as caixas se ajustam à largura.
+  columns?: number;
+}
+
+const { items, class: className, columns } = Astro.props;
+const style = columns ? `grid-template-columns: repeat(${columns}, minmax(0, 1fr))` : undefined;
+---
+
+<ul class:list={['boxes', className]} style={style}>
+  {
+    items.map((item) => (
+      <li>
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--col-min-footer), 1fr));
+    gap: var(--space-24);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .boxes li {
+    padding: var(--space-24);
+    background: var(--surface);
+    border: var(--border-width) solid var(--border);
+    border-top: var(--border-strong) solid var(--accent);
+    border-radius: var(--radius-m);
+  }
+
+  .boxes h3 {
+    margin-bottom: var(--space-8);
+    font-size: var(--fs-18);
+  }
+
+  .boxes p {
+    color: var(--text-muted);
+    font-size: var(--fs-15);
+    line-height: var(--lh-body);
+  }
+</style>
