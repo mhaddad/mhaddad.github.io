@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<!--
+  Template de story (1080×1920, vertical). Derivado do template do vídeo-resumo (mhaddad-editorial).
+  build.py preenche os marcadores /*...*/: cenas, duração, título, frases, tema e cor.
+  - window.render(t) puro; render.py injeta window.TIMINGS. Nada de CSS animation/transition.
+  - Zonas livres: topo até ~250px (barra e perfil do Instagram) e base a partir de ~1560px
+    (campo de resposta). Conteúdo entre 260 e 1540.
+  - Cenas 0..N-2 são do artigo (scenes.html/scenes.js, que terminam com SCENE_FNS). A última é a
+    chamada (CTA), padrão: imagem de destaque, título, "Leia o artigo completo." e seta; abaixo da
+    seta, nada: é onde entra o link.
+  - Cores só por constantes de tema: A, AC, BG, SURF, TXT, MUTED, BORDER, DIM, DEEP, GRAY, SHIM.
+  - Legendas embutidas, em blocos curtos, sincronizadas por proporção de caracteres na frase.
+-->
+<style>
+@font-face{font-family:Fraunces;src:url(fonts/fraunces-latin-wght-normal.woff2) format('woff2');font-weight:100 900;unicode-range:U+0000-00FF,U+2018-201F}
+@font-face{font-family:Fraunces;src:url(fonts/fraunces-latin-ext-wght-normal.woff2) format('woff2');font-weight:100 900;unicode-range:U+0100-02AF}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:JBM;src:url(fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2');font-weight:500}
+:root{--bg:#000;--surface:#161618;--text:#fff;--muted:#b8b8b8;--border:#343438;--grid:#ffffff0b;--accent:#00f993;--accent-contrast:#071a12}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;background:var(--bg);overflow:hidden;color:var(--text);font-family:Inter,sans-serif}
+#stage{position:absolute;inset:0;overflow:hidden}
+.mono{font-family:JBM,monospace;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+.disp{font-family:Fraunces,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;opacity:0}
+#grid{position:absolute;inset:-80px;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:80px 80px}
+.acc{color:var(--accent)}
+svg text{font-family:JBM,monospace;font-weight:500;letter-spacing:.08em}
+.lbl{stroke:var(--bg);stroke-width:12;paint-order:stroke;stroke-linejoin:round}
+.card{position:absolute;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.hl{left:90px;top:400px;width:900px;font-size:120px}
+#cap{left:70px;right:70px;top:1300px;height:240px;display:flex;align-items:center;justify-content:center;text-align:center;
+ font-weight:800;font-size:68px;line-height:1.14;text-wrap:balance;letter-spacing:-.01em;text-shadow:0 4px 28px var(--bg),0 0 8px var(--bg)}
+</style></head>
+<body>
+<div id="stage">
+ <div id="grid"></div>
+/*SCENES_HTML*/
+ <!-- CTA: imagem de destaque, título e chamada; área livre abaixo da seta (~1340 a ~1600) para o link do artigo -->
+ <div class="scene" id="sC">
+  <div class="abs" id="sCimg" style="left:90px;top:370px;width:900px;height:506px;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:var(--surface)">
+   <img id="sCpic" src="capa.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 50%">
+  </div>
+  <div class="abs" style="left:90px;right:90px;top:912px;display:flex;flex-direction:column">
+   <div class="mono acc" id="sCk" style="font-size:22px">Artigo</div>
+   <div class="disp" id="sCt" style="margin-top:14px;font-size:54px"></div>
+   <!-- três linhas do título (3 × 54px × 1,08) de respiro antes da chamada, no mesmo tamanho do título -->
+   <div class="disp" id="sCa" style="margin-top:174px;text-align:center;font-size:54px">Leia o artigo <span class="acc">completo</span>.</div>
+   <div id="sCarrow" style="align-self:center;margin-top:36px;width:96px;height:96px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="stroke:var(--accent-contrast)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"/></svg>
+   </div>
+  </div>
+ </div>
+
+ <!-- chrome fixo -->
+ <div class="abs" style="left:90px;top:280px;font-weight:800;font-size:26px;letter-spacing:-.01em">MATHEUS HADDAD</div>
+ <div class="abs mono acc" id="cnt" style="right:90px;top:284px;font-size:18px"></div>
+ <div class="abs" id="cap"></div>
+</div>
+
+<script>
+/* ---------- configuração ---------- */
+const D=/*DUR*/30;
+const TITLE=/*TITLE*/'';
+const FRASES=/*FRASES*/[];
+// Tema (fundo preto ou branco) e uma cor de destaque para o vídeo inteiro, como o site faz por
+// visita (src/styles/tokens.css). As cenas usam estas constantes, nunca cor fixa.
+const TEMA=/*THEME*/'dark';
+const A=/*ACCENT*/'#00f993', AC=/*ACCENT_CONTRAST*/'#071a12';
+const PAL={
+ dark:{bg:'#000000',surf:'#161618',txt:'#ffffff',muted:'#b8b8b8',border:'#343438',dim:'#5a5a60',deep:'#0b0b0c',gray:'#3a3a3f',shim:'#4a4a50',grid:'#ffffff0b'},
+ light:{bg:'#ffffff',surf:'#f5f5f4',txt:'#111111',muted:'#57534e',border:'#e7e5e4',dim:'#a8a29e',deep:'#fafaf9',gray:'#d6d3d1',shim:'#bdb8b3',grid:'#0000000d'}}[TEMA];
+const BG=PAL.bg,SURF=PAL.surf,TXT=PAL.txt,MUTED=PAL.muted,BORDER=PAL.border,DIM=PAL.dim,DEEP=PAL.deep,GRAY=PAL.gray,SHIM=PAL.shim;
+{const r=document.documentElement.style;
+ for(const [k,v] of Object.entries({'--bg':BG,'--surface':SURF,'--text':TXT,'--muted':MUTED,'--border':BORDER,'--grid':PAL.grid,'--accent':A,'--accent-contrast':AC}))r.setProperty(k,v);}
+const TIMINGS=window.TIMINGS||FRASES.map((f,i)=>[.4+i*4,.4+i*4+3.6]);
+const N=TIMINGS.length;
+const SC=TIMINGS.map((s,i)=>[i?s[0]-.25:0, i<N-1?TIMINGS[i+1][0]-.25:D]);
+
+/* ---------- helpers ---------- */
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), pr=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3), eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+function S(par,tag,at){const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);par.appendChild(e);return e}
+function fadeUp(el,t,a,dur=.6,dy=30){const p=eo(pr(t,a,a+dur));el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dy}px)`;}
+function pop(g,p){const [x,y]=g._c;g.setAttribute('transform',`translate(${x} ${y}) scale(${Math.max(p,.001)}) translate(${-x} ${-y})`);g.style.opacity=cl(p*2)}
+function line(par,x1,y1,x2,y2,color,w=2){const L=Math.hypot(x2-x1,y2-y1);return S(par,'line',{x1,y1,x2,y2,stroke:color,'stroke-width':w,'stroke-dasharray':L,'stroke-dashoffset':L,'data-l':L})}
+function draw(el,p){const L=+el.getAttribute('data-l');el.setAttribute('stroke-dashoffset',L*(1-p))}
+function hexA(h,a){return h+Math.round(a*255).toString(16).padStart(2,'0')}
+// Barras de texto "censurado": a pergunta existe, mas só no artigo.
+function redact(par,x,y,widths,color=GRAY,h=22,gap=40){return widths.map((w,k)=>S(par,'rect',{x,y:y+k*gap,width:w,height:h,rx:3,fill:color}))}
+
+/* ---------- legendas ---------- */
+function chunk(text){
+ const out=[];let cur=[];
+ for(const w of text.split(' ')){cur.push(w);const s=cur.join(' ');
+  if(s.length>=24||(/[.,:?!]$/.test(w)&&s.length>=12)){out.push(s);cur=[]}}
+ if(cur.length){const s=cur.join(' ');if(out.length&&s.length<14)out[out.length-1]+=' '+s;else out.push(s)}
+ return out}
+const CUES=[];
+FRASES.forEach((f,i)=>{if(i===N-1)return;const [s,e]=TIMINGS[i];const cs=chunk(f);const tot=cs.reduce((a,c)=>a+c.length+1,0);let acc=0;
+ cs.forEach((c,k)=>{const a=s+(e-s)*acc/tot;acc+=c.length+1;const b=k<cs.length-1?s+(e-s)*acc/tot:(i<N-2?TIMINGS[i+1][0]:e+.4);CUES.push([a,b,c])})});
+function renderCap(t){const cap=$('cap');const c=CUES.find(([a,b])=>t>=a&&t<b);
+ if(!c){cap.style.opacity=0;return}
+ if(cap.textContent!==c[2])cap.textContent=c[2];
+ const p=eo(pr(t,c[0],c[0]+.14));cap.style.opacity=p;cap.style.transform=`scale(${.94+.06*p})`}
+
+/*SCENES_JS*/
+
+/* ---------- CTA ---------- */
+$('sCt').textContent=TITLE;
+function rC(t){
+ const im=eo(pr(t,0,.6));$('sCimg').style.opacity=im;$('sCimg').style.transform=`translateY(${(1-im)*30}px)`;
+ $('sCpic').style.transform=`scale(${1.08-.08*eo(pr(t,0,4))})`;
+ fadeUp($('sCk'),t,.3,.5,20);fadeUp($('sCt'),t,.4,.6,24);
+ fadeUp($('sCa'),t,.8,.6,30);
+ $('sCarrow').style.transform=`scale(${back(pr(t,1.1,1.5))}) translateY(${Math.sin(Math.max(0,t-1.5)*5)*8}px)`;
+}
+
+/* ---------- render loop ---------- */
+const RF=[...SCENE_FNS,rC];
+const EL=[...SCENE_FNS.map((_,i)=>'s'+i),'sC'];
+window.render=function(t){
+ let cur=0;SC.forEach((s,i)=>{if(t>=s[0])cur=i});
+ $('cnt').textContent=`0${cur+1} / 0${N}`;
+ $('grid').style.transform=`translate(${-(t*6)%80}px,${-(t*3)%80}px)`;
+ SC.forEach(([a,b],i)=>{const el=$(EL[i]);
+  if(t<a-0.01||t>b+0.01){el.style.opacity=0;return}
+  const fi=i===0?1:eo(pr(t,a,a+.35)),fo=i===N-1?1:1-pr(t,b-.3,b);
+  el.style.opacity=Math.min(fi,fo);el.style.transform=`translateY(${(1-fi)*14}px)`;
+  RF[i](t-a);});
+ renderCap(t);
+};
+window.render(parseFloat(location.hash.slice(1))||0);
+</script>
+</body></html>

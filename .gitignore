@@ -23,3 +23,10 @@ Desktop.ini
 *.swp
 *.swo
 *~
+
+# Chaves de API (ElevenLabs etc.); nunca vão para o repositório
+.env
+.env.*
+
+# Stories gerados pela skill story-summary (vídeos e fontes de trabalho); só a skill fica no repositório
+/stories/

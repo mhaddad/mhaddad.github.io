@@ -1,0 +1,20 @@
+[
+ {
+  "slug": "toda-empresa-sem-chefe-tem-um-chefe-invisivel",
+  "tema": "light",
+  "cor": "blue",
+  "trilha": 2
+ },
+ {
+  "slug": "2020-x-2026-um-dia-na-vida-de-um-desenvolvedor-de-software",
+  "tema": "dark",
+  "cor": "yellow",
+  "trilha": 3
+ },
+ {
+  "slug": "ia-no-processo-de-desenvolvimento-de-software",
+  "tema": "light",
+  "cor": "orange",
+  "trilha": 4
+ }
+]
