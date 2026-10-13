@@ -16,5 +16,11 @@
   "tema": "light",
   "cor": "orange",
   "trilha": 4
+ },
+ {
+  "slug": "a-sua-estrategia-de-ia-e-o-novo-modelo-spotify",
+  "tema": "dark",
+  "cor": "green",
+  "trilha": 5
  }
 ]
