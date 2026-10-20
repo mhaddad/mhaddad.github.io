@@ -22,5 +22,11 @@
   "tema": "dark",
   "cor": "green",
   "trilha": 5
+ },
+ {
+  "slug": "autonomia-autogestao-e-ia",
+  "tema": "light",
+  "cor": "yellow",
+  "trilha": 6
  }
 ]
