@@ -28,5 +28,11 @@
   "tema": "light",
   "cor": "yellow",
   "trilha": 6
+ },
+ {
+  "slug": "transformacao-digital-e-ia-quando-o-roadmap-tem-a-forma-do-organograma",
+  "tema": "dark",
+  "cor": "orange",
+  "trilha": 4
  }
 ]
