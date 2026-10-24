@@ -34,5 +34,11 @@
   "tema": "dark",
   "cor": "orange",
   "trilha": 4
+ },
+ {
+  "slug": "projeto-de-pais-ou-projeto-de-poder",
+  "tema": "light",
+  "cor": "blue",
+  "trilha": 2
  }
 ]
