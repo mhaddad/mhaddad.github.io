@@ -4,7 +4,7 @@ import { patternSvg } from './patterns';
 describe('patternSvg', () => {
   it('deve gerar um SVG decorativo na cor pedida para cada categoria', () => {
     // Arrange
-    const categories = ['gestao', 'coerencia', 'ai', 'software', 'educacao', 'hobbies'] as const;
+    const categories = ['gestao', 'coerencia', 'ai', 'software', 'educacao', 'opiniao', 'hobbies'] as const;
 
     // Act
     const svgs = categories.map((category) => patternSvg(category, 'currentColor'));

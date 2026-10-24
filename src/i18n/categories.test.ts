@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { categories, categoryFromSlug, categoryKeys } from './categories';
 
 describe('categorias', () => {
-  it('deve ter as 6 categorias do vault na ordem de exibição quando listadas', () => {
+  it('deve ter as 7 categorias do vault na ordem de exibição quando listadas', () => {
     // Arrange
-    const expected = ['gestao', 'coerencia', 'ai', 'software', 'educacao', 'hobbies'];
+    const expected = ['gestao', 'coerencia', 'ai', 'software', 'educacao', 'opiniao', 'hobbies'];
 
     // Act
     const keys = [...categoryKeys];
@@ -21,6 +21,7 @@ describe('categorias', () => {
       ai: { pt: 'ai', en: 'ai' },
       software: { pt: 'software', en: 'software' },
       educacao: { pt: 'educacao', en: 'education' },
+      opiniao: { pt: 'opiniao', en: 'opinion' },
       hobbies: { pt: 'hobbies', en: 'hobbies' },
     };
 

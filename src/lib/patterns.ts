@@ -45,6 +45,14 @@ const shapes: Record<CategoryKey, (c: string) => string> = {
     [[200, 50], [320, 130], [80, 130], [260, 210], [140, 210]]
       .map(([cx, cy]) => `<circle cx="${cx}" cy="${cy}" r="6" fill="${c}" opacity="0.2"/>`)
       .join(''),
+  opiniao: (c) =>
+    range(4)
+      .map((i) => `<line x1="${60 + i * 22}" y1="${200 - i * 30}" x2="${60 + i * 22}" y2="220" stroke="${c}" stroke-width="1.5" opacity="${(0.12 + i * 0.06).toFixed(2)}"/>` +
+        `<line x1="${340 - i * 22}" y1="${200 - i * 30}" x2="${340 - i * 22}" y2="220" stroke="${c}" stroke-width="1.5" opacity="${(0.12 + i * 0.06).toFixed(2)}"/>`)
+      .join('') +
+    `<path d="M200 220 C200 160 230 120 200 60" fill="none" stroke="${c}" stroke-width="2" opacity="0.4" stroke-dasharray="5 5"/>` +
+    `<circle cx="200" cy="60" r="8" fill="${c}" opacity="0.5"/>` +
+    `<line x1="40" y1="220" x2="360" y2="220" stroke="${c}" stroke-width="1.5" opacity="0.2"/>`,
   hobbies: (c) =>
     range(4)
       .map((i) => `<rect x="${60 + i * 80}" y="${60 + (i % 2) * 40}" width="60" height="60" rx="1" fill="none" stroke="${c}" stroke-width="1.5" opacity="${(0.1 + i * 0.08).toFixed(2)}" transform="rotate(${i * 15}, ${90 + i * 80}, ${90 + (i % 2) * 40})"/>`)

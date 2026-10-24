@@ -1,6 +1,6 @@
 import type { Lang } from './ui';
 
-export const categoryKeys = ['gestao', 'coerencia', 'ai', 'software', 'educacao', 'hobbies'] as const;
+export const categoryKeys = ['gestao', 'coerencia', 'ai', 'software', 'educacao', 'opiniao', 'hobbies'] as const;
 export type CategoryKey = (typeof categoryKeys)[number];
 
 export interface Category {
@@ -41,6 +41,12 @@ export const categories: Record<CategoryKey, Category> = {
     name: { pt: 'Educação', en: 'Education' },
     slug: { pt: 'educacao', en: 'education' },
     vaultName: 'Educação e Aprendizagem',
+  },
+  opiniao: {
+    key: 'opiniao',
+    name: { pt: 'Opinião', en: 'Opinion' },
+    slug: { pt: 'opiniao', en: 'opinion' },
+    vaultName: 'Opinião',
   },
   hobbies: {
     key: 'hobbies',
