@@ -40,5 +40,11 @@
   "tema": "dark",
   "cor": "blue",
   "trilha": 4
+ },
+ {
+  "slug": "o-futuro-do-desenvolvimento-de-software-na-era-da-ia",
+  "tema": "light",
+  "cor": "yellow",
+  "trilha": 2
  }
 ]
