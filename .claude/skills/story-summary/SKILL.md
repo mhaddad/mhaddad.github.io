@@ -88,13 +88,13 @@ Para quem acompanha não ver sempre o mesmo vídeo, cada story novo recebe uma c
 
 - **fundo**: alterna entre preto e branco (temas escuro e claro do site);
 - **cor de destaque**: verde, amarelo, azul ou laranja, nos tons do tema, e diferente das duas anteriores. É **uma cor só no vídeo inteiro**, como o site faz por visita;
-- **trilha**: a próxima do ciclo das seis.
+- **trilha**: a próxima do ciclo das sete.
 
 A combinação fica em `partes/meta.json`, e refazer o vídeo a mantém. Para trocá-la, apagar `tema`, `cor` e `trilha` do `meta.json` (sorteia de novo) ou editar os valores. `rotacao.json` é versionado: fazer commit dele junto com qualquer mudança da skill.
 
 ## Trilhas
 
-Seis trilhas originais, sintetizadas por `scripts/music.py --trilha N` na duração exata de cada vídeo, sem direitos autorais:
+Sete trilhas originais, sintetizadas por `scripts/music.py --trilha N` na duração exata de cada vídeo, sem direitos autorais:
 
 | N | Estilo | Amostra |
 |---|---|---|
@@ -104,8 +104,9 @@ Seis trilhas originais, sintetizadas por `scripts/music.py --trilha N` na duraç
 | 4 | reflexivo (72 BPM) | [ouvir](assets/trilhas/trilha-4-reflexivo.mp3) |
 | 5 | esperançoso (100 BPM) | [ouvir](assets/trilhas/trilha-5-esperancoso.mp3) |
 | 6 | suspense (88 BPM) | [ouvir](assets/trilhas/trilha-6-suspense.mp3) |
+| 7 | urgente (124 BPM, percussão e arpejo desde o início) | [ouvir](assets/trilhas/trilha-7-urgente.mp3) |
 
-As amostras em `assets/trilhas/` servem para ouvir e escolher; o vídeo usa o sintetizador, que encaixa o acorde final no fim de cada vídeo. Uma trilha nova entra como mais uma entrada em `TRILHAS` no `music.py`, com `TRILHAS = 7` no `build.py` e uma amostra nova.
+As amostras em `assets/trilhas/` servem para ouvir e escolher; o vídeo usa o sintetizador, que encaixa o acorde final no fim de cada vídeo. Uma trilha nova entra como mais uma entrada em `TRILHAS` no `music.py`, com `TRILHAS = 8` no `build.py` e uma amostra nova. Para um story que precisa de energia e senso de urgência, usar a 7.
 
 ## Salvaguardas
 

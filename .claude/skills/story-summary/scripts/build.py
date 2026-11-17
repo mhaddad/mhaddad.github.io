@@ -22,7 +22,7 @@ ACCENTS = {
     'light': {'green': ('#007d4c', '#ffffff'), 'yellow': ('#805600', '#ffffff'),
               'blue': ('#006695', '#ffffff'), 'orange': ('#ad3d1d', '#ffffff')},
 }
-TRILHAS = 6  # estilos de music.py --trilha
+TRILHAS = 7  # estilos de music.py --trilha
 
 
 def project_root(start: Path) -> Path:

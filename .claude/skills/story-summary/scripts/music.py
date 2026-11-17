@@ -4,9 +4,9 @@
 # ///
 """Sintetiza a trilha instrumental original do vídeo (sem direitos autorais).
 
-Uso: uv run music.py PASTA_DE_TRABALHO [--trilha 1..6] [--seed 7]
+Uso: uv run music.py PASTA_DE_TRABALHO [--trilha 1..7] [--seed 7]
 
---trilha escolhe um dos seis estilos de TRILHAS (andamento, harmonia, timbre, arpejo e
+--trilha escolhe um dos sete estilos de TRILHAS (andamento, harmonia, timbre, arpejo e
 percussão). A 1 é a trilha original descrita abaixo; as demais variam a partir dela.
 
 Grava PASTA_DE_TRABALHO/music.wav: 30 s, 44,1 kHz, estéreo, 16 bits.
@@ -53,6 +53,13 @@ TRILHAS = {
             chords=[([57, 60, 64], 45), ([55, 59, 62], 43), ([53, 57, 60, 64], 41), ([52, 56, 59], 40)],
             final=([57, 60, 64, 69], 45), arp=[0, 1, 2, 1, 2, 1, 0, None], arp_oct=12, tau=0.22,
             bass="oitavas", kick=3.0, kick_half=True, hats=12.0),
+    # 7: energia desde o início — arpejo em semicolcheias a partir de 0,8 s, kick e chimbal
+    # em todas as colcheias a partir de 0,3 s (com rampa), menor e mais rápida.
+    7: dict(nome="urgente", bpm=124, wave="saw", cutoff=2400,
+            chords=[([57, 60, 64], 45), ([53, 57, 60], 41), ([60, 64, 67], 48), ([55, 59, 62], 43)],
+            final=([57, 60, 64, 69], 45), arp=[0, 1, 2, 1, 0, 2, 1, 2, 0, 1, 2, 3, 2, 1, 0, 2], arp_oct=12,
+            tau=0.08, bass="oitavas", kick=0.3, kick_half=False, hats=0.3,
+            arp_start=0.8, arp_div=4, hats_dense=True),
 }
 P = TRILHAS[1]
 
@@ -156,9 +163,10 @@ def pluck_note(start: float, freq: float, tau: float = 0.18) -> np.ndarray:
 
 def arp() -> tuple[np.ndarray, np.ndarray]:
     mono = np.zeros(N)
-    step = BEAT / 2
+    step = BEAT / P.get("arp_div", 2)
     pattern = P["arp"]
-    for i in range(int(3.0 / step) + 1, int(END_CHORD / step)):
+    a0 = P.get("arp_start", 3.0)
+    for i in range(int(a0 / step) + 1, int(END_CHORD / step)):
         start = i * step
         notes, _ = CHORDS[int(start // BAR) % 4]
         idx = pattern[i % len(pattern)]
@@ -168,7 +176,7 @@ def arp() -> tuple[np.ndarray, np.ndarray]:
         mono += pluck_note(start, hz(n), tau=P["tau"])
     for j, n in enumerate(FINAL[0]):
         mono += pluck_note(END_CHORD + j * 0.06, hz(n + P["arp_oct"]), tau=0.9)
-    mono = spectral(mono, 3500, "low") * 0.16 * np.clip((t - 3.0) / 3.0, 0, 1) ** 0.5
+    mono = spectral(mono, 3500, "low") * 0.16 * np.clip((t - a0) / 3.0, 0, 1) ** 0.5
     pan = 0.5 + 0.3 * np.sin(2 * np.pi * t / 4.0)
     return mono * np.sqrt(1 - pan), mono * np.sqrt(pan)
 
@@ -197,7 +205,7 @@ def hats(rng: np.random.Generator) -> np.ndarray:
     gate = np.zeros(N)
     first = int(np.ceil(P["hats"] / (BEAT / 2)))
     for i in range(first, int(END_CHORD / (BEAT / 2))):
-        if i % 2 == 0:
+        if i % 2 == 0 and not P.get("hats_dense"):
             continue  # contratempo
         a = int(i * BEAT / 2 * SR)
         seg = np.arange(min(int(0.08 * SR), N - a)) / SR
